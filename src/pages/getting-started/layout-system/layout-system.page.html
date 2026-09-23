@@ -1,0 +1,120 @@
+<doc-article
+    title="Layout System"
+    description="Guide to responsive grid composition, container widths, and layout tokens used across MineralUI."
+>
+    <doc-section
+        title="Grid playground"
+        description="Breakpoint values inherit upward in the order sm, md, lg, xl, xxl. Missing lower breakpoints stay auto and are filled from the visible columns in the row."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <m-grid [align]="align()" style="width: 100%">
+                <m-grid-item
+                    [xxl]="spans().xxl"
+                    [xl]="spans().xl"
+                    [lg]="spans().lg"
+                    [md]="spans().md"
+                    [sm]="spans().sm"
+                    [hiddenUpTo]="hiddenUpTo()"
+                >
+                    <div mSurface tone="subtle">
+                        Primary column<br />
+                        <code mCode>{{ summary() }}</code>
+                    </div>
+                </m-grid-item>
+                <m-grid-item>
+                    <div mSurface tone="subtle" style="min-height: 120px">
+                        Auto column fills remaining space<br />
+                        <code mCode>align {{ align() ?? 'default stretch' }}</code>
+                    </div>
+                </m-grid-item>
+            </m-grid>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section title="How MGrid resolves widths">
+        <m-stack>
+            <p mText tone="muted">
+                Breakpoints resolve upward. For example
+                <code mCode>&lt;m-grid-item [sm]="12" [lg]="6" /&gt;</code> means <code mCode>sm 12</code>,
+                <code mCode>md 12</code>, <code mCode>lg 6</code>, <code mCode>xl 6</code> and <code mCode>xxl 6</code>.
+            </p>
+            <p mText tone="muted">
+                If you skip a smaller breakpoint, the row calculates it automatically from the visible columns. That is
+                why a remaining column expands to fill the row when a neighbour becomes hidden with
+                <code mCode>hiddenUpTo</code>.
+            </p>
+            <p mText tone="muted">
+                <code mCode>xxl</code> is the input name for the shared system breakpoint <code mCode>2xl</code> at
+                <code mCode>1536</code>.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Responsive grid">
+        <doc-preview [example]="examples.gridResponsive" />
+    </doc-section>
+
+    <doc-section
+        title="Equal columns"
+        description="Without explicit spans, row children divide the available 12-column space evenly."
+    >
+        <doc-preview [example]="examples.gridEqual" />
+    </doc-section>
+
+    <doc-section
+        title="Rows and items"
+        description='MineralUI for React writes rows and columns as MGrid type="row" / type="col" (MGridItem is an alias). In Angular the row is m-grid and every column is m-grid-item.'
+    >
+        <m-stack>
+            <p mText tone="muted">
+                The row reads its direct <code mCode>m-grid-item</code> children, also those rendered with
+                <code mCode>&#64;for</code> or <code mCode>&#64;if</code>, and resolves their spans together. Rows nest:
+                an <code mCode>m-grid</code> inside an item is resolved on its own.
+            </p>
+            <p mText tone="muted">
+                Plain elements work as equal columns too. They are counted after rendering, so a server-rendered page
+                shows them in one column until the browser takes over — use <code mCode>m-grid-item</code> for layouts
+                that must be right in the prerendered HTML.
+            </p>
+            <doc-preview [example]="examples.gridPlainChildren" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section
+        title="Mixed explicit and auto columns"
+        description="Breakpoint spans inherit upward. Here md 2 also applies on large screens, while smaller screens stay on auto until you set an explicit lower breakpoint."
+    >
+        <doc-preview [example]="examples.gridMixed" />
+    </doc-section>
+
+    <doc-section
+        title="Vertical alignment"
+        description="CSS Grid stretches all columns in a row to the height of the tallest one. Use align on m-grid to change the default, or on one m-grid-item to let a single column opt out."
+    >
+        <m-stack>
+            <doc-preview [example]="examples.gridAlign" />
+            <p mText tone="muted" size="sm">
+                Supported values: <code mCode>stretch</code> (default), <code mCode>start</code>,
+                <code mCode>center</code>, <code mCode>end</code>, <code mCode>baseline</code>.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Container and layout tokens">
+        <m-stack>
+            <doc-code-block [code]="tokens" language="css" title="layout-tokens.css" />
+            <p mText tone="muted">
+                Rows always stretch to the available width, columns split evenly by default, and most responsive layouts
+                only need <code mCode>sm</code>, <code mCode>md</code> and <code mCode>lg</code>.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="MGrid API">
+        <doc-props-table api="MGrid" />
+    </doc-section>
+
+    <doc-section title="MGridItem API">
+        <doc-props-table api="MGridItem" />
+    </doc-section>
+</doc-article>

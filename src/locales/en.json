@@ -47,6 +47,11 @@
                     "description": "MI18nService, dictionaries and the mT pipe."
                 },
                 {
+                    "id": "layout-system",
+                    "title": "Layout System",
+                    "description": "MGrid, MSection, MContainer and breakpoint model."
+                },
+                {
                     "id": "quick-start",
                     "title": "Quick Start",
                     "description": "Five-minute tour of the most common components."
@@ -111,6 +116,11 @@
                     "description": "Horizontal or vertical separator with tone variants."
                 },
                 {
+                    "id": "layout-system",
+                    "title": "Layout System",
+                    "description": "MGrid, MSection, MContainer and breakpoint model."
+                },
+                {
                     "id": "layout-primitives",
                     "title": "Primitives",
                     "description": "MContainer, MSection, MInline, MStack and MSurface."
@@ -124,6 +134,28 @@
                     "id": "simple-grid",
                     "title": "Simple Grid",
                     "description": "Responsive equal-column grid (1-4 cols) with built-in breakpoints."
+                },
+                {
+                    "id": "sticky-panel",
+                    "title": "Sticky Panel",
+                    "description": "Side-rail wrapper: sticky position, viewport-relative height, hidden scrollbar and drag-to-scroll."
+                }
+            ]
+        },
+        {
+            "category": "Navigation",
+            "icon": "navigation",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "breadcrumb",
+                    "title": "Breadcrumb",
+                    "description": "Page hierarchy trail with separators."
+                },
+                {
+                    "id": "navs",
+                    "title": "Navs",
+                    "description": "Inline link strip used inside MNavbar."
                 }
             ]
         },

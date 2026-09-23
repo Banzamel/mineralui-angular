@@ -1,0 +1,52 @@
+<doc-article
+    title="MBreadcrumb"
+    description="Navigation path for docs, dashboards and detail views where users need context inside a hierarchy."
+>
+    <doc-section
+        title="Playground"
+        description="Test separator styles and long-path collapsing on a realistic docs hierarchy."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <nav
+                mBreadcrumb
+                [items]="items"
+                [separator]="separator()"
+                [maxItems]="maxItems()"
+                style="width: 100%"
+            ></nav>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Collapsed paths"
+        description="With maxItems the first crumb and the last maxItems - 1 stay visible. The middle collapses into a button that reveals the full path and moves focus to the first revealed crumb."
+    >
+        <m-stack>
+            <p mText tone="muted" size="sm">
+                MineralUI for React renders the ellipsis as plain text, so the hidden crumbs cannot be reached. The
+                button is labelled with the <code mCode>mineralui.breadcrumb.expand</code> key ("Show full path"), the
+                landmark with <code mCode>mineralui.breadcrumb.label</code> ("Breadcrumb") or the
+                <code mCode>label</code> input. Separators are hidden from screen readers.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section
+        title="Router links"
+        description="[items] takes plain href links. For your router, project one *mBreadcrumbItem template per crumb; its context tells whether the crumb is the current page."
+    >
+        <doc-preview [example]="examples.breadcrumbRouter" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MBreadcrumb" />
+    </doc-section>
+
+    <doc-section title="MBreadcrumbItem shape">
+        <doc-props-table api="MBreadcrumbItem" />
+    </doc-section>
+
+    <doc-section title="*mBreadcrumbItem">
+        <doc-props-table api="MBreadcrumbItemDef" />
+    </doc-section>
+</doc-article>

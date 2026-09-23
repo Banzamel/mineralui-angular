@@ -5,54 +5,72 @@
 
     <div class="doc-playground-controls">
         @for (control of controls(); track control.name) {
-            <div class="doc-playground-row">
+            <m-grid class="doc-playground-row" align="center">
                 @switch (control.kind) {
                     @case ('select') {
-                        <span class="doc-playground-label" [id]="id + '-' + control.name">{{ control.name }}</span>
-                        <div class="doc-inline" role="group" [attr.aria-labelledby]="id + '-' + control.name">
-                            @for (option of control.options; track option; let index = $index) {
-                                <button
-                                    type="button"
-                                    class="doc-chip"
-                                    [attr.aria-pressed]="control.value() === option"
-                                    (click)="control.select(index)"
-                                >
-                                    {{ option }}
-                                </button>
-                            }
-                        </div>
+                        <m-grid-item [lg]="2" [md]="3" [sm]="12"
+                            ><span class="doc-playground-label" [id]="id + '-' + control.name">{{
+                                control.name
+                            }}</span></m-grid-item
+                        >
+                        <m-grid-item>
+                            <div class="doc-inline" role="group" [attr.aria-labelledby]="id + '-' + control.name">
+                                @for (option of control.options; track option; let index = $index) {
+                                    <button
+                                        type="button"
+                                        class="doc-chip"
+                                        [attr.aria-pressed]="control.value() === option"
+                                        (click)="control.select(index)"
+                                    >
+                                        {{ option }}
+                                    </button>
+                                }
+                            </div>
+                        </m-grid-item>
                     }
                     @case ('slider') {
-                        <label class="doc-playground-label" [for]="id + '-' + control.name">{{ control.name }}</label>
-                        <div class="doc-inline doc-playground-slider">
-                            <input
-                                type="range"
-                                [id]="id + '-' + control.name"
-                                [min]="control.min"
-                                [max]="control.max"
-                                [step]="control.step"
-                                [value]="control.value()"
-                                (input)="onSlider(control, $event)"
-                            />
-                            <output [attr.for]="id + '-' + control.name"
-                                ><code mCode>{{ control.value() }}</code></output
-                            >
-                        </div>
+                        <m-grid-item [lg]="2" [md]="3" [sm]="12"
+                            ><label class="doc-playground-label" [for]="id + '-' + control.name">{{
+                                control.name
+                            }}</label></m-grid-item
+                        >
+                        <m-grid-item>
+                            <div class="doc-inline doc-playground-slider">
+                                <input
+                                    type="range"
+                                    [id]="id + '-' + control.name"
+                                    [min]="control.min"
+                                    [max]="control.max"
+                                    [step]="control.step"
+                                    [value]="control.value()"
+                                    (input)="onSlider(control, $event)"
+                                />
+                                <output [attr.for]="id + '-' + control.name"
+                                    ><code mCode>{{ control.value() }}</code></output
+                                >
+                            </div>
+                        </m-grid-item>
                     }
                     @case ('boolean') {
-                        <label class="doc-playground-label" [for]="id + '-' + control.name">{{ control.name }}</label>
-                        <div class="doc-inline">
-                            <input
-                                type="checkbox"
-                                [id]="id + '-' + control.name"
-                                [checked]="control.value()"
-                                (change)="onToggle(control, $event)"
-                            />
-                            <code mCode>{{ control.value() }}</code>
-                        </div>
+                        <m-grid-item [lg]="2" [md]="3" [sm]="12"
+                            ><label class="doc-playground-label" [for]="id + '-' + control.name">{{
+                                control.name
+                            }}</label></m-grid-item
+                        >
+                        <m-grid-item>
+                            <div class="doc-inline">
+                                <input
+                                    type="checkbox"
+                                    [id]="id + '-' + control.name"
+                                    [checked]="control.value()"
+                                    (change)="onToggle(control, $event)"
+                                />
+                                <code mCode>{{ control.value() }}</code>
+                            </div>
+                        </m-grid-item>
                     }
                 }
-            </div>
+            </m-grid>
         }
     </div>
 

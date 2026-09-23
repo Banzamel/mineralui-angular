@@ -1,5 +1,5 @@
 import {NgComponentOutlet} from '@angular/common'
-import {ChangeDetectionStrategy, Component, ElementRef, inject, input, signal} from '@angular/core'
+import {booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, inject, input, signal} from '@angular/core'
 import type {Injector} from '@angular/core'
 import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {CodeBlock} from '../code-block/code-block'
@@ -28,6 +28,8 @@ export class DocPreview {
     readonly example = input.required<DocExample>()
     /** Optional injector for the example (e.g. its own `provideMineralI18n` environment). */
     readonly injector = input<Injector>()
+    /** Let `position: sticky` in the example follow the page: the stage stops being a scroll container. */
+    readonly sticky = input(false, {transform: booleanAttribute})
 
     protected readonly tabs = TABS
     protected readonly id = `doc-preview-${nextId++}`

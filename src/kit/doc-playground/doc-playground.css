@@ -25,11 +25,8 @@
     background: rgba(var(--mineral-success-rgb), 0.05);
 }
 
-.doc-playground-row {
-    display: grid;
-    grid-template-columns: 8rem minmax(0, 1fr);
-    align-items: center;
-    gap: var(--mineral-spacing-md);
+.doc-playground-controls .m-grid.doc-playground-row {
+    gap: var(--mineral-spacing-xs) var(--mineral-spacing-md);
 }
 
 .doc-playground-label {
@@ -42,11 +39,4 @@
     flex: 1;
     min-width: 8rem;
     accent-color: var(--mineral-primary);
-}
-
-@media (max-width: 640px) {
-    .doc-playground-row {
-        grid-template-columns: minmax(0, 1fr);
-        gap: var(--mineral-spacing-xs);
-    }
 }

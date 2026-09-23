@@ -6,6 +6,8 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     installation: () => import('@pages/getting-started/installation/installation.page').then((m) => m.InstallationPage),
     'quick-start': () => import('@pages/getting-started/quick-start/quick-start.page').then((m) => m.QuickStartPage),
     theming: () => import('@pages/getting-started/theming/theming.page').then((m) => m.ThemingPage),
+    'layout-system': () =>
+        import('@pages/getting-started/layout-system/layout-system.page').then((m) => m.LayoutSystemPage),
     i18n: () => import('@pages/getting-started/i18n/i18n.page').then((m) => m.I18nPage),
 
     // Typography
@@ -23,6 +25,11 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
         import('@pages/layout/layout-primitives/layout-primitives.page').then((m) => m.LayoutPrimitivesPage),
     'simple-grid': () => import('@pages/layout/simple-grid/simple-grid.page').then((m) => m.SimpleGridPage),
     'stat-grid': () => import('@pages/layout/stat-grid/stat-grid.page').then((m) => m.StatGridPage),
+    'sticky-panel': () => import('@pages/layout/sticky-panel/sticky-panel.page').then((m) => m.StickyPanelPage),
+
+    // Navigation
+    breadcrumb: () => import('@pages/navigation/breadcrumb/breadcrumb.page').then((m) => m.BreadcrumbPage),
+    navs: () => import('@pages/navigation/navs/navs.page').then((m) => m.NavsPage),
 
     // Display
     icons: () => import('@pages/display/icons/icons.page').then((m) => m.IconsPage),

@@ -1,0 +1,72 @@
+<doc-article
+    title="MStickyPanel"
+    description="Side-rail panel that sticks to the viewport, fills viewport-relative height, scrolls internally with an optional hidden scrollbar and optional click-and-drag scrolling. Unifies the recurring pattern of activity logs, schedule rails, notification streams and notes panes that sit next to a long detail page."
+>
+    <doc-section title="When to reach for it">
+        <m-stack>
+            <p mText>
+                Detail pages often pair a long, scrollable article with a short side rail — a lessons timeline, a
+                notifications stream, an activity log, a notes pane. The rail should sit pinned to the viewport while
+                the article scrolls, fill the available vertical space, scroll its own overflow, and stay tidy on small
+                viewports. <code mCode>m-sticky-panel</code> is the wrapper that does exactly that, so you stop
+                hand-rolling <code mCode>position: sticky</code> + <code mCode>calc(100vh - …)</code> + scrollbar-hiding
+                CSS + drag-to-scroll listeners on every page.
+            </p>
+            <p mText tone="muted" size="sm">
+                Drop the panel into any flex or grid item that lets it stretch — it sticks within the stretched parent
+                and scrolls internally when its children overflow.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section
+        title="Basic usage"
+        description="Long article on the left, sticky rail on the right. Scroll the page — the rail stays pinned below the header and its own overflow scrolls inside."
+    >
+        <doc-preview [example]="examples.stickyPanelBasic" sticky />
+    </doc-section>
+
+    <doc-section
+        title="Drag-to-scroll, actions and programmatic scroll"
+        description="Drag is on by default: press anywhere inside the panel and pull up or down. Buttons, links and [role=button] keep working because a drag never starts on them."
+    >
+        <m-stack>
+            <doc-preview [example]="examples.stickyPanelActions" sticky />
+            <p mText tone="muted" size="sm">
+                The host element is the scrollable panel, so a template reference (<code mCode>#panel</code> +
+                <code mCode>viewChild</code>) gives you <code mCode>scrollTo</code>, observers or
+                <code mCode>focus()</code>. Turn dragging off with <code mCode>[dragScroll]="false"</code> when the
+                panel holds text people select. MineralUI for React calls this prop <code mCode>draggable</code> — in
+                Angular that name would clash with the global HTML attribute.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Hidden scrollbar and keyboard">
+        <m-stack>
+            <p mText size="sm">
+                The scrollbar is hidden by default (<code mCode>scrollbar-width: none</code>,
+                <code mCode>-ms-overflow-style: none</code>, <code mCode>::-webkit-scrollbar</code>); set
+                <code mCode>[hideScrollbar]="false"</code> to bring the native track back.
+            </p>
+            <p mText size="sm">
+                The panel is focusable (<code mCode>tabindex="0"</code>), so keyboard users can scroll it with arrows
+                and Page Up / Page Down. Give it a <code mCode>label</code> to expose it as a named region landmark.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Sizing">
+        <p mText size="sm">
+            Height is computed from the viewport, not from the content:
+            <code mCode>calc(100vh - top - bottomGap)</code>. Adjust <code mCode>top</code> to clear a fixed app header
+            (e.g. <code mCode>[top]="88"</code> for a 72 px header plus 16 px breathing room) and
+            <code mCode>bottomGap</code> to leave space for a footer. On viewports shorter than
+            <code mCode>top + bottomGap</code> the panel relies on <code mCode>min-height: 0</code>.
+        </p>
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MStickyPanel" />
+    </doc-section>
+</doc-article>

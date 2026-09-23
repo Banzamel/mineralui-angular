@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, input} from '@angular/core'
 import {CodeBlock} from '../code-block/code-block'
 import type {PlaygroundControl} from './playground-controls'
+import {MGrid, MGridItem} from '@banzamel/mineralui-angular/layout/grid'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 
 let nextId = 0
@@ -9,11 +10,11 @@ let nextId = 0
  * Interactive props playground (counterpart of docs-react `DocsPlayground`): projected live preview, controls bound
  * to the page's signals and the generated template.
  *
- * TEMP: controls replace with MButton / MSlider / MToggle (etap 3), layout with MGrid (etap 2).
+ * TEMP: controls replace with MButton / MSlider / MToggle (etap 3).
  */
 @Component({
     selector: 'doc-playground',
-    imports: [CodeBlock, MCode],
+    imports: [CodeBlock, MCode, MGrid, MGridItem],
     templateUrl: './doc-playground.html',
     styleUrl: './doc-playground.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

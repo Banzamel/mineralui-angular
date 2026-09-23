@@ -38,3 +38,8 @@
     border-radius: var(--mineral-radius-md);
     overflow-x: auto;
 }
+
+/* overflow-x: auto makes the stage a scroll container, which would pin sticky content to the stage. */
+.doc-preview-stage.doc-preview-stage-sticky {
+    overflow: visible;
+}

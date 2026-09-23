@@ -1,0 +1,34 @@
+<doc-article
+    title="MNavs"
+    description="Lightweight link collection for secondary navigation, settings sections and compact app menus."
+>
+    <doc-section
+        title="Playground"
+        description="Try horizontal and vertical flows plus optional wrapping on one link set."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <m-navs [items]="items()" [orientation]="orientation()" [wrap]="wrap()" style="width: 100%" />
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Router links"
+        description="[items] takes plain href links. For your router, project a[mLink] children instead — m-navs styles them the same way."
+    >
+        <doc-preview [example]="examples.navsRouter" />
+        <p mText tone="muted" size="sm">
+            Mark the active link with <code mCode>[current]</code> — it sets <code mCode>aria-current="page"</code>.
+            m-navs is a plain layout element: wrap it in <code mCode>&lt;nav aria-label="…"&gt;</code> when it is a
+            navigation landmark. MineralUI for React items also take <code mCode>to</code> /
+            <code mCode>component</code>; in Angular that is the projected form.
+        </p>
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MNavs" />
+    </doc-section>
+
+    <doc-section title="MNavsItem shape">
+        <doc-props-table api="MNavsItem" />
+    </doc-section>
+</doc-article>
