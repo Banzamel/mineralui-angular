@@ -10,6 +10,7 @@ import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 import {IconBrowser, iconMap} from '@kit/icon-browser/icon-browser'
 import {ICON_TABS, PLAYGROUND_ICONS} from './icons-v2.catalog'
+import {MCode} from '@banzamel/mineralui-angular/typography/code'
 
 type PlaygroundIcon = (typeof PLAYGROUND_ICONS)[number]
 
@@ -27,7 +28,7 @@ const COLORS: readonly MIconColor[] = [
 
 @Component({
     selector: 'doc-icons-v2-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, IconBrowser, MIcon],
+    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, IconBrowser, MIcon, MCode],
     templateUrl: './icons-v2.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

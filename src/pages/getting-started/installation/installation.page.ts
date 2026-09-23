@@ -5,12 +5,16 @@ import * as snippets from '@generated/snippets/getting-started/installation'
 import {CodeBlock} from '@kit/code-block/code-block'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {API} from '@kit/doc-props-table/api'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
+import {MCode} from '@banzamel/mineralui-angular/typography/code'
+import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
+import {MLink} from '@banzamel/mineralui-angular/typography/link'
 
 const PACKAGE = '@banzamel/mineralui-angular'
 
 @Component({
     selector: 'doc-installation-page',
-    imports: [RouterLink, DocArticle, DocSection, CodeBlock],
+    imports: [MText, RouterLink, DocArticle, DocSection, CodeBlock, MCode, MList, MListItem, MLink],
     templateUrl: './installation.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

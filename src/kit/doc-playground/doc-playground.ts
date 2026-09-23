@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, input} from '@angular/core'
 import {CodeBlock} from '../code-block/code-block'
 import type {PlaygroundControl} from './playground-controls'
+import {MCode} from '@banzamel/mineralui-angular/typography/code'
 
 let nextId = 0
 
@@ -12,7 +13,7 @@ let nextId = 0
  */
 @Component({
     selector: 'doc-playground',
-    imports: [CodeBlock],
+    imports: [CodeBlock, MCode],
     templateUrl: './doc-playground.html',
     styleUrl: './doc-playground.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

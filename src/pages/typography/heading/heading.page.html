@@ -1,0 +1,93 @@
+<doc-article
+    title="MHeading"
+    description="Heading primitive for section titles, page titles and content hierarchy. Put mHeading on h1–h6 — the tag sets both the document outline and the size."
+>
+    <doc-section
+        title="Playground"
+        description="Preview the heading level (host tag), tone, semantic color and truncation."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <div class="doc-playground-measure">
+                @switch (tag()) {
+                    @case ('h1') {
+                        <h1
+                            mHeading
+                            [tone]="tone()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ title }}
+                        </h1>
+                    }
+                    @case ('h3') {
+                        <h3
+                            mHeading
+                            [tone]="tone()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ title }}
+                        </h3>
+                    }
+                    @case ('h4') {
+                        <h4
+                            mHeading
+                            [tone]="tone()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ title }}
+                        </h4>
+                    }
+                    @case ('h5') {
+                        <h5
+                            mHeading
+                            [tone]="tone()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ title }}
+                        </h5>
+                    }
+                    @case ('h6') {
+                        <h6
+                            mHeading
+                            [tone]="tone()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ title }}
+                        </h6>
+                    }
+                    @default {
+                        <h2
+                            mHeading
+                            [tone]="tone()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ title }}
+                        </h2>
+                    }
+                }
+            </div>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Levels"
+        description="Six sizes, one per tag. Keep the outline honest: one h1 per page, no skipped levels. Need a different size at a given level? Override font-size in your CSS."
+    >
+        <doc-preview [example]="examples.headingLevels" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MHeading" />
+    </doc-section>
+</doc-article>

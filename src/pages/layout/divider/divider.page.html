@@ -1,0 +1,73 @@
+<doc-article
+    title="MDivider"
+    description="A semantic separator for stacked sections, inline metrics, toolbar rows and dense settings layouts."
+>
+    <doc-section
+        title="Playground"
+        description="Switch orientation, style and spacing/padding from the framework scale to preview the same separator in stacked and inline layouts."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <!-- TEMP: the horizontal preview sits in MCard in docs-react (etap 6) -->
+            <div mSurface fullWidth>
+                @if (orientation() === 'vertical') {
+                    <m-inline align="stretch" justify="between" style="min-height: 72px">
+                        @for (metric of metrics; track metric.label; let last = $last) {
+                            <div>
+                                <p mText weight="semibold">{{ metric.label }}</p>
+                                <p mText tone="muted" size="sm">{{ metric.value }}</p>
+                            </div>
+                            @if (!last) {
+                                <m-divider
+                                    orientation="vertical"
+                                    [variant]="variant()"
+                                    [spacing]="spacing()"
+                                    [padding]="padding()"
+                                    [hiddenUpTo]="hiddenUpTo()"
+                                />
+                            }
+                        }
+                    </m-inline>
+                } @else {
+                    <m-stack>
+                        <div>
+                            <p mText weight="semibold">Workspace settings</p>
+                            <p mText tone="muted" size="sm">
+                                Manage company details, locale and notification defaults.
+                            </p>
+                        </div>
+                        <m-divider
+                            [variant]="variant()"
+                            [spacing]="spacing()"
+                            [padding]="padding()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        />
+                        <div>
+                            <p mText weight="semibold">Team access</p>
+                            <p mText tone="muted" size="sm">Review invitations, role changes and pending approvals.</p>
+                        </div>
+                    </m-stack>
+                }
+            </div>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section title="Usage notes">
+        <m-stack>
+            <p mText>
+                Use horizontal dividers to separate related content groups inside cards, forms and settings panels.
+            </p>
+            <p mText>
+                Use vertical dividers in compact rows such as stat summaries, toolbars or dense headers where whitespace
+                alone is not enough.
+            </p>
+            <p mText tone="muted" size="sm">
+                The divider is announced as a separator with its orientation. If it is purely decorative, add
+                aria-hidden="true".
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MDivider" />
+    </doc-section>
+</doc-article>

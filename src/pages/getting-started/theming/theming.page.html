@@ -3,13 +3,13 @@
     description="Control MineralUI through CSS variables first, then layer component inputs and provideMineralUI() overrides on top."
 >
     <doc-section title="Customization layers">
-        <ol class="doc-list">
-            <li><code class="doc-code">CSS variables</code> for global design tokens</li>
-            <li><code class="doc-code">Component inputs</code> for per-instance variants and colors</li>
-            <li><code class="doc-code">class and style</code> on the component host for local overrides</li>
-            <li>
-                <code class="doc-code">provideMineralUI()</code> / <code class="doc-code">MThemeService</code> for
-                JS-driven token overrides, <code class="doc-code">[mTheme]</code> for a single subtree
+        <ol mList>
+            <li mListItem><code mCode>CSS variables</code> for global design tokens</li>
+            <li mListItem><code mCode>Component inputs</code> for per-instance variants and colors</li>
+            <li mListItem><code mCode>class and style</code> on the component host for local overrides</li>
+            <li mListItem>
+                <code mCode>provideMineralUI()</code> / <code mCode>MThemeService</code> for JS-driven token overrides,
+                <code mCode>[mTheme]</code> for a single subtree
             </li>
         </ol>
     </doc-section>
@@ -29,10 +29,9 @@
                 <m-icon [icon]="download" /> {{ 'ui.docsDownloadTemplate' | mT }}
             </a>
         </div>
-        <p class="doc-muted doc-small">
-            The mode class is <code class="doc-code">.theme-light</code> on
-            <code class="doc-code">&lt;html&gt;</code> (or on an <code class="doc-code">[mTheme]</code> element); dark
-            is the default in <code class="doc-code">:root</code>.
+        <p mText tone="muted" size="sm">
+            The mode class is <code mCode>.theme-light</code> on <code mCode>&lt;html&gt;</code> (or on an
+            <code mCode>[mTheme]</code> element); dark is the default in <code mCode>:root</code>.
         </p>
     </doc-section>
 
@@ -50,10 +49,12 @@
     >
         <doc-preview [example]="examples.themeMode" />
         <doc-code-block [snippet]="snippets.themeBadgeComponentTs" />
-        <p class="doc-muted doc-small">
-            With SSR or prerendering add <code class="doc-code">M_THEME_INIT_SCRIPT</code> to your
-            <code class="doc-code">index.html</code> — see
-            <a class="doc-link" routerLink="/docs/installation">Installation</a>.
+        <p mText tone="muted" size="sm">
+            With SSR or prerendering add <code mCode>M_THEME_INIT_SCRIPT</code> to your <code mCode>index.html</code> —
+            see
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/installation"
+                >Installation</a
+            >.
         </p>
     </doc-section>
 
@@ -78,7 +79,7 @@
                         <tr>
                             <th scope="row">{{ row.group }}</th>
                             <td>
-                                <code class="doc-code">{{ row.tokens }}</code>
+                                <code mCode>{{ row.tokens }}</code>
                             </td>
                         </tr>
                     }
@@ -101,9 +102,11 @@
                     @for (row of themeTypes; track row.name) {
                         <tr>
                             <th scope="row">
-                                <code class="doc-code">{{ row.name }}</code>
+                                <code mCode>{{ row.name }}</code>
                             </th>
-                            <td class="doc-muted">{{ row.type }}</td>
+                            <td>
+                                <span mText tone="muted">{{ row.type }}</span>
+                            </td>
                             <td>{{ row.description }}</td>
                         </tr>
                     }

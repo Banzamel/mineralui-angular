@@ -4,10 +4,11 @@ import {MIcon} from '@banzamel/mineralui-angular/icons'
 import {MIllustration, mShowcaseIllustration} from '@banzamel/mineralui-angular/illustrations'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DOCS_NAVIGATION, sectionIcon} from '@locales/docs-navigation'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
 
 @Component({
     selector: 'doc-overview-page',
-    imports: [RouterLink, MIcon, MIllustration, DocArticle, DocSection],
+    imports: [MText, RouterLink, MIcon, MIllustration, DocArticle, DocSection],
     template: `
         <doc-article
             title="MineralUI for Angular"
@@ -16,7 +17,7 @@ import {DOCS_NAVIGATION, sectionIcon} from '@locales/docs-navigation'
             <doc-section>
                 <div class="doc-overview-hero">
                     <m-illustration [illustration]="showcase" size="sm" color="primary" />
-                    <p class="doc-text">
+                    <p mText>
                         Standalone components, signals everywhere, zoneless-ready and SSR-safe. The same design tokens
                         as MineralUI for React, so both share one visual language and the same theme files.
                     </p>
@@ -32,8 +33,8 @@ import {DOCS_NAVIGATION, sectionIcon} from '@locales/docs-navigation'
                                     @if (sectionIcon(section); as icon) {
                                         <m-icon [icon]="icon" color="primary" />
                                     }
-                                    <span class="doc-h3">{{ item.title }}</span>
-                                    <span class="doc-muted doc-small">{{ item.description }}</span>
+                                    <span mText weight="semibold">{{ item.title }}</span>
+                                    <span mText tone="muted" size="sm">{{ item.description }}</span>
                                 </a>
                             </li>
                         }

@@ -1,4 +1,4 @@
-<div class="doc-stack">
+<m-stack>
     <label class="doc-label">
         Search scenes
         <input
@@ -20,8 +20,8 @@
                     (click)="copy(scene.name)"
                 >
                     <m-illustration [illustration]="scene.illustration" [size]="140" [animate]="false" />
-                    <span class="doc-h3">{{ scene.label }}</span>
-                    <span class="doc-muted doc-small">{{ copied() === scene.name ? 'Copied' : scene.name }}</span>
+                    <span mText weight="semibold">{{ scene.label }}</span>
+                    <span mText tone="muted" size="sm">{{ copied() === scene.name ? 'Copied' : scene.name }}</span>
                 </button>
             </li>
         } @empty {
@@ -29,4 +29,4 @@
         }
     </ul>
     <span class="doc-visually-hidden" aria-live="polite">{{ copied() ? 'Copied ' + copied() : '' }}</span>
-</div>
+</m-stack>

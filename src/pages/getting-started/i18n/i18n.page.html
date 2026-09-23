@@ -3,18 +3,18 @@
     description="provideMineralI18n() gives your app a locale service with dot-path lookup, language switching and optional localStorage persistence."
 >
     <doc-section title="Overview">
-        <ul class="doc-list">
-            <li>Register <code class="doc-code">provideMineralI18n()</code> with a map of locale dictionaries.</li>
-            <li>
+        <ul mList>
+            <li mListItem>Register <code mCode>provideMineralI18n()</code> with a map of locale dictionaries.</li>
+            <li mListItem>
                 Read the active locale, dictionary and translator from
-                <code class="doc-code">MI18nService</code> (signals), or translate in templates with the
-                <code class="doc-code">mT</code> pipe.
+                <code mCode>MI18nService</code> (signals), or translate in templates with the
+                <code mCode>mT</code> pipe.
             </li>
-            <li>
-                The active locale is stored in <code class="doc-code">localStorage</code> by default and restored on the
-                next page load.
+            <li mListItem>
+                The active locale is stored in <code mCode>localStorage</code> by default and restored on the next page
+                load.
             </li>
-            <li><code class="doc-code">document.documentElement.lang</code> follows the active locale.</li>
+            <li mListItem><code mCode>document.documentElement.lang</code> follows the active locale.</li>
         </ul>
     </doc-section>
 
@@ -44,19 +44,17 @@
     </doc-section>
 
     <doc-section title="Usage notes">
-        <ul class="doc-list">
-            <li>
-                <code class="doc-code">toggleLocale()</code> follows the order of keys in the
-                <code class="doc-code">locales</code> object.
+        <ul mList>
+            <li mListItem>
+                <code mCode>toggleLocale()</code> follows the order of keys in the <code mCode>locales</code> object.
             </li>
-            <li>
+            <li mListItem>
                 The service is optional for library components: without it they use English texts. With it, they read
-                <code class="doc-code">mineralui.*</code> keys from your dictionaries (the same keys as MineralUI for
-                React).
+                <code mCode>mineralui.*</code> keys from your dictionaries (the same keys as MineralUI for React).
             </li>
-            <li>
+            <li mListItem>
                 Dates, numbers and relative times use the active locale, then Angular's
-                <code class="doc-code">LOCALE_ID</code>.
+                <code mCode>LOCALE_ID</code>.
             </li>
         </ul>
     </doc-section>

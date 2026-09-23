@@ -1,0 +1,38 @@
+<doc-article title="MSubText" description="Small, muted secondary text for captions, hints and metadata.">
+    <doc-section
+        title="Playground"
+        description="Preview the rendered tag, size, tone and semantic color of secondary text."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <m-stack>
+                <p mText>Main heading text</p>
+                @switch (tag()) {
+                    @case ('p') {
+                        <p mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">
+                            {{ caption }}
+                        </p>
+                    }
+                    @case ('div') {
+                        <div mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">
+                            {{ caption }}
+                        </div>
+                    }
+                    @case ('small') {
+                        <small mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">{{
+                            caption
+                        }}</small>
+                    }
+                    @default {
+                        <span mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">{{
+                            caption
+                        }}</span>
+                    }
+                }
+            </m-stack>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MSubText" />
+    </doc-section>
+</doc-article>

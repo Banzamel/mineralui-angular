@@ -7,10 +7,9 @@
         title="Styles"
         description="Global styles — reset, design tokens and utilities — come from one stylesheet. Component styles are bundled with the components."
     >
-        <p class="doc-text">
-            Add <code class="doc-code">&#64;banzamel/mineralui-angular/styles.css</code> to the
-            <code class="doc-code">styles</code> of your build target. It is a plain stylesheet, so it also works with
-            SSR and never flashes unstyled content.
+        <p mText>
+            Add <code mCode>&#64;banzamel/mineralui-angular/styles.css</code> to the <code mCode>styles</code> of your
+            build target. It is a plain stylesheet, so it also works with SSR and never flashes unstyled content.
         </p>
         <doc-code-block [snippet]="snippets.angularJson" />
     </doc-section>
@@ -20,8 +19,10 @@
         description="provideMineralUI() registers the theme: dark / light mode on <html>, token overrides and persistence."
     >
         <doc-code-block [snippet]="snippets.appConfigTs" />
-        <p class="doc-muted doc-small">
-            Translations are optional — see <a class="doc-link" routerLink="/docs/i18n">Languages (i18n)</a>.
+        <p mText tone="muted" size="sm">
+            Translations are optional — see
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/i18n">Languages (i18n)</a
+            >.
         </p>
     </doc-section>
 
@@ -29,9 +30,9 @@
         title="Server rendering and prerendering"
         description="With SSR or prerendering, add the theme init script to the <head> of index.html so a stored light / dark choice applies before the first paint."
     >
-        <p class="doc-text">
-            The snippet is exported as <code class="doc-code">M_THEME_INIT_SCRIPT</code> from
-            <code class="doc-code">&#64;banzamel/mineralui-angular/theme</code>; its current value:
+        <p mText>
+            The snippet is exported as <code mCode>M_THEME_INIT_SCRIPT</code> from
+            <code mCode>&#64;banzamel/mineralui-angular/theme</code>; its current value:
         </p>
         <doc-code-block [code]="themeInitScript" language="html" title="index.html" />
     </doc-section>
@@ -41,24 +42,23 @@
         description="Every component is standalone and has its own entry point; groups re-export their components. Import only what you use."
     >
         <doc-code-block [snippet]="snippets.toolbarComponentTs" />
-        <ul class="doc-list">
+        <ul mList>
             @for (entryPoint of entryPoints; track entryPoint) {
-                <li>
-                    <code class="doc-code">{{ entryPoint }}</code>
+                <li mListItem>
+                    <code mCode>{{ entryPoint }}</code>
                 </li>
             }
         </ul>
     </doc-section>
 
     <doc-section title="Requirements">
-        <ul class="doc-list">
-            <li>
-                Angular 22 or higher (<code class="doc-code">&#64;angular/core</code>,
-                <code class="doc-code">&#64;angular/common</code>,
-                <code class="doc-code">&#64;angular/platform-browser</code>).
+        <ul mList>
+            <li mListItem>
+                Angular 22 or higher (<code mCode>&#64;angular/core</code>, <code mCode>&#64;angular/common</code>,
+                <code mCode>&#64;angular/platform-browser</code>).
             </li>
-            <li>Works zoneless and with zone.js; safe for SSR and prerendering.</li>
-            <li>No other runtime dependencies (no Angular CDK, no NgRx).</li>
+            <li mListItem>Works zoneless and with zone.js; safe for SSR and prerendering.</li>
+            <li mListItem>No other runtime dependencies (no Angular CDK, no NgRx).</li>
         </ul>
     </doc-section>
 </doc-article>

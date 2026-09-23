@@ -9,6 +9,10 @@ import {CodeBlock} from '@kit/code-block/code-block'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
+import {MCode} from '@banzamel/mineralui-angular/typography/code'
+import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
+import {MLink} from '@banzamel/mineralui-angular/typography/link'
 
 // Token groups as listed by docs-react ThemingDoc (tokens are shared by both frameworks).
 const TOKEN_GROUPS: readonly {readonly group: string; readonly tokens: string}[] = [
@@ -58,7 +62,21 @@ const THEME_TYPES: readonly {readonly name: string; readonly type: string; reado
 
 @Component({
     selector: 'doc-theming-page',
-    imports: [RouterLink, MIcon, MTranslatePipe, CodeBlock, DocArticle, DocSection, DocPreview, DocPropsTable],
+    imports: [
+        MText,
+        RouterLink,
+        MIcon,
+        MTranslatePipe,
+        CodeBlock,
+        DocArticle,
+        DocSection,
+        DocPreview,
+        DocPropsTable,
+        MCode,
+        MList,
+        MListItem,
+        MLink,
+    ],
     templateUrl: './theming.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

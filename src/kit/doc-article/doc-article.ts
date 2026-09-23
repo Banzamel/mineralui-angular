@@ -1,21 +1,27 @@
 import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core'
+import {MStack} from '@banzamel/mineralui-angular/layout/stack'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
+import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 
 /**
  * Standard docs page: title, description and `<doc-section>` cards (counterpart of docs-react `DocsArticle`).
  *
- * TEMP: headings and cards replace with MHeading / MText (etap 2) and MCard (etap 6); MReveal (etap 6) is skipped.
+ * TEMP: headings replace with MHeading (etap 2), cards with MCard (etap 6); MReveal (etap 6) is skipped.
  */
 @Component({
     selector: 'doc-article',
+    imports: [MStack, MText, MHeading],
     template: `
-        <article class="doc-stack">
-            <header class="doc-stack-sm">
-                <h1 class="doc-h1">{{ title() }}</h1>
-                @if (description()) {
-                    <p class="doc-muted">{{ description() }}</p>
-                }
-            </header>
-            <ng-content />
+        <article>
+            <m-stack>
+                <header class="doc-stack-sm">
+                    <h1 mHeading class="doc-title">{{ title() }}</h1>
+                    @if (description()) {
+                        <p mText tone="muted">{{ description() }}</p>
+                    }
+                </header>
+                <ng-content />
+            </m-stack>
         </article>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,13 +34,14 @@ export class DocArticle {
 /** One card of a docs page; the heading doubles as an anchor (`id`). */
 @Component({
     selector: 'doc-section',
+    imports: [MText, MHeading],
     template: `
         <section class="doc-card" [attr.aria-labelledby]="headingId()">
             @if (title()) {
                 <header class="doc-card-header">
-                    <h2 class="doc-h2" [id]="headingId()">{{ title() }}</h2>
+                    <h2 mHeading class="doc-section-title" [id]="headingId()">{{ title() }}</h2>
                     @if (description()) {
-                        <p class="doc-muted doc-small">{{ description() }}</p>
+                        <p mText tone="muted" size="sm">{{ description() }}</p>
                     }
                 </header>
             }

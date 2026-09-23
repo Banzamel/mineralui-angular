@@ -1,0 +1,57 @@
+<doc-article
+    title="Layout Primitives"
+    description="Core wrappers, surfaces and flow helpers for building page shells, settings layouts and content rhythm."
+>
+    <doc-section
+        title="Composition playground"
+        description="Combine container width, surface tone and stack or inline flow before reaching for custom CSS."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <m-container [size]="containerSize()" [padded]="padded()" [hiddenUpTo]="hidden.container()">
+                <div
+                    mSurface
+                    [tone]="surfaceTone()"
+                    [outlined]="outlined()"
+                    [padded]="padded()"
+                    [hiddenUpTo]="hidden.surface()"
+                >
+                    <m-stack [align]="stackAlign()" [hiddenUpTo]="hidden.stack()">
+                        <div>
+                            <p mText weight="semibold">Project overview</p>
+                            <p mText tone="muted" size="sm">
+                                Compose wrappers, surfaces and flow primitives before reaching for custom CSS.
+                            </p>
+                        </div>
+                        <m-inline [justify]="inlineJustify()" [wrap]="inlineWrap()" [hiddenUpTo]="hidden.inline()">
+                            @for (tile of tiles; track tile) {
+                                <div mSurface tone="subtle">{{ tile }}</div>
+                            }
+                        </m-inline>
+                    </m-stack>
+                </div>
+            </m-container>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="MStack"
+        description="<m-stack> is its own root: class, id, ARIA attributes and the spacing utilities land on the element itself."
+    >
+        <doc-preview [example]="examples.stackBasics" />
+    </doc-section>
+
+    <doc-section
+        title="MSurface on any element"
+        description="mSurface styles the element you put it on, so the tag keeps its meaning: an article, a link card, a button."
+    >
+        <doc-preview [example]="examples.surfaceLink" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MContainer" />
+        <doc-props-table api="MStack" />
+        <doc-props-table api="MInline" />
+        <doc-props-table api="MSurface" />
+        <doc-props-table api="MSection" />
+    </doc-section>
+</doc-article>

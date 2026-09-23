@@ -1,0 +1,42 @@
+<doc-article
+    title="MSimpleGrid"
+    description="A shorter equal-column grid for card lists, galleries and any section that does not need manual MGrid spans."
+>
+    <doc-section
+        title="Playground"
+        description="Every item shares the same width. Four and three columns step down to two at 1024 px, everything to one at 720 px."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <m-simple-grid [columns]="columns()" style="width: 100%">
+                @for (tile of tiles; track tile.title) {
+                    <div mSurface>
+                        <p mText weight="semibold">{{ tile.title }}</p>
+                        <p mText tone="muted" size="sm">{{ tile.description }}</p>
+                    </div>
+                }
+            </m-simple-grid>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section title="When to use it">
+        <m-stack>
+            <p mText>
+                Choose MSimpleGrid for equal tiles such as feature cards, blog previews, gallery items or simple pricing
+                options. Render the tiles with &#64;for directly inside the grid.
+            </p>
+            <p mText>
+                Choose MGrid when columns need different spans, breakpoint-specific widths or more editorial control
+                over the layout.
+            </p>
+            <doc-code-block [code]="usage" language="html" title="Template" />
+            <p mText tone="muted" size="sm">
+                <code mCode>minItemWidth</code> sets <code mCode>--grid-min-item-width</code> for parity with MineralUI
+                for React; the grid stylesheet does not read it yet.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MSimpleGrid" />
+    </doc-section>
+</doc-article>

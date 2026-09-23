@@ -30,15 +30,12 @@ describe('DocsNavigation', () => {
     it('lists every page, sorted by title within a section, under a labelled search', async () => {
         const {element, links} = await render()
 
-        expect(links()).toEqual([
-            'Installation',
-            'Languages (i18n)',
-            'Quick Start',
-            'Theming',
-            'Icons',
-            'Icons v2',
-            'Illustrations',
-        ])
+        // Derived from the navigation data so new pages do not break the spec; order is what is under test.
+        const expected = en.docsNavigation.flatMap((section) =>
+            section.items.map((item) => item.title).sort((a, b) => a.localeCompare(b))
+        )
+        expect(links()).toEqual(expected)
+        expect(links()).toContain('Languages (i18n)')
         const input = element.querySelector('input')!
         expect(element.querySelector(`label[for="${input.id}"]`)).not.toBeNull()
     })
@@ -47,7 +44,7 @@ describe('DocsNavigation', () => {
         const {search, links} = await render()
 
         await search('i')
-        expect(links().length).toBe(7)
+        expect(links().length).toBe(en.docsNavigation.flatMap((section) => section.items).length)
 
         await search('ico')
         expect(links()).toEqual(['Icons', 'Icons v2'])

@@ -1,0 +1,101 @@
+<doc-article
+    title="MText"
+    description="Body text primitive for paragraphs, labels and descriptive copy. Put mText on the tag you need — the tag carries the semantics."
+>
+    <doc-section
+        title="Playground"
+        description="Preview rendered tag, tone, size, alignment, weight, semantic color and truncation."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <div class="doc-playground-measure">
+                @switch (tag()) {
+                    @case ('span') {
+                        <span
+                            mText
+                            [tone]="tone()"
+                            [size]="size()"
+                            [align]="align()"
+                            [weight]="weight()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                            >{{ copy }}</span
+                        >
+                    }
+                    @case ('div') {
+                        <div
+                            mText
+                            [tone]="tone()"
+                            [size]="size()"
+                            [align]="align()"
+                            [weight]="weight()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ copy }}
+                        </div>
+                    }
+                    @case ('strong') {
+                        <strong
+                            mText
+                            [tone]="tone()"
+                            [size]="size()"
+                            [align]="align()"
+                            [weight]="weight()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                            >{{ copy }}</strong
+                        >
+                    }
+                    @case ('em') {
+                        <em
+                            mText
+                            [tone]="tone()"
+                            [size]="size()"
+                            [align]="align()"
+                            [weight]="weight()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                            >{{ copy }}</em
+                        >
+                    }
+                    @default {
+                        <p
+                            mText
+                            [tone]="tone()"
+                            [size]="size()"
+                            [align]="align()"
+                            [weight]="weight()"
+                            [color]="color()"
+                            [truncate]="truncate()"
+                            [hiddenUpTo]="hiddenUpTo()"
+                        >
+                            {{ copy }}
+                        </p>
+                    }
+                }
+            </div>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Semantic tags"
+        description="mText works on p, span, div, strong and em. Pick the element for its meaning; the look comes from the inputs."
+    >
+        <doc-preview [example]="examples.textTags" />
+    </doc-section>
+
+    <doc-section
+        title="Truncation"
+        description="The bare truncate attribute cuts a single line with an ellipsis; a number clamps to that many lines."
+    >
+        <doc-preview [example]="examples.textTruncate" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MText" />
+    </doc-section>
+</doc-article>

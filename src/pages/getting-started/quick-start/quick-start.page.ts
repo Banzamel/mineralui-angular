@@ -2,6 +2,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core'
 import welcomeCard from '@generated/examples/getting-started/quick-start/welcome-card'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
+import {MCode} from '@banzamel/mineralui-angular/typography/code'
 
 /** How React props map to Angular in MineralUI (the rules every component follows). */
 const CONVENTIONS: readonly {readonly react: string; readonly angular: string; readonly example: string}[] = [
@@ -44,7 +46,7 @@ const CONVENTIONS: readonly {readonly react: string; readonly angular: string; r
 
 @Component({
     selector: 'doc-quick-start-page',
-    imports: [DocArticle, DocSection, DocPreview],
+    imports: [MText, DocArticle, DocSection, DocPreview, MCode],
     templateUrl: './quick-start.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

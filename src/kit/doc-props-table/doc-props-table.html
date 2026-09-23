@@ -1,8 +1,8 @@
 <div class="doc-stack-sm">
-    <p class="doc-text doc-small">
-        <code class="doc-code">{{ importLine() }}</code>
+    <p mText size="sm">
+        <code mCode>{{ importLine() }}</code>
         @if (entry().selector) {
-            · selector <code class="doc-code">{{ entry().selector }}</code>
+            · selector <code mCode>{{ entry().selector }}</code>
         }
     </p>
 
@@ -26,7 +26,7 @@
                     @for (member of group.members; track member.name) {
                         <tr>
                             <th scope="row">
-                                <code class="doc-code">{{ member.name }}</code>
+                                <code mCode>{{ member.name }}</code>
                                 @if (member.kind === 'model') {
                                     <span class="doc-badge" data-color="neutral">model</span>
                                 }
@@ -34,12 +34,16 @@
                                     <span class="doc-badge" data-color="news">{{ 'ui.propsRequired' | mT }}</span>
                                 }
                             </th>
-                            <td class="doc-muted">{{ member.type }}</td>
-                            <td class="doc-muted">{{ member.default ?? '—' }}</td>
+                            <td>
+                                <span mText tone="muted">{{ member.type }}</span>
+                            </td>
+                            <td>
+                                <span mText tone="muted">{{ member.default ?? '—' }}</span>
+                            </td>
                             <td>
                                 {{ member.description }}
                                 @if (member.from) {
-                                    <span class="doc-muted">(from {{ member.from }})</span>
+                                    <span mText tone="muted">(from {{ member.from }})</span>
                                 }
                             </td>
                         </tr>
@@ -67,7 +71,7 @@
                     @for (slot of entry().slots; track slot.select) {
                         <tr>
                             <th scope="row">
-                                <code class="doc-code">{{ slot.select }}</code>
+                                <code mCode>{{ slot.select }}</code>
                             </th>
                             <td>{{ slot.description }}</td>
                         </tr>

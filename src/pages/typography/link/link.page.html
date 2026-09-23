@@ -1,0 +1,43 @@
+<doc-article
+    title="MLink"
+    description="Theme-aware link primitive for inline links, block links and navigation items. Put mLink on an anchor, or on a button that should look like a link."
+>
+    <doc-section title="Playground" description="Preview tone, underline behavior, current and disabled states.">
+        <doc-playground [controls]="controls" [code]="code()">
+            <a
+                mLink
+                href="#playground"
+                [tone]="tone()"
+                [underline]="underline()"
+                [current]="current()"
+                [block]="block()"
+                [disabled]="disabled()"
+                [hiddenUpTo]="hiddenUpTo()"
+                >Explore the component library</a
+            >
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Router note"
+        description="The library does not depend on @angular/router. Put routerLink on the same anchor; mark the active page yourself."
+    >
+        <doc-preview [example]="examples.linkRouter" />
+        <p mText tone="muted" size="sm">
+            <code mCode>current</code> sets <code mCode>aria-current="page"</code>. A <code mCode>disabled</code> link
+            is announced as disabled and cancels the click before <code mCode>routerLink</code> sees it — mouse and
+            keyboard alike.
+        </p>
+    </doc-section>
+
+    <doc-section
+        title="Link-style button"
+        description="An action that does not navigate is a button. button[mLink] keeps the button semantics with the link look."
+    >
+        <doc-preview [example]="examples.linkButton" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MLink" />
+    </doc-section>
+</doc-article>

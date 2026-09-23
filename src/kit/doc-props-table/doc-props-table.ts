@@ -2,6 +2,8 @@ import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core
 import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import type {ApiMember} from './api'
 import {API} from './api'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
+import {MCode} from '@banzamel/mineralui-angular/typography/code'
 
 interface MemberGroup {
     readonly label: string
@@ -16,7 +18,7 @@ interface MemberGroup {
  */
 @Component({
     selector: 'doc-props-table',
-    imports: [MTranslatePipe],
+    imports: [MText, MTranslatePipe, MCode],
     templateUrl: './doc-props-table.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

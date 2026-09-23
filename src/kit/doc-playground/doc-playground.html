@@ -34,7 +34,9 @@
                                 [value]="control.value()"
                                 (input)="onSlider(control, $event)"
                             />
-                            <output class="doc-code" [attr.for]="id + '-' + control.name">{{ control.value() }}</output>
+                            <output [attr.for]="id + '-' + control.name"
+                                ><code mCode>{{ control.value() }}</code></output
+                            >
                         </div>
                     }
                     @case ('boolean') {
@@ -46,7 +48,7 @@
                                 [checked]="control.value()"
                                 (change)="onToggle(control, $event)"
                             />
-                            <span class="doc-code">{{ control.value() }}</span>
+                            <code mCode>{{ control.value() }}</code>
                         </div>
                     }
                 }

@@ -4,6 +4,7 @@ import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
 import type {DocsNavSection} from '@locales/docs-navigation'
 import {DOCS_NAVIGATION, sectionIcon} from '@locales/docs-navigation'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
 
 const SEARCH_THRESHOLD = 2
 
@@ -15,7 +16,7 @@ const byTitle = (section: DocsNavSection): DocsNavSection => ({
 // TEMP: replace with MSidebarNav / MSidebarGroup / MSidebarItem (etap 2) + MInputSearch (etap 4)
 @Component({
     selector: 'doc-docs-navigation',
-    imports: [RouterLink, RouterLinkActive, MIcon, MTranslatePipe],
+    imports: [MText, RouterLink, RouterLinkActive, MIcon, MTranslatePipe],
     templateUrl: './docs-navigation.html',
     styleUrl: './docs-navigation.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

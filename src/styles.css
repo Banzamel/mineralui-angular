@@ -20,82 +20,40 @@ body {
         color 180ms ease;
 }
 
-/* TEMP: replace with MHeading / MText / MCode / MList / MLink (etap 2) */
-.doc-h1 {
-    margin: 0;
-    color: var(--mineral-text-heading);
-    font-family: var(--mineral-font-family-heading);
+/* Heading sizes of the docs chrome. The tag carries the semantics (h1 page, h2 section, h3 group); docs-react shows
+   the same sizes with MHeading level 3 / 4. The tag in the selector outranks the component rule (.m-heading.m-h1),
+   which loads after this file. */
+h1.m-heading.doc-title {
     font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.25;
 }
 
-.doc-h2 {
-    margin: 0;
-    color: var(--mineral-text-heading);
-    font-family: var(--mineral-font-family-heading);
+h2.m-heading.doc-section-title {
     font-size: 1.125rem;
-    font-weight: 600;
 }
 
-.doc-h3 {
-    margin: 0;
-    color: var(--mineral-text-heading);
+h3.m-heading.doc-group-title {
     font-size: 0.95rem;
-    font-weight: 600;
 }
 
-.doc-text {
-    margin: 0;
+/* MLink inside prose follows the surrounding text size (MLink sets md). */
+.m-link.doc-prose-link {
+    display: inline;
+    font-size: inherit;
 }
 
-.doc-muted {
-    margin: 0;
-    color: var(--mineral-text-secondary);
-}
-
-.doc-small {
-    font-size: var(--mineral-font-size-sm);
-}
-
-.doc-code {
-    padding: 0.1em 0.4em;
-    border: 1px solid var(--mineral-border);
-    border-radius: var(--mineral-radius-sm);
-    background: var(--mineral-surface-contrast);
-    color: var(--mineral-primary);
-    font-family: var(--mineral-font-family-mono);
-    font-size: 0.875em;
-    overflow-wrap: anywhere;
-}
-
-.doc-list {
-    display: grid;
-    gap: var(--mineral-spacing-xs);
-    margin: 0;
-    padding-left: 1.25rem;
-}
-
-.doc-link {
-    color: var(--mineral-primary);
-    text-decoration-color: rgba(var(--mineral-primary-rgb), 0.35);
-}
-
-.doc-link:hover {
-    text-decoration-color: currentColor;
-}
-
-/* TEMP: replace with MStack / MInline (etap 2) */
-.doc-stack {
-    display: grid;
-    gap: var(--mineral-spacing-md);
-}
-
+/* Docs' own tight stack — MStack has a fixed md gap. */
 .doc-stack-sm {
     display: grid;
     gap: var(--mineral-spacing-sm);
 }
 
+/* Readable line length for text previews in playgrounds. */
+.doc-playground-measure {
+    width: 100%;
+    max-width: 560px;
+}
+
+/* Docs' own tight row — MInline has a fixed md gap. */
 .doc-inline {
     display: flex;
     flex-wrap: wrap;
@@ -234,6 +192,8 @@ body {
 
 .doc-card-body {
     display: grid;
+    /* minmax(0, 1fr): a long unbroken code line must scroll inside its block, not widen the card. */
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--mineral-spacing-md);
     min-width: 0;
     padding: var(--mineral-spacing-lg);
@@ -286,12 +246,17 @@ body {
     overflow-wrap: anywhere;
 }
 
-.doc-table th {
+/* Column headers only — row headers (th scope="row") hold names such as inputs and keep their case. */
+.doc-table thead th {
     color: var(--mineral-text-secondary);
     font-size: var(--mineral-font-size-xs);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+}
+
+.doc-table tbody th {
+    font-weight: 400;
 }
 
 .doc-visually-hidden {

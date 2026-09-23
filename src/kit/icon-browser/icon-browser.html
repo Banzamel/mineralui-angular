@@ -1,4 +1,4 @@
-<div class="doc-stack">
+<m-stack>
     <label class="doc-label">
         Search available icons
         <input
@@ -30,9 +30,8 @@
     </div>
 
     @for (tab of visible(); track tab.id; let index = $index) {
-        <div
+        <m-stack
             role="tabpanel"
-            class="doc-stack"
             [id]="'doc-icons-panel-' + tab.id"
             [attr.aria-labelledby]="'doc-icons-tab-' + tab.id"
             [hidden]="activeTab() !== index"
@@ -40,10 +39,10 @@
             @if (activeTab() === index) {
                 @for (group of tab.groups; track group.title) {
                     <section class="doc-stack-sm" [attr.aria-label]="group.title">
-                        <h3 class="doc-h3">
+                        <h3 mHeading class="doc-group-title">
                             {{ group.title }} <span class="doc-badge">{{ group.items.length }}</span>
                         </h3>
-                        <p class="doc-muted doc-small">{{ group.tone }}</p>
+                        <p mText tone="muted" size="sm">{{ group.tone }}</p>
                         <ul class="doc-icon-grid">
                             @for (name of group.items; track name) {
                                 <li>
@@ -68,11 +67,11 @@
                 } @empty {
                     <div class="doc-alert" role="status">
                         <strong>No icons match this search.</strong>
-                        <span class="doc-muted doc-small">Try a broader query or clear the field.</span>
+                        <span mText tone="muted" size="sm">Try a broader query or clear the field.</span>
                     </div>
                 }
             }
-        </div>
+        </m-stack>
     }
     <span class="doc-visually-hidden" aria-live="polite">{{ copied() ? 'Copied ' + copied() : '' }}</span>
-</div>
+</m-stack>

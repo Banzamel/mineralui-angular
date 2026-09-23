@@ -1,5 +1,5 @@
 import type {MIconDef} from '@banzamel/mineralui-angular/icons'
-import {mDashboardIcon, mMagicIcon} from '@banzamel/mineralui-angular/icons'
+import {mDashboardIcon, mLayoutIcon, mMagicIcon, mTranslateIcon} from '@banzamel/mineralui-angular/icons'
 import en from './en.json'
 
 export interface DocsNavItem {
@@ -20,6 +20,8 @@ export const DOCS_NAVIGATION: readonly DocsNavSection[] = en.docsNavigation
 
 const SECTION_ICONS: Readonly<Record<string, MIconDef>> = {
     getting_started: mDashboardIcon,
+    typography: mTranslateIcon,
+    layout: mLayoutIcon,
     display: mMagicIcon,
 }
 

@@ -59,6 +59,75 @@
             ]
         },
         {
+            "category": "Typography",
+            "icon": "typography",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "code",
+                    "title": "Code",
+                    "description": "Inline monospace text for snippets."
+                },
+                {
+                    "id": "heading",
+                    "title": "Heading",
+                    "description": "Semantic page and section titles."
+                },
+                {
+                    "id": "kbd",
+                    "title": "Kbd",
+                    "description": "Keyboard shortcut chip."
+                },
+                {
+                    "id": "link",
+                    "title": "Link",
+                    "description": "Tone-aware link for anchors, router links and link-style buttons."
+                },
+                {
+                    "id": "list",
+                    "title": "List",
+                    "description": "Ordered and unordered list primitives."
+                },
+                {
+                    "id": "sub-text",
+                    "title": "SubText",
+                    "description": "Smaller helper / caption text."
+                },
+                {
+                    "id": "text",
+                    "title": "Text",
+                    "description": "Body text with size, tone and align tokens."
+                }
+            ]
+        },
+        {
+            "category": "Layout",
+            "icon": "layout",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "divider",
+                    "title": "Divider",
+                    "description": "Horizontal or vertical separator with tone variants."
+                },
+                {
+                    "id": "layout-primitives",
+                    "title": "Primitives",
+                    "description": "MContainer, MSection, MInline, MStack and MSurface."
+                },
+                {
+                    "id": "stat-grid",
+                    "title": "Stat Grid",
+                    "description": "Equal-column grid tuned for KPI / stat tiles."
+                },
+                {
+                    "id": "simple-grid",
+                    "title": "Simple Grid",
+                    "description": "Responsive equal-column grid (1-4 cols) with built-in breakpoints."
+                }
+            ]
+        },
+        {
             "category": "Display",
             "icon": "display",
             "collapsible": true,

@@ -10,6 +10,9 @@ import {
 } from '@angular/core'
 import type {MIconDef} from '@banzamel/mineralui-angular/icons'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
+import {MStack} from '@banzamel/mineralui-angular/layout/stack'
+import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 
 export interface IconGroup {
     readonly title: string
@@ -41,7 +44,7 @@ const COPIED_FOR_MS = 1200
  */
 @Component({
     selector: 'doc-icon-browser',
-    imports: [MIcon],
+    imports: [MStack, MText, MIcon, MHeading],
     templateUrl: './icon-browser.html',
     styleUrl: './icon-browser.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
