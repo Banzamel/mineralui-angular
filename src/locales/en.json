@@ -15,6 +15,7 @@
         "copy": "Copy",
         "copied": "Copied",
         "propsProp": "Prop",
+        "propsFunction": "Function",
         "propsType": "Type",
         "propsDefault": "Default",
         "propsDescription": "Description",
@@ -139,6 +140,28 @@
                     "id": "sticky-panel",
                     "title": "Sticky Panel",
                     "description": "Side-rail wrapper: sticky position, viewport-relative height, hidden scrollbar and drag-to-scroll."
+                },
+                {
+                    "id": "responsive-hidden",
+                    "title": "Responsive Hidden",
+                    "description": "Shared hiddenUpTo / hiddenAbove inputs and the mHidden directive."
+                },
+                {
+                    "id": "utilities",
+                    "title": "Utilities",
+                    "description": "Spacing utilities (mSpacing), validators, formatters and date helpers."
+                }
+            ]
+        },
+        {
+            "category": "Feedback",
+            "icon": "feedback",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "spinner",
+                    "title": "Spinner",
+                    "description": "Indeterminate spinner with size and tone."
                 }
             ]
         },
@@ -151,6 +174,11 @@
                     "id": "breadcrumb",
                     "title": "Breadcrumb",
                     "description": "Page hierarchy trail with separators."
+                },
+                {
+                    "id": "header-footer",
+                    "title": "Header & Footer",
+                    "description": "MHeader and MFooter shell sections."
                 },
                 {
                     "id": "navs",

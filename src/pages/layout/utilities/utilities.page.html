@@ -1,0 +1,88 @@
+<doc-article
+    title="Utilities"
+    description="Spacing utilities for layout, plus the validators, formatters and date helpers exported from @banzamel/mineralui-angular/utils — plain functions, no Angular required."
+>
+    <doc-section
+        title="Spacing utilities"
+        description="Margin, padding, font size and full width on the shared spacing scale — as inputs on layout components, or with the mSpacing directive on any element."
+    >
+        <m-stack>
+            <doc-preview [example]="examples.utilsSpacing" />
+            <p mText tone="muted" size="sm">
+                The inputs add utility classes (<code mCode>m-mt-xl</code>, <code mCode>m-px-md</code>…) from
+                <code mCode>styles.css</code>; <code mCode>fsize</code> takes a number (px) or any CSS length.
+            </p>
+            <doc-props-table api="MSpacing" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section
+        title="Validators"
+        description="Generic form rules and the domain rules used by the specialized inputs. Each returns {valid, error?}; empty values pass except in validateRequired."
+    >
+        <m-stack>
+            <doc-preview [example]="examples.utilsValidators" />
+            <p mText tone="muted" size="sm">
+                The validator type is <code mCode>MValueValidator</code> (React: <code mCode>ValidatorFn</code>, renamed
+                to avoid the clash with <code mCode>&#64;angular/forms</code>). Adapters that return an Angular
+                <code mCode>ValidatorFn</code> (<code mCode>MValidators.nip()</code>…) come with the form components.
+            </p>
+            <doc-props-table api="utils/validators" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Formatting helpers">
+        <m-stack>
+            <doc-preview [example]="examples.utilsFormatters" />
+            <doc-props-table api="utils/formatters" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Date utilities" description="Calendar math and localized labels for pickers and time labels.">
+        <m-stack>
+            <doc-preview [example]="examples.utilsDates" />
+            <doc-props-table api="utils/date-utils" />
+            <doc-props-table api="utils/relative-time" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Postal codes and payment cards">
+        <m-stack>
+            <doc-props-table api="utils/postal-codes" />
+            <doc-props-table api="utils/credit-cards" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section
+        title="Hooks and class helpers"
+        description="MineralUI for React also exports hooks and a class helper. In Angular they become directives, signals or plain bindings."
+    >
+        <div class="doc-table-scroll">
+            <table class="doc-table">
+                <caption class="doc-visually-hidden">
+                    React helpers and their Angular counterparts
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">React</th>
+                        <th scope="col">Angular</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (helper of reactHelpers; track helper.react) {
+                        <tr>
+                            <th scope="row">
+                                <code mCode>{{ helper.react }}</code>
+                            </th>
+                            <td>{{ helper.angular }}</td>
+                            <td>
+                                <span mText tone="muted">{{ helper.status }}</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </doc-section>
+</doc-article>

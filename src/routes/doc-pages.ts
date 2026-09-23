@@ -25,10 +25,17 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
         import('@pages/layout/layout-primitives/layout-primitives.page').then((m) => m.LayoutPrimitivesPage),
     'simple-grid': () => import('@pages/layout/simple-grid/simple-grid.page').then((m) => m.SimpleGridPage),
     'stat-grid': () => import('@pages/layout/stat-grid/stat-grid.page').then((m) => m.StatGridPage),
+    'responsive-hidden': () =>
+        import('@pages/layout/responsive-hidden/responsive-hidden.page').then((m) => m.ResponsiveHiddenPage),
+    utilities: () => import('@pages/layout/utilities/utilities.page').then((m) => m.UtilitiesPage),
     'sticky-panel': () => import('@pages/layout/sticky-panel/sticky-panel.page').then((m) => m.StickyPanelPage),
+
+    // Feedback
+    spinner: () => import('@pages/feedback/spinner/spinner.page').then((m) => m.SpinnerPage),
 
     // Navigation
     breadcrumb: () => import('@pages/navigation/breadcrumb/breadcrumb.page').then((m) => m.BreadcrumbPage),
+    'header-footer': () => import('@pages/navigation/header-footer/header-footer.page').then((m) => m.HeaderFooterPage),
     navs: () => import('@pages/navigation/navs/navs.page').then((m) => m.NavsPage),
 
     // Display

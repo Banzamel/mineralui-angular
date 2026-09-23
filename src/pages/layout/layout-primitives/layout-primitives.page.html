@@ -34,6 +34,61 @@
     </doc-section>
 
     <doc-section
+        title="Shell playground"
+        description="Preview how header[mHeader], section[mSection] and footer[mFooter] stay aligned through the same container."
+    >
+        <doc-playground [controls]="shellControls" [code]="shellCode()">
+            <div mSurface [outlined]="false" [padded]="false" style="width: 100%; overflow: hidden">
+                <header
+                    mHeader
+                    [container]="shellContainer()"
+                    [tone]="headerTone()"
+                    [padded]="shellPadded()"
+                    [bordered]="shellBordered()"
+                    [hiddenUpTo]="shellHidden.header()"
+                >
+                    <p mText weight="semibold">Mineral Admin</p>
+                    <p mText tone="muted" size="sm">Billing and team settings</p>
+                </header>
+
+                <section
+                    mSection
+                    [spacing]="sectionSpacing()"
+                    [tone]="sectionTone()"
+                    [hiddenUpTo]="shellHidden.section()"
+                >
+                    <m-container [size]="shellContainer()">
+                        <m-stack>
+                            <div mSurface>
+                                <p mText weight="semibold">Workspace</p>
+                                <p mText tone="muted" size="sm">Company details, locale and billing preferences.</p>
+                            </div>
+                            <div mSurface tone="subtle">
+                                <p mText weight="semibold">Access</p>
+                                <p mText tone="muted" size="sm">Roles, invites and audit trail.</p>
+                            </div>
+                        </m-stack>
+                    </m-container>
+                </section>
+
+                <footer
+                    mFooter
+                    [container]="shellContainer()"
+                    [tone]="headerTone()"
+                    [padded]="shellPadded()"
+                    [bordered]="shellBordered()"
+                    [hiddenUpTo]="shellHidden.footer()"
+                >
+                    <m-inline justify="between" fullWidth>
+                        <p mText size="sm">MineralUI layout primitives</p>
+                        <p mText tone="muted" size="sm">Footer content aligned to the same container</p>
+                    </m-inline>
+                </footer>
+            </div>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
         title="MStack"
         description="<m-stack> is its own root: class, id, ARIA attributes and the spacing utilities land on the element itself."
     >
@@ -53,5 +108,7 @@
         <doc-props-table api="MInline" />
         <doc-props-table api="MSurface" />
         <doc-props-table api="MSection" />
+        <doc-props-table api="MHeader" />
+        <doc-props-table api="MFooter" />
     </doc-section>
 </doc-article>

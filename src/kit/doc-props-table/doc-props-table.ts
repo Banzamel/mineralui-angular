@@ -23,7 +23,7 @@ interface MemberGroup {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocPropsTable {
-    /** Class or interface name, e.g. `MIcon`. */
+    /** Class or interface name (`MIcon`), or `<entry point>/<file>` for exported functions (`utils/validators`). */
     readonly api = input.required<string>()
 
     protected readonly entry = computed(() => {
@@ -32,7 +32,11 @@ export class DocPropsTable {
         return entry
     })
 
-    protected readonly importLine = computed(() => `import {${this.entry().name}} from '${this.entry().entryPoint}'`)
+    protected readonly importLine = computed(() => {
+        const {kind, name, entryPoint, members} = this.entry()
+        const names = kind === 'functions' ? members.map((member) => member.name).join(', ') : name
+        return `import {${names}} from '${entryPoint}'`
+    })
 
     protected readonly groups = computed<readonly MemberGroup[]>(() => {
         const members = this.entry().members
@@ -42,6 +46,7 @@ export class DocPropsTable {
             {label: 'ui.propsOutputs', members: own.filter((m) => m.kind === 'output')},
             {label: 'ui.propsShared', members: members.filter((member) => member.from !== null)},
             {label: 'ui.propsProp', members: own.filter((m) => m.kind === 'property' || m.kind === 'method')},
+            {label: 'ui.propsFunction', members: own.filter((m) => m.kind === 'function')},
         ].filter((group) => group.members.length > 0)
     })
 }

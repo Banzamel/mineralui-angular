@@ -1,5 +1,7 @@
 .doc-playground {
     display: grid;
+    /* Without an explicit track the column grows to the min-content of long code lines. */
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--mineral-spacing-md);
     min-width: 0;
 }
@@ -18,6 +20,7 @@
 
 .doc-playground-controls {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--mineral-spacing-sm);
     padding: var(--mineral-spacing-md);
     border: 1px solid rgba(var(--mineral-success-rgb), 0.35);

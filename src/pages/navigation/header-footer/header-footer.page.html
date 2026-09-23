@@ -1,0 +1,72 @@
+<doc-article
+    title="MHeader & MFooter"
+    description="Top and bottom shell sections for apps, docs pages and landing layouts built on the same container system."
+>
+    <doc-section
+        title="Shell scenario"
+        description="A simple app shell showing how top and bottom sections frame the rest of the page."
+    >
+        <doc-preview [example]="examples.headerFooterShell" />
+    </doc-section>
+
+    <doc-section
+        title="Playground"
+        description="Adjust container width, tone and shell chrome without the extra wrapper code."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <div style="width: 100%">
+                <header
+                    mHeader
+                    [container]="container()"
+                    [tone]="tone()"
+                    [bordered]="bordered()"
+                    [padded]="padded()"
+                    [sticky]="stickyHeader()"
+                    [hiddenUpTo]="headerHiddenUpTo()"
+                >
+                    <strong mText weight="bold">MineralUI</strong>
+                    <!-- TEMP: replace with MButton (etap 3) -->
+                    <button type="button">Contact sales</button>
+                </header>
+
+                <section mSection>
+                    <m-grid>
+                        <m-grid-item [lg]="6">
+                            <p mText tone="muted">
+                                Use header and footer for page shell boundaries while the main content stays free to use
+                                sections, cards and grids.
+                            </p>
+                        </m-grid-item>
+                        <m-grid-item [lg]="6">
+                            <p mText tone="muted">
+                                Matching container sizes keeps hero sections, docs content and shell chrome aligned.
+                            </p>
+                        </m-grid-item>
+                    </m-grid>
+                </section>
+
+                <footer
+                    mFooter
+                    [container]="container()"
+                    [tone]="tone()"
+                    [bordered]="bordered()"
+                    [padded]="padded()"
+                    [hiddenUpTo]="footerHiddenUpTo()"
+                >
+                    <m-inline justify="between" fullWidth>
+                        <p mText size="sm" tone="muted">Built with MineralUI</p>
+                        <p mText size="sm" tone="muted">hello&#64;mineralui.io</p>
+                    </m-inline>
+                </footer>
+            </div>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section title="MHeader API">
+        <doc-props-table api="MHeader" />
+    </doc-section>
+
+    <doc-section title="MFooter API">
+        <doc-props-table api="MFooter" />
+    </doc-section>
+</doc-article>

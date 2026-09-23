@@ -9,7 +9,7 @@ import {docIdFromUrl} from '@locales/docs-navigation'
 
 const REACT_DOCS = 'https://mineralui.io/docs'
 
-// TEMP: replace with MNavbar (etap 2) + MButton (etap 3)
+// TEMP: replace with MNavbar + MButton (etap 3)
 @Component({
     selector: 'doc-docs-header',
     imports: [RouterLink, MIcon, MTranslatePipe],

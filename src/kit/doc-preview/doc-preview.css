@@ -1,5 +1,7 @@
 .doc-preview {
     display: grid;
+    /* Without an explicit track the column grows to the min-content of long code lines. */
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--mineral-spacing-sm);
     min-width: 0;
 }

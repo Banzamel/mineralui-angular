@@ -110,11 +110,31 @@
         </m-stack>
     </doc-section>
 
+    <doc-section
+        title="Application shell"
+        description="m-app-shell puts a sidebar next to one column with the header, m-body and footer. Header and footer share the container system with the page content."
+    >
+        <m-stack>
+            <doc-preview [example]="examples.appShell" />
+            <doc-code-block [code]="structure" language="bash" title="structure" />
+            <p mText tone="muted" size="sm">
+                The sidebar slot takes <code mCode>m-sidebar</code> or any element marked
+                <code mCode>mAppShellSidebar</code>. Put a <code mCode>&lt;main&gt;</code> inside
+                <code mCode>m-body</code> for the page's main landmark.
+            </p>
+        </m-stack>
+    </doc-section>
+
     <doc-section title="MGrid API">
         <doc-props-table api="MGrid" />
     </doc-section>
 
     <doc-section title="MGridItem API">
         <doc-props-table api="MGridItem" />
+    </doc-section>
+
+    <doc-section title="MAppShell & MBody API">
+        <doc-props-table api="MAppShell" />
+        <doc-props-table api="MBody" />
     </doc-section>
 </doc-article>

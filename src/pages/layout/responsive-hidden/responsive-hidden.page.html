@@ -1,0 +1,134 @@
+<doc-article
+    title="Responsive Hidden"
+    description="Shared responsive visibility inputs for layout, typography and selected UI primitives — and the mHidden directive for any element."
+>
+    <doc-section
+        title="What it does"
+        description="hiddenUpTo and hiddenAbove hide an element at a breakpoint without custom media queries or resize logic."
+    >
+        <m-stack>
+            <p mText tone="muted">
+                <code mCode>hiddenUpTo="sm"</code> hides on <code mCode>sm</code> and smaller screens;
+                <code mCode>hiddenUpTo="md"</code> on <code mCode>md</code>, <code mCode>sm</code> and smaller.
+                <code mCode>lg</code>, <code mCode>xl</code> and <code mCode>2xl</code> (up to <code mCode>1536</code>)
+                follow the same pattern.
+            </p>
+            <p mText tone="muted">
+                <code mCode>hiddenAbove="lg"</code> hides strictly <em>above</em> <code mCode>lg</code> — the complement
+                of <code mCode>hiddenUpTo="lg"</code>. Pair the two on sibling grid items with the same breakpoint to
+                swap a desktop layout for a compact one without <code mCode>injectMaxWidth</code>.
+            </p>
+            <p mText tone="muted" size="sm">
+                MineralUI for React calls the first prop <code mCode>hidden</code>. In Angular a
+                <code mCode>hidden</code> input would clash with the native attribute (ADR 0004): use the native
+                <code mCode>hidden</code> to hide always, <code mCode>hiddenUpTo</code> for the breakpoint rule.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section
+        title="Playground"
+        description="Switch the target and breakpoint, then resize the window to verify when the element disappears."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <div style="width: 100%">
+                @switch (target()) {
+                    @case ('swap') {
+                        <m-grid>
+                            <m-grid-item [sm]="12" [hiddenUpTo]="swapBreakpoint()">
+                                <div mSurface>Desktop layout (visible above {{ swapBreakpoint() }})</div>
+                            </m-grid-item>
+                            <m-grid-item [sm]="12" [hiddenAbove]="swapBreakpoint()">
+                                <div mSurface tone="subtle">
+                                    Compact layout (visible at {{ swapBreakpoint() }} and below)
+                                </div>
+                            </m-grid-item>
+                        </m-grid>
+                    }
+                    @case ('action') {
+                        <m-inline justify="between" fullWidth>
+                            <strong mText>MineralUI</strong>
+                            <!-- TEMP: replace with MButton (etap 3) -->
+                            <button type="button" mHidden [hiddenUpTo]="hiddenUpTo()" [hiddenAbove]="hiddenAbove()">
+                                Desktop CTA
+                            </button>
+                        </m-inline>
+                    }
+                    @case ('grid') {
+                        <m-grid>
+                            <m-grid-item [sm]="12" [lg]="6"><div mSurface>Primary content</div></m-grid-item>
+                            <m-grid-item [sm]="12" [lg]="6" [hiddenUpTo]="hiddenUpTo()" [hiddenAbove]="hiddenAbove()">
+                                <div mSurface>Secondary panel</div>
+                            </m-grid-item>
+                        </m-grid>
+                    }
+                    @case ('text') {
+                        <m-stack>
+                            <h2 mHeading>Dashboard overview</h2>
+                            <p mText tone="muted" [hiddenUpTo]="hiddenUpTo()" [hiddenAbove]="hiddenAbove()">
+                                Extra supporting copy shown only on larger layouts.
+                            </p>
+                        </m-stack>
+                    }
+                }
+            </div>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section title="When to use it">
+        <m-grid>
+            <m-grid-item [sm]="12" [lg]="4">
+                <strong mText>Layout</strong>
+                <p mText tone="muted" size="sm">Hide secondary columns, helper panels or decorative sections.</p>
+            </m-grid-item>
+            <m-grid-item [sm]="12" [lg]="4">
+                <strong mText>Typography</strong>
+                <p mText tone="muted" size="sm">
+                    Remove less important explanatory text on tighter tablet and mobile layouts.
+                </p>
+            </m-grid-item>
+            <m-grid-item [sm]="12" [lg]="4">
+                <strong mText>Actions</strong>
+                <p mText tone="muted" size="sm">Keep desktop-only calls to action out of small navigation bars.</p>
+            </m-grid-item>
+        </m-grid>
+    </doc-section>
+
+    <doc-section title="Layout" description="A secondary grid column that only desktop layouts show.">
+        <doc-preview [example]="examples.hiddenLayout" />
+    </doc-section>
+
+    <doc-section
+        title="Any element"
+        description="Components that support the inputs compose MHidden. On anything else — a native button, a div — add the mHidden directive."
+    >
+        <doc-preview [example]="examples.hiddenAnyElement" />
+    </doc-section>
+
+    <doc-section title="Swap layouts" description="hiddenUpTo and hiddenAbove on the same breakpoint.">
+        <doc-preview [example]="examples.hiddenSwap" />
+    </doc-section>
+
+    <doc-section title="Notes">
+        <m-stack>
+            <p mText tone="muted">
+                The inputs are CSS-driven: they set <code mCode>data-m-hidden</code> /
+                <code mCode>data-m-hidden-above</code>, and <code mCode>styles.css</code> hides the element with
+                <code mCode>max-width</code> / <code mCode>min-width</code> media queries. No
+                <code mCode>matchMedia</code>, no change detection on resize, correct in server-rendered HTML.
+            </p>
+            <p mText tone="muted">
+                For form fields or overlays, prefer hiding a parent container instead of the control itself.
+            </p>
+            <p mText tone="muted">
+                In <code mCode>m-grid-item</code> the matching column input is <code mCode>xxl</code> for the
+                <code mCode>2xl</code> breakpoint. Breakpoints: <code mCode>sm 640</code>, <code mCode>md 768</code>,
+                <code mCode>lg 1024</code>, <code mCode>xl 1280</code>, <code mCode>2xl 1536</code>.
+            </p>
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MHidden" />
+    </doc-section>
+</doc-article>

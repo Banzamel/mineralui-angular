@@ -1,8 +1,13 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
 import type {MContainerSize} from '@banzamel/mineralui-angular/layout/container'
 import {MContainer} from '@banzamel/mineralui-angular/layout/container'
+import {MFooter} from '@banzamel/mineralui-angular/layout/footer'
+import type {MHeaderTone} from '@banzamel/mineralui-angular/layout/header'
+import {MHeader} from '@banzamel/mineralui-angular/layout/header'
 import type {MInlineJustify, MInlineWrap} from '@banzamel/mineralui-angular/layout/inline'
 import {MInline} from '@banzamel/mineralui-angular/layout/inline'
+import type {MSectionSpacing, MSectionTone} from '@banzamel/mineralui-angular/layout/section'
+import {MSection} from '@banzamel/mineralui-angular/layout/section'
 import type {MStackAlign} from '@banzamel/mineralui-angular/layout/stack'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import type {MSurfaceTone} from '@banzamel/mineralui-angular/layout/surface'
@@ -28,10 +33,11 @@ type Hidden = (typeof HIDDEN)[number]
 const breakpoint = (value: Hidden): MBreakpoint | undefined => (value === 'none' ? undefined : value)
 const attr = (condition: boolean, text: string) => (condition ? ` ${text}` : '')
 
-/**
- * Counterpart of docs-react `LayoutPrimitivesDoc`. The shell playground (MHeader / MSection / MFooter) joins with
- * MHeader and MFooter (etap 2, step 5).
- */
+const HEADER_TONES: readonly MHeaderTone[] = ['default', 'surface', 'subtle']
+const SECTION_TONES: readonly MSectionTone[] = ['default', 'subtle', 'surface', 'inverse']
+const SECTION_SPACINGS: readonly MSectionSpacing[] = ['sm', 'md', 'lg', 'xl']
+
+/** Counterpart of docs-react `LayoutPrimitivesDoc`: composition and shell playgrounds. */
 @Component({
     selector: 'doc-layout-primitives-page',
     imports: [
@@ -41,7 +47,10 @@ const attr = (condition: boolean, text: string) => (condition ? ` ${text}` : '')
         DocPreview,
         DocPropsTable,
         MContainer,
+        MFooter,
+        MHeader,
         MInline,
+        MSection,
         MStack,
         MSurface,
         MText,
@@ -118,6 +127,65 @@ export class LayoutPrimitivesPage {
             '        </m-stack>',
             '    </div>',
             '</m-container>',
+        ].join('\n')
+    })
+
+    // Shell playground: MHeader / MSection / MFooter aligned through one container size.
+    protected readonly shellContainer = signal<MContainerSize>('wide')
+    protected readonly headerTone = signal<MHeaderTone>('surface')
+    protected readonly sectionTone = signal<MSectionTone>('default')
+    protected readonly sectionSpacing = signal<MSectionSpacing>('lg')
+    protected readonly shellPadded = signal(true)
+    protected readonly shellBordered = signal(true)
+    protected readonly headerHidden = signal<Hidden>('none')
+    protected readonly sectionHidden = signal<Hidden>('none')
+    protected readonly footerHidden = signal<Hidden>('none')
+    protected readonly shellControls = [
+        selectControl('container', this.shellContainer, SIZES),
+        selectControl('headerTone', this.headerTone, HEADER_TONES),
+        selectControl('sectionTone', this.sectionTone, SECTION_TONES),
+        selectControl('sectionSpacing', this.sectionSpacing, SECTION_SPACINGS),
+        booleanControl('padded', this.shellPadded),
+        booleanControl('bordered', this.shellBordered),
+        selectControl('headerHidden', this.headerHidden, HIDDEN),
+        selectControl('sectionHidden', this.sectionHidden, HIDDEN),
+        selectControl('footerHidden', this.footerHidden, HIDDEN),
+    ]
+
+    protected readonly shellHidden = {
+        header: computed(() => breakpoint(this.headerHidden())),
+        section: computed(() => breakpoint(this.sectionHidden())),
+        footer: computed(() => breakpoint(this.footerHidden())),
+    }
+
+    protected readonly shellCode = computed(() => {
+        const shared =
+            attr(this.shellContainer() !== 'wide', `container="${this.shellContainer()}"`) +
+            attr(this.headerTone() !== 'surface', `tone="${this.headerTone()}"`) +
+            attr(!this.shellPadded(), '[padded]="false"') +
+            attr(!this.shellBordered(), '[bordered]="false"')
+        const header = shared + attr(this.headerHidden() !== 'none', `hiddenUpTo="${this.headerHidden()}"`)
+        const footer = shared + attr(this.footerHidden() !== 'none', `hiddenUpTo="${this.footerHidden()}"`)
+        const section =
+            attr(this.sectionSpacing() !== 'lg', `spacing="${this.sectionSpacing()}"`) +
+            attr(this.sectionTone() !== 'default', `tone="${this.sectionTone()}"`) +
+            attr(this.sectionHidden() !== 'none', `hiddenUpTo="${this.sectionHidden()}"`)
+        const container = this.shellContainer() === 'content' ? '' : ` size="${this.shellContainer()}"`
+        return [
+            `<header mHeader${header}>`,
+            '    <p mText weight="semibold">Mineral Admin</p>',
+            '    <p mText tone="muted" size="sm">Billing and team settings</p>',
+            '</header>',
+            '',
+            `<section mSection${section}>`,
+            `    <m-container${container}>`,
+            '        <div mSurface>Workspace</div>',
+            '    </m-container>',
+            '</section>',
+            '',
+            `<footer mFooter${footer}>`,
+            '    <p mText size="sm">MineralUI layout primitives</p>',
+            '</footer>',
         ].join('\n')
     })
 }

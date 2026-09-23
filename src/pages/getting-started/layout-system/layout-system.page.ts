@@ -7,6 +7,7 @@ import {MSurface} from '@banzamel/mineralui-angular/layout/surface'
 import type {MBreakpoint} from '@banzamel/mineralui-angular/theme'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import appShell from '@generated/examples/getting-started/layout-system/app-shell'
 import gridAlign from '@generated/examples/getting-started/layout-system/grid-align'
 import gridEqual from '@generated/examples/getting-started/layout-system/grid-equal'
 import gridMixed from '@generated/examples/getting-started/layout-system/grid-mixed'
@@ -50,7 +51,15 @@ const toSpan = (option: SpanOption): MGridColumns | undefined =>
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutSystemPage {
-    protected readonly examples = {gridResponsive, gridEqual, gridMixed, gridAlign, gridPlainChildren}
+    protected readonly examples = {gridResponsive, gridEqual, gridMixed, gridAlign, gridPlainChildren, appShell}
+    protected readonly structure = [
+        'm-app-shell           /* flex row, min-height: 100vh */',
+        '├── m-sidebar         /* optional; or any element with mAppShellSidebar */',
+        '└── .m-app-shell-main /* wraps every other child */',
+        '    ├── header[mHeader]',
+        '    ├── m-body         /* flex: 1, padded */',
+        '    └── footer[mFooter]',
+    ].join('\n')
 
     protected readonly options: Record<Breakpoint, WritableSignal<SpanOption>> = {
         xxl: signal<SpanOption>('auto'),

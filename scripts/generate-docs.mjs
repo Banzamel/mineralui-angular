@@ -256,6 +256,25 @@ function serviceMembers(cls) {
     return [...properties, ...methods]
 }
 
+function functionMember(fn, errors) {
+    const flags = TypeFormatFlags.UseAliasDefinedOutsideCurrentScope | TypeFormatFlags.NoTruncation
+    const description = jsDocText(fn)
+    if (!description) errors.push(`${fn.getName()}: exported function without JSDoc`)
+    const params = fn
+        .getParameters()
+        .map((param) => param.getText())
+        .join(', ')
+    return {
+        name: fn.getName(),
+        kind: 'function',
+        type: `(${params}) => ${fn.getReturnType().getText(fn, flags)}`,
+        required: false,
+        default: null,
+        description,
+        from: null,
+    }
+}
+
 function interfaceMembers(declaration) {
     return declaration.getProperties().map((prop) => ({
         name: prop.getName(),
@@ -331,6 +350,22 @@ function generateApi(errors) {
                 slots: [],
             }
         }
+
+        // Exported functions, one entry per source file: `utils/validators`, `theme/responsive`…
+        const functions = file.getFunctions().filter((fn) => fn.getName() && exportedFrom(entry, fn.getName()))
+        if (functions.length > 0) {
+            const key = `${entry.path}/${basename(filePath, '.ts')}`
+            api[key] = {
+                name: key,
+                kind: 'functions',
+                selector: null,
+                entryPoint: entry.importPath,
+                facade,
+                description: '',
+                members: functions.map((fn) => functionMember(fn, errors)),
+                slots: [],
+            }
+        }
     }
 
     const sorted = Object.fromEntries(Object.entries(api).sort(([a], [b]) => a.localeCompare(b)))
@@ -341,7 +376,7 @@ function generateApi(errors) {
 /** Every `<doc-props-table api="X">` on a page must name an entry of api.json. */
 function checkApiReferences(api, errors) {
     for (const file of walk(pagesRoot, (path) => path.endsWith('.html') || path.endsWith('.page.ts'))) {
-        for (const [, name] of readFileSync(file, 'utf8').matchAll(/<doc-props-table\s+api="(\w+)"/g)) {
+        for (const [, name] of readFileSync(file, 'utf8').matchAll(/<doc-props-table\s+api="([\w/-]+)"/g)) {
             if (!(name in api)) errors.push(`${toPosix(relative(docsRoot, file))}: api="${name}" is not in api.json`)
         }
     }

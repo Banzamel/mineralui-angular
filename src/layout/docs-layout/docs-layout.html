@@ -1,15 +1,18 @@
 <a class="doc-skip" href="#doc-main" (click)="$event.preventDefault(); focusMain()">{{ 'ui.skipToContent' | mT }}</a>
-<doc-docs-header [navOpen]="navOpen()" (toggleNav)="navOpen.update((open) => !open)" />
-<div class="doc-shell">
-    <aside id="doc-sidebar" class="doc-sidebar" [class.doc-sidebar-open]="navOpen()">
+<m-app-shell>
+    <!-- TEMP: replace with MSidebar (etap 5) -->
+    <aside mAppShellSidebar id="doc-sidebar" class="doc-sidebar" [class.doc-sidebar-open]="navOpen()">
         <doc-docs-navigation />
     </aside>
+    <doc-docs-header [navOpen]="navOpen()" (toggleNav)="navOpen.update((open) => !open)" />
     @if (navOpen()) {
         <div class="doc-scrim" aria-hidden="true" (click)="navOpen.set(false)"></div>
     }
-    <main id="doc-main" class="doc-main" tabindex="-1">
-        <div class="doc-container">
-            <router-outlet />
-        </div>
-    </main>
-</div>
+    <m-body>
+        <main id="doc-main" class="doc-main" tabindex="-1">
+            <m-container class="doc-container">
+                <router-outlet />
+            </m-container>
+        </main>
+    </m-body>
+</m-app-shell>

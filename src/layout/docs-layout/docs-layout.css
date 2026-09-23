@@ -1,6 +1,5 @@
 :host {
     display: block;
-    min-height: 100vh;
 }
 
 .doc-skip {
@@ -18,15 +17,14 @@
     top: var(--mineral-spacing-sm);
 }
 
-.doc-shell {
-    display: grid;
-    grid-template-columns: var(--mineral-sidebar-width) minmax(0, 1fr);
-}
-
+/* TEMP: MSidebar (etap 5). */
 .doc-sidebar {
     position: sticky;
-    top: var(--mineral-navbar-height);
-    height: calc(100vh - var(--mineral-navbar-height));
+    top: 0;
+    flex: 0 0 var(--mineral-sidebar-width);
+    box-sizing: border-box;
+    width: var(--mineral-sidebar-width);
+    height: 100vh;
     overflow-y: auto;
     border-right: 1px solid var(--mineral-border);
     background: var(--mineral-surface);
@@ -37,11 +35,9 @@
     outline: none;
 }
 
+/* m-container keeps the side padding; the page adds vertical rhythm. */
 .doc-container {
-    box-sizing: border-box;
-    max-width: var(--mineral-content-max-width);
-    margin: 0 auto;
-    padding: var(--mineral-spacing-xl) var(--mineral-spacing-lg) calc(var(--mineral-spacing-2xl) * 2);
+    padding-block: var(--mineral-spacing-md) calc(var(--mineral-spacing-2xl) * 2);
 }
 
 .doc-scrim {
@@ -49,10 +45,6 @@
 }
 
 @media (max-width: 900px) {
-    .doc-shell {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
     .doc-sidebar {
         position: fixed;
         top: var(--mineral-navbar-height);
@@ -82,6 +74,6 @@
     }
 
     .doc-container {
-        padding: var(--mineral-spacing-lg) var(--mineral-spacing-md) var(--mineral-spacing-2xl);
+        padding-block: 0 var(--mineral-spacing-2xl);
     }
 }
