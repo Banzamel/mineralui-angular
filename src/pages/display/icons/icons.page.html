@@ -1,0 +1,53 @@
+<doc-article
+    title="Icons"
+    description="Classic MineralUI icons for app shells, files, flags and brands. Every icon is a constant you pass to one component: <m-icon [icon]>."
+>
+    <doc-section>
+        <doc-playground [controls]="controls" [code]="code()">
+            @if (selectedIcon(); as icon) {
+                <m-icon [icon]="icon" [color]="color()" [size]="size()" [strokeWidth]="strokeWidth()" />
+            }
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Usage"
+        description="Import MIcon and the icon constants you need. Unused icons are tree-shaken from your bundle."
+    >
+        <doc-preview [example]="examples.iconBasics" />
+    </doc-section>
+
+    <doc-section title="Sizes" description="Presets xs–xl, a number of pixels, or any CSS length. Default: 1.1em.">
+        <doc-preview [example]="examples.iconSizes" />
+    </doc-section>
+
+    <doc-section
+        title="Colors"
+        description="Theme colors map to --mineral-* tokens; inherit (default) uses the surrounding text color. Brand and flag icons keep their own fills."
+    >
+        <doc-preview [example]="examples.iconColors" />
+    </doc-section>
+
+    <doc-section
+        title="Accessibility"
+        description="Icons are decorative by default (aria-hidden). Give a standalone, meaningful icon a label."
+    >
+        <doc-preview [example]="examples.iconAccessible" />
+    </doc-section>
+
+    <doc-section title="Custom glyphs" description="Without [icon], m-icon draws the SVG you project into it.">
+        <doc-preview [example]="examples.iconCustom" />
+    </doc-section>
+
+    <doc-section
+        [title]="'Available set (' + count + ')'"
+        description="Browse the full v1 library by category. Each card copies the export name on click."
+    >
+        <doc-icon-browser [tabs]="tabs" [icons]="icons" [newIcons]="newIcons" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MIcon" />
+        <doc-props-table api="MIconDef" />
+    </doc-section>
+</doc-article>

@@ -1,0 +1,46 @@
+<doc-article
+    title="Quick Start"
+    description="Your first MineralUI component in Angular, and the conventions every component follows."
+>
+    <doc-section
+        title="Basic example"
+        description="Standalone components, constants for icons and illustrations, and the theme service — all signal based."
+    >
+        <doc-preview [example]="welcomeCard" />
+    </doc-section>
+
+    <doc-section
+        title="From React to Angular"
+        description="MineralUI for Angular keeps the React names (MButton, MDatePicker, MThemeService) but follows Angular idioms instead of copying the React API one to one."
+    >
+        <div class="doc-table-scroll">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th scope="col">React</th>
+                        <th scope="col">Angular</th>
+                        <th scope="col">Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (row of conventions; track row.react) {
+                        <tr>
+                            <td>{{ row.react }}</td>
+                            <td>{{ row.angular }}</td>
+                            <td>
+                                <code class="doc-code">{{ row.example }}</code>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </doc-section>
+
+    <doc-section title="Porting status">
+        <p class="doc-text">
+            The Angular port follows the React library group by group. Available today: theme, i18n, utils, icons and
+            illustrations. Components arrive with their documentation pages — the navigation lists only what is ready.
+        </p>
+    </doc-section>
+</doc-article>

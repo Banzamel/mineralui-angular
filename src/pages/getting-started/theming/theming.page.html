@@ -1,0 +1,137 @@
+<doc-article
+    title="Theming"
+    description="Control MineralUI through CSS variables first, then layer component inputs and provideMineralUI() overrides on top."
+>
+    <doc-section title="Customization layers">
+        <ol class="doc-list">
+            <li><code class="doc-code">CSS variables</code> for global design tokens</li>
+            <li><code class="doc-code">Component inputs</code> for per-instance variants and colors</li>
+            <li><code class="doc-code">class and style</code> on the component host for local overrides</li>
+            <li>
+                <code class="doc-code">provideMineralUI()</code> / <code class="doc-code">MThemeService</code> for
+                JS-driven token overrides, <code class="doc-code">[mTheme]</code> for a single subtree
+            </li>
+        </ol>
+    </doc-section>
+
+    <doc-section
+        title="Download starter files"
+        description="A variables file that mirrors the framework token defaults, a minimal version with the most common overrides, and an app shell template. The same files serve React and Angular."
+    >
+        <div class="doc-inline">
+            <a class="doc-button" data-variant="primary" href="/downloads/variables.css" download>
+                <m-icon [icon]="download" /> {{ 'ui.docsDownloadVariables' | mT }}
+            </a>
+            <a class="doc-button" href="/downloads/variables-minimal.css" download>
+                <m-icon [icon]="download" /> {{ 'ui.docsDownloadVariablesMinimal' | mT }}
+            </a>
+            <a class="doc-button" href="/downloads/template.css" download>
+                <m-icon [icon]="download" /> {{ 'ui.docsDownloadTemplate' | mT }}
+            </a>
+        </div>
+        <p class="doc-muted doc-small">
+            The mode class is <code class="doc-code">.theme-light</code> on
+            <code class="doc-code">&lt;html&gt;</code> (or on an <code class="doc-code">[mTheme]</code> element); dark
+            is the default in <code class="doc-code">:root</code>.
+        </p>
+    </doc-section>
+
+    <doc-section title="Override CSS variables">
+        <doc-code-block [snippet]="snippets.themeCss" />
+    </doc-section>
+
+    <doc-section title="Theme object" description="Token overrides applied to <html> as --mineral-* custom properties.">
+        <doc-code-block [snippet]="snippets.appConfigTs" />
+    </doc-section>
+
+    <doc-section
+        title="Color mode"
+        description="MThemeService holds the mode as signals. The choice is stored in localStorage (key mineralui-theme) unless persist is false."
+    >
+        <doc-preview [example]="examples.themeMode" />
+        <doc-code-block [snippet]="snippets.themeBadgeComponentTs" />
+        <p class="doc-muted doc-small">
+            With SSR or prerendering add <code class="doc-code">M_THEME_INIT_SCRIPT</code> to your
+            <code class="doc-code">index.html</code> — see
+            <a class="doc-link" routerLink="/docs/installation">Installation</a>.
+        </p>
+    </doc-section>
+
+    <doc-section
+        title="Local theme"
+        description="[mTheme] creates its own MThemeService for the element: its mode class and tokens apply only inside. It is never persisted."
+    >
+        <doc-preview [example]="examples.themeScope" />
+    </doc-section>
+
+    <doc-section title="Theme tokens overview">
+        <div class="doc-table-scroll">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 22%">Group</th>
+                        <th scope="col">Key tokens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (row of tokenGroups; track row.group) {
+                        <tr>
+                            <th scope="row">{{ row.group }}</th>
+                            <td>
+                                <code class="doc-code">{{ row.tokens }}</code>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </doc-section>
+
+    <doc-section title="Theme types">
+        <div class="doc-table-scroll">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 20%">Type</th>
+                        <th scope="col" style="width: 45%">{{ 'ui.propsType' | mT }}</th>
+                        <th scope="col">{{ 'ui.propsDescription' | mT }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (row of themeTypes; track row.name) {
+                        <tr>
+                            <th scope="row">
+                                <code class="doc-code">{{ row.name }}</code>
+                            </th>
+                            <td class="doc-muted">{{ row.type }}</td>
+                            <td>{{ row.description }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </doc-section>
+
+    <doc-section title="provideMineralUI() options">
+        <doc-props-table api="MThemeConfig" />
+    </doc-section>
+
+    <doc-section title="MTheme object reference">
+        <doc-props-table api="MTheme" />
+    </doc-section>
+
+    <doc-section title="MThemeService">
+        <doc-props-table api="MThemeService" />
+    </doc-section>
+
+    <doc-section title="[mTheme] directive">
+        <doc-props-table api="MThemeScope" />
+    </doc-section>
+
+    <doc-section
+        title="Shared layout utility inputs"
+        description="MSpacing — used on any element and composed into layout components as a host directive."
+    >
+        <doc-props-table api="MSpacing" />
+    </doc-section>
+</doc-article>

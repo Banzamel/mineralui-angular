@@ -1,0 +1,54 @@
+{
+    "name": "mineralui-docs-angular",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Documentation for the MineralUI Angular framework",
+    "type": "module",
+    "packageManager": "npm@11.19.0",
+    "engines": {
+        "node": ">=24.15.0"
+    },
+    "scripts": {
+        "ng": "node scripts/ng.mjs",
+        "generate": "node scripts/generate-docs.mjs",
+        "dev": "node scripts/dev.mjs",
+        "prebuild": "npm run generate",
+        "build": "node scripts/ng.mjs build",
+        "pretest": "npm run generate",
+        "test": "node scripts/ng.mjs test --watch=false",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "serve:static": "npx -y serve dist/docs-angular/browser"
+    },
+    "dependencies": {
+        "@angular/common": "^22.1.0",
+        "@angular/compiler": "^22.1.0",
+        "@angular/core": "^22.1.0",
+        "@angular/forms": "^22.1.0",
+        "@angular/platform-browser": "^22.1.0",
+        "@angular/platform-server": "^22.1.0",
+        "@angular/router": "^22.1.0",
+        "@angular/ssr": "^22.1.8",
+        "@banzamel/mineralui-angular": "file:../angular-pro/dist/mineralui",
+        "highlight.js": "^11.11.1",
+        "rxjs": "~7.8.0",
+        "tslib": "^2.3.0"
+    },
+    "devDependencies": {
+        "@angular/build": "^22.1.8",
+        "@angular/cli": "^22.1.8",
+        "@angular/compiler-cli": "^22.1.0",
+        "@eslint/js": "^10.0.1",
+        "@types/node": "^24.0.0",
+        "angular-eslint": "^22.5.0",
+        "eslint": "^10.11.0",
+        "eslint-config-prettier": "^10.1.8",
+        "jsdom": "^28.0.0",
+        "prettier": "^3.8.1",
+        "ts-morph": "^28.0.0",
+        "typescript": "~6.0.2",
+        "typescript-eslint": "^8.70.1",
+        "vitest": "^4.0.8"
+    }
+}

@@ -1,0 +1,78 @@
+<div class="doc-stack">
+    <label class="doc-label">
+        Search available icons
+        <input
+            class="doc-input"
+            type="search"
+            autocomplete="off"
+            placeholder="Search by export name"
+            [value]="query()"
+            (input)="onSearch($event)"
+        />
+    </label>
+
+    <div class="doc-icon-tabs" role="tablist" aria-label="Icon families">
+        @for (tab of visible(); track tab.id; let index = $index) {
+            <button
+                type="button"
+                role="tab"
+                class="doc-icon-tab"
+                [id]="'doc-icons-tab-' + tab.id"
+                [attr.aria-selected]="activeTab() === index"
+                [attr.aria-controls]="'doc-icons-panel-' + tab.id"
+                [tabIndex]="activeTab() === index ? 0 : -1"
+                (click)="activeTab.set(index)"
+                (keydown)="onTabKeydown($event)"
+            >
+                {{ tab.label }}
+            </button>
+        }
+    </div>
+
+    @for (tab of visible(); track tab.id; let index = $index) {
+        <div
+            role="tabpanel"
+            class="doc-stack"
+            [id]="'doc-icons-panel-' + tab.id"
+            [attr.aria-labelledby]="'doc-icons-tab-' + tab.id"
+            [hidden]="activeTab() !== index"
+        >
+            @if (activeTab() === index) {
+                @for (group of tab.groups; track group.title) {
+                    <section class="doc-stack-sm" [attr.aria-label]="group.title">
+                        <h3 class="doc-h3">
+                            {{ group.title }} <span class="doc-badge">{{ group.items.length }}</span>
+                        </h3>
+                        <p class="doc-muted doc-small">{{ group.tone }}</p>
+                        <ul class="doc-icon-grid">
+                            @for (name of group.items; track name) {
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="doc-icon-card"
+                                        [attr.aria-label]="(copied() === name ? 'Copied: ' : 'Copy: ') + name"
+                                        (click)="copy(name)"
+                                    >
+                                        @if (icons().get(name); as icon) {
+                                            <m-icon [icon]="icon" size="lg" [shell]="shell()" />
+                                        }
+                                        <span class="doc-icon-name">{{ copied() === name ? 'Copied' : name }}</span>
+                                        @if (newIcons().has(name)) {
+                                            <span class="doc-badge" data-color="news">new</span>
+                                        }
+                                    </button>
+                                </li>
+                            }
+                        </ul>
+                    </section>
+                } @empty {
+                    <div class="doc-alert" role="status">
+                        <strong>No icons match this search.</strong>
+                        <span class="doc-muted doc-small">Try a broader query or clear the field.</span>
+                    </div>
+                }
+            }
+        </div>
+    }
+    <span class="doc-visually-hidden" aria-live="polite">{{ copied() ? 'Copied ' + copied() : '' }}</span>
+</div>

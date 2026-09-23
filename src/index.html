@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>MineralUI for Angular</title>
+        <base href="/" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="description"
+            content="Documentation for MineralUI for Angular: components, theming, i18n, icons and illustrations."
+        />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <!-- m-theme-init: M_THEME_INIT_SCRIPT from @banzamel/mineralui-angular/theme, synced by scripts/generate-docs.mjs -->
+        <script>
+            (function () {
+                try {
+                    var stored = localStorage.getItem('mineralui-theme');
+                    var mode = stored === 'system'
+                        ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+                        : stored;
+                    if (mode !== 'dark' && mode !== 'light') return;
+                    var root = document.documentElement;
+                    root.classList.toggle('theme-light', mode === 'light');
+                    root.style.colorScheme = mode;
+                } catch (e) {}
+            })();
+        </script>
+        <!-- /m-theme-init -->
+    </head>
+    <body>
+        <doc-root></doc-root>
+    </body>
+</html>

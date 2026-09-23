@@ -1,0 +1,15 @@
+<a class="doc-skip" href="#doc-main" (click)="$event.preventDefault(); focusMain()">{{ 'ui.skipToContent' | mT }}</a>
+<doc-docs-header [navOpen]="navOpen()" (toggleNav)="navOpen.update((open) => !open)" />
+<div class="doc-shell">
+    <aside id="doc-sidebar" class="doc-sidebar" [class.doc-sidebar-open]="navOpen()">
+        <doc-docs-navigation />
+    </aside>
+    @if (navOpen()) {
+        <div class="doc-scrim" aria-hidden="true" (click)="navOpen.set(false)"></div>
+    }
+    <main id="doc-main" class="doc-main" tabindex="-1">
+        <div class="doc-container">
+            <router-outlet />
+        </div>
+    </main>
+</div>

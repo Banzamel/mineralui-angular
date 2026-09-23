@@ -1,0 +1,79 @@
+<div class="doc-stack-sm">
+    <p class="doc-text doc-small">
+        <code class="doc-code">{{ importLine() }}</code>
+        @if (entry().selector) {
+            · selector <code class="doc-code">{{ entry().selector }}</code>
+        }
+    </p>
+
+    @for (group of groups(); track group.label) {
+        <div class="doc-table-scroll">
+            <table class="doc-table">
+                <caption class="doc-visually-hidden">
+                    {{
+                        entry().name + ' — ' + (group.label | mT)
+                    }}
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 20%">{{ group.label | mT }}</th>
+                        <th scope="col" style="width: 28%">{{ 'ui.propsType' | mT }}</th>
+                        <th scope="col" style="width: 14%">{{ 'ui.propsDefault' | mT }}</th>
+                        <th scope="col">{{ 'ui.propsDescription' | mT }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (member of group.members; track member.name) {
+                        <tr>
+                            <th scope="row">
+                                <code class="doc-code">{{ member.name }}</code>
+                                @if (member.kind === 'model') {
+                                    <span class="doc-badge" data-color="neutral">model</span>
+                                }
+                                @if (member.required) {
+                                    <span class="doc-badge" data-color="news">{{ 'ui.propsRequired' | mT }}</span>
+                                }
+                            </th>
+                            <td class="doc-muted">{{ member.type }}</td>
+                            <td class="doc-muted">{{ member.default ?? '—' }}</td>
+                            <td>
+                                {{ member.description }}
+                                @if (member.from) {
+                                    <span class="doc-muted">(from {{ member.from }})</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    @if (entry().slots.length > 0) {
+        <div class="doc-table-scroll">
+            <table class="doc-table">
+                <caption class="doc-visually-hidden">
+                    {{
+                        entry().name + ' — ' + ('ui.propsSlots' | mT)
+                    }}
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 34%">{{ 'ui.propsSlots' | mT }}</th>
+                        <th scope="col">{{ 'ui.propsDescription' | mT }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (slot of entry().slots; track slot.select) {
+                        <tr>
+                            <th scope="row">
+                                <code class="doc-code">{{ slot.select }}</code>
+                            </th>
+                            <td>{{ slot.description }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

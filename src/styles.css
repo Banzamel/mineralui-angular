@@ -1,0 +1,307 @@
+/*
+ * Docs-only styles. Everything below `TEMP` is the temporary docs shell built on --mineral-* tokens until the
+ * library components exist (inventory: project/inventory/docs-shell.md). Each block names the component that
+ * replaces it.
+ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--mineral-page-bg);
+    color: var(--mineral-page-text);
+    font-family: var(--mineral-font-family-sans, var(--mineral-font-family));
+    line-height: 1.5;
+    transition:
+        background-color 180ms ease,
+        color 180ms ease;
+}
+
+/* TEMP: replace with MHeading / MText / MCode / MList / MLink (etap 2) */
+.doc-h1 {
+    margin: 0;
+    color: var(--mineral-text-heading);
+    font-family: var(--mineral-font-family-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.doc-h2 {
+    margin: 0;
+    color: var(--mineral-text-heading);
+    font-family: var(--mineral-font-family-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.doc-h3 {
+    margin: 0;
+    color: var(--mineral-text-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.doc-text {
+    margin: 0;
+}
+
+.doc-muted {
+    margin: 0;
+    color: var(--mineral-text-secondary);
+}
+
+.doc-small {
+    font-size: var(--mineral-font-size-sm);
+}
+
+.doc-code {
+    padding: 0.1em 0.4em;
+    border: 1px solid var(--mineral-border);
+    border-radius: var(--mineral-radius-sm);
+    background: var(--mineral-surface-contrast);
+    color: var(--mineral-primary);
+    font-family: var(--mineral-font-family-mono);
+    font-size: 0.875em;
+    overflow-wrap: anywhere;
+}
+
+.doc-list {
+    display: grid;
+    gap: var(--mineral-spacing-xs);
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.doc-link {
+    color: var(--mineral-primary);
+    text-decoration-color: rgba(var(--mineral-primary-rgb), 0.35);
+}
+
+.doc-link:hover {
+    text-decoration-color: currentColor;
+}
+
+/* TEMP: replace with MStack / MInline (etap 2) */
+.doc-stack {
+    display: grid;
+    gap: var(--mineral-spacing-md);
+}
+
+.doc-stack-sm {
+    display: grid;
+    gap: var(--mineral-spacing-sm);
+}
+
+.doc-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--mineral-spacing-sm);
+}
+
+/* TEMP: replace with MButton (etap 3) */
+.doc-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.25rem;
+    padding: 0 0.9rem;
+    border: 1px solid var(--mineral-border);
+    border-radius: var(--mineral-radius-md);
+    background: transparent;
+    color: var(--mineral-text);
+    font: inherit;
+    font-size: var(--mineral-font-size-sm);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        border-color var(--mineral-transition-fast),
+        background-color var(--mineral-transition-fast);
+}
+
+.doc-button:hover {
+    border-color: var(--mineral-border-hover);
+    background: rgba(var(--mineral-primary-rgb), 0.08);
+}
+
+.doc-button:focus-visible,
+.doc-icon-button:focus-visible,
+.doc-chip:focus-visible {
+    outline: 2px solid var(--mineral-border-focus);
+    outline-offset: 2px;
+}
+
+.doc-button[data-variant='primary'] {
+    border-color: var(--mineral-primary);
+    background: var(--mineral-primary);
+    color: var(--mineral-primary-contrast, #fff);
+}
+
+.doc-icon-button {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--mineral-radius-md);
+    background: transparent;
+    color: var(--mineral-text);
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.doc-icon-button:hover {
+    border-color: var(--mineral-border);
+}
+
+/* Toggle chips — TEMP: replace with MButton variant="outlined" [active] (etap 3) */
+.doc-chip {
+    padding: 0.2rem 0.65rem;
+    border: 1px solid var(--mineral-border);
+    border-radius: var(--mineral-radius-full, 999px);
+    background: transparent;
+    color: var(--mineral-text);
+    font: inherit;
+    font-size: var(--mineral-font-size-xs);
+    cursor: pointer;
+}
+
+.doc-chip[aria-pressed='true'] {
+    border-color: var(--mineral-primary);
+    background: rgba(var(--mineral-primary-rgb), 0.15);
+    color: var(--mineral-primary);
+}
+
+/* TEMP: replace with MBadge (etap 5) */
+.doc-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.05rem 0.5rem;
+    border-radius: var(--mineral-radius-full, 999px);
+    background: rgba(var(--mineral-primary-rgb), 0.15);
+    color: var(--mineral-primary);
+    font-size: var(--mineral-font-size-xs);
+    font-weight: 600;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+.doc-badge[data-color='news'] {
+    background: rgba(var(--mineral-news-rgb), 0.15);
+    color: var(--mineral-news);
+}
+
+.doc-badge[data-color='neutral'] {
+    background: rgba(var(--mineral-neutral-rgb), 0.15);
+    color: var(--mineral-neutral);
+}
+
+/* TEMP: replace with MAlert (etap 5) */
+.doc-alert {
+    display: grid;
+    gap: var(--mineral-spacing-xs);
+    padding: var(--mineral-spacing-md);
+    border: 1px solid rgba(var(--mineral-warning-rgb), 0.4);
+    border-radius: var(--mineral-radius-md);
+    background: rgba(var(--mineral-warning-rgb), 0.08);
+}
+
+.doc-alert[data-color='info'] {
+    border-color: rgba(var(--mineral-info-rgb), 0.4);
+    background: rgba(var(--mineral-info-rgb), 0.08);
+}
+
+/* TEMP: replace with MCard / MCardHeader / MCardBody (etap 6) */
+.doc-card {
+    border: 1px solid var(--mineral-border);
+    border-radius: var(--mineral-radius-lg);
+    background: var(--mineral-surface);
+    box-shadow: var(--mineral-shadow-sm);
+}
+
+.doc-card-header {
+    display: grid;
+    gap: var(--mineral-spacing-xs);
+    padding: var(--mineral-spacing-md) var(--mineral-spacing-lg);
+    border-bottom: 1px solid var(--mineral-border);
+}
+
+.doc-card-body {
+    display: grid;
+    gap: var(--mineral-spacing-md);
+    min-width: 0;
+    padding: var(--mineral-spacing-lg);
+}
+
+/* TEMP: replace with MInputSearch (etap 4) */
+.doc-input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 2.25rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--mineral-border);
+    border-radius: var(--mineral-radius-md);
+    background: var(--mineral-input-bg);
+    color: var(--mineral-text);
+    font: inherit;
+    font-size: var(--mineral-font-size-sm);
+}
+
+.doc-input:focus {
+    border-color: var(--mineral-border-focus);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--mineral-primary-rgb), 0.2);
+}
+
+.doc-label {
+    display: grid;
+    gap: var(--mineral-spacing-xs);
+    color: var(--mineral-text-secondary);
+    font-size: var(--mineral-font-size-sm);
+}
+
+/* TEMP: replace with MDataTable compact (etap 7) */
+.doc-table-scroll {
+    overflow-x: auto;
+}
+
+.doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--mineral-font-size-sm);
+}
+
+.doc-table th,
+.doc-table td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--mineral-border);
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+}
+
+.doc-table th {
+    color: var(--mineral-text-secondary);
+    font-size: var(--mineral-font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.doc-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}

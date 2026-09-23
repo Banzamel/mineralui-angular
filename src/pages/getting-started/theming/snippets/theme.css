@@ -1,0 +1,11 @@
+:root {
+    --mineral-primary-rgb: 59, 130, 246;
+    --mineral-success-rgb: 34, 197, 94;
+    --mineral-error-rgb: 239, 68, 68;
+    --mineral-font-family-sans: 'Inter', system-ui, sans-serif;
+    --mineral-radius-base: 8px;
+    --mineral-spacing-base: 8px;
+    --mineral-navbar-height: 72px;
+    --mineral-sidebar-width: 240px;
+    --mineral-content-max-width: 1120px;
+}

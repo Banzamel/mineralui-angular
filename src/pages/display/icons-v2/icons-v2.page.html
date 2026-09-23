@@ -1,0 +1,38 @@
+<doc-article
+    title="Icons v2"
+    description="Second-generation icons in the illustration-inspired style. Same <m-icon> component, V2 constants (m*IconV2) and an optional card shell."
+>
+    <aside class="doc-alert" aria-label="MineralUI Pro">
+        <strong>MineralUI Pro</strong>
+        <span>
+            The illustration-style icon set is delivered with MineralUI Pro. Until the Basic / Pro split of the Angular
+            packages, every V2 constant ships in <code class="doc-code">&#64;banzamel/mineralui-angular/icons</code>.
+        </span>
+    </aside>
+
+    <doc-section>
+        <doc-playground [controls]="controls" [code]="code()">
+            @if (selectedIcon(); as icon) {
+                <m-icon [icon]="icon" [color]="color()" [size]="size()" [shell]="shell()" />
+            }
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Shell"
+        description="shell draws the card behind the glyph: a plain card, a card with a header band, or the flag card — picked by each icon."
+    >
+        <doc-preview [example]="iconV2Shell" />
+    </doc-section>
+
+    <doc-section
+        [title]="'Available set (' + count + ')'"
+        description="App icons, flags and brands in separate v2 categories. Each card copies the export name on click."
+    >
+        <doc-icon-browser [tabs]="tabs" [icons]="icons" [shell]="true" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MIcon" />
+    </doc-section>
+</doc-article>

@@ -1,0 +1,41 @@
+<nav class="doc-nav" aria-label="Documentation">
+    <div class="doc-nav-search">
+        <label class="doc-visually-hidden" for="doc-nav-search">{{ 'ui.searchDocs' | mT }}</label>
+        <input
+            id="doc-nav-search"
+            class="doc-input"
+            type="search"
+            autocomplete="off"
+            [placeholder]="'ui.searchDocs' | mT"
+            [value]="search()"
+            (input)="onSearch($event)"
+        />
+    </div>
+
+    @for (section of sections(); track section.category) {
+        <details class="doc-nav-group" [open]="searchActive() || section.collapsible !== true || rla.isActive">
+            <summary class="doc-nav-category">
+                @if (sectionIcon(section); as icon) {
+                    <m-icon [icon]="icon" />
+                }
+                {{ section.category }}
+            </summary>
+            <ul class="doc-nav-items" routerLinkActive #rla="routerLinkActive">
+                @for (item of section.items; track item.id) {
+                    <li>
+                        <a
+                            class="doc-nav-link"
+                            [routerLink]="['/docs', item.id]"
+                            routerLinkActive="doc-nav-link-active"
+                            ariaCurrentWhenActive="page"
+                            [attr.title]="item.description"
+                            >{{ item.title }}</a
+                        >
+                    </li>
+                }
+            </ul>
+        </details>
+    } @empty {
+        <p class="doc-muted doc-small doc-nav-empty">No pages match this search.</p>
+    }
+</nav>

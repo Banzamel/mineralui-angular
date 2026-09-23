@@ -1,0 +1,52 @@
+.doc-playground {
+    display: grid;
+    gap: var(--mineral-spacing-md);
+    min-width: 0;
+}
+
+.doc-playground-stage {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mineral-spacing-md);
+    min-height: 8rem;
+    padding: var(--mineral-spacing-lg);
+    border: 1px dashed var(--mineral-border);
+    border-radius: var(--mineral-radius-md);
+}
+
+.doc-playground-controls {
+    display: grid;
+    gap: var(--mineral-spacing-sm);
+    padding: var(--mineral-spacing-md);
+    border: 1px solid rgba(var(--mineral-success-rgb), 0.35);
+    border-radius: var(--mineral-radius-md);
+    background: rgba(var(--mineral-success-rgb), 0.05);
+}
+
+.doc-playground-row {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    align-items: center;
+    gap: var(--mineral-spacing-md);
+}
+
+.doc-playground-label {
+    color: var(--mineral-text-secondary);
+    font-family: var(--mineral-font-family-mono);
+    font-size: var(--mineral-font-size-sm);
+}
+
+.doc-playground-slider input {
+    flex: 1;
+    min-width: 8rem;
+    accent-color: var(--mineral-primary);
+}
+
+@media (max-width: 640px) {
+    .doc-playground-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--mineral-spacing-xs);
+    }
+}

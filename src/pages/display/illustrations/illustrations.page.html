@@ -1,0 +1,46 @@
+<doc-article
+    title="Illustrations"
+    description="Themed SVG scenes that adapt to dark / light mode through MineralUI tokens. Use them in empty states, feature cards, onboarding flows and landing pages."
+>
+    <doc-section>
+        <doc-playground [controls]="controls" [code]="code()">
+            @if (selected(); as illustration) {
+                <m-illustration [illustration]="illustration" [color]="color()" [size]="size()" [animate]="animate()" />
+            }
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        [title]="'Available scenes (' + scenes.length + ')'"
+        description="Pre-built illustrations ready to use. Each card copies the export name on click."
+    >
+        <doc-illustration-gallery [scenes]="scenes" />
+    </doc-section>
+
+    <doc-section
+        title="Sizes and colors"
+        description="Presets xs (80 px) – xl (400 px) or a width in pixels; the accent follows the color input."
+    >
+        <doc-preview [example]="examples.illustrationSizes" />
+    </doc-section>
+
+    <doc-section
+        title="In a card context"
+        description="Illustrations work well as visual anchors inside cards, empty states and feature highlights."
+    >
+        <doc-preview [example]="examples.illustrationCard" />
+    </doc-section>
+
+    <doc-section title="Custom illustrations" description="Project your own SVG to build themed scenes.">
+        <doc-preview [example]="examples.illustrationCustom" />
+    </doc-section>
+
+    <doc-section title="Color variants" description="Every scene responds to the color input.">
+        <doc-preview [example]="examples.illustrationColors" />
+    </doc-section>
+
+    <doc-section title="API">
+        <doc-props-table api="MIllustration" />
+        <doc-props-table api="MIllustrationDef" />
+    </doc-section>
+</doc-article>

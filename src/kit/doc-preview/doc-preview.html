@@ -1,0 +1,37 @@
+<div class="doc-preview">
+    <div class="doc-preview-tabs" role="tablist" [attr.aria-label]="example().title">
+        @for (tab of tabs; track tab) {
+            <button
+                type="button"
+                role="tab"
+                class="doc-preview-tab"
+                [id]="id + '-tab-' + tab"
+                [attr.aria-selected]="active() === tab"
+                [attr.aria-controls]="id + '-panel-' + tab"
+                [tabIndex]="active() === tab ? 0 : -1"
+                (click)="active.set(tab)"
+                (keydown)="onTabKeydown($event)"
+            >
+                {{ (tab === 'preview' ? 'ui.preview' : 'ui.code') | mT }}
+            </button>
+        }
+    </div>
+
+    <div
+        role="tabpanel"
+        class="doc-preview-stage"
+        [id]="id + '-panel-preview'"
+        [attr.aria-labelledby]="id + '-tab-preview'"
+        [hidden]="active() !== 'preview'"
+    >
+        <ng-container *ngComponentOutlet="example().component; injector: injector()" />
+    </div>
+    <div
+        role="tabpanel"
+        [id]="id + '-panel-code'"
+        [attr.aria-labelledby]="id + '-tab-code'"
+        [hidden]="active() !== 'code'"
+    >
+        <doc-code-block [code]="example().source" language="typescript" [title]="example().title" />
+    </div>
+</div>

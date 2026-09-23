@@ -1,0 +1,87 @@
+:host {
+    display: block;
+    min-height: 100vh;
+}
+
+.doc-skip {
+    position: absolute;
+    top: -3rem;
+    left: var(--mineral-spacing-md);
+    z-index: 100;
+    padding: var(--mineral-spacing-sm) var(--mineral-spacing-md);
+    border-radius: var(--mineral-radius-md);
+    background: var(--mineral-primary);
+    color: var(--mineral-primary-contrast);
+}
+
+.doc-skip:focus {
+    top: var(--mineral-spacing-sm);
+}
+
+.doc-shell {
+    display: grid;
+    grid-template-columns: var(--mineral-sidebar-width) minmax(0, 1fr);
+}
+
+.doc-sidebar {
+    position: sticky;
+    top: var(--mineral-navbar-height);
+    height: calc(100vh - var(--mineral-navbar-height));
+    overflow-y: auto;
+    border-right: 1px solid var(--mineral-border);
+    background: var(--mineral-surface);
+}
+
+.doc-main {
+    min-width: 0;
+    outline: none;
+}
+
+.doc-container {
+    box-sizing: border-box;
+    max-width: var(--mineral-content-max-width);
+    margin: 0 auto;
+    padding: var(--mineral-spacing-xl) var(--mineral-spacing-lg) calc(var(--mineral-spacing-2xl) * 2);
+}
+
+.doc-scrim {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .doc-shell {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .doc-sidebar {
+        position: fixed;
+        top: var(--mineral-navbar-height);
+        bottom: 0;
+        left: 0;
+        z-index: 40;
+        width: min(85vw, var(--mineral-sidebar-width));
+        height: auto;
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition:
+            transform var(--mineral-transition-base),
+            visibility var(--mineral-transition-base);
+    }
+
+    .doc-sidebar-open {
+        transform: none;
+        visibility: visible;
+    }
+
+    .doc-scrim {
+        position: fixed;
+        inset: var(--mineral-navbar-height) 0 0;
+        z-index: 30;
+        display: block;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    .doc-container {
+        padding: var(--mineral-spacing-lg) var(--mineral-spacing-md) var(--mineral-spacing-2xl);
+    }
+}

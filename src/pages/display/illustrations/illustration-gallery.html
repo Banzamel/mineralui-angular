@@ -1,0 +1,32 @@
+<div class="doc-stack">
+    <label class="doc-label">
+        Search scenes
+        <input
+            class="doc-input"
+            type="search"
+            autocomplete="off"
+            placeholder="Search by name"
+            [value]="query()"
+            (input)="onSearch($event)"
+        />
+    </label>
+    <ul class="doc-scene-grid">
+        @for (scene of visible(); track scene.name) {
+            <li>
+                <button
+                    type="button"
+                    class="doc-scene-card"
+                    [attr.aria-label]="(copied() === scene.name ? 'Copied: ' : 'Copy: ') + scene.name"
+                    (click)="copy(scene.name)"
+                >
+                    <m-illustration [illustration]="scene.illustration" [size]="140" [animate]="false" />
+                    <span class="doc-h3">{{ scene.label }}</span>
+                    <span class="doc-muted doc-small">{{ copied() === scene.name ? 'Copied' : scene.name }}</span>
+                </button>
+            </li>
+        } @empty {
+            <li class="doc-alert" role="status"><strong>No scenes match this search.</strong></li>
+        }
+    </ul>
+    <span class="doc-visually-hidden" aria-live="polite">{{ copied() ? 'Copied ' + copied() : '' }}</span>
+</div>

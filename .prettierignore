@@ -1,0 +1,10 @@
+dist
+node_modules
+.angular
+coverage
+.test-results
+package-lock.json
+src/generated
+public/downloads
+# Contains M_THEME_INIT_SCRIPT verbatim from the library (synced by scripts/generate-docs.mjs)
+src/index.html

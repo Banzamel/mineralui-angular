@@ -1,0 +1,84 @@
+{
+    "ui": {
+        "languageLabel": "Language",
+        "toggleTheme": "Toggle theme",
+        "toggleNavigation": "Toggle navigation",
+        "docsAppearanceLabel": "Appearance",
+        "docsThemeFilesLabel": "Theme starter files",
+        "docsDownloadVariables": "Download variables.css",
+        "docsDownloadVariablesMinimal": "Download variables-minimal.css",
+        "docsDownloadTemplate": "Download template.css",
+        "searchDocs": "Search docs...",
+        "missingDocsTitle": "Documentation route not found",
+        "missingDocsDescription": "The selected page does not exist in the current docs route map.",
+        "close": "Close",
+        "copy": "Copy",
+        "copied": "Copied",
+        "propsProp": "Prop",
+        "propsType": "Type",
+        "propsDefault": "Default",
+        "propsDescription": "Description",
+        "preview": "Preview",
+        "code": "Code",
+        "propsInputs": "Inputs",
+        "propsOutputs": "Outputs",
+        "propsShared": "Shared inputs",
+        "propsSlots": "Content slots",
+        "propsRequired": "required",
+        "frameworkReact": "React",
+        "frameworkAngular": "Angular",
+        "frameworkSwitch": "Framework",
+        "skipToContent": "Skip to content",
+        "docsOverview": "Overview"
+    },
+    "docsNavigation": [
+        {
+            "category": "Getting Started",
+            "icon": "getting_started",
+            "items": [
+                {
+                    "id": "installation",
+                    "title": "Installation",
+                    "description": "Install the npm package and bootstrap the providers."
+                },
+                {
+                    "id": "i18n",
+                    "title": "Languages (i18n)",
+                    "description": "MI18nService, dictionaries and the mT pipe."
+                },
+                {
+                    "id": "quick-start",
+                    "title": "Quick Start",
+                    "description": "Five-minute tour of the most common components."
+                },
+                {
+                    "id": "theming",
+                    "title": "Theming",
+                    "description": "Token system, dark / light mode and CSS variables."
+                }
+            ]
+        },
+        {
+            "category": "Display",
+            "icon": "display",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "icons",
+                    "title": "Icons",
+                    "description": "267 classic glyph icons and the m-icon component."
+                },
+                {
+                    "id": "icons-v2",
+                    "title": "Icons v2",
+                    "description": "180 illustration-style v2 icons (Pro)."
+                },
+                {
+                    "id": "illustrations",
+                    "title": "Illustrations",
+                    "description": "63 themed scene illustrations and the m-illustration component."
+                }
+            ]
+        }
+    ]
+}

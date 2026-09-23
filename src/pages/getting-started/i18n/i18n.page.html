@@ -1,0 +1,63 @@
+<doc-article
+    title="Languages (i18n)"
+    description="provideMineralI18n() gives your app a locale service with dot-path lookup, language switching and optional localStorage persistence."
+>
+    <doc-section title="Overview">
+        <ul class="doc-list">
+            <li>Register <code class="doc-code">provideMineralI18n()</code> with a map of locale dictionaries.</li>
+            <li>
+                Read the active locale, dictionary and translator from
+                <code class="doc-code">MI18nService</code> (signals), or translate in templates with the
+                <code class="doc-code">mT</code> pipe.
+            </li>
+            <li>
+                The active locale is stored in <code class="doc-code">localStorage</code> by default and restored on the
+                next page load.
+            </li>
+            <li><code class="doc-code">document.documentElement.lang</code> follows the active locale.</li>
+        </ul>
+    </doc-section>
+
+    <doc-section title="Live preview" description="The locales and the component below are the snippets on this page.">
+        <doc-preview [example]="languageSwitcher" [injector]="demoInjector" />
+    </doc-section>
+
+    <doc-section title="Basic setup">
+        <doc-code-block [snippet]="snippets.localesTs" />
+        <doc-code-block [snippet]="snippets.appConfigTs" />
+    </doc-section>
+
+    <doc-section title="Reading translations" description="The mT pipe in templates, t() and dict() in code.">
+        <doc-code-block [snippet]="snippets.greetingComponentTs" />
+    </doc-section>
+
+    <doc-section title="provideMineralI18n() options">
+        <doc-props-table api="MI18nConfig" />
+    </doc-section>
+
+    <doc-section title="MI18nService">
+        <doc-props-table api="MI18nService" />
+    </doc-section>
+
+    <doc-section title="mT pipe">
+        <doc-props-table api="MTranslatePipe" />
+    </doc-section>
+
+    <doc-section title="Usage notes">
+        <ul class="doc-list">
+            <li>
+                <code class="doc-code">toggleLocale()</code> follows the order of keys in the
+                <code class="doc-code">locales</code> object.
+            </li>
+            <li>
+                The service is optional for library components: without it they use English texts. With it, they read
+                <code class="doc-code">mineralui.*</code> keys from your dictionaries (the same keys as MineralUI for
+                React).
+            </li>
+            <li>
+                Dates, numbers and relative times use the active locale, then Angular's
+                <code class="doc-code">LOCALE_ID</code>.
+            </li>
+        </ul>
+    </doc-section>
+</doc-article>

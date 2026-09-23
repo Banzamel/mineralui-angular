@@ -1,0 +1,13 @@
+{
+    "projects": {
+        "my-app": {
+            "architect": {
+                "build": {
+                    "options": {
+                        "styles": ["@banzamel/mineralui-angular/styles.css", "src/styles.css"]
+                    }
+                }
+            }
+        }
+    }
+}
