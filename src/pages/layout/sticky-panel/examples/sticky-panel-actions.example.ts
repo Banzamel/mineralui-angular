@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, signal, viewChild} from '@angular/core'
 import type {ElementRef} from '@angular/core'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MInline} from '@banzamel/mineralui-angular/layout/inline'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MStickyPanel} from '@banzamel/mineralui-angular/layout/sticky-panel'
@@ -8,13 +9,12 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
 
 @Component({
     selector: 'app-sticky-panel-actions',
-    imports: [MInline, MStack, MStickyPanel, MSurface, MText],
+    imports: [MButton, MInline, MStack, MStickyPanel, MSurface, MText],
     template: `
         <m-stack>
             <m-inline justify="between">
                 <p mText size="sm">Opened: {{ opened() ?? 'nothing yet' }}</p>
-                <!-- TEMP: replace with MButton (etap 3) -->
-                <button type="button" (click)="backToTop()">Back to top</button>
+                <button mButton variant="outlined" size="sm" (click)="backToTop()">Back to top</button>
             </m-inline>
             <m-sticky-panel #panel [top]="88" [bottomGap]="360" label="Notifications">
                 <m-stack>
@@ -22,8 +22,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
                         <div mSurface tone="subtle">
                             <m-inline justify="between">
                                 <p mText size="sm">Notification {{ item }}</p>
-                                <!-- TEMP: replace with MButton (etap 3) -->
-                                <button type="button" (click)="opened.set(item)">Open</button>
+                                <button mButton variant="ghost" size="xs" (click)="opened.set(item)">Open</button>
                             </m-inline>
                         </div>
                     }

@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import type {MContainerSize} from '@banzamel/mineralui-angular/layout/container'
 import {MFooter} from '@banzamel/mineralui-angular/layout/footer'
 import {MGrid, MGridItem} from '@banzamel/mineralui-angular/layout/grid'
@@ -28,6 +29,7 @@ const toBreakpoint = (option: HiddenOption): MBreakpoint | undefined => (option 
         DocArticle,
         DocSection,
         DocPlayground,
+        MButton,
         DocPreview,
         DocPropsTable,
         MFooter,

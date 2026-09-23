@@ -1,18 +1,19 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MIcon, mMoonIcon, mSunIcon} from '@banzamel/mineralui-angular/icons'
 import {MIllustration, mOnboardingIllustration} from '@banzamel/mineralui-angular/illustrations'
 import {MSpacing, MThemeService} from '@banzamel/mineralui-angular/theme'
 
 @Component({
     selector: 'app-welcome-card',
-    imports: [MIcon, MIllustration, MSpacing],
+    imports: [MButton, MIcon, MIllustration, MSpacing],
     template: `
         <section class="card">
             <m-illustration [illustration]="onboarding" size="sm" color="success" />
             <h2 mSpacing mt="sm">Welcome aboard</h2>
             <p>Mode: {{ theme.resolvedMode() }}</p>
-            <button type="button" (click)="theme.toggleMode()">
-                <m-icon [icon]="theme.resolvedMode() === 'dark' ? sun : moon" />
+            <button mButton variant="outlined" (click)="theme.toggleMode()">
+                <m-icon mStart [icon]="theme.resolvedMode() === 'dark' ? sun : moon" />
                 Toggle theme
             </button>
         </section>
@@ -31,11 +32,6 @@ import {MSpacing, MThemeService} from '@banzamel/mineralui-angular/theme'
         h2 {
             margin-bottom: 0;
             font-size: 1.125rem;
-        }
-        button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,

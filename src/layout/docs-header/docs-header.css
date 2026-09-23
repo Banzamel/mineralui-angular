@@ -63,6 +63,6 @@
     }
 
     .doc-nav-toggle {
-        display: inline-grid;
+        display: inline-flex;
     }
 }

@@ -19,14 +19,14 @@
         description="A variables file that mirrors the framework token defaults, a minimal version with the most common overrides, and an app shell template. The same files serve React and Angular."
     >
         <div class="doc-inline">
-            <a class="doc-button" data-variant="primary" href="/downloads/variables.css" download>
-                <m-icon [icon]="download" /> {{ 'ui.docsDownloadVariables' | mT }}
+            <a mButton href="/downloads/variables.css" download>
+                <m-icon mStart [icon]="download" />{{ 'ui.docsDownloadVariables' | mT }}
             </a>
-            <a class="doc-button" href="/downloads/variables-minimal.css" download>
-                <m-icon [icon]="download" /> {{ 'ui.docsDownloadVariablesMinimal' | mT }}
+            <a mButton variant="outlined" href="/downloads/variables-minimal.css" download>
+                <m-icon mStart [icon]="download" />{{ 'ui.docsDownloadVariablesMinimal' | mT }}
             </a>
-            <a class="doc-button" href="/downloads/template.css" download>
-                <m-icon [icon]="download" /> {{ 'ui.docsDownloadTemplate' | mT }}
+            <a mButton variant="outlined" href="/downloads/template.css" download>
+                <m-icon mStart [icon]="download" />{{ 'ui.docsDownloadTemplate' | mT }}
             </a>
         </div>
         <p mText tone="muted" size="sm">

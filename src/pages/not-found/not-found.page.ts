@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
 import {RouterLink} from '@angular/router'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {MIllustration, mNotFoundIllustration} from '@banzamel/mineralui-angular/illustrations'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
@@ -8,7 +9,7 @@ import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 
 @Component({
     selector: 'doc-not-found-page',
-    imports: [RouterLink, MTranslatePipe, MIllustration, MStack, MText, MHeading],
+    imports: [RouterLink, MButton, MTranslatePipe, MIllustration, MStack, MText, MHeading],
     template: `
         <m-stack align="center">
             <m-illustration [illustration]="notFound" size="md" color="warning" />
@@ -16,7 +17,7 @@ import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
             <p mText tone="muted" align="center">
                 {{ 'ui.missingDocsDescription' | mT }} Some pages are not ported from React yet.
             </p>
-            <a class="doc-button" data-variant="primary" routerLink="/docs">Back to the docs</a>
+            <a mButton routerLink="/docs">Back to the docs</a>
         </m-stack>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,

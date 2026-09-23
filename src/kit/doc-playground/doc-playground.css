@@ -38,8 +38,7 @@
     font-size: var(--mineral-font-size-sm);
 }
 
-.doc-playground-slider input {
+.doc-playground-slider m-slider {
     flex: 1;
     min-width: 8rem;
-    accent-color: var(--mineral-primary);
 }

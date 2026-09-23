@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MGrid, MGridItem} from '@banzamel/mineralui-angular/layout/grid'
 import {MInline} from '@banzamel/mineralui-angular/layout/inline'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MSurface} from '@banzamel/mineralui-angular/layout/surface'
 import type {MBreakpoint} from '@banzamel/mineralui-angular/theme'
-import {MHidden} from '@banzamel/mineralui-angular/theme'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
@@ -32,11 +32,11 @@ const toBreakpoint = (option: HiddenOption): MBreakpoint | undefined => (option 
         DocPlayground,
         DocPreview,
         DocPropsTable,
+        MButton,
         MCode,
         MGrid,
         MGridItem,
         MHeading,
-        MHidden,
         MInline,
         MStack,
         MSurface,
@@ -78,7 +78,7 @@ export class ResponsiveHiddenPage {
                 return [
                     '<m-inline justify="between" fullWidth>',
                     '    <strong mText>MineralUI</strong>',
-                    `    <button type="button" mHidden${visibility}>Desktop CTA</button>`,
+                    `    <button mButton${visibility}>Desktop CTA</button>`,
                     '</m-inline>',
                 ].join('\n')
             case 'grid':

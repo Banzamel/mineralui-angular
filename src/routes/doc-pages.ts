@@ -30,6 +30,14 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     utilities: () => import('@pages/layout/utilities/utilities.page').then((m) => m.UtilitiesPage),
     'sticky-panel': () => import('@pages/layout/sticky-panel/sticky-panel.page').then((m) => m.StickyPanelPage),
 
+    // Controls
+    button: () => import('@pages/controls/button/button.page').then((m) => m.ButtonPage),
+    'button-group': () => import('@pages/controls/button-group/button-group.page').then((m) => m.ButtonGroupPage),
+    checkbox: () => import('@pages/controls/checkbox/checkbox.page').then((m) => m.CheckboxPage),
+    radio: () => import('@pages/controls/radio/radio.page').then((m) => m.RadioPage),
+    slider: () => import('@pages/controls/slider/slider.page').then((m) => m.SliderPage),
+    toggle: () => import('@pages/controls/toggle/toggle.page').then((m) => m.TogglePage),
+
     // Feedback
     spinner: () => import('@pages/feedback/spinner/spinner.page').then((m) => m.SpinnerPage),
 

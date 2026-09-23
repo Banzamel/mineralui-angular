@@ -1,7 +1,9 @@
 <header class="doc-header">
     <button
-        type="button"
-        class="doc-icon-button doc-nav-toggle"
+        mButton
+        variant="ghost"
+        iconOnly
+        class="doc-nav-toggle"
         aria-controls="doc-sidebar"
         [attr.aria-expanded]="navOpen()"
         [attr.aria-label]="'ui.toggleNavigation' | mT"
@@ -20,12 +22,7 @@
             <a class="doc-framework" [href]="reactHref()">{{ 'ui.frameworkReact' | mT }}</a>
             <a class="doc-framework" routerLink="/docs" aria-current="true">{{ 'ui.frameworkAngular' | mT }}</a>
         </nav>
-        <button
-            type="button"
-            class="doc-icon-button"
-            [attr.aria-label]="'ui.toggleTheme' | mT"
-            (click)="theme.toggleMode()"
-        >
+        <button mButton variant="ghost" iconOnly [attr.aria-label]="'ui.toggleTheme' | mT" (click)="theme.toggleMode()">
             <m-icon [icon]="theme.resolvedMode() === 'dark' ? icons.sun : icons.moon" />
         </button>
     </div>

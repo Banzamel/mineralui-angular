@@ -154,6 +154,43 @@
             ]
         },
         {
+            "category": "Controls",
+            "icon": "controls",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "button",
+                    "title": "Button",
+                    "description": "Variants, sizes, icons, badges and link/router pass-through."
+                },
+                {
+                    "id": "button-group",
+                    "title": "Button Group",
+                    "description": "Connected or attached row of buttons sharing tone."
+                },
+                {
+                    "id": "checkbox",
+                    "title": "Checkbox",
+                    "description": "Single, indeterminate or grouped checkboxes."
+                },
+                {
+                    "id": "radio",
+                    "title": "Radio",
+                    "description": "Radio button and MRadioGroup primitive."
+                },
+                {
+                    "id": "slider",
+                    "title": "Slider",
+                    "description": "Range slider with marks, custom thumbs and steps."
+                },
+                {
+                    "id": "toggle",
+                    "title": "Toggle",
+                    "description": "On / off switch with size and color tokens."
+                }
+            ]
+        },
+        {
             "category": "Feedback",
             "icon": "feedback",
             "collapsible": true,

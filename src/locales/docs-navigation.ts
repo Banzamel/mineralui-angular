@@ -1,6 +1,7 @@
 import type {MIconDef} from '@banzamel/mineralui-angular/icons'
 import {
     mBellIcon,
+    mClickIcon,
     mDashboardIcon,
     mLayoutIcon,
     mMagicIcon,
@@ -29,6 +30,7 @@ const SECTION_ICONS: Readonly<Record<string, MIconDef>> = {
     getting_started: mDashboardIcon,
     typography: mTranslateIcon,
     layout: mLayoutIcon,
+    controls: mClickIcon,
     feedback: mBellIcon,
     navigation: mMenuIcon,
     display: mMagicIcon,

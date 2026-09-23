@@ -1,12 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MIcon, mTrashIcon, mWarningIcon} from '@banzamel/mineralui-angular/icons'
 
 @Component({
     selector: 'app-icon-accessible',
-    imports: [MIcon],
+    imports: [MButton, MIcon],
     template: `
         <!-- Decorative: the button text already names the action, so the icon stays aria-hidden. -->
-        <button type="button"><m-icon [icon]="trash" /> Delete</button>
+        <button mButton variant="outlined" color="error"><m-icon mStart [icon]="trash" />Delete</button>
 
         <!-- Meaningful on its own: label gives it role="img" and an accessible name. -->
         <m-icon [icon]="warning" color="warning" size="lg" label="Unsaved changes" />

@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MFooter} from '@banzamel/mineralui-angular/layout/footer'
 import {MHeader} from '@banzamel/mineralui-angular/layout/header'
 import {MSection} from '@banzamel/mineralui-angular/layout/section'
@@ -6,12 +7,11 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
 
 @Component({
     selector: 'app-header-footer-shell',
-    imports: [MFooter, MHeader, MSection, MText],
+    imports: [MButton, MFooter, MHeader, MSection, MText],
     template: `
         <header mHeader container="content">
             <strong mText weight="bold">MineralUI</strong>
-            <!-- TEMP: replace with MButton (etap 3) -->
-            <button type="button">Contact sales</button>
+            <button mButton size="sm">Contact sales</button>
         </header>
 
         <section mSection>

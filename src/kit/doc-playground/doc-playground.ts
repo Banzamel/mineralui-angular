@@ -1,6 +1,9 @@
 import {ChangeDetectionStrategy, Component, input} from '@angular/core'
 import {CodeBlock} from '../code-block/code-block'
 import type {PlaygroundControl} from './playground-controls'
+import {MButton} from '@banzamel/mineralui-angular/controls/button'
+import {MSlider} from '@banzamel/mineralui-angular/controls/slider'
+import {MToggle} from '@banzamel/mineralui-angular/controls/toggle'
 import {MGrid, MGridItem} from '@banzamel/mineralui-angular/layout/grid'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 
@@ -9,12 +12,10 @@ let nextId = 0
 /**
  * Interactive props playground (counterpart of docs-react `DocsPlayground`): projected live preview, controls bound
  * to the page's signals and the generated template.
- *
- * TEMP: controls replace with MButton / MSlider / MToggle (etap 3).
  */
 @Component({
     selector: 'doc-playground',
-    imports: [CodeBlock, MCode, MGrid, MGridItem],
+    imports: [CodeBlock, MButton, MCode, MGrid, MGridItem, MSlider, MToggle],
     templateUrl: './doc-playground.html',
     styleUrl: './doc-playground.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,16 +26,4 @@ export class DocPlayground {
     readonly code = input.required<string>()
 
     protected readonly id = `doc-playground-${nextId++}`
-
-    protected onSlider(control: PlaygroundControl, event: Event): void {
-        if (control.kind === 'slider' && event.target instanceof HTMLInputElement) {
-            control.set(Number(event.target.value))
-        }
-    }
-
-    protected onToggle(control: PlaygroundControl, event: Event): void {
-        if (control.kind === 'boolean' && event.target instanceof HTMLInputElement) {
-            control.set(event.target.checked)
-        }
-    }
 }

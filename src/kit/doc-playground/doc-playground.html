@@ -17,8 +17,11 @@
                             <div class="doc-inline" role="group" [attr.aria-labelledby]="id + '-' + control.name">
                                 @for (option of control.options; track option; let index = $index) {
                                     <button
-                                        type="button"
-                                        class="doc-chip"
+                                        mButton
+                                        size="sm"
+                                        variant="outlined"
+                                        color="neutral"
+                                        [active]="control.value() === option"
                                         [attr.aria-pressed]="control.value() === option"
                                         (click)="control.select(index)"
                                     >
@@ -30,24 +33,21 @@
                     }
                     @case ('slider') {
                         <m-grid-item [lg]="2" [md]="3" [sm]="12"
-                            ><label class="doc-playground-label" [for]="id + '-' + control.name">{{
+                            ><span class="doc-playground-label" aria-hidden="true">{{
                                 control.name
-                            }}</label></m-grid-item
+                            }}</span></m-grid-item
                         >
                         <m-grid-item>
                             <div class="doc-inline doc-playground-slider">
-                                <input
-                                    type="range"
-                                    [id]="id + '-' + control.name"
+                                <m-slider
+                                    [ariaLabel]="control.name"
                                     [min]="control.min"
                                     [max]="control.max"
                                     [step]="control.step"
                                     [value]="control.value()"
-                                    (input)="onSlider(control, $event)"
+                                    (valueChange)="control.set($event)"
                                 />
-                                <output [attr.for]="id + '-' + control.name"
-                                    ><code mCode>{{ control.value() }}</code></output
-                                >
+                                <code mCode aria-hidden="true">{{ control.value() }}</code>
                             </div>
                         </m-grid-item>
                     }
@@ -59,13 +59,13 @@
                         >
                         <m-grid-item>
                             <div class="doc-inline">
-                                <input
-                                    type="checkbox"
-                                    [id]="id + '-' + control.name"
+                                <m-toggle
+                                    size="sm"
+                                    [inputId]="id + '-' + control.name"
                                     [checked]="control.value()"
-                                    (change)="onToggle(control, $event)"
+                                    (checkedChange)="control.set($event)"
                                 />
-                                <code mCode>{{ control.value() }}</code>
+                                <code mCode aria-hidden="true">{{ control.value() }}</code>
                             </div>
                         </m-grid-item>
                     }
