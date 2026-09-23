@@ -1,37 +1,8 @@
 .doc-preview {
-    display: grid;
     /* Without an explicit track the column grows to the min-content of long code lines. */
     grid-template-columns: minmax(0, 1fr);
     gap: var(--mineral-spacing-sm);
     min-width: 0;
-}
-
-.doc-preview-tabs {
-    display: flex;
-    gap: var(--mineral-spacing-xs);
-    border-bottom: 1px solid var(--mineral-border);
-}
-
-.doc-preview-tab {
-    margin-bottom: -1px;
-    padding: 0.4rem 0.8rem;
-    border: 0;
-    border-bottom: 2px solid transparent;
-    background: transparent;
-    color: var(--mineral-text-secondary);
-    font: inherit;
-    font-size: var(--mineral-font-size-sm);
-    cursor: pointer;
-}
-
-.doc-preview-tab[aria-selected='true'] {
-    border-bottom-color: var(--mineral-primary);
-    color: var(--mineral-primary);
-}
-
-.doc-preview-tab:focus-visible {
-    outline: 2px solid var(--mineral-border-focus);
-    outline-offset: -2px;
 }
 
 .doc-preview-stage {

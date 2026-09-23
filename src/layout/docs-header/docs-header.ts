@@ -4,16 +4,17 @@ import {NavigationEnd, Router, RouterLink} from '@angular/router'
 import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {MIcon, mMenuIcon, mMoonIcon, mSunIcon} from '@banzamel/mineralui-angular/icons'
+import {MNavbar, MNavbarBrand} from '@banzamel/mineralui-angular/layout/navbar'
 import {MThemeService} from '@banzamel/mineralui-angular/theme'
 import {filter, map} from 'rxjs'
 import {docIdFromUrl} from '@locales/docs-navigation'
 
 const REACT_DOCS = 'https://mineralui.io/docs'
 
-// TEMP: replace with MNavbar (etap 3)
+// The bar is MNavbar; the sidebar toggle below 900 px stays docs-specific (TEMP: MSidebar, etap 5).
 @Component({
     selector: 'doc-docs-header',
-    imports: [RouterLink, MButton, MIcon, MTranslatePipe],
+    imports: [RouterLink, MButton, MIcon, MNavbar, MNavbarBrand, MTranslatePipe],
     templateUrl: './docs-header.html',
     styleUrl: './docs-header.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

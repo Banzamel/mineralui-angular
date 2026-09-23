@@ -1,17 +1,9 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    DestroyRef,
-    ElementRef,
-    inject,
-    input,
-    signal,
-} from '@angular/core'
+import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, signal} from '@angular/core'
 import type {MIconDef} from '@banzamel/mineralui-angular/icons'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
+import {MTab, MTabContent, MTabs} from '@banzamel/mineralui-angular/layout/tabs'
 import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 
 export interface IconGroup {
@@ -40,18 +32,16 @@ const COPIED_FOR_MS = 1200
 /**
  * Searchable, tabbed icon catalog; each card copies the export name (counterpart of the docs-react icon browsers).
  *
- * TEMP: search, tabs, cards and badges replace with MInputSearch (etap 4), MTabs / MCard (etap 6), MBadge (etap 5).
+ * TEMP: search, cards and badges replace with MInputSearch (etap 4), MCard (etap 6), MBadge (etap 5).
  */
 @Component({
     selector: 'doc-icon-browser',
-    imports: [MStack, MText, MIcon, MHeading],
+    imports: [MStack, MTab, MTabContent, MTabs, MText, MIcon, MHeading],
     templateUrl: './icon-browser.html',
     styleUrl: './icon-browser.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconBrowser {
-    private readonly host = inject<ElementRef<HTMLElement>>(ElementRef)
-
     readonly tabs = input.required<readonly IconTab[]>()
     readonly icons = input.required<ReadonlyMap<string, MIconDef>>()
     /** Draw V2 icons with their card shell. */
@@ -60,7 +50,7 @@ export class IconBrowser {
     readonly newIcons = input<ReadonlySet<string>>(new Set())
 
     protected readonly query = signal('')
-    protected readonly activeTab = signal(0)
+    protected readonly activeTab = signal<string | undefined>(undefined)
     protected readonly copied = signal('')
     private copyTimer: ReturnType<typeof setTimeout> | undefined
 
@@ -84,25 +74,6 @@ export class IconBrowser {
 
     protected onSearch(event: Event): void {
         if (event.target instanceof HTMLInputElement) this.query.set(event.target.value)
-    }
-
-    protected onTabKeydown(event: KeyboardEvent): void {
-        const count = this.tabs().length
-        const current = this.activeTab()
-        const next =
-            event.key === 'ArrowRight'
-                ? (current + 1) % count
-                : event.key === 'ArrowLeft'
-                  ? (current - 1 + count) % count
-                  : event.key === 'Home'
-                    ? 0
-                    : event.key === 'End'
-                      ? count - 1
-                      : null
-        if (next === null) return
-        event.preventDefault()
-        this.activeTab.set(next)
-        this.host.nativeElement.querySelectorAll<HTMLElement>('[role="tab"]')[next]?.focus()
     }
 
     protected async copy(name: string): Promise<void> {

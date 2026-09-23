@@ -1,29 +1,38 @@
 <header class="doc-header">
-    <button
-        mButton
-        variant="ghost"
-        iconOnly
-        class="doc-nav-toggle"
-        aria-controls="doc-sidebar"
-        [attr.aria-expanded]="navOpen()"
-        [attr.aria-label]="'ui.toggleNavigation' | mT"
-        (click)="toggleNav.emit()"
-    >
-        <m-icon [icon]="icons.menu" />
-    </button>
-
-    <a class="doc-brand" routerLink="/docs">
-        <span class="doc-brand-name">MineralUI</span>
-        <span class="doc-badge">Angular</span>
-    </a>
-
-    <div class="doc-header-actions">
-        <nav class="doc-framework-switch" [attr.aria-label]="'ui.frameworkSwitch' | mT">
-            <a class="doc-framework" [href]="reactHref()">{{ 'ui.frameworkReact' | mT }}</a>
-            <a class="doc-framework" routerLink="/docs" aria-current="true">{{ 'ui.frameworkAngular' | mT }}</a>
-        </nav>
-        <button mButton variant="ghost" iconOnly [attr.aria-label]="'ui.toggleTheme' | mT" (click)="theme.toggleMode()">
-            <m-icon [icon]="theme.resolvedMode() === 'dark' ? icons.sun : icons.moon" />
+    <nav mNavbar tone="subtle" container="full" justify="start" [attr.aria-label]="'ui.headerNavigation' | mT">
+        <button
+            mButton
+            variant="ghost"
+            iconOnly
+            mNavbarBrand
+            class="doc-nav-toggle"
+            aria-controls="doc-sidebar"
+            [attr.aria-expanded]="navOpen()"
+            [attr.aria-label]="'ui.toggleNavigation' | mT"
+            (click)="toggleNav.emit()"
+        >
+            <m-icon [icon]="icons.menu" />
         </button>
-    </div>
+
+        <a mNavbarBrand class="doc-brand" routerLink="/docs">
+            <span class="doc-brand-name">MineralUI</span>
+            <span class="doc-badge">Angular</span>
+        </a>
+
+        <div class="doc-header-actions">
+            <nav class="doc-framework-switch" [attr.aria-label]="'ui.frameworkSwitch' | mT">
+                <a class="doc-framework" [href]="reactHref()">{{ 'ui.frameworkReact' | mT }}</a>
+                <a class="doc-framework" routerLink="/docs" aria-current="true">{{ 'ui.frameworkAngular' | mT }}</a>
+            </nav>
+            <button
+                mButton
+                variant="ghost"
+                iconOnly
+                [attr.aria-label]="'ui.toggleTheme' | mT"
+                (click)="theme.toggleMode()"
+            >
+                <m-icon [icon]="theme.resolvedMode() === 'dark' ? icons.sun : icons.moon" />
+            </button>
+        </div>
+    </nav>
 </header>

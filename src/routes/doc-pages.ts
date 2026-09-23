@@ -34,8 +34,12 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     button: () => import('@pages/controls/button/button.page').then((m) => m.ButtonPage),
     'button-group': () => import('@pages/controls/button-group/button-group.page').then((m) => m.ButtonGroupPage),
     checkbox: () => import('@pages/controls/checkbox/checkbox.page').then((m) => m.CheckboxPage),
+    'load-more': () => import('@pages/controls/load-more/load-more.page').then((m) => m.LoadMorePage),
+    'quick-actions': () => import('@pages/controls/quick-actions/quick-actions.page').then((m) => m.QuickActionsPage),
     radio: () => import('@pages/controls/radio/radio.page').then((m) => m.RadioPage),
+    'scroll-top': () => import('@pages/controls/scroll-top/scroll-top.page').then((m) => m.ScrollTopPage),
     slider: () => import('@pages/controls/slider/slider.page').then((m) => m.SliderPage),
+    'social-button': () => import('@pages/controls/social-button/social-button.page').then((m) => m.SocialButtonPage),
     toggle: () => import('@pages/controls/toggle/toggle.page').then((m) => m.TogglePage),
 
     // Feedback
@@ -44,7 +48,10 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     // Navigation
     breadcrumb: () => import('@pages/navigation/breadcrumb/breadcrumb.page').then((m) => m.BreadcrumbPage),
     'header-footer': () => import('@pages/navigation/header-footer/header-footer.page').then((m) => m.HeaderFooterPage),
+    navbar: () => import('@pages/navigation/navbar/navbar.page').then((m) => m.NavbarPage),
     navs: () => import('@pages/navigation/navs/navs.page').then((m) => m.NavsPage),
+    pagination: () => import('@pages/navigation/pagination/pagination.page').then((m) => m.PaginationPage),
+    tabs: () => import('@pages/navigation/tabs/tabs.page').then((m) => m.TabsPage),
 
     // Display
     icons: () => import('@pages/display/icons/icons.page').then((m) => m.IconsPage),

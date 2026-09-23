@@ -1,28 +1,3 @@
-.doc-icon-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--mineral-spacing-xs);
-    border-bottom: 1px solid var(--mineral-border);
-}
-
-.doc-icon-tab {
-    margin-bottom: -1px;
-    padding: 0.45rem 0.9rem;
-    border: 0;
-    border-bottom: 2px solid transparent;
-    background: transparent;
-    color: var(--mineral-text-secondary);
-    font: inherit;
-    font-size: var(--mineral-font-size-sm);
-    cursor: pointer;
-}
-
-.doc-icon-tab[aria-selected='true'] {
-    border-bottom-color: var(--mineral-primary);
-    color: var(--mineral-primary);
-}
-
-.doc-icon-tab:focus-visible,
 .doc-icon-card:focus-visible {
     outline: 2px solid var(--mineral-border-focus);
     outline-offset: 2px;

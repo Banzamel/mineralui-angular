@@ -98,6 +98,8 @@ export default tseslint.config(
         rules: {
             '@angular-eslint/template/prefer-control-flow': 'error',
             '@angular-eslint/template/prefer-self-closing-tags': 'error',
+            // MSocialButton renders its default label ("Sign in with …") as <ng-content> fallback content.
+            '@angular-eslint/template/elements-content': ['error', {allowList: ['mSocialButton']}],
         },
     },
     prettier

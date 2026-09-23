@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import utilsClickOutside from '@generated/examples/layout/utilities/utils-click-outside'
 import utilsDates from '@generated/examples/layout/utilities/utils-dates'
 import utilsFormatters from '@generated/examples/layout/utilities/utils-formatters'
 import utilsSpacing from '@generated/examples/layout/utilities/utils-spacing'
@@ -19,10 +20,10 @@ const REACT_HELPERS = [
         status: 'not ported',
     },
     {react: 'useControllableString', angular: 'model()', status: 'not needed'},
-    {react: 'useMaxWidth', angular: 'injectMaxWidth(breakpoint) — theme', status: 'available'},
-    {react: 'useClickOutside', angular: '(mClickOutside) directive', status: 'stage 3'},
-    {react: 'useKeyboardNav', angular: '[mKeyboardNav] directive', status: 'stage 3'},
-    {react: 'useInteractionEffect', angular: '[mClickEffect] directive', status: 'stage 3'},
+    {react: 'useMaxWidth', angular: 'injectMaxWidth(breakpoint | signal) — theme', status: 'available'},
+    {react: 'useClickOutside', angular: '(mClickOutside) directive — utils', status: 'available'},
+    {react: 'useKeyboardNav', angular: '[mKeyboardNav] directive', status: 'stage 5'},
+    {react: 'useInteractionEffect', angular: '[mClickEffect] directive — utils', status: 'available'},
 ] as const
 
 @Component({
@@ -32,6 +33,6 @@ const REACT_HELPERS = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UtilitiesPage {
-    protected readonly examples = {utilsSpacing, utilsValidators, utilsFormatters, utilsDates}
+    protected readonly examples = {utilsSpacing, utilsValidators, utilsFormatters, utilsDates, utilsClickOutside}
     protected readonly reactHelpers = REACT_HELPERS
 }

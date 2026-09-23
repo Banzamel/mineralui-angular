@@ -2,14 +2,6 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    display: flex;
-    align-items: center;
-    gap: var(--mineral-spacing-sm);
-    box-sizing: border-box;
-    height: var(--mineral-navbar-height);
-    padding: 0 var(--mineral-spacing-lg);
-    border-bottom: 1px solid var(--mineral-border);
-    background: var(--mineral-surface);
 }
 
 .doc-brand {
@@ -57,12 +49,20 @@
     display: none;
 }
 
-@media (max-width: 900px) {
-    .doc-header {
-        padding: 0 var(--mineral-spacing-md);
-    }
+/* Icon buttons keep their square size when the bar gets tight; the framework switch shrinks instead. */
+.doc-header .m-button {
+    flex-shrink: 0;
+}
 
+@media (max-width: 900px) {
     .doc-nav-toggle {
         display: inline-flex;
+    }
+}
+
+/* The framework switch already says "Angular"; the badge makes room on phones. */
+@media (max-width: 480px) {
+    .doc-brand .doc-badge {
+        display: none;
     }
 }

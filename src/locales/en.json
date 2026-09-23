@@ -30,7 +30,8 @@
         "frameworkAngular": "Angular",
         "frameworkSwitch": "Framework",
         "skipToContent": "Skip to content",
-        "docsOverview": "Overview"
+        "docsOverview": "Overview",
+        "headerNavigation": "Header"
     },
     "docsNavigation": [
         {
@@ -184,6 +185,26 @@
                     "description": "Range slider with marks, custom thumbs and steps."
                 },
                 {
+                    "id": "load-more",
+                    "title": "LoadMore",
+                    "description": "Paged button to fetch the next batch of items."
+                },
+                {
+                    "id": "quick-actions",
+                    "title": "Quick Actions",
+                    "description": "Action bar / grid built on MButton + MButtonGroup."
+                },
+                {
+                    "id": "scroll-top",
+                    "title": "ScrollTop",
+                    "description": "Floating button that scrolls the page back to top."
+                },
+                {
+                    "id": "social-button",
+                    "title": "Social Button",
+                    "description": "Branded buttons for social sign-in and sharing."
+                },
+                {
                     "id": "toggle",
                     "title": "Toggle",
                     "description": "On / off switch with size and color tokens."
@@ -218,9 +239,24 @@
                     "description": "MHeader and MFooter shell sections."
                 },
                 {
+                    "id": "navbar",
+                    "title": "Navbar",
+                    "description": "Brand + nav + actions row with sticky and mobile menu."
+                },
+                {
                     "id": "navs",
                     "title": "Navs",
                     "description": "Inline link strip used inside MNavbar."
+                },
+                {
+                    "id": "pagination",
+                    "title": "Pagination",
+                    "description": "Page numbers, prev / next and size selector."
+                },
+                {
+                    "id": "tabs",
+                    "title": "Tabs",
+                    "description": "Underline / pills tabs with horizontal or vertical layout."
                 }
             ]
         },
