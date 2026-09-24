@@ -17,19 +17,6 @@
     top: var(--mineral-spacing-sm);
 }
 
-/* TEMP: MSidebar (etap 5). */
-.doc-sidebar {
-    position: sticky;
-    top: 0;
-    flex: 0 0 var(--mineral-sidebar-width);
-    box-sizing: border-box;
-    width: var(--mineral-sidebar-width);
-    height: 100vh;
-    overflow-y: auto;
-    border-right: 1px solid var(--mineral-border);
-    background: var(--mineral-surface);
-}
-
 .doc-main {
     min-width: 0;
     outline: none;
@@ -40,39 +27,7 @@
     padding-block: var(--mineral-spacing-md) calc(var(--mineral-spacing-2xl) * 2);
 }
 
-.doc-scrim {
-    display: none;
-}
-
-@media (max-width: 900px) {
-    .doc-sidebar {
-        position: fixed;
-        top: var(--mineral-navbar-height);
-        bottom: 0;
-        left: 0;
-        z-index: 40;
-        width: min(85vw, var(--mineral-sidebar-width));
-        height: auto;
-        transform: translateX(-100%);
-        visibility: hidden;
-        transition:
-            transform var(--mineral-transition-base),
-            visibility var(--mineral-transition-base);
-    }
-
-    .doc-sidebar-open {
-        transform: none;
-        visibility: visible;
-    }
-
-    .doc-scrim {
-        position: fixed;
-        inset: var(--mineral-navbar-height) 0 0;
-        z-index: 30;
-        display: block;
-        background: rgba(0, 0, 0, 0.45);
-    }
-
+@media (max-width: 768px) {
     .doc-container {
         padding-block: 0 var(--mineral-spacing-2xl);
     }

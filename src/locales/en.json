@@ -6,6 +6,10 @@
         "docsSettingsTitle": "Docs settings",
         "docsShellLabel": "Documentation shell",
         "docsShowSidebar": "Show sidebar",
+        "docsShowTopbar": "Show topbar",
+        "docsTopbarContainer": "Topbar container",
+        "docsContainerContent": "Content",
+        "docsContainerFull": "Full width",
         "commandPaletteTitle": "Search the docs",
         "commandPaletteDescription": "Jump to any component, guide or API page.",
         "commandPalettePlaceholder": "Type a component name or keyword…",
@@ -236,6 +240,11 @@
             "collapsible": true,
             "items": [
                 {
+                    "id": "autocomplete",
+                    "title": "Autocomplete",
+                    "description": "Searchable input with async option lists."
+                },
+                {
                     "id": "form",
                     "title": "Form",
                     "description": "Reactive Forms with built-in validation, MValidators and migration from MForm."
@@ -254,6 +263,11 @@
                     "id": "input-group",
                     "title": "Input Group",
                     "description": "Compose addons and slots around inputs."
+                },
+                {
+                    "id": "select",
+                    "title": "Select",
+                    "description": "Dropdown select with keyboard nav and groups."
                 },
                 {
                     "id": "textarea",
@@ -286,6 +300,11 @@
                     "id": "input-date",
                     "title": "Date",
                     "description": "Typed date input with separators and range validation."
+                },
+                {
+                    "id": "input-exp-date",
+                    "title": "Expiration Date",
+                    "description": "MM/YYYY card expiration date picked from two lists."
                 },
                 {
                     "id": "input-email",
@@ -432,9 +451,19 @@
                     "description": "Page numbers, prev / next and size selector."
                 },
                 {
+                    "id": "sidebar",
+                    "title": "Sidebar",
+                    "description": "App sidebar with header, nav, items, groups, footer."
+                },
+                {
                     "id": "tabs",
                     "title": "Tabs",
                     "description": "Underline / pills tabs with horizontal or vertical layout."
+                },
+                {
+                    "id": "topbar",
+                    "title": "Topbar",
+                    "description": "Secondary contextual bar with grouped dropdowns."
                 }
             ]
         },

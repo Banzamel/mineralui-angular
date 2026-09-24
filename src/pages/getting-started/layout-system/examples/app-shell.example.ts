@@ -3,23 +3,49 @@ import {MAppShell, MBody} from '@banzamel/mineralui-angular/layout/app-shell'
 import {MContainer} from '@banzamel/mineralui-angular/layout/container'
 import {MFooter} from '@banzamel/mineralui-angular/layout/footer'
 import {MHeader} from '@banzamel/mineralui-angular/layout/header'
-import {MNavs} from '@banzamel/mineralui-angular/layout/navs'
+import {
+    MSidebar,
+    MSidebarBody,
+    MSidebarHeader,
+    MSidebarItem,
+    MSidebarNav,
+} from '@banzamel/mineralui-angular/layout/sidebar'
 import {MSurface} from '@banzamel/mineralui-angular/layout/surface'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 
 @Component({
     selector: 'app-app-shell',
-    imports: [MAppShell, MBody, MContainer, MFooter, MHeader, MNavs, MSurface, MText],
+    imports: [
+        MAppShell,
+        MBody,
+        MContainer,
+        MFooter,
+        MHeader,
+        MSidebar,
+        MSidebarBody,
+        MSidebarHeader,
+        MSidebarItem,
+        MSidebarNav,
+        MSurface,
+        MText,
+    ],
     template: `
-        <!-- The shell is at least one viewport tall; the demo caps it to fit the preview. -->
-        <m-app-shell style="min-height: 22rem">
-            <!-- TEMP: replace with MSidebar (etap 5) -->
-            <aside mAppShellSidebar class="demo-sidebar">
-                <m-navs orientation="vertical" [items]="links" />
-            </aside>
+        <!-- The shell is at least one viewport tall; the demo caps it (and its sidebar) to fit the preview. -->
+        <m-app-shell style="min-height: 22rem; --sidebar-height: 22rem">
+            <!-- mobileBreakpoint 0: the demo sidebar stays in the preview instead of becoming a dialog. -->
+            <m-sidebar [mobileBreakpoint]="0" [collapsible]="false">
+                <m-sidebar-header>Mineral Admin</m-sidebar-header>
+                <m-sidebar-body>
+                    <nav mSidebarNav aria-label="Demo">
+                        @for (link of links; track link.href) {
+                            <a mSidebarItem [href]="link.href" [active]="link.current">{{ link.label }}</a>
+                        }
+                    </nav>
+                </m-sidebar-body>
+            </m-sidebar>
 
             <header mHeader>
-                <strong mText weight="bold">Mineral Admin</strong>
+                <strong mText weight="bold">Workspace</strong>
                 <p mText size="sm" tone="muted">Billing and team settings</p>
             </header>
 
@@ -42,18 +68,13 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             display: block;
             width: 100%;
         }
-        .demo-sidebar {
-            width: 12rem;
-            padding: var(--mineral-spacing-md);
-            border-right: 1px solid var(--mineral-border);
-        }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppShellExample {
     protected readonly links = [
         {label: 'Dashboard', href: '#dashboard', current: true},
-        {label: 'Users', href: '#users'},
-        {label: 'Settings', href: '#settings'},
+        {label: 'Users', href: '#users', current: false},
+        {label: 'Settings', href: '#settings', current: false},
     ]
 }

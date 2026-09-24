@@ -12,7 +12,7 @@ import {DocsCommandSheet} from '../command-sheet/command-sheet'
 
 const REACT_DOCS = 'https://mineralui.io/docs'
 
-// The bar is MNavbar; the sidebar toggle below 900 px stays docs-specific (TEMP: MSidebar, etap 5).
+// The bar is MNavbar. At and below the MSidebar mobile breakpoint (768 px) the menu button opens the sidebar dialog.
 @Component({
     selector: 'doc-docs-header',
     imports: [RouterLink, DocsCommandSheet, MBadge, MButton, MIcon, MNavbar, MNavbarBrand, MTranslatePipe],

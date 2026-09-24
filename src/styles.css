@@ -67,6 +67,12 @@ m-card-header.doc-section-header {
     gap: var(--mineral-spacing-xs);
 }
 
+/* Current page in the docs topbar menus (the menus live in the top layer, outside the topbar component). */
+.doc-topbar-menu .m-dropdown-item[aria-current='page'] {
+    color: var(--mineral-primary);
+    font-weight: 600;
+}
+
 /* TEMP: replace with MDataTable compact (etap 7) */
 .doc-table-scroll {
     overflow-x: auto;

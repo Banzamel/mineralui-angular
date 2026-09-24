@@ -46,10 +46,12 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     toggle: () => import('@pages/controls/toggle/toggle.page').then((m) => m.TogglePage),
 
     // Forms
+    autocomplete: () => import('@pages/forms/autocomplete/autocomplete.page').then((m) => m.AutocompletePage),
     form: () => import('@pages/forms/form/form.page').then((m) => m.FormPage),
     'ghost-text': () => import('@pages/forms/ghost-text/ghost-text.page').then((m) => m.GhostTextPage),
     input: () => import('@pages/forms/input/input.page').then((m) => m.InputPage),
     'input-group': () => import('@pages/forms/input-group/input-group.page').then((m) => m.InputGroupPage),
+    select: () => import('@pages/forms/select/select.page').then((m) => m.SelectPage),
     textarea: () => import('@pages/forms/textarea/textarea.page').then((m) => m.TextareaPage),
 
     // Specialized Inputs
@@ -59,6 +61,8 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
         import('@pages/specialized-inputs/input-currency/input-currency.page').then((m) => m.InputCurrencyPage),
     'input-cvc': () => import('@pages/specialized-inputs/input-cvc/input-cvc.page').then((m) => m.InputCvcPage),
     'input-date': () => import('@pages/specialized-inputs/input-date/input-date.page').then((m) => m.InputDatePage),
+    'input-exp-date': () =>
+        import('@pages/specialized-inputs/input-exp-date/input-exp-date.page').then((m) => m.InputExpDatePage),
     'input-email': () => import('@pages/specialized-inputs/input-email/input-email.page').then((m) => m.InputEmailPage),
     'input-file': () => import('@pages/specialized-inputs/input-file/input-file.page').then((m) => m.InputFilePage),
     'input-iban': () => import('@pages/specialized-inputs/input-iban/input-iban.page').then((m) => m.InputIbanPage),
@@ -94,7 +98,9 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     navbar: () => import('@pages/navigation/navbar/navbar.page').then((m) => m.NavbarPage),
     navs: () => import('@pages/navigation/navs/navs.page').then((m) => m.NavsPage),
     pagination: () => import('@pages/navigation/pagination/pagination.page').then((m) => m.PaginationPage),
+    sidebar: () => import('@pages/navigation/sidebar/sidebar.page').then((m) => m.SidebarPage),
     tabs: () => import('@pages/navigation/tabs/tabs.page').then((m) => m.TabsPage),
+    topbar: () => import('@pages/navigation/topbar/topbar.page').then((m) => m.TopbarPage),
 
     // Overlays
     'command-palette': () =>

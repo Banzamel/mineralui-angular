@@ -1,4 +1,8 @@
-<nav class="doc-nav" aria-label="Documentation">
+<m-sidebar-header>
+    <span mText weight="semibold" class="doc-nav-title">{{ activeTitle() }}</span>
+</m-sidebar-header>
+
+<m-sidebar-body>
     <div class="doc-nav-search">
         <!-- Filters on every keystroke through [(value)]; the debounced (searched) is not needed here. -->
         <m-input-search
@@ -11,30 +15,40 @@
         />
     </div>
 
-    @for (section of sections(); track section.category) {
-        <details class="doc-nav-group" [open]="searchActive() || section.collapsible !== true || rla.isActive">
-            <summary class="doc-nav-category">
-                @if (sectionIcon(section); as icon) {
-                    <m-icon [icon]="icon" />
-                }
-                {{ section.category }}
-            </summary>
-            <ul class="doc-nav-items" routerLinkActive #rla="routerLinkActive">
+    <nav mSidebarNav aria-label="Documentation">
+        @for (section of sections(); track section.category) {
+            <!-- Open on a search or for the section of the current page, like docs-react's defaultOpen. -->
+            <m-sidebar-group
+                [label]="section.category"
+                [icon]="sectionIcon(section)"
+                [active]="hasActive(section)"
+                [open]="searchActive() || hasActive(section)"
+                [collapsible]="section.collapsible !== false"
+            >
                 @for (item of section.items; track item.id) {
-                    <li>
-                        <a
-                            class="doc-nav-link"
-                            [routerLink]="['/docs', item.id]"
-                            routerLinkActive="doc-nav-link-active"
-                            ariaCurrentWhenActive="page"
-                            [attr.title]="item.description"
-                            >{{ item.title }}</a
-                        >
-                    </li>
+                    <a
+                        mSidebarItem
+                        [routerLink]="['/docs', item.id]"
+                        routerLinkActive
+                        #rla="routerLinkActive"
+                        [active]="rla.isActive"
+                        [description]="item.description"
+                        >{{ item.title }}</a
+                    >
                 }
-            </ul>
-        </details>
-    } @empty {
-        <p mText tone="muted" size="sm" class="doc-nav-empty">No pages match this search.</p>
-    }
-</nav>
+            </m-sidebar-group>
+        } @empty {
+            <p mText tone="muted" size="sm" class="doc-nav-empty">No pages match this search.</p>
+        }
+    </nav>
+</m-sidebar-body>
+
+<m-sidebar-footer>
+    <p mText size="xs" tone="muted" class="doc-nav-footer">
+        <m-icon [icon]="copyrightIcon" />
+        <a mLink href="https://banzamel.pl" target="_blank" rel="noopener noreferrer" underline="none" tone="inherit"
+            >Banzamel</a
+        >
+        <span>2026</span>
+    </p>
+</m-sidebar-footer>

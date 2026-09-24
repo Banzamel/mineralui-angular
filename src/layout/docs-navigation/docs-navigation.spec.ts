@@ -23,7 +23,7 @@ describe('DocsNavigation', () => {
             input.dispatchEvent(new Event('input'))
             await fixture.whenStable()
         }
-        const links = () => [...element.querySelectorAll('a')].map((link) => link.textContent?.trim())
+        const links = () => [...element.querySelectorAll('[mSidebarItem]')].map((link) => link.textContent?.trim())
         return {element, search, links}
     }
 
