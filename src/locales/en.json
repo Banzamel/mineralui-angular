@@ -212,6 +212,130 @@
             ]
         },
         {
+            "category": "Forms",
+            "icon": "forms",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "form",
+                    "title": "Form",
+                    "description": "Reactive Forms with built-in validation, MValidators and migration from MForm."
+                },
+                {
+                    "id": "ghost-text",
+                    "title": "Ghost Text",
+                    "description": "Inline-suggestion helper for input fields."
+                },
+                {
+                    "id": "input",
+                    "title": "Input",
+                    "description": "Base text input with prefix / suffix slots, helper text and validation."
+                },
+                {
+                    "id": "input-group",
+                    "title": "Input Group",
+                    "description": "Compose addons and slots around inputs."
+                },
+                {
+                    "id": "textarea",
+                    "title": "Textarea",
+                    "description": "Multi-line input with auto-resize support."
+                }
+            ]
+        },
+        {
+            "category": "Specialized Inputs",
+            "icon": "specialized_inputs",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "input-credit-card",
+                    "title": "Credit Card",
+                    "description": "Credit card number input with auto-formatting and brand detection."
+                },
+                {
+                    "id": "input-cvc",
+                    "title": "CVC",
+                    "description": "CVC / CVV input with masking."
+                },
+                {
+                    "id": "input-currency",
+                    "title": "Currency",
+                    "description": "Currency input with thousands separator and decimals."
+                },
+                {
+                    "id": "input-date",
+                    "title": "Date",
+                    "description": "Typed date input with separators and range validation."
+                },
+                {
+                    "id": "input-email",
+                    "title": "Email",
+                    "description": "Email input with validation."
+                },
+                {
+                    "id": "input-url",
+                    "title": "URL",
+                    "description": "URL input with protocol whitelist and optional formatOnBlur that prepends https://."
+                },
+                {
+                    "id": "input-file",
+                    "title": "File",
+                    "description": "File picker with crop editor and previews."
+                },
+                {
+                    "id": "input-iban",
+                    "title": "IBAN",
+                    "description": "IBAN input with format and country validation."
+                },
+                {
+                    "id": "input-name",
+                    "title": "Name",
+                    "description": "Name input with capitalization helper."
+                },
+                {
+                    "id": "input-number",
+                    "title": "Number",
+                    "description": "Numeric input with min / max and step."
+                },
+                {
+                    "id": "input-otp",
+                    "title": "OTP",
+                    "description": "One-time-password input with per-digit cells."
+                },
+                {
+                    "id": "input-password",
+                    "title": "Password",
+                    "description": "Password input with strength indicator and show/hide."
+                },
+                {
+                    "id": "input-phone",
+                    "title": "Phone",
+                    "description": "Phone input with country dial-code detection."
+                },
+                {
+                    "id": "input-post-code",
+                    "title": "Post Code",
+                    "description": "Country-aware postal code input."
+                },
+                {
+                    "id": "input-search",
+                    "title": "Search",
+                    "description": "Search input with clear button."
+                },
+                {
+                    "id": "input-slider",
+                    "title": "Slider",
+                    "description": "Combined input + slider for numeric values."
+                },
+                {
+                    "id": "input-taxid",
+                    "title": "Tax ID",
+                    "description": "Tax ID (NIP / PESEL / REGON) input with validation."
+                }
+            ]
+        },
+        {
             "category": "Feedback",
             "icon": "feedback",
             "collapsible": true,

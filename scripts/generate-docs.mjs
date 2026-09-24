@@ -155,6 +155,21 @@ function signalMembers(cls, errors) {
     return members
 }
 
+// Inputs inherited from an abstract base directive (MInputBase), listed like host directive inputs (`from`).
+// A member redeclared by the subclass (a different default) stays in the subclass's own list.
+function baseClassMembers(cls, errors) {
+    const own = new Set(cls.getProperties().map((prop) => prop.getName()))
+    const members = []
+    for (let base = cls.getBaseClass(); base; base = base.getBaseClass()) {
+        for (const member of signalMembers(base, errors)) {
+            if (own.has(member.name) || members.some((known) => known.name === member.name)) continue
+            members.push({...member, from: base.getName()})
+        }
+        for (const prop of base.getProperties()) own.add(prop.getName())
+    }
+    return members
+}
+
 function hostDirectiveMembers(cls, options, errors) {
     const array = options?.getProperty('hostDirectives')?.getInitializer?.()
     if (!array || !Node.isArrayLiteralExpression(array)) return []
@@ -317,7 +332,11 @@ function generateApi(errors) {
             const members =
                 kind === 'service'
                     ? serviceMembers(cls)
-                    : [...signalMembers(cls, errors), ...hostDirectiveMembers(cls, decorator.options, errors)]
+                    : [
+                          ...signalMembers(cls, errors),
+                          ...baseClassMembers(cls, errors),
+                          ...hostDirectiveMembers(cls, decorator.options, errors),
+                      ]
             api[name] = {
                 name,
                 kind,

@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {RouterLink, RouterLinkActive} from '@angular/router'
 import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
+import {MInputSearch} from '@banzamel/mineralui-angular/inputs/input-search'
 import type {DocsNavSection} from '@locales/docs-navigation'
 import {DOCS_NAVIGATION, sectionIcon} from '@locales/docs-navigation'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
@@ -13,10 +14,10 @@ const byTitle = (section: DocsNavSection): DocsNavSection => ({
     items: [...section.items].sort((a, b) => a.title.localeCompare(b.title)),
 })
 
-// TEMP: replace with MSidebarNav / MSidebarGroup / MSidebarItem (etap 2) + MInputSearch (etap 4)
+// TEMP: replace with MSidebarNav / MSidebarGroup / MSidebarItem (etap 2)
 @Component({
     selector: 'doc-docs-navigation',
-    imports: [MText, RouterLink, RouterLinkActive, MIcon, MTranslatePipe],
+    imports: [MText, RouterLink, RouterLinkActive, MIcon, MInputSearch, MTranslatePipe],
     templateUrl: './docs-navigation.html',
     styleUrl: './docs-navigation.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,8 +39,4 @@ export class DocsNavigation {
             return items.length > 0 ? [byTitle({...section, items})] : []
         })
     })
-
-    protected onSearch(event: Event): void {
-        if (event.target instanceof HTMLInputElement) this.search.set(event.target.value)
-    }
 }

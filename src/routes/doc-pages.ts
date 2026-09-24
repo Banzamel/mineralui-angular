@@ -42,6 +42,39 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'social-button': () => import('@pages/controls/social-button/social-button.page').then((m) => m.SocialButtonPage),
     toggle: () => import('@pages/controls/toggle/toggle.page').then((m) => m.TogglePage),
 
+    // Forms
+    form: () => import('@pages/forms/form/form.page').then((m) => m.FormPage),
+    'ghost-text': () => import('@pages/forms/ghost-text/ghost-text.page').then((m) => m.GhostTextPage),
+    input: () => import('@pages/forms/input/input.page').then((m) => m.InputPage),
+    'input-group': () => import('@pages/forms/input-group/input-group.page').then((m) => m.InputGroupPage),
+    textarea: () => import('@pages/forms/textarea/textarea.page').then((m) => m.TextareaPage),
+
+    // Specialized Inputs
+    'input-credit-card': () =>
+        import('@pages/specialized-inputs/input-credit-card/input-credit-card.page').then((m) => m.InputCreditCardPage),
+    'input-currency': () =>
+        import('@pages/specialized-inputs/input-currency/input-currency.page').then((m) => m.InputCurrencyPage),
+    'input-cvc': () => import('@pages/specialized-inputs/input-cvc/input-cvc.page').then((m) => m.InputCvcPage),
+    'input-date': () => import('@pages/specialized-inputs/input-date/input-date.page').then((m) => m.InputDatePage),
+    'input-email': () => import('@pages/specialized-inputs/input-email/input-email.page').then((m) => m.InputEmailPage),
+    'input-file': () => import('@pages/specialized-inputs/input-file/input-file.page').then((m) => m.InputFilePage),
+    'input-iban': () => import('@pages/specialized-inputs/input-iban/input-iban.page').then((m) => m.InputIbanPage),
+    'input-name': () => import('@pages/specialized-inputs/input-name/input-name.page').then((m) => m.InputNamePage),
+    'input-number': () =>
+        import('@pages/specialized-inputs/input-number/input-number.page').then((m) => m.InputNumberPage),
+    'input-otp': () => import('@pages/specialized-inputs/input-otp/input-otp.page').then((m) => m.InputOtpPage),
+    'input-password': () =>
+        import('@pages/specialized-inputs/input-password/input-password.page').then((m) => m.InputPasswordPage),
+    'input-phone': () => import('@pages/specialized-inputs/input-phone/input-phone.page').then((m) => m.InputPhonePage),
+    'input-post-code': () =>
+        import('@pages/specialized-inputs/input-post-code/input-post-code.page').then((m) => m.InputPostCodePage),
+    'input-search': () =>
+        import('@pages/specialized-inputs/input-search/input-search.page').then((m) => m.InputSearchPage),
+    'input-slider': () =>
+        import('@pages/specialized-inputs/input-slider/input-slider.page').then((m) => m.InputSliderPage),
+    'input-taxid': () => import('@pages/specialized-inputs/input-taxid/input-taxid.page').then((m) => m.InputTaxIdPage),
+    'input-url': () => import('@pages/specialized-inputs/input-url/input-url.page').then((m) => m.InputUrlPage),
+
     // Feedback
     spinner: () => import('@pages/feedback/spinner/spinner.page').then((m) => m.SpinnerPage),
 

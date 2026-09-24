@@ -124,33 +124,6 @@ h3.m-heading.doc-group-title {
     padding: var(--mineral-spacing-lg);
 }
 
-/* TEMP: replace with MInputSearch (etap 4) */
-.doc-input {
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 2.25rem;
-    padding: 0 0.75rem;
-    border: 1px solid var(--mineral-border);
-    border-radius: var(--mineral-radius-md);
-    background: var(--mineral-input-bg);
-    color: var(--mineral-text);
-    font: inherit;
-    font-size: var(--mineral-font-size-sm);
-}
-
-.doc-input:focus {
-    border-color: var(--mineral-border-focus);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(var(--mineral-primary-rgb), 0.2);
-}
-
-.doc-label {
-    display: grid;
-    gap: var(--mineral-spacing-xs);
-    color: var(--mineral-text-secondary);
-    font-size: var(--mineral-font-size-sm);
-}
-
 /* TEMP: replace with MDataTable compact (etap 7) */
 .doc-table-scroll {
     overflow-x: auto;

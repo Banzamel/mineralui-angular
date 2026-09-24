@@ -3,9 +3,11 @@ import {
     mBellIcon,
     mClickIcon,
     mDashboardIcon,
+    mFormIcon,
     mLayoutIcon,
     mMagicIcon,
     mMenuIcon,
+    mSlidersIcon,
     mTranslateIcon,
 } from '@banzamel/mineralui-angular/icons'
 import en from './en.json'
@@ -31,6 +33,8 @@ const SECTION_ICONS: Readonly<Record<string, MIconDef>> = {
     typography: mTranslateIcon,
     layout: mLayoutIcon,
     controls: mClickIcon,
+    forms: mFormIcon,
+    specialized_inputs: mSlidersIcon,
     feedback: mBellIcon,
     navigation: mMenuIcon,
     display: mMagicIcon,

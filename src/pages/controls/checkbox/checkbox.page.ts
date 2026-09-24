@@ -48,7 +48,7 @@ const EFFECTS = ['ripple', 'none'] as const
 
             <doc-section
                 title="Forms"
-                description="MCheckbox is a ControlValueAccessor — use formControlName, [formControl] or ngModel. errorText renders a live alert linked to the input with aria-describedby."
+                description="MCheckbox is a ControlValueAccessor — use formControlName, [formControl] or ngModel. The control's error shows by itself once it is touched or the form is submitted, as a live alert linked with aria-describedby; errorMessages replaces the text per error key, errorText forces a message."
             >
                 <doc-preview [example]="examples.checkboxForm" />
             </doc-section>

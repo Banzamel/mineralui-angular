@@ -36,8 +36,10 @@ describe('DocsNavigation', () => {
         )
         expect(links()).toEqual(expected)
         expect(links()).toContain('Languages (i18n)')
+        // MInputSearch without a visible label: the accessible name comes from ariaLabel.
         const input = element.querySelector('input')!
-        expect(element.querySelector(`label[for="${input.id}"]`)).not.toBeNull()
+        expect(input.type).toBe('search')
+        expect(input.getAttribute('aria-label')).toBe('Search docs...')
     })
 
     it('filters by title from two characters and keeps a whole section on a category match', async () => {

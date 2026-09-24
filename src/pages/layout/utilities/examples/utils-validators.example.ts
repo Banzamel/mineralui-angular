@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
+import {MInputEmail} from '@banzamel/mineralui-angular/inputs/input-email'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
@@ -9,14 +10,11 @@ const validateWorkEmail = composeValidators(validateRequired, validateMinLength(
 
 @Component({
     selector: 'app-utils-validators',
-    imports: [MCode, MStack, MText],
+    imports: [MCode, MInputEmail, MStack, MText],
     template: `
-        <m-stack>
-            <!-- TEMP: replace with MInputEmail (etap 4) -->
-            <label>
-                Work email
-                <input type="email" [value]="email()" (input)="onInput($event)" />
-            </label>
+        <m-stack align="start">
+            <!-- The built-in rule is off: this example shows the result of composeValidators instead. -->
+            <m-input-email label="Work email" [(value)]="email" [validate]="false" />
             <p mText size="sm" [tone]="result().valid ? 'accent' : 'muted'" aria-live="polite">
                 <code mCode>{{ result().valid ? 'valid' : result().error }}</code>
             </p>
@@ -27,8 +25,4 @@ const validateWorkEmail = composeValidators(validateRequired, validateMinLength(
 export class UtilsValidatorsExample {
     protected readonly email = signal('ann@')
     protected readonly result = computed(() => validateWorkEmail(this.email()))
-
-    protected onInput(event: Event): void {
-        if (event.target instanceof HTMLInputElement) this.email.set(event.target.value)
-    }
 }

@@ -1,0 +1,109 @@
+<doc-article
+    title="Forms"
+    description="MineralUI fields are Angular form controls: bind them with formControlName, [formControl] or ngModel. There is no MForm — @angular/forms keeps the state, the components show it."
+>
+    <doc-section
+        title="Reactive form"
+        description="Specialized inputs validate themselves as form validators (name words, email format, phone digits), so form.invalid sees their errors without extra validators. A field shows its error once it is touched or the form submitted; Validators.required adds the required marker."
+    >
+        <doc-preview [example]="examples.formSignup" />
+    </doc-section>
+
+    <doc-section
+        title="Raw values"
+        description="The control holds the value you would send, the field shows it formatted."
+    >
+        <ul mList>
+            <li mListItem>
+                Phone, card number, CVC, NIP / PESEL / REGON, postal code — digits (<code mCode>600700800</code>), the
+                shown text comes from <code mCode>(formattedChange)</code>.
+            </li>
+            <li mListItem>IBAN — the full IBAN without spaces (<code mCode>PL61109010140000071219812874</code>).</li>
+            <li mListItem>
+                Number, currency, slider — <code mCode>number</code> (<code mCode>null</code> when empty), so
+                <code mCode>Validators.min</code> / <code mCode>max</code> work directly.
+            </li>
+            <li mListItem>
+                Date — a <code mCode>Date</code> once complete; a half-typed date is <code mCode>null</code> and still
+                invalid (<code mCode>mDate</code>).
+            </li>
+            <li mListItem>File — <code mCode>readonly File[]</code>; the rest — <code mCode>string</code>.</li>
+        </ul>
+    </doc-section>
+
+    <doc-section
+        title="Custom fields"
+        description="A field without a specialized component is m-input plus a validator. MValidators wraps the same rules the specialized inputs use (utils/validators), with error keys like mPesel or mMinLength."
+    >
+        <doc-preview [example]="examples.formCustomField" />
+    </doc-section>
+
+    <doc-section title="Error messages" description="The text of an automatic error, first match wins.">
+        <m-stack>
+            <div class="doc-table-scroll">
+                <table class="doc-table">
+                    <caption class="doc-visually-hidden">
+                        Sources of a field's error message
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Source</th>
+                            <th scope="col">Scope</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (row of messageOrder; track row[0]) {
+                            <tr>
+                                <th scope="row">
+                                    <code mCode>{{ row[0] }}</code>
+                                </th>
+                                <td>{{ row[1] }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <p mText size="sm" tone="muted">
+                Translate every field's messages at once in the dictionary (placeholders are filled from the error
+                object):
+            </p>
+            <doc-code-block [snippet]="snippets.validationMessagesTs" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section
+        title="Migrating from MForm"
+        description="MineralUI for React ships its own form engine (MForm, useFormField). In Angular the same jobs belong to @angular/forms."
+    >
+        <div class="doc-table-scroll">
+            <table class="doc-table">
+                <caption class="doc-visually-hidden">
+                    React form API and its Angular counterparts
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">React</th>
+                        <th scope="col">Angular</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (row of migration; track row.react) {
+                        <tr>
+                            <th scope="row">
+                                <code mCode>{{ row.react }}</code>
+                            </th>
+                            <td>{{ row.angular }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </doc-section>
+
+    <doc-section title="API">
+        <m-stack>
+            <doc-props-table api="form/validators" />
+            <doc-props-table api="MValidationError" />
+        </m-stack>
+    </doc-section>
+</doc-article>

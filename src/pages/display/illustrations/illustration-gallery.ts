@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, signal} from '@angular/core'
 import type {MIllustrationDef} from '@banzamel/mineralui-angular/illustrations'
 import {MIllustration} from '@banzamel/mineralui-angular/illustrations'
+import {MInputSearch} from '@banzamel/mineralui-angular/inputs/input-search'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 
@@ -12,10 +13,10 @@ export interface GalleryScene {
 
 const COPIED_FOR_MS = 1200
 
-/** Searchable scene gallery; each card copies the export name. TEMP: MInputSearch (etap 4), MCard (etap 6). */
+/** Searchable scene gallery; each card copies the export name. TEMP: MCard (etap 6). */
 @Component({
     selector: 'doc-illustration-gallery',
-    imports: [MStack, MText, MIllustration],
+    imports: [MStack, MText, MIllustration, MInputSearch],
     templateUrl: './illustration-gallery.html',
     styleUrl: './illustration-gallery.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,10 +38,6 @@ export class IllustrationGallery {
 
     constructor() {
         inject(DestroyRef).onDestroy(() => clearTimeout(this.copyTimer))
-    }
-
-    protected onSearch(event: Event): void {
-        if (event.target instanceof HTMLInputElement) this.query.set(event.target.value)
     }
 
     protected async copy(name: string): Promise<void> {

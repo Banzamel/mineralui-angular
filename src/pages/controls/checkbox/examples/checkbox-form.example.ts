@@ -13,15 +13,14 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
     template: `
         <form [formGroup]="form" (ngSubmit)="submit()">
             <m-stack align="start">
-                <!-- A form control: formControlName goes straight on m-checkbox. -->
-                <m-checkbox
-                    formControlName="terms"
-                    [errorText]="submitted() && status() === 'INVALID' ? 'Accept the terms to continue' : undefined"
-                >
-                    I accept the terms of service
-                </m-checkbox>
+                <!-- formControlName goes straight on m-checkbox. The error of the control shows by itself once it
+                     is touched or the form is submitted. -->
+                <m-checkbox formControlName="terms">I accept the terms of service</m-checkbox>
                 <m-checkbox formControlName="newsletter" color="success">Send me the monthly newsletter</m-checkbox>
                 <button mButton type="submit" size="sm">Create account</button>
+                @if (created()) {
+                    <p mText size="sm" class="m-fcolor-success">Account created.</p>
+                }
                 <p mText size="sm" tone="muted">Value: {{ value() | json }}</p>
             </m-stack>
         </form>
@@ -34,10 +33,10 @@ export class CheckboxFormExample {
         newsletter: new FormControl(true, {nonNullable: true}),
     })
     protected readonly value = toSignal(this.form.valueChanges, {initialValue: this.form.value})
-    protected readonly status = toSignal(this.form.statusChanges, {initialValue: this.form.status})
-    protected readonly submitted = signal(false)
+
+    protected readonly created = signal(false)
 
     protected submit(): void {
-        this.submitted.set(true)
+        this.created.set(this.form.valid)
     }
 }

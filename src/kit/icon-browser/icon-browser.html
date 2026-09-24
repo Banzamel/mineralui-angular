@@ -1,15 +1,5 @@
 <m-stack>
-    <label class="doc-label">
-        Search available icons
-        <input
-            class="doc-input"
-            type="search"
-            autocomplete="off"
-            placeholder="Search by export name"
-            [value]="query()"
-            (input)="onSearch($event)"
-        />
-    </label>
+    <m-input-search label="Search available icons" placeholder="Search by export name" fullWidth [(value)]="query" />
 
     <m-tabs ariaLabel="Icon families" [(value)]="activeTab">
         @for (tab of visible(); track tab.id) {

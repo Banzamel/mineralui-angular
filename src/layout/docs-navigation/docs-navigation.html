@@ -1,14 +1,13 @@
 <nav class="doc-nav" aria-label="Documentation">
     <div class="doc-nav-search">
-        <label class="doc-visually-hidden" for="doc-nav-search">{{ 'ui.searchDocs' | mT }}</label>
-        <input
-            id="doc-nav-search"
-            class="doc-input"
-            type="search"
-            autocomplete="off"
+        <!-- Filters on every keystroke through [(value)]; the debounced (searched) is not needed here. -->
+        <m-input-search
+            size="sm"
+            clickEffect="none"
+            fullWidth
+            [ariaLabel]="'ui.searchDocs' | mT"
             [placeholder]="'ui.searchDocs' | mT"
-            [value]="search()"
-            (input)="onSearch($event)"
+            [(value)]="search"
         />
     </div>
 

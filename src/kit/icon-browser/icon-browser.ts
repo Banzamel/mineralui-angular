@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, signal} from '@angular/core'
 import type {MIconDef} from '@banzamel/mineralui-angular/icons'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
+import {MInputSearch} from '@banzamel/mineralui-angular/inputs/input-search'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MTab, MTabContent, MTabs} from '@banzamel/mineralui-angular/layout/tabs'
@@ -32,11 +33,11 @@ const COPIED_FOR_MS = 1200
 /**
  * Searchable, tabbed icon catalog; each card copies the export name (counterpart of the docs-react icon browsers).
  *
- * TEMP: search, cards and badges replace with MInputSearch (etap 4), MCard (etap 6), MBadge (etap 5).
+ * TEMP: cards and badges replace with MCard (etap 6), MBadge (etap 5).
  */
 @Component({
     selector: 'doc-icon-browser',
-    imports: [MStack, MTab, MTabContent, MTabs, MText, MIcon, MHeading],
+    imports: [MStack, MTab, MTabContent, MTabs, MText, MIcon, MHeading, MInputSearch],
     templateUrl: './icon-browser.html',
     styleUrl: './icon-browser.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -70,10 +71,6 @@ export class IconBrowser {
 
     constructor() {
         inject(DestroyRef).onDestroy(() => clearTimeout(this.copyTimer))
-    }
-
-    protected onSearch(event: Event): void {
-        if (event.target instanceof HTMLInputElement) this.query.set(event.target.value)
     }
 
     protected async copy(name: string): Promise<void> {

@@ -1,15 +1,5 @@
 <m-stack>
-    <label class="doc-label">
-        Search scenes
-        <input
-            class="doc-input"
-            type="search"
-            autocomplete="off"
-            placeholder="Search by name"
-            [value]="query()"
-            (input)="onSearch($event)"
-        />
-    </label>
+    <m-input-search label="Search scenes" placeholder="Search by name" fullWidth [(value)]="query" />
     <ul class="doc-scene-grid">
         @for (scene of visible(); track scene.name) {
             <li>
