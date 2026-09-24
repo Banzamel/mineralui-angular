@@ -3,6 +3,14 @@
         "languageLabel": "Language",
         "toggleTheme": "Toggle theme",
         "toggleNavigation": "Toggle navigation",
+        "docsSettingsTitle": "Docs settings",
+        "docsShellLabel": "Documentation shell",
+        "docsShowSidebar": "Show sidebar",
+        "commandPaletteTitle": "Search the docs",
+        "commandPaletteDescription": "Jump to any component, guide or API page.",
+        "commandPalettePlaceholder": "Type a component name or keyword…",
+        "commandPaletteEmpty": "No matching pages.",
+        "commandPaletteHint": "Use ↑ ↓ to navigate, Enter to open, Esc to close.",
         "docsAppearanceLabel": "Appearance",
         "docsThemeFilesLabel": "Theme starter files",
         "docsDownloadVariables": "Download variables.css",
@@ -14,6 +22,7 @@
         "close": "Close",
         "copy": "Copy",
         "copied": "Copied",
+        "copiedToClipboard": "Copied to clipboard",
         "propsProp": "Prop",
         "propsFunction": "Function",
         "propsType": "Type",
@@ -52,6 +61,16 @@
                     "id": "layout-system",
                     "title": "Layout System",
                     "description": "MGrid, MSection, MContainer and breakpoint model."
+                },
+                {
+                    "id": "primitives",
+                    "title": "Primitives",
+                    "description": "MPopover and MPortal — overlay primitives shared across components."
+                },
+                {
+                    "id": "keyboard-nav",
+                    "title": "Keyboard Navigation",
+                    "description": "[mKeyboardNav]: roving tabindex, aria-activedescendant and type-ahead."
                 },
                 {
                     "id": "quick-start",
@@ -341,9 +360,44 @@
             "collapsible": true,
             "items": [
                 {
+                    "id": "alert",
+                    "title": "Alert",
+                    "description": "Static inline status with icon and color tone."
+                },
+                {
+                    "id": "badge",
+                    "title": "Badge & Tag",
+                    "description": "Compact pill labels for counts and categories."
+                },
+                {
+                    "id": "banner",
+                    "title": "Banner",
+                    "description": "Full-width announcement / system message."
+                },
+                {
+                    "id": "loader",
+                    "title": "Loader",
+                    "description": "Spinner with a caption for a loading page or section."
+                },
+                {
+                    "id": "progress-ring",
+                    "title": "Progress Ring",
+                    "description": "Determinate ring with optional centered percent label."
+                },
+                {
+                    "id": "skeleton",
+                    "title": "Skeleton",
+                    "description": "Placeholder shapes shown while data loads."
+                },
+                {
                     "id": "spinner",
                     "title": "Spinner",
                     "description": "Indeterminate spinner with size and tone."
+                },
+                {
+                    "id": "toast",
+                    "title": "Toast",
+                    "description": "MToastService and provideMineralToast."
                 }
             ]
         },
@@ -385,6 +439,48 @@
             ]
         },
         {
+            "category": "Overlays",
+            "icon": "overlays",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "drawer",
+                    "title": "Drawer",
+                    "description": "Side-anchored sheet for panels and forms."
+                },
+                {
+                    "id": "dropdown-menu",
+                    "title": "Dropdown",
+                    "description": "Trigger-based menu with items, groups and dividers."
+                },
+                {
+                    "id": "modal",
+                    "title": "Modal",
+                    "description": "Centered dialog with size variants."
+                },
+                {
+                    "id": "popconfirm",
+                    "title": "Popconfirm",
+                    "description": "Inline confirmation popover anchored to a trigger."
+                },
+                {
+                    "id": "sheet",
+                    "title": "Sheet",
+                    "description": "Bottom sheet with height presets and a drag handle."
+                },
+                {
+                    "id": "tooltip",
+                    "title": "Tooltip",
+                    "description": "Hover / focus tooltip with placements and delay."
+                },
+                {
+                    "id": "command-palette",
+                    "title": "Command Palette",
+                    "description": "Searchable command launcher (Ctrl+K) with grouped results."
+                }
+            ]
+        },
+        {
             "category": "Display",
             "icon": "display",
             "collapsible": true,
@@ -403,6 +499,18 @@
                     "id": "illustrations",
                     "title": "Illustrations",
                     "description": "63 themed scene illustrations and the m-illustration component."
+                }
+            ]
+        },
+        {
+            "category": "Cards",
+            "icon": "cards",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "card",
+                    "title": "Base Card",
+                    "description": "MCard with header / body / footer sections."
                 }
             ]
         }

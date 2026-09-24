@@ -9,6 +9,9 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'layout-system': () =>
         import('@pages/getting-started/layout-system/layout-system.page').then((m) => m.LayoutSystemPage),
     i18n: () => import('@pages/getting-started/i18n/i18n.page').then((m) => m.I18nPage),
+    primitives: () => import('@pages/getting-started/primitives/primitives.page').then((m) => m.PrimitivesPage),
+    'keyboard-nav': () =>
+        import('@pages/getting-started/keyboard-nav/keyboard-nav.page').then((m) => m.KeyboardNavPage),
 
     // Typography
     code: () => import('@pages/typography/code/code.page').then((m) => m.CodePage),
@@ -76,7 +79,14 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'input-url': () => import('@pages/specialized-inputs/input-url/input-url.page').then((m) => m.InputUrlPage),
 
     // Feedback
+    alert: () => import('@pages/feedback/alert/alert.page').then((m) => m.AlertPage),
+    badge: () => import('@pages/feedback/badge/badge.page').then((m) => m.BadgePage),
+    banner: () => import('@pages/feedback/banner/banner.page').then((m) => m.BannerPage),
+    loader: () => import('@pages/feedback/loader/loader.page').then((m) => m.LoaderPage),
+    'progress-ring': () => import('@pages/feedback/progress-ring/progress-ring.page').then((m) => m.ProgressRingPage),
+    skeleton: () => import('@pages/feedback/skeleton/skeleton.page').then((m) => m.SkeletonPage),
     spinner: () => import('@pages/feedback/spinner/spinner.page').then((m) => m.SpinnerPage),
+    toast: () => import('@pages/feedback/toast/toast.page').then((m) => m.ToastPage),
 
     // Navigation
     breadcrumb: () => import('@pages/navigation/breadcrumb/breadcrumb.page').then((m) => m.BreadcrumbPage),
@@ -86,8 +96,26 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     pagination: () => import('@pages/navigation/pagination/pagination.page').then((m) => m.PaginationPage),
     tabs: () => import('@pages/navigation/tabs/tabs.page').then((m) => m.TabsPage),
 
+    // Overlays
+    'command-palette': () =>
+        import('@pages/overlays/command-palette/command-palette.page').then((m) => m.CommandPalettePage),
+    drawer: () => import('@pages/overlays/drawer/drawer.page').then((m) => m.DrawerPage),
+    'dropdown-menu': () => import('@pages/overlays/dropdown-menu/dropdown-menu.page').then((m) => m.DropdownMenuPage),
+    modal: () => import('@pages/overlays/modal/modal.page').then((m) => m.ModalPage),
+    popconfirm: () => import('@pages/overlays/popconfirm/popconfirm.page').then((m) => m.PopconfirmPage),
+    sheet: () => import('@pages/overlays/sheet/sheet.page').then((m) => m.SheetPage),
+    tooltip: () => import('@pages/overlays/tooltip/tooltip.page').then((m) => m.TooltipPage),
+
     // Display
     icons: () => import('@pages/display/icons/icons.page').then((m) => m.IconsPage),
     'icons-v2': () => import('@pages/display/icons-v2/icons-v2.page').then((m) => m.IconsV2Page),
     illustrations: () => import('@pages/display/illustrations/illustrations.page').then((m) => m.IllustrationsPage),
+
+    // Cards
+    card: () => import('@pages/cards/card/card.page').then((m) => m.CardPage),
+}
+
+/** Old or shared docIds redirected to their page (counterpart of `canonicalDocIdMap` in docs-react). */
+export const DOC_ALIASES: Readonly<Record<string, string>> = {
+    tag: 'badge',
 }

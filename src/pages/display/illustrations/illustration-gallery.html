@@ -15,8 +15,7 @@
                 </button>
             </li>
         } @empty {
-            <li class="doc-alert" role="status"><strong>No scenes match this search.</strong></li>
+            <li class="doc-scene-empty"><m-alert color="info" heading="No scenes match this search." /></li>
         }
     </ul>
-    <span class="doc-visually-hidden" aria-live="polite">{{ copied() ? 'Copied ' + copied() : '' }}</span>
 </m-stack>

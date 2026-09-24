@@ -1,6 +1,6 @@
 import type {Routes} from '@angular/router'
 import en from '@locales/en.json'
-import {DOC_PAGES} from './doc-pages'
+import {DOC_ALIASES, DOC_PAGES} from './doc-pages'
 
 const SITE = 'MineralUI for Angular'
 const titles = new Map(en.docsNavigation.flatMap((section) => section.items.map((item) => [item.id, item.title])))
@@ -22,6 +22,7 @@ export const routes: Routes = [
                 title: `${titles.get(path) ?? path} — ${SITE}`,
                 loadComponent,
             })),
+            ...Object.entries(DOC_ALIASES).map(([path, target]) => ({path, redirectTo: target})),
             {
                 path: '**',
                 title: `Not found — ${SITE}`,

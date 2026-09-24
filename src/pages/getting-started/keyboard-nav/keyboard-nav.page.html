@@ -1,0 +1,64 @@
+<doc-article
+    title="Keyboard Navigation"
+    description="[mKeyboardNav] adds arrow-key navigation to any list of mKeyboardNavItem elements, following the WAI-ARIA Authoring Practices: roving tabindex for menus and toolbars, aria-activedescendant for the listbox of a combobox."
+>
+    <doc-section title="Keys">
+        <ul mList>
+            <li mListItem>
+                <code mCode>↑</code> / <code mCode>↓</code> (<code mCode>←</code> / <code mCode>→</code> with
+                <code mCode>orientation="horizontal"</code>) move to the previous / next item, wrapping unless
+                <code mCode>[loop]="false"</code>. Home and End jump to the ends.
+            </li>
+            <li mListItem>
+                Typing jumps to the next item whose text starts with what you typed; repeating one letter cycles through
+                the matches. The text comes from the element, or from <code mCode>mKeyboardNavItem="…"</code>.
+            </li>
+            <li mListItem>
+                Enter — and Space in <code mCode>roving</code> mode — emit <code mCode>(itemActivated)</code> with the
+                item index. The keys are consumed, so handle the action there and in <code mCode>(click)</code>.
+            </li>
+            <li mListItem>
+                Disabled items (<code mCode>:disabled</code> or <code mCode>aria-disabled="true"</code>) are skipped.
+                Escape and Tab are left to the surrounding popover or dialog.
+            </li>
+        </ul>
+    </doc-section>
+
+    <doc-section
+        title="Roving tabindex"
+        description='The default mode. The active item holds tabindex="0" and focus, the others tabindex="-1" — the whole group is a single Tab stop.'
+    >
+        <doc-preview [example]="examples.keyboardNavToolbar" />
+    </doc-section>
+
+    <doc-section
+        title="Menu in a popover"
+        description='initialFocus="first" on the popover puts focus on the first item; the directive takes it from there. This is the pattern MDropdownMenu is built on.'
+    >
+        <doc-preview [example]="examples.keyboardNavMenu" />
+    </doc-section>
+
+    <doc-section
+        title="aria-activedescendant"
+        description='mode="activedescendant" keeps focus in [keyTarget] — here the combobox field — and points its aria-activedescendant at the active option, which gets an id, the m-active class and is scrolled into view. Home, End and type-ahead stay with the text field.'
+    >
+        <doc-preview [example]="examples.keyboardNavListbox" />
+    </doc-section>
+
+    <doc-section title="Differences from MineralUI for React">
+        <p mText size="sm">
+            React exposes the <code mCode>useKeyboardNav</code> hook: an <code mCode>activeIndex</code> counter with
+            <code mCode>itemCount</code> and no ARIA, so screen readers never hear which option is highlighted. The
+            Angular directive finds its items itself, manages <code mCode>tabindex</code> or
+            <code mCode>aria-activedescendant</code>, adds type-ahead and leaves Escape to the layer stack.
+        </p>
+    </doc-section>
+
+    <doc-section title="MKeyboardNav API">
+        <doc-props-table api="MKeyboardNav" />
+    </doc-section>
+
+    <doc-section title="MKeyboardNavItem API">
+        <doc-props-table api="MKeyboardNavItem" />
+    </doc-section>
+</doc-article>

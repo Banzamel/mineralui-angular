@@ -1,22 +1,24 @@
 <header class="doc-header">
     <nav mNavbar tone="subtle" container="full" justify="start" [attr.aria-label]="'ui.headerNavigation' | mT">
-        <button
-            mButton
-            variant="ghost"
-            iconOnly
-            mNavbarBrand
-            class="doc-nav-toggle"
-            aria-controls="doc-sidebar"
-            [attr.aria-expanded]="navOpen()"
-            [attr.aria-label]="'ui.toggleNavigation' | mT"
-            (click)="toggleNav.emit()"
-        >
-            <m-icon [icon]="icons.menu" />
-        </button>
+        @if (showNavToggle()) {
+            <button
+                mButton
+                variant="ghost"
+                iconOnly
+                mNavbarBrand
+                class="doc-nav-toggle"
+                aria-controls="doc-sidebar"
+                [attr.aria-expanded]="navOpen()"
+                [attr.aria-label]="'ui.toggleNavigation' | mT"
+                (click)="toggleNav.emit()"
+            >
+                <m-icon [icon]="icons.menu" />
+            </button>
+        }
 
         <a mNavbarBrand class="doc-brand" routerLink="/docs">
             <span class="doc-brand-name">MineralUI</span>
-            <span class="doc-badge">Angular</span>
+            <m-badge size="xs" rounded>Angular</m-badge>
         </a>
 
         <div class="doc-header-actions">
@@ -24,14 +26,16 @@
                 <a class="doc-framework" [href]="reactHref()">{{ 'ui.frameworkReact' | mT }}</a>
                 <a class="doc-framework" routerLink="/docs" aria-current="true">{{ 'ui.frameworkAngular' | mT }}</a>
             </nav>
+            <doc-command-sheet />
             <button
                 mButton
                 variant="ghost"
                 iconOnly
-                [attr.aria-label]="'ui.toggleTheme' | mT"
-                (click)="theme.toggleMode()"
+                aria-haspopup="dialog"
+                [attr.aria-label]="'ui.docsSettingsTitle' | mT"
+                (click)="openSettings.emit()"
             >
-                <m-icon [icon]="theme.resolvedMode() === 'dark' ? icons.sun : icons.moon" />
+                <m-icon [icon]="icons.settings" />
             </button>
         </div>
     </nav>

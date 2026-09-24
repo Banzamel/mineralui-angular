@@ -9,7 +9,7 @@
                         @for (group of tab.groups; track group.title) {
                             <section class="doc-stack-sm" [attr.aria-label]="group.title">
                                 <h3 mHeading class="doc-group-title">
-                                    {{ group.title }} <span class="doc-badge">{{ group.items.length }}</span>
+                                    {{ group.title }} <m-badge size="xs" rounded>{{ group.items.length }}</m-badge>
                                 </h3>
                                 <p mText tone="muted" size="sm">{{ group.tone }}</p>
                                 <ul class="doc-icon-grid">
@@ -28,7 +28,7 @@
                                                     copied() === name ? 'Copied' : name
                                                 }}</span>
                                                 @if (newIcons().has(name)) {
-                                                    <span class="doc-badge" data-color="news">new</span>
+                                                    <m-badge color="news" size="xs" rounded>new</m-badge>
                                                 }
                                             </button>
                                         </li>
@@ -36,15 +36,13 @@
                                 </ul>
                             </section>
                         } @empty {
-                            <div class="doc-alert" role="status">
-                                <strong>No icons match this search.</strong>
-                                <span mText tone="muted" size="sm">Try a broader query or clear the field.</span>
-                            </div>
+                            <m-alert color="info" heading="No icons match this search.">
+                                Try a broader query or clear the field.
+                            </m-alert>
                         }
                     </m-stack>
                 </ng-template>
             </m-tab>
         }
     </m-tabs>
-    <span class="doc-visually-hidden" aria-live="polite">{{ copied() ? 'Copied ' + copied() : '' }}</span>
 </m-stack>

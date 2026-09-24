@@ -8,7 +8,8 @@ import {
     signal,
     ViewEncapsulation,
 } from '@angular/core'
-import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
+import {MToastService} from '@banzamel/mineralui-angular/feedback/toast'
+import {MI18nService, MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import hljs from 'highlight.js/lib/core'
 import bash from 'highlight.js/lib/languages/bash'
 import css from 'highlight.js/lib/languages/css'
@@ -39,7 +40,6 @@ const COPIED_FOR_MS = 1500
             </figcaption>
             <!-- highlight.js escapes the source; its output is only <span class="hljs-*"> (kept by the sanitizer). -->
             <pre class="doc-code-block-pre"><code class="hljs" [innerHTML]="highlighted()"></code></pre>
-            <span class="doc-visually-hidden" aria-live="polite">{{ copied() ? ('ui.copied' | mT) : '' }}</span>
         </figure>
     `,
     styleUrl: './code-block.css',
@@ -56,6 +56,8 @@ export class CodeBlock {
     readonly title = input<string>()
 
     protected readonly copied = signal(false)
+    private readonly toast = inject(MToastService)
+    private readonly i18n = inject(MI18nService)
     private copyTimer: ReturnType<typeof setTimeout> | undefined
 
     private readonly source = computed(() => this.snippet()?.source ?? this.code())
@@ -77,6 +79,7 @@ export class CodeBlock {
             return
         }
         this.copied.set(true)
+        this.toast.show({title: this.i18n.t('ui.copiedToClipboard'), color: 'success', duration: 1600})
         clearTimeout(this.copyTimer)
         this.copyTimer = setTimeout(() => this.copied.set(false), COPIED_FOR_MS)
     }

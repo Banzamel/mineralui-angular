@@ -1,4 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, signal} from '@angular/core'
+import {MAlert} from '@banzamel/mineralui-angular/feedback/alert'
+import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
+import {MToastService} from '@banzamel/mineralui-angular/feedback/toast'
 import type {MIconDef} from '@banzamel/mineralui-angular/icons'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
 import {MInputSearch} from '@banzamel/mineralui-angular/inputs/input-search'
@@ -33,11 +36,11 @@ const COPIED_FOR_MS = 1200
 /**
  * Searchable, tabbed icon catalog; each card copies the export name (counterpart of the docs-react icon browsers).
  *
- * TEMP: cards and badges replace with MCard (etap 6), MBadge (etap 5).
+ * TEMP: cards replace with MCard (etap 6).
  */
 @Component({
     selector: 'doc-icon-browser',
-    imports: [MStack, MTab, MTabContent, MTabs, MText, MIcon, MHeading, MInputSearch],
+    imports: [MAlert, MBadge, MStack, MTab, MTabContent, MTabs, MText, MIcon, MHeading, MInputSearch],
     templateUrl: './icon-browser.html',
     styleUrl: './icon-browser.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,6 +56,7 @@ export class IconBrowser {
     protected readonly query = signal('')
     protected readonly activeTab = signal<string | undefined>(undefined)
     protected readonly copied = signal('')
+    private readonly toast = inject(MToastService)
     private copyTimer: ReturnType<typeof setTimeout> | undefined
 
     /** Tabs with groups filtered by the query (by export name, like docs-react). */
@@ -80,6 +84,7 @@ export class IconBrowser {
             return
         }
         this.copied.set(name)
+        this.toast.show({title: 'Copied to clipboard', message: name, color: 'success', duration: 1600})
         clearTimeout(this.copyTimer)
         this.copyTimer = setTimeout(() => this.copied.set(''), COPIED_FOR_MS)
     }

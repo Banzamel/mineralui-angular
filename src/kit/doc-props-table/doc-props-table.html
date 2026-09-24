@@ -28,10 +28,10 @@
                             <th scope="row">
                                 <code mCode>{{ member.name }}</code>
                                 @if (member.kind === 'model') {
-                                    <span class="doc-badge" data-color="neutral">model</span>
+                                    <m-badge color="neutral" size="xs" rounded>model</m-badge>
                                 }
                                 @if (member.required) {
-                                    <span class="doc-badge" data-color="news">{{ 'ui.propsRequired' | mT }}</span>
+                                    <m-badge color="news" size="xs" rounded>{{ 'ui.propsRequired' | mT }}</m-badge>
                                 }
                             </th>
                             <td>

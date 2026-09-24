@@ -31,3 +31,7 @@
     outline: 2px solid var(--mineral-border-focus);
     outline-offset: 2px;
 }
+
+.doc-scene-empty {
+    grid-column: 1 / -1;
+}

@@ -1,10 +1,17 @@
 <a class="doc-skip" href="#doc-main" (click)="$event.preventDefault(); focusMain()">{{ 'ui.skipToContent' | mT }}</a>
 <m-app-shell>
     <!-- TEMP: replace with MSidebar (etap 5) -->
-    <aside mAppShellSidebar id="doc-sidebar" class="doc-sidebar" [class.doc-sidebar-open]="navOpen()">
-        <doc-docs-navigation />
-    </aside>
-    <doc-docs-header [navOpen]="navOpen()" (toggleNav)="navOpen.update((open) => !open)" />
+    @if (showSidebar()) {
+        <aside mAppShellSidebar id="doc-sidebar" class="doc-sidebar" [class.doc-sidebar-open]="navOpen()">
+            <doc-docs-navigation />
+        </aside>
+    }
+    <doc-docs-header
+        [navOpen]="navOpen()"
+        [showNavToggle]="showSidebar()"
+        (toggleNav)="navOpen.update((open) => !open)"
+        (openSettings)="settingsOpen.set(true)"
+    />
     @if (navOpen()) {
         <div class="doc-scrim" aria-hidden="true" (click)="navOpen.set(false)"></div>
     }
@@ -17,3 +24,4 @@
     </m-body>
 </m-app-shell>
 <m-scroll-top />
+<doc-settings-drawer [(open)]="settingsOpen" [(showSidebar)]="showSidebar" />

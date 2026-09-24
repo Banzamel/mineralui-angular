@@ -62,7 +62,7 @@
 
 /* The framework switch already says "Angular"; the badge makes room on phones. */
 @media (max-width: 480px) {
-    .doc-brand .doc-badge {
+    .doc-brand m-badge {
         display: none;
     }
 }

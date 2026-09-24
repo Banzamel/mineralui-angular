@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
+import {MAlert} from '@banzamel/mineralui-angular/feedback/alert'
 import type {MIconColor} from '@banzamel/mineralui-angular/icons'
 import * as icons from '@banzamel/mineralui-angular/icons'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
@@ -28,7 +29,7 @@ const COLORS: readonly MIconColor[] = [
 
 @Component({
     selector: 'doc-icons-v2-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, IconBrowser, MIcon, MCode],
+    imports: [MAlert, DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, IconBrowser, MIcon, MCode],
     templateUrl: './icons-v2.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

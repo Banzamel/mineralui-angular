@@ -9,6 +9,7 @@ import {
     mMenuIcon,
     mSlidersIcon,
     mTranslateIcon,
+    mWindowIcon,
 } from '@banzamel/mineralui-angular/icons'
 import en from './en.json'
 
@@ -37,7 +38,9 @@ const SECTION_ICONS: Readonly<Record<string, MIconDef>> = {
     specialized_inputs: mSlidersIcon,
     feedback: mBellIcon,
     navigation: mMenuIcon,
+    overlays: mWindowIcon,
     display: mMagicIcon,
+    cards: mDashboardIcon,
 }
 
 export function sectionIcon(section: DocsNavSection): MIconDef | undefined {

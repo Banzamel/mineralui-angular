@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core'
+import {MCard, MCardBody, MCardHeader} from '@banzamel/mineralui-angular/cards/card'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
@@ -6,7 +7,7 @@ import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 /**
  * Standard docs page: title, description and `<doc-section>` cards (counterpart of docs-react `DocsArticle`).
  *
- * TEMP: headings replace with MHeading (etap 2), cards with MCard (etap 6); MReveal (etap 6) is skipped.
+ * Sections are MCard (etap 5, krok 3); MReveal (etap 6) is skipped.
  */
 @Component({
     selector: 'doc-article',
@@ -34,21 +35,21 @@ export class DocArticle {
 /** One card of a docs page; the heading doubles as an anchor (`id`). */
 @Component({
     selector: 'doc-section',
-    imports: [MText, MHeading],
+    imports: [MText, MHeading, MCard, MCardHeader, MCardBody],
     template: `
-        <section class="doc-card" [attr.aria-labelledby]="headingId()">
+        <m-card [attr.role]="headingId() ? 'region' : null" [attr.aria-labelledby]="headingId()">
             @if (title()) {
-                <header class="doc-card-header">
+                <m-card-header class="doc-section-header">
                     <h2 mHeading class="doc-section-title" [id]="headingId()">{{ title() }}</h2>
                     @if (description()) {
                         <p mText tone="muted" size="sm">{{ description() }}</p>
                     }
-                </header>
+                </m-card-header>
             }
-            <div class="doc-card-body">
+            <m-card-body>
                 <ng-content />
-            </div>
-        </section>
+            </m-card-body>
+        </m-card>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

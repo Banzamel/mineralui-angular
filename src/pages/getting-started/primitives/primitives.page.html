@@ -1,0 +1,105 @@
+<doc-article
+    title="Primitives"
+    description="Low-level building blocks behind dropdowns, menus, selects and pickers: MPopover positions a floating surface next to an anchor, MPortal renders a template somewhere else in the document."
+>
+    <doc-section
+        title="Popover playground"
+        description="Scroll the page or resize the window while it is open — the popover follows its anchor and flips when there is no room."
+    >
+        <doc-playground [controls]="controls" [code]="code()">
+            <button mButton [mPopoverTrigger]="pop">Toggle popover</button>
+            <m-popover
+                #pop
+                role="dialog"
+                aria-label="Popover demo"
+                initialFocus="first"
+                [placement]="placement()"
+                [matchWidth]="matchWidth()"
+                [offset]="offset()"
+            >
+                <ng-template mPopoverContent>
+                    <div class="doc-popover-demo">
+                        <p mText size="sm">
+                            MPopover is the shared floating surface of Select, Autocomplete, Dropdown Menu and the
+                            pickers.
+                        </p>
+                        <button mButton size="sm" variant="ghost" (click)="pop.open.set(false)">Close</button>
+                    </div>
+                </ng-template>
+            </m-popover>
+        </doc-playground>
+    </doc-section>
+
+    <doc-section
+        title="Trigger, lazy content and focus"
+        description="[mPopoverTrigger] makes an element the anchor and the toggle. Content inside <ng-template mPopoverContent> exists only while the popover is open; plain children are rendered once and kept."
+    >
+        <doc-preview [example]="examples.popoverTrigger" />
+    </doc-section>
+
+    <doc-section title="How it closes and where focus goes">
+        <ul mList>
+            <li mListItem>
+                <strong>Escape</strong> closes the topmost layer only — a popover inside a popover, or inside a modal,
+                closes first.
+            </li>
+            <li mListItem>
+                <strong>A press outside</strong> the popover and its anchor closes it. Popovers stay in the DOM next to
+                their anchor, so a press inside a nested popover counts as inside its parent.
+            </li>
+            <li mListItem><strong>Tab</strong> out of the popover closes it and focus moves on in document order.</li>
+            <li mListItem>
+                <code mCode>initialFocus</code> decides where focus goes on open: <code mCode>none</code> (default —
+                comboboxes keep focus in their field), <code mCode>first</code> (menus, dialogs) or
+                <code mCode>panel</code>. When focus was inside, it returns to the anchor on close.
+            </li>
+            <li mListItem>
+                <code mCode>(closed)</code> reports why the popover closed itself: <code mCode>escape</code>,
+                <code mCode>outside</code>, <code mCode>tab</code> or <code mCode>trigger</code>. Setting
+                <code mCode>open</code> to <code mCode>false</code> yourself emits nothing.
+            </li>
+        </ul>
+    </doc-section>
+
+    <doc-section
+        title="Nesting and clipping"
+        description="The popover opens in the browser's top layer: no z-index to manage and no clipping by overflow: hidden ancestors, while Tab order and nesting follow the markup."
+    >
+        <doc-preview [example]="examples.popoverNested" />
+    </doc-section>
+
+    <doc-section title="Differences from MineralUI for React">
+        <ul mList>
+            <li mListItem>
+                No <code mCode>anchorRef</code> / <code mCode>onClose</code>: <code mCode>[mPopoverTrigger]</code> (or
+                <code mCode>[anchor]</code>) and <code mCode>[(open)]</code> with <code mCode>(closed)</code>.
+            </li>
+            <li mListItem>
+                No <code mCode>zIndex</code>: the top layer always stacks later layers above earlier ones.
+            </li>
+            <li mListItem>
+                No fixed <code mCode>role="listbox"</code>: set the role that fits the content (<code mCode>menu</code>,
+                <code mCode>listbox</code>, <code mCode>dialog</code>) on <code mCode>m-popover</code>.
+            </li>
+        </ul>
+    </doc-section>
+
+    <doc-section title="MPopover API">
+        <doc-props-table api="MPopover" />
+    </doc-section>
+
+    <doc-section title="MPopoverTrigger API">
+        <doc-props-table api="MPopoverTrigger" />
+    </doc-section>
+
+    <doc-section
+        title="Portal"
+        description="MPortal renders a template into document.body (or [mPortalContainer]) while it stays part of your component: bindings, change detection and injection work as if it were in place. Library components do not need it; use it for your own fixed-position elements that must escape a transformed or clipping ancestor."
+    >
+        <doc-preview [example]="examples.portalBasic" />
+    </doc-section>
+
+    <doc-section title="MPortal API">
+        <doc-props-table api="MPortal" />
+    </doc-section>
+</doc-article>
