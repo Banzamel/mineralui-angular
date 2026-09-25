@@ -47,12 +47,17 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
 
     // Forms
     autocomplete: () => import('@pages/forms/autocomplete/autocomplete.page').then((m) => m.AutocompletePage),
+    calendar: () => import('@pages/forms/calendar/calendar.page').then((m) => m.CalendarPage),
+    'date-picker': () => import('@pages/forms/date-picker/date-picker.page').then((m) => m.DatePickerPage),
+    'date-range-picker': () =>
+        import('@pages/forms/date-range-picker/date-range-picker.page').then((m) => m.DateRangePickerPage),
     form: () => import('@pages/forms/form/form.page').then((m) => m.FormPage),
     'ghost-text': () => import('@pages/forms/ghost-text/ghost-text.page').then((m) => m.GhostTextPage),
     input: () => import('@pages/forms/input/input.page').then((m) => m.InputPage),
     'input-group': () => import('@pages/forms/input-group/input-group.page').then((m) => m.InputGroupPage),
     select: () => import('@pages/forms/select/select.page').then((m) => m.SelectPage),
     textarea: () => import('@pages/forms/textarea/textarea.page').then((m) => m.TextareaPage),
+    'time-picker': () => import('@pages/forms/time-picker/time-picker.page').then((m) => m.TimePickerPage),
 
     // Specialized Inputs
     'input-credit-card': () =>

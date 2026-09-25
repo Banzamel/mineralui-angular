@@ -245,6 +245,21 @@
                     "description": "Searchable input with async option lists."
                 },
                 {
+                    "id": "calendar",
+                    "title": "Calendar",
+                    "description": "Month grid for picking a date or a range, with presets and full keyboard support."
+                },
+                {
+                    "id": "date-picker",
+                    "title": "DatePicker",
+                    "description": "Date field with typed completion, a keyboard-friendly calendar and optional time."
+                },
+                {
+                    "id": "date-range-picker",
+                    "title": "DateRangePicker",
+                    "description": "One start – end field with typed completion, a two-month calendar and presets."
+                },
+                {
                     "id": "form",
                     "title": "Form",
                     "description": "Reactive Forms with built-in validation, MValidators and migration from MForm."
@@ -273,6 +288,11 @@
                     "id": "textarea",
                     "title": "Textarea",
                     "description": "Multi-line input with auto-resize support."
+                },
+                {
+                    "id": "time-picker",
+                    "title": "TimePicker",
+                    "description": "Time field with typed completion, 12h or 24h display and keyboard-friendly columns."
                 }
             ]
         },
