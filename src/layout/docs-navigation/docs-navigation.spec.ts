@@ -52,7 +52,25 @@ describe('DocsNavigation', () => {
         expect(links()).toEqual(['Icons', 'Icons v2'])
 
         await search('display')
-        expect(links()).toEqual(['Icons', 'Icons v2', 'Illustrations'])
+        expect(links()).toEqual([
+            'Accordion',
+            'Blur',
+            'Code Block',
+            'Color Picker',
+            'CountUp',
+            'Detail List',
+            'Empty State',
+            'Icons',
+            'Icons v2',
+            'Illustrations',
+            'Progress',
+            'QR Code',
+            'Rating',
+            'Reveal',
+            'Stepper',
+            'TimeAgo',
+            'Timeline',
+        ])
 
         await search('zzz')
         expect(links()).toEqual([])

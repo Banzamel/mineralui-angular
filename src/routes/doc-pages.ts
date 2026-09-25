@@ -118,12 +118,28 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     tooltip: () => import('@pages/overlays/tooltip/tooltip.page').then((m) => m.TooltipPage),
 
     // Display
+    accordion: () => import('@pages/display/accordion/accordion.page').then((m) => m.AccordionPage),
+    blur: () => import('@pages/display/blur/blur.page').then((m) => m.BlurPage),
+    'code-block': () => import('@pages/display/code-block/code-block.page').then((m) => m.CodeBlockPage),
+    'color-picker': () => import('@pages/display/color-picker/color-picker.page').then((m) => m.ColorPickerPage),
+    'count-up': () => import('@pages/display/count-up/count-up.page').then((m) => m.CountUpPage),
+    'empty-state': () => import('@pages/display/empty-state/empty-state.page').then((m) => m.EmptyStatePage),
+    'detail-list': () => import('@pages/display/detail-list/detail-list.page').then((m) => m.DetailListPage),
     icons: () => import('@pages/display/icons/icons.page').then((m) => m.IconsPage),
     'icons-v2': () => import('@pages/display/icons-v2/icons-v2.page').then((m) => m.IconsV2Page),
     illustrations: () => import('@pages/display/illustrations/illustrations.page').then((m) => m.IllustrationsPage),
+    'progress-bar': () => import('@pages/display/progress-bar/progress-bar.page').then((m) => m.ProgressBarPage),
+    'qr-code': () => import('@pages/display/qr-code/qr-code.page').then((m) => m.QrCodePage),
+    rating: () => import('@pages/display/rating/rating.page').then((m) => m.RatingPage),
+    reveal: () => import('@pages/display/reveal/reveal.page').then((m) => m.RevealPage),
+    stepper: () => import('@pages/display/stepper/stepper.page').then((m) => m.StepperPage),
+    'time-ago': () => import('@pages/display/time-ago/time-ago.page').then((m) => m.TimeAgoPage),
+    timeline: () => import('@pages/display/timeline/timeline.page').then((m) => m.TimelinePage),
 
     // Cards
     card: () => import('@pages/cards/card/card.page').then((m) => m.CardPage),
+    'card-action-area': () =>
+        import('@pages/cards/card-action-area/card-action-area.page').then((m) => m.CardActionAreaPage),
 }
 
 /** Old or shared docIds redirected to their page (counterpart of `canonicalDocIdMap` in docs-react). */

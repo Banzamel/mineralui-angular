@@ -7,6 +7,7 @@ import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import cardGrid from '@generated/examples/cards/card/card-grid'
+import cardLinks from '@generated/examples/cards/card/card-links'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -48,6 +49,7 @@ const TONES: readonly MSurfaceTone[] = ['raised', 'default', 'subtle', 'inverse'
                         [padded]="padded()"
                         [stretch]="stretch()"
                         [skeleton]="skeleton()"
+                        [interactive]="interactive()"
                     >
                         <m-card-header><h3 mHeading>Deployment status</h3></m-card-header>
                         <m-card-body>
@@ -68,8 +70,15 @@ const TONES: readonly MSurfaceTone[] = ['raised', 'default', 'subtle', 'inverse'
             </doc-section>
 
             <doc-section
+                title="Link cards"
+                description="Put mCard on an anchor to make the whole card one link. It lifts on hover and ripples on click; navigation comes from your routerLink or href."
+            >
+                <doc-preview [example]="examples.cardLinks" />
+            </doc-section>
+
+            <doc-section
                 title="Differences from MineralUI for React"
-                description="Link and action cards (href, to, component, onClick, interactive, clickEffect) come with the rest of the cards group. Until then, put a link or a button inside a card. The skeleton state also sets aria-busy on the card."
+                description="href, to and component are replaced by a[mCard] with your own href or routerLink. A card cannot be a button and has no onClick: for a clickable region that does not navigate, place a button[mCardActionArea] inside the card. interactive only adds the hover lift and the ripple — the card gets no role, focus or click handling. The skeleton state also sets aria-busy on the card, and a link card shows a focus ring."
             />
 
             <doc-section title="MCard API">
@@ -95,7 +104,7 @@ const TONES: readonly MSurfaceTone[] = ['raised', 'default', 'subtle', 'inverse'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardPage {
-    protected readonly examples = {cardGrid}
+    protected readonly examples = {cardGrid, cardLinks}
 
     protected readonly tone = signal<MSurfaceTone>('raised')
     protected readonly color = signal<MColor>('primary')
@@ -103,6 +112,7 @@ export class CardPage {
     protected readonly padded = signal(false)
     protected readonly stretch = signal(true)
     protected readonly skeleton = signal(false)
+    protected readonly interactive = signal(false)
     protected readonly controls = [
         selectControl('tone', this.tone, TONES),
         selectControl('color', this.color, COLORS),
@@ -110,6 +120,7 @@ export class CardPage {
         booleanControl('padded', this.padded),
         booleanControl('stretch', this.stretch),
         booleanControl('skeleton', this.skeleton),
+        booleanControl('interactive', this.interactive),
     ]
 
     protected readonly code = computed(() => {
@@ -120,6 +131,7 @@ export class CardPage {
             this.padded() && 'padded',
             !this.stretch() && '[stretch]="false"',
             this.skeleton() && 'skeleton',
+            this.interactive() && 'interactive',
         ].filter((attr) => attr !== false)
         const open = attrs.length > 0 ? `<m-card ${attrs.join(' ')}>` : '<m-card>'
         return `${open}

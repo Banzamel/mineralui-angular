@@ -535,6 +535,41 @@
             "collapsible": true,
             "items": [
                 {
+                    "id": "accordion",
+                    "title": "Accordion",
+                    "description": "Stacked collapsible sections with headers."
+                },
+                {
+                    "id": "blur",
+                    "title": "Blur",
+                    "description": "Blurred reveal / teaser surface with click trigger."
+                },
+                {
+                    "id": "code-block",
+                    "title": "Code Block",
+                    "description": "Syntax-highlighted code with copy and language label."
+                },
+                {
+                    "id": "color-picker",
+                    "title": "Color Picker",
+                    "description": "Hex / RGB / HSL color picker with swatches."
+                },
+                {
+                    "id": "count-up",
+                    "title": "CountUp",
+                    "description": "Animated number counter from start to end."
+                },
+                {
+                    "id": "empty-state",
+                    "title": "Empty State",
+                    "description": "Empty placeholder with illustration and CTA."
+                },
+                {
+                    "id": "detail-list",
+                    "title": "Detail List",
+                    "description": "Definition-list style key / value rows with status."
+                },
+                {
                     "id": "icons",
                     "title": "Icons",
                     "description": "267 classic glyph icons and the m-icon component."
@@ -548,6 +583,41 @@
                     "id": "illustrations",
                     "title": "Illustrations",
                     "description": "63 themed scene illustrations and the m-illustration component."
+                },
+                {
+                    "id": "progress-bar",
+                    "title": "Progress",
+                    "description": "Determinate progress bar with animated value."
+                },
+                {
+                    "id": "reveal",
+                    "title": "Reveal",
+                    "description": "Scroll-triggered reveal with direction and delay."
+                },
+                {
+                    "id": "qr-code",
+                    "title": "QR Code",
+                    "description": "Local SVG QR code with status overlay (Pro)."
+                },
+                {
+                    "id": "rating",
+                    "title": "Rating",
+                    "description": "Star rating input with read-only mode."
+                },
+                {
+                    "id": "stepper",
+                    "title": "Stepper",
+                    "description": "Multi-step wizard indicator with active / done states (Pro)."
+                },
+                {
+                    "id": "time-ago",
+                    "title": "TimeAgo",
+                    "description": "Relative timestamp with auto-update interval."
+                },
+                {
+                    "id": "timeline",
+                    "title": "Timeline",
+                    "description": "Vertical event timeline, left, right or alternating (Pro)."
                 }
             ]
         },
@@ -559,7 +629,12 @@
                 {
                     "id": "card",
                     "title": "Base Card",
-                    "description": "MCard with header / body / footer sections."
+                    "description": "MCard with header / body / footer sections, link cards."
+                },
+                {
+                    "id": "card-action-area",
+                    "title": "Card Action Area",
+                    "description": "Tinted clickable region inside a card: an action button or a link."
                 }
             ]
         }
