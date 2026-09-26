@@ -19,6 +19,7 @@ import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MAvatar} from '@banzamel/mineralui-angular/media/avatar'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import chatLazyWindow from '@generated/examples/data/chat/chat-lazy-window'
 import chatRouter from '@generated/examples/data/chat/chat-router'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -147,13 +148,20 @@ const CONVERSATIONS: readonly MChatConversation[] = [
             </doc-section>
 
             <doc-section
+                title="Creating the window on open"
+                description="Projected parts live for as long as the chat — Angular creates projected content even while the floating window is closed. Put the parts in <ng-template mChatWindow> and they are created when the window opens and destroyed when it closes (as in React). Keep the draft across openings with [(value)] on the input; the scroll position starts over."
+            >
+                <doc-preview [example]="examples.lazyWindow" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description="The inline chat is a named region; the floating one a non-modal dialog opened by a button with aria-expanded (its name includes the unread count), focus moves to the message field and returns to the button on Escape. The body is a polite log (focusable, so it scrolls from the keyboard, aria-busy while loading older messages); own messages carry a hidden 'You' and the read receipt in text. Conversations are buttons in a named list, the open one with aria-current. The typing indicator is a status region. The emoji picker is a dialog with the arrow keys moving over the grid."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="open + onToggle become [(open)]; the floating window lives in the top layer (React: a fixed div in a portal). openMChat / useMChatRouter become the MChatRouter service and injectMChatRouter (React: window events). onSend(content, images) becomes (send) with {content, images}, onTyping (typing), onScrollTop (reachedTop), the conversation onClick (itemClick); MChatInput has a [(value)] draft and inserts emoji at the caret. Every text comes from the mineralui.chat.* dictionary (React: hard-coded English)."
+                description="open + onToggle become [(open)]; the floating window lives in the top layer (React: a fixed div in a portal). openMChat / useMChatRouter become the MChatRouter service and injectMChatRouter (React: window events). onSend(content, images) becomes (send) with {content, images}, onTyping (typing), onScrollTop (reachedTop), the conversation onClick (itemClick); MChatInput has a [(value)] draft and inserts emoji at the caret. The floating window mounts its content on open only with ng-template mChatWindow. Every text comes from the mineralui.chat.* dictionary (React: hard-coded English)."
             />
 
             <doc-section title="API">
@@ -166,6 +174,7 @@ const CONVERSATIONS: readonly MChatConversation[] = [
                     <doc-props-table api="MChatConversationList" />
                     <doc-props-table api="MChatConversationItem" />
                     <doc-props-table api="MChatHeader" />
+                    <doc-props-table api="MChatWindow" />
                     <doc-props-table api="MChatMessageData" />
                     <doc-props-table api="MChatConversation" />
                     <doc-props-table api="MChatUser" />
@@ -192,7 +201,7 @@ const CONVERSATIONS: readonly MChatConversation[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatPage {
-    protected readonly examples = {router: chatRouter}
+    protected readonly examples = {router: chatRouter, lazyWindow: chatLazyWindow}
 
     protected readonly variant = signal<MChatVariant>('inline')
     protected readonly color = signal<MColor>('primary')

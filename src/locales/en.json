@@ -803,6 +803,16 @@
             "collapsible": true,
             "items": [
                 {
+                    "id": "calendar-board",
+                    "title": "Calendar",
+                    "description": "Month / week calendar of events with filters, hour bars and the day agenda (Pro)."
+                },
+                {
+                    "id": "calendar-event",
+                    "title": "Calendar Events",
+                    "description": "Day agenda as an event list or an hour timeline, with action menus (Pro)."
+                },
+                {
                     "id": "chat",
                     "title": "Chat",
                     "description": "Chat shell with conversations list and message stream (Pro)."
@@ -826,6 +836,11 @@
                     "id": "task-list",
                     "title": "Task List",
                     "description": "Checklist of tasks with a completion state."
+                },
+                {
+                    "id": "timeline-board",
+                    "title": "Timeline Calendar",
+                    "description": "Resource time axis with panning, working hours, conflicts and a now line (Pro)."
                 },
                 {
                     "id": "tree-view",
