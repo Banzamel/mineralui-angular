@@ -136,13 +136,42 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'time-ago': () => import('@pages/display/time-ago/time-ago.page').then((m) => m.TimeAgoPage),
     timeline: () => import('@pages/display/timeline/timeline.page').then((m) => m.TimelinePage),
 
+    // Media
+    avatar: () => import('@pages/media/avatar/avatar.page').then((m) => m.AvatarPage),
+    'avatar-stack': () => import('@pages/media/avatar-stack/avatar-stack.page').then((m) => m.AvatarStackPage),
+    carousel: () => import('@pages/media/carousel/carousel.page').then((m) => m.CarouselPage),
+    gallery: () => import('@pages/media/gallery/gallery.page').then((m) => m.GalleryPage),
+    image: () => import('@pages/media/image/image.page').then((m) => m.ImagePage),
+    masonry: () => import('@pages/media/masonry/masonry.page').then((m) => m.MasonryPage),
+    'showcase-carousel': () =>
+        import('@pages/media/showcase-carousel/showcase-carousel.page').then((m) => m.ShowcaseCarouselPage),
+
     // Cards
     card: () => import('@pages/cards/card/card.page').then((m) => m.CardPage),
     'card-action-area': () =>
         import('@pages/cards/card-action-area/card-action-area.page').then((m) => m.CardActionAreaPage),
+    'card-business': () => import('@pages/cards/card-business/card-business.page').then((m) => m.CardBusinessPage),
+    'masonry-cards': () => import('@pages/cards/masonry-cards/masonry-cards.page').then((m) => m.MasonryCardsPage),
+    'card-payment': () => import('@pages/cards/card-payment/card-payment.page').then((m) => m.CardPaymentPage),
+    'card-payment-method': () =>
+        import('@pages/cards/card-payment-method/card-payment-method.page').then((m) => m.CardPaymentMethodPage),
+    'card-offer': () => import('@pages/cards/card-offer/card-offer.page').then((m) => m.CardOfferPage),
+    'card-course': () => import('@pages/cards/card-course/card-course.page').then((m) => m.CardCoursePage),
+    'card-tile': () => import('@pages/cards/card-tile/card-tile.page').then((m) => m.CardTilePage),
+    'card-product': () => import('@pages/cards/card-product/card-product.page').then((m) => m.CardProductPage),
+    'card-event': () => import('@pages/cards/card-event/card-event.page').then((m) => m.CardEventPage),
+    'card-widget': () => import('@pages/cards/card-widget/card-widget.page').then((m) => m.CardWidgetPage),
+    'card-stat': () => import('@pages/cards/card-stat/card-stat.page').then((m) => m.CardStatPage),
+    'card-day-schedule': () =>
+        import('@pages/cards/card-day-schedule/card-day-schedule.page').then((m) => m.CardDaySchedulePage),
+    'showcase-carousel-cards': () =>
+        import('@pages/cards/showcase-carousel-cards/showcase-carousel-cards.page').then(
+            (m) => m.ShowcaseCarouselCardsPage
+        ),
 }
 
 /** Old or shared docIds redirected to their page (counterpart of `canonicalDocIdMap` in docs-react). */
 export const DOC_ALIASES: Readonly<Record<string, string>> = {
     tag: 'badge',
+    'stat-card': 'card-stat',
 }

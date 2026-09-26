@@ -72,6 +72,17 @@ describe('DocsNavigation', () => {
             'Timeline',
         ])
 
+        await search('media')
+        expect(links()).toEqual([
+            'Avatar',
+            'Avatar Stack',
+            'Carousel',
+            'Gallery',
+            'Image',
+            'Masonry',
+            'Showcase Carousel',
+        ])
+
         await search('zzz')
         expect(links()).toEqual([])
     })

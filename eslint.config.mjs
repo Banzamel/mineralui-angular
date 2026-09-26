@@ -98,8 +98,13 @@ export default tseslint.config(
         rules: {
             '@angular-eslint/template/prefer-control-flow': 'error',
             '@angular-eslint/template/prefer-self-closing-tags': 'error',
-            // MSocialButton renders its default label ("Sign in with …") as <ng-content> fallback content.
-            '@angular-eslint/template/elements-content': ['error', {allowList: ['mSocialButton']}],
+            // MSocialButton renders its default label ("Sign in with …") as <ng-content> fallback content; mAvatar
+            // names its host with aria-label (alt / name); mCardStat / mCardWidget / mCardPayment render their content
+            // from inputs.
+            '@angular-eslint/template/elements-content': [
+                'error',
+                {allowList: ['mSocialButton', 'mAvatar', 'mCardStat', 'mCardWidget', 'mCardPayment']},
+            ],
         },
     },
     prettier

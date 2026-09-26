@@ -622,6 +622,48 @@
             ]
         },
         {
+            "category": "Media",
+            "icon": "media",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "avatar",
+                    "title": "Avatar",
+                    "description": "User avatar with image / initials fallback, presence and badges."
+                },
+                {
+                    "id": "avatar-stack",
+                    "title": "Avatar Stack",
+                    "description": "Overlapping avatar group with overflow count (Pro)."
+                },
+                {
+                    "id": "carousel",
+                    "title": "Carousel",
+                    "description": "Slide carousel with autoplay, pause control and indicators."
+                },
+                {
+                    "id": "gallery",
+                    "title": "Gallery",
+                    "description": "Responsive image grid with optional lightbox."
+                },
+                {
+                    "id": "image",
+                    "title": "Image",
+                    "description": "Frame for your <img>: fit, aspect ratio, preview groups."
+                },
+                {
+                    "id": "masonry",
+                    "title": "Masonry",
+                    "description": "Pinterest-style packed columns for variable heights (Pro)."
+                },
+                {
+                    "id": "showcase-carousel",
+                    "title": "Showcase Carousel",
+                    "description": "Hero-style media carousel with deep slides (Pro)."
+                }
+            ]
+        },
+        {
             "category": "Cards",
             "icon": "cards",
             "collapsible": true,
@@ -635,6 +677,71 @@
                     "id": "card-action-area",
                     "title": "Card Action Area",
                     "description": "Tinted clickable region inside a card: an action button or a link."
+                },
+                {
+                    "id": "card-business",
+                    "title": "Business Card",
+                    "description": "Business contact card with QR code and social links (Pro)."
+                },
+                {
+                    "id": "masonry-cards",
+                    "title": "Masonry Cards",
+                    "description": "Product cards laid out in a Pinterest-style masonry (Pro)."
+                },
+                {
+                    "id": "card-payment",
+                    "title": "Payment Card",
+                    "description": "Branded credit card visual with auto-detected brand."
+                },
+                {
+                    "id": "card-payment-method",
+                    "title": "Payment Method Card",
+                    "description": "Saved payment method with your own expiry and CVC fields."
+                },
+                {
+                    "id": "card-offer",
+                    "title": "Offer Card",
+                    "description": "Service offer card with gallery, rating and a booking action."
+                },
+                {
+                    "id": "card-course",
+                    "title": "Course Card",
+                    "description": "Course card with teacher, participants and seats."
+                },
+                {
+                    "id": "card-tile",
+                    "title": "Tile Card",
+                    "description": "Media tile with a stretched link, favorite and menu."
+                },
+                {
+                    "id": "card-product",
+                    "title": "Product Card",
+                    "description": "E-commerce product card with quantity and add to cart."
+                },
+                {
+                    "id": "card-event",
+                    "title": "Event Card",
+                    "description": "Event card with date block, location and status."
+                },
+                {
+                    "id": "card-widget",
+                    "title": "Widget Card",
+                    "description": "Compact dashboard widget with title, value and trend."
+                },
+                {
+                    "id": "card-stat",
+                    "title": "Stat Card",
+                    "description": "KPI card with icon, badge and trend."
+                },
+                {
+                    "id": "card-day-schedule",
+                    "title": "Day Schedule Card",
+                    "description": "Daily agenda with timeline + free / alerts / info tabs."
+                },
+                {
+                    "id": "showcase-carousel-cards",
+                    "title": "Showcase Carousel Cards",
+                    "description": "Card-shaped slides for the showcase carousel (Pro)."
                 }
             ]
         }
