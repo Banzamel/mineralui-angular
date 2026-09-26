@@ -161,6 +161,11 @@
                     "description": "Responsive equal-column grid (1-4 cols) with built-in breakpoints."
                 },
                 {
+                    "id": "canvas-grid",
+                    "title": "Canvas Grid",
+                    "description": "Free-placement canvas with (x, y, w, h) unit positions, a dashed guide and keyboard moves."
+                },
+                {
                     "id": "sticky-panel",
                     "title": "Sticky Panel",
                     "description": "Side-rail wrapper: sticky position, viewport-relative height, hidden scrollbar and drag-to-scroll."
@@ -684,6 +689,16 @@
                     "description": "Business contact card with QR code and social links (Pro)."
                 },
                 {
+                    "id": "card-finance",
+                    "title": "Finance Card",
+                    "description": "KPI card with sparkline, change percent and icon (Pro)."
+                },
+                {
+                    "id": "card-grid",
+                    "title": "Grid Cards",
+                    "description": "Responsive grid with search, filter, sort and pagination."
+                },
+                {
                     "id": "masonry-cards",
                     "title": "Masonry Cards",
                     "description": "Product cards laid out in a Pinterest-style masonry (Pro)."
@@ -739,9 +754,88 @@
                     "description": "Daily agenda with timeline + free / alerts / info tabs."
                 },
                 {
+                    "id": "card-document-tree",
+                    "title": "Document Tree Card",
+                    "description": "Composite card pairing tree view with details panel."
+                },
+                {
                     "id": "showcase-carousel-cards",
                     "title": "Showcase Carousel Cards",
                     "description": "Card-shaped slides for the showcase carousel (Pro)."
+                }
+            ]
+        },
+        {
+            "category": "Charts",
+            "icon": "charts",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "line-chart",
+                    "title": "Line Chart",
+                    "description": "Multi-series line chart with axes and tooltip (Pro)."
+                },
+                {
+                    "id": "bar-chart",
+                    "title": "Bar Chart",
+                    "description": "Vertical bar chart with grouped or stacked series (Pro)."
+                },
+                {
+                    "id": "area-chart",
+                    "title": "Area Chart",
+                    "description": "Filled area variant of the line chart (Pro)."
+                },
+                {
+                    "id": "pie-chart",
+                    "title": "Pie Chart",
+                    "description": "Pie / donut chart with legend and value formatter (Pro)."
+                },
+                {
+                    "id": "sparkline",
+                    "title": "Sparkline",
+                    "description": "Compact inline trend chart for KPI cards (Pro)."
+                }
+            ]
+        },
+        {
+            "category": "Data",
+            "icon": "data",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "chat",
+                    "title": "Chat",
+                    "description": "Chat shell with conversations list and message stream (Pro)."
+                },
+                {
+                    "id": "dashboard-grid",
+                    "title": "Dashboard Grid",
+                    "description": "Flowing widget grid with drag & drop, keyboard reordering and per-tile width (Pro)."
+                },
+                {
+                    "id": "data-table",
+                    "title": "Data Table",
+                    "description": "Table with sort, filter, search, selection and pagination."
+                },
+                {
+                    "id": "file-manager",
+                    "title": "File Manager",
+                    "description": "File / folder manager with tree, grid and toolbar (Pro)."
+                },
+                {
+                    "id": "task-list",
+                    "title": "Task List",
+                    "description": "Checklist of tasks with a completion state."
+                },
+                {
+                    "id": "tree-view",
+                    "title": "TreeView",
+                    "description": "Tree view with selection, drag-drop, keyboard moves and context menu."
+                },
+                {
+                    "id": "week-grid",
+                    "title": "Week Grid",
+                    "description": "Day × hour heatmap with density bands, tooltips and a legend."
                 }
             ]
         }

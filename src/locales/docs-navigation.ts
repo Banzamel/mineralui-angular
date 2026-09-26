@@ -3,6 +3,7 @@ import {
     mBellIcon,
     mClickIcon,
     mDashboardIcon,
+    mDatabaseIcon,
     mFormIcon,
     mLayoutIcon,
     mMagicIcon,
@@ -41,6 +42,7 @@ const SECTION_ICONS: Readonly<Record<string, MIconDef>> = {
     overlays: mWindowIcon,
     display: mMagicIcon,
     cards: mDashboardIcon,
+    data: mDatabaseIcon,
 }
 
 export function sectionIcon(section: DocsNavSection): MIconDef | undefined {

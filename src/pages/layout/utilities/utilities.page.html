@@ -67,32 +67,19 @@
         title="Hooks and class helpers"
         description="MineralUI for React also exports hooks and a class helper. In Angular they become directives, signals or plain bindings."
     >
-        <div class="doc-table-scroll">
-            <table class="doc-table">
-                <caption class="doc-visually-hidden">
-                    React helpers and their Angular counterparts
-                </caption>
-                <thead>
-                    <tr>
-                        <th scope="col">React</th>
-                        <th scope="col">Angular</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (helper of reactHelpers; track helper.react) {
-                        <tr>
-                            <th scope="row">
-                                <code mCode>{{ helper.react }}</code>
-                            </th>
-                            <td>{{ helper.angular }}</td>
-                            <td>
-                                <span mText tone="muted">{{ helper.status }}</span>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+        <m-data-table
+            compact
+            class="doc-reference-table"
+            label="React helpers and their Angular counterparts"
+            [columns]="helperColumns"
+            [data]="reactHelpers"
+        >
+            <ng-template mCell="react" let-value="value"
+                ><code mCode>{{ value }}</code></ng-template
+            >
+            <ng-template mCell="status" let-value="value"
+                ><span mText tone="muted">{{ value }}</span></ng-template
+            >
+        </m-data-table>
     </doc-section>
 </doc-article>

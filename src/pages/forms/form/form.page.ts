@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {MDataTable, MDataTableCell} from '@banzamel/mineralui-angular/data/data-table'
+import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
@@ -52,13 +54,34 @@ const MESSAGE_ORDER = [
 
 @Component({
     selector: 'doc-form-page',
-    imports: [CodeBlock, DocArticle, DocSection, DocPreview, DocPropsTable, MCode, MList, MListItem, MStack, MText],
+    imports: [
+        MDataTable,
+        MDataTableCell,
+        CodeBlock,
+        DocArticle,
+        DocSection,
+        DocPreview,
+        DocPropsTable,
+        MCode,
+        MList,
+        MListItem,
+        MStack,
+        MText,
+    ],
     templateUrl: './form.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormPage {
     protected readonly examples = {formSignup, formCustomField}
     protected readonly snippets = snippets
+    protected readonly messageColumns: readonly MDataTableColumn[] = [
+        {key: '0', label: 'Source', rowHeader: true},
+        {key: '1', label: 'Scope'},
+    ]
+    protected readonly migrationColumns: readonly MDataTableColumn[] = [
+        {key: 'react', label: 'React', rowHeader: true},
+        {key: 'angular', label: 'Angular'},
+    ]
     protected readonly migration = MIGRATION
     protected readonly messageOrder = MESSAGE_ORDER
 }

@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {MDataTable, MDataTableCell} from '@banzamel/mineralui-angular/data/data-table'
+import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
@@ -28,11 +30,16 @@ const REACT_HELPERS = [
 
 @Component({
     selector: 'doc-utilities-page',
-    imports: [DocArticle, DocSection, DocPreview, DocPropsTable, MCode, MStack, MText],
+    imports: [MDataTable, MDataTableCell, DocArticle, DocSection, DocPreview, DocPropsTable, MCode, MStack, MText],
     templateUrl: './utilities.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UtilitiesPage {
     protected readonly examples = {utilsSpacing, utilsValidators, utilsFormatters, utilsDates, utilsClickOutside}
+    protected readonly helperColumns: readonly MDataTableColumn[] = [
+        {key: 'react', label: 'React', rowHeader: true},
+        {key: 'angular', label: 'Angular'},
+        {key: 'status', label: 'Status'},
+    ]
     protected readonly reactHelpers = REACT_HELPERS
 }

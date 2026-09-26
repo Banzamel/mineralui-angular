@@ -28,6 +28,7 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
         import('@pages/layout/layout-primitives/layout-primitives.page').then((m) => m.LayoutPrimitivesPage),
     'simple-grid': () => import('@pages/layout/simple-grid/simple-grid.page').then((m) => m.SimpleGridPage),
     'stat-grid': () => import('@pages/layout/stat-grid/stat-grid.page').then((m) => m.StatGridPage),
+    'canvas-grid': () => import('@pages/layout/canvas-grid/canvas-grid.page').then((m) => m.CanvasGridPage),
     'responsive-hidden': () =>
         import('@pages/layout/responsive-hidden/responsive-hidden.page').then((m) => m.ResponsiveHiddenPage),
     utilities: () => import('@pages/layout/utilities/utilities.page').then((m) => m.UtilitiesPage),
@@ -151,6 +152,8 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'card-action-area': () =>
         import('@pages/cards/card-action-area/card-action-area.page').then((m) => m.CardActionAreaPage),
     'card-business': () => import('@pages/cards/card-business/card-business.page').then((m) => m.CardBusinessPage),
+    'card-finance': () => import('@pages/cards/card-finance/card-finance.page').then((m) => m.CardFinancePage),
+    'card-grid': () => import('@pages/cards/card-grid/card-grid.page').then((m) => m.CardGridPage),
     'masonry-cards': () => import('@pages/cards/masonry-cards/masonry-cards.page').then((m) => m.MasonryCardsPage),
     'card-payment': () => import('@pages/cards/card-payment/card-payment.page').then((m) => m.CardPaymentPage),
     'card-payment-method': () =>
@@ -164,10 +167,27 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'card-stat': () => import('@pages/cards/card-stat/card-stat.page').then((m) => m.CardStatPage),
     'card-day-schedule': () =>
         import('@pages/cards/card-day-schedule/card-day-schedule.page').then((m) => m.CardDaySchedulePage),
+    'card-document-tree': () =>
+        import('@pages/cards/card-document-tree/card-document-tree.page').then((m) => m.CardDocumentTreePage),
     'showcase-carousel-cards': () =>
         import('@pages/cards/showcase-carousel-cards/showcase-carousel-cards.page').then(
             (m) => m.ShowcaseCarouselCardsPage
         ),
+
+    // Charts
+    'line-chart': () => import('@pages/charts/line-chart/line-chart.page').then((m) => m.LineChartPage),
+    'bar-chart': () => import('@pages/charts/bar-chart/bar-chart.page').then((m) => m.BarChartPage),
+    'area-chart': () => import('@pages/charts/area-chart/area-chart.page').then((m) => m.AreaChartPage),
+    'pie-chart': () => import('@pages/charts/pie-chart/pie-chart.page').then((m) => m.PieChartPage),
+    sparkline: () => import('@pages/charts/sparkline/sparkline.page').then((m) => m.SparklinePage),
+
+    chat: () => import('@pages/data/chat/chat.page').then((m) => m.ChatPage),
+    'dashboard-grid': () => import('@pages/data/dashboard-grid/dashboard-grid.page').then((m) => m.DashboardGridPage),
+    'data-table': () => import('@pages/data/data-table/data-table.page').then((m) => m.DataTablePage),
+    'file-manager': () => import('@pages/data/file-manager/file-manager.page').then((m) => m.FileManagerPage),
+    'task-list': () => import('@pages/data/task-list/task-list.page').then((m) => m.TaskListPage),
+    'tree-view': () => import('@pages/data/tree-view/tree-view.page').then((m) => m.TreeViewPage),
+    'week-grid': () => import('@pages/data/week-grid/week-grid.page').then((m) => m.WeekGridPage),
 }
 
 /** Old or shared docIds redirected to their page (counterpart of `canonicalDocIdMap` in docs-react). */

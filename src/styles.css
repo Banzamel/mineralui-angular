@@ -73,47 +73,8 @@ m-card-header.doc-section-header {
     font-weight: 600;
 }
 
-/* TEMP: replace with MDataTable compact (etap 7) */
-.doc-table-scroll {
-    overflow-x: auto;
-}
-
-.doc-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--mineral-font-size-sm);
-}
-
-.doc-table th,
-.doc-table td {
-    padding: 0.55rem 0.75rem;
-    border-bottom: 1px solid var(--mineral-border);
-    text-align: left;
+/* Reference tables (API, tokens, conventions) on MDataTable: long type names wrap, cells align to the top. */
+.doc-reference-table .m-data-table-td {
     vertical-align: top;
     overflow-wrap: anywhere;
-}
-
-/* Column headers only — row headers (th scope="row") hold names such as inputs and keep their case. */
-.doc-table thead th {
-    color: var(--mineral-text-secondary);
-    font-size: var(--mineral-font-size-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-
-.doc-table tbody th {
-    font-weight: 400;
-}
-
-.doc-visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
 }

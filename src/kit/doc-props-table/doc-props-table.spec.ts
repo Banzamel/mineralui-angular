@@ -21,12 +21,14 @@ describe('DocPropsTable', () => {
         await fixture.whenStable()
         const element: HTMLElement = fixture.nativeElement
         const inputs = element.querySelector('table')!
-        const rows = [...inputs.querySelectorAll('tbody tr')].map((row) => row.querySelector('th code')?.textContent)
+        const rows = [...inputs.querySelectorAll('tbody tr')].map(
+            (row) => row.querySelector('th[scope="row"] code')?.textContent
+        )
 
         expect(element.textContent).toContain("import {MIcon} from '@banzamel/mineralui-angular/icons'")
         expect(element.textContent).toContain('m-icon')
         expect(rows).toEqual(API['MIcon']?.members.map((member) => member.name))
-        expect(element.querySelectorAll('caption').length).toBeGreaterThan(0)
+        expect(inputs.getAttribute('aria-label')).toBe('MIcon — Inputs')
     })
 
     it('documents content slots from @slot tags', () => {

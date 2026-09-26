@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {MDataTable, MDataTableCell} from '@banzamel/mineralui-angular/data/data-table'
+import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table'
 import welcomeCard from '@generated/examples/getting-started/quick-start/welcome-card'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -46,11 +48,16 @@ const CONVENTIONS: readonly {readonly react: string; readonly angular: string; r
 
 @Component({
     selector: 'doc-quick-start-page',
-    imports: [MText, DocArticle, DocSection, DocPreview, MCode],
+    imports: [MDataTable, MDataTableCell, MText, DocArticle, DocSection, DocPreview, MCode],
     templateUrl: './quick-start.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuickStartPage {
     protected readonly welcomeCard = welcomeCard
+    protected readonly conventionColumns: readonly MDataTableColumn[] = [
+        {key: 'react', label: 'React', rowHeader: true},
+        {key: 'angular', label: 'Angular'},
+        {key: 'example', label: 'Example'},
+    ]
     protected readonly conventions = CONVENTIONS
 }

@@ -40,29 +40,17 @@
 
     <doc-section title="Error messages" description="The text of an automatic error, first match wins.">
         <m-stack>
-            <div class="doc-table-scroll">
-                <table class="doc-table">
-                    <caption class="doc-visually-hidden">
-                        Sources of a field's error message
-                    </caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Source</th>
-                            <th scope="col">Scope</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (row of messageOrder; track row[0]) {
-                            <tr>
-                                <th scope="row">
-                                    <code mCode>{{ row[0] }}</code>
-                                </th>
-                                <td>{{ row[1] }}</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <m-data-table
+                compact
+                class="doc-reference-table"
+                label="Sources of a field's error message"
+                [columns]="messageColumns"
+                [data]="messageOrder"
+            >
+                <ng-template mCell="0" let-value="value"
+                    ><code mCode>{{ value }}</code></ng-template
+                >
+            </m-data-table>
             <p mText size="sm" tone="muted">
                 Translate every field's messages at once in the dictionary (placeholders are filled from the error
                 object):
@@ -75,29 +63,17 @@
         title="Migrating from MForm"
         description="MineralUI for React ships its own form engine (MForm, useFormField). In Angular the same jobs belong to @angular/forms."
     >
-        <div class="doc-table-scroll">
-            <table class="doc-table">
-                <caption class="doc-visually-hidden">
-                    React form API and its Angular counterparts
-                </caption>
-                <thead>
-                    <tr>
-                        <th scope="col">React</th>
-                        <th scope="col">Angular</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (row of migration; track row.react) {
-                        <tr>
-                            <th scope="row">
-                                <code mCode>{{ row.react }}</code>
-                            </th>
-                            <td>{{ row.angular }}</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+        <m-data-table
+            compact
+            class="doc-reference-table"
+            label="React form API and its Angular counterparts"
+            [columns]="migrationColumns"
+            [data]="migration"
+        >
+            <ng-template mCell="react" let-value="value"
+                ><code mCode>{{ value }}</code></ng-template
+            >
+        </m-data-table>
     </doc-section>
 
     <doc-section title="API">

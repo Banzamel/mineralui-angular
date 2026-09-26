@@ -1,6 +1,8 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {ChangeDetectionStrategy, Component, computed, inject} from '@angular/core'
+import {MDataTable, MDataTableCell} from '@banzamel/mineralui-angular/data/data-table'
+import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table'
 import {RouterLink} from '@angular/router'
-import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
+import {MI18nService, MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {MIcon, mDownloadIcon} from '@banzamel/mineralui-angular/icons'
 import themeMode from '@generated/examples/getting-started/theming/theme-mode'
 import themeScope from '@generated/examples/getting-started/theming/theme-scope'
@@ -63,6 +65,8 @@ const THEME_TYPES: readonly {readonly name: string; readonly type: string; reado
 @Component({
     selector: 'doc-theming-page',
     imports: [
+        MDataTable,
+        MDataTableCell,
         MText,
         RouterLink,
         MIcon,
@@ -84,6 +88,16 @@ export class ThemingPage {
     protected readonly snippets = snippets
     protected readonly examples = {themeMode, themeScope}
     protected readonly download = mDownloadIcon
+    private readonly i18n = inject(MI18nService)
+    protected readonly tokenColumns: readonly MDataTableColumn[] = [
+        {key: 'group', label: 'Group', width: '22%', rowHeader: true},
+        {key: 'tokens', label: 'Key tokens'},
+    ]
+    protected readonly typeColumns = computed<readonly MDataTableColumn[]>(() => [
+        {key: 'name', label: 'Type', width: '20%', rowHeader: true},
+        {key: 'type', label: this.i18n.t('ui.propsType', 'Type'), width: '45%'},
+        {key: 'description', label: this.i18n.t('ui.propsDescription', 'Description')},
+    ])
     protected readonly tokenGroups = TOKEN_GROUPS
     protected readonly themeTypes = THEME_TYPES
 }
