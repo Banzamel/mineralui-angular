@@ -1,19 +1,18 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {MCard} from '@banzamel/mineralui-angular/cards/card'
 import {MGrid, MGridItem} from '@banzamel/mineralui-angular/layout/grid'
-import {MSurface} from '@banzamel/mineralui-angular/layout/surface'
 
 @Component({
     selector: 'app-hidden-swap',
-    imports: [MGrid, MGridItem, MSurface],
+    imports: [MCard, MGrid, MGridItem],
     template: `
         <!-- Same breakpoint on both: exactly one of the two is visible at any width. -->
         <m-grid>
             <m-grid-item [sm]="12" hiddenUpTo="lg">
-                <!-- TEMP: replace with MCard (etap 6) -->
-                <div mSurface>Desktop layout (visible above lg)</div>
+                <m-card padded>Desktop layout (visible above lg)</m-card>
             </m-grid-item>
             <m-grid-item [sm]="12" hiddenAbove="lg">
-                <div mSurface tone="subtle">Compact layout (visible at lg and below)</div>
+                <m-card padded tone="subtle">Compact layout (visible at lg and below)</m-card>
             </m-grid-item>
         </m-grid>
     `,

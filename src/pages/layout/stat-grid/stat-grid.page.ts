@@ -1,11 +1,9 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
+import {MCardStat} from '@banzamel/mineralui-angular/cards/card-stat'
 import type {MSimpleGridColumns} from '@banzamel/mineralui-angular/layout/simple-grid'
 import {mSimpleGridColumnValues} from '@banzamel/mineralui-angular/layout/simple-grid'
 import {MStatGrid} from '@banzamel/mineralui-angular/layout/stat-grid'
-import {MSurface} from '@banzamel/mineralui-angular/layout/surface'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
-import {MSubText} from '@banzamel/mineralui-angular/typography/sub-text'
-import {MText} from '@banzamel/mineralui-angular/typography/text'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {selectControl} from '@kit/doc-playground/playground-controls'
@@ -14,15 +12,15 @@ import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 interface Stat {
     readonly label: string
     readonly value: string
-    readonly trend: string
+    readonly trend: number
     readonly color: MColor
 }
 
 const STATS: readonly Stat[] = [
-    {label: 'Revenue', value: '$48,200', trend: '+12.4%', color: 'success'},
-    {label: 'Active users', value: '3,218', trend: '+4.1%', color: 'primary'},
-    {label: 'Churn', value: '1.8%', trend: '-0.3%', color: 'warning'},
-    {label: 'Tickets', value: '42', trend: '+6', color: 'error'},
+    {label: 'Active clients', value: '284', trend: 12, color: 'primary'},
+    {label: 'Team online', value: '19', trend: 4, color: 'success'},
+    {label: 'Pending reviews', value: '7', trend: -2, color: 'warning'},
+    {label: 'Critical alerts', value: '2', trend: -1, color: 'error'},
 ]
 const COLUMNS = mSimpleGridColumnValues.map(String)
 
@@ -31,7 +29,7 @@ const isColumns = (value: number): value is MSimpleGridColumns =>
 
 @Component({
     selector: 'doc-stat-grid-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPropsTable, MStatGrid, MSubText, MSurface, MText],
+    imports: [DocArticle, DocSection, DocPlayground, DocPropsTable, MCardStat, MStatGrid],
     template: `
         <doc-article
             title="MStatGrid"
@@ -44,12 +42,12 @@ const isColumns = (value: number): value is MSimpleGridColumns =>
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-stat-grid [columns]="columns()" style="width: 100%">
                         @for (stat of stats; track stat.label) {
-                            <!-- TEMP: the tile replaces with MCardStat (etap 6) -->
-                            <div mSurface>
-                                <small mSubText>{{ stat.label }}</small>
-                                <p mText size="xl" weight="bold">{{ stat.value }}</p>
-                                <small mSubText [color]="stat.color">{{ stat.trend }}</small>
-                            </div>
+                            <m-card-stat
+                                [label]="stat.label"
+                                [value]="stat.value"
+                                [trend]="stat.trend"
+                                [color]="stat.color"
+                            />
                         }
                     </m-stat-grid>
                 </doc-playground>
@@ -78,7 +76,7 @@ export class StatGridPage {
         return [
             `<m-stat-grid${columns}>`,
             '    @for (stat of stats; track stat.label) {',
-            '        <app-stat-card [stat]="stat" />',
+            '        <m-card-stat [label]="stat.label" [value]="stat.value" [trend]="stat.trend" [color]="stat.color" />',
             '    }',
             '</m-stat-grid>',
         ].join('\n')

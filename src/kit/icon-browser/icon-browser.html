@@ -15,22 +15,28 @@
                                 <ul class="doc-icon-grid">
                                     @for (name of group.items; track name) {
                                         <li>
-                                            <button
-                                                type="button"
-                                                class="doc-icon-card"
-                                                [attr.aria-label]="(copied() === name ? 'Copied: ' : 'Copy: ') + name"
-                                                (click)="copy(name)"
-                                            >
-                                                @if (icons().get(name); as icon) {
-                                                    <m-icon [icon]="icon" size="lg" [shell]="shell()" />
-                                                }
-                                                <span class="doc-icon-name">{{
-                                                    copied() === name ? 'Copied' : name
-                                                }}</span>
-                                                @if (newIcons().has(name)) {
-                                                    <m-badge color="news" size="xs" rounded>new</m-badge>
-                                                }
-                                            </button>
+                                            <m-card interactive>
+                                                <m-card-body>
+                                                    <button
+                                                        type="button"
+                                                        class="doc-copy-card"
+                                                        [attr.aria-label]="
+                                                            (copied() === name ? 'Copied: ' : 'Copy: ') + name
+                                                        "
+                                                        (click)="copy(name)"
+                                                    >
+                                                        @if (icons().get(name); as icon) {
+                                                            <m-icon [icon]="icon" size="lg" [shell]="shell()" />
+                                                        }
+                                                        <span class="doc-icon-name">{{
+                                                            copied() === name ? 'Copied' : name
+                                                        }}</span>
+                                                        @if (newIcons().has(name)) {
+                                                            <m-badge color="news" size="xs" rounded>new</m-badge>
+                                                        }
+                                                    </button>
+                                                </m-card-body>
+                                            </m-card>
                                         </li>
                                     }
                                 </ul>

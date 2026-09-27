@@ -3,16 +3,22 @@
     <ul class="doc-scene-grid">
         @for (scene of visible(); track scene.name) {
             <li>
-                <button
-                    type="button"
-                    class="doc-scene-card"
-                    [attr.aria-label]="(copied() === scene.name ? 'Copied: ' : 'Copy: ') + scene.name"
-                    (click)="copy(scene.name)"
-                >
-                    <m-illustration [illustration]="scene.illustration" [size]="140" [animate]="false" />
-                    <span mText weight="semibold">{{ scene.label }}</span>
-                    <span mText tone="muted" size="sm">{{ copied() === scene.name ? 'Copied' : scene.name }}</span>
-                </button>
+                <m-card interactive>
+                    <m-card-body>
+                        <button
+                            type="button"
+                            class="doc-copy-card"
+                            [attr.aria-label]="(copied() === scene.name ? 'Copied: ' : 'Copy: ') + scene.name"
+                            (click)="copy(scene.name)"
+                        >
+                            <m-illustration [illustration]="scene.illustration" [size]="140" [animate]="false" />
+                            <span mText weight="semibold">{{ scene.label }}</span>
+                            <span mText tone="muted" size="sm" class="doc-scene-name">{{
+                                copied() === scene.name ? 'Copied' : scene.name
+                            }}</span>
+                        </button>
+                    </m-card-body>
+                </m-card>
             </li>
         } @empty {
             <li class="doc-scene-empty"><m-alert color="info" heading="No scenes match this search." /></li>

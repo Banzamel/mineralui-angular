@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
+import {MCard, MCardBody} from '@banzamel/mineralui-angular/cards/card'
 import type {MDividerOrientation, MDividerVariant} from '@banzamel/mineralui-angular/layout/divider'
 import {MDivider} from '@banzamel/mineralui-angular/layout/divider'
 import {MInline} from '@banzamel/mineralui-angular/layout/inline'
@@ -27,7 +28,19 @@ const scale = (value: Scale): MUtilityScale | undefined => (value === '(unset)' 
 
 @Component({
     selector: 'doc-divider-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPropsTable, MDivider, MInline, MStack, MSurface, MText],
+    imports: [
+        DocArticle,
+        DocSection,
+        DocPlayground,
+        DocPropsTable,
+        MCard,
+        MCardBody,
+        MDivider,
+        MInline,
+        MStack,
+        MSurface,
+        MText,
+    ],
     templateUrl: './divider.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -83,17 +96,21 @@ export class DividerPage {
             ].join('\n')
         }
         return [
-            '<m-stack>',
-            '    <div>',
-            '        <p mText weight="semibold">Workspace settings</p>',
-            '        <p mText tone="muted" size="sm">Manage company details, locale and notification defaults.</p>',
-            '    </div>',
-            `    <m-divider${attrs} />`,
-            '    <div>',
-            '        <p mText weight="semibold">Team access</p>',
-            '        <p mText tone="muted" size="sm">Review invitations, role changes and pending approvals.</p>',
-            '    </div>',
-            '</m-stack>',
+            '<m-card>',
+            '    <m-card-body>',
+            '        <m-stack>',
+            '            <div>',
+            '                <p mText weight="semibold">Workspace settings</p>',
+            '                <p mText tone="muted" size="sm">Manage company details, locale and notification defaults.</p>',
+            '            </div>',
+            `            <m-divider${attrs} />`,
+            '            <div>',
+            '                <p mText weight="semibold">Team access</p>',
+            '                <p mText tone="muted" size="sm">Review invitations, role changes and pending approvals.</p>',
+            '            </div>',
+            '        </m-stack>',
+            '    </m-card-body>',
+            '</m-card>',
         ].join('\n')
     })
 }

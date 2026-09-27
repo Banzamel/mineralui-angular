@@ -1,7 +1,7 @@
 <doc-article title="MSubText" description="Small, muted secondary text for captions, hints and metadata.">
     <doc-section
         title="Playground"
-        description="Preview the rendered tag, size, tone and semantic color of secondary text."
+        description="Preview the rendered tag, size, tone and semantic color of secondary text, with an optional relative timestamp from MTimeAgo."
     >
         <doc-playground [controls]="controls" [code]="code()">
             <m-stack>
@@ -9,26 +9,33 @@
                 @switch (tag()) {
                     @case ('p') {
                         <p mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">
-                            {{ caption }}
+                            <ng-container [ngTemplateOutlet]="caption" />
                         </p>
                     }
                     @case ('div') {
                         <div mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">
-                            {{ caption }}
+                            <ng-container [ngTemplateOutlet]="caption" />
                         </div>
                     }
                     @case ('small') {
-                        <small mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">{{
-                            caption
-                        }}</small>
+                        <small mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">
+                            <ng-container [ngTemplateOutlet]="caption" />
+                        </small>
                     }
                     @default {
-                        <span mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">{{
-                            caption
-                        }}</span>
+                        <span mSubText [size]="size()" [tone]="tone()" [color]="color()" [hiddenUpTo]="hiddenUpTo()">
+                            <ng-container [ngTemplateOutlet]="caption" />
+                        </span>
                     }
                 }
             </m-stack>
+            <ng-template #caption>
+                @if (withTimeAgo()) {
+                    Updated <time mTimeAgo [value]="updatedAt"></time>
+                } @else {
+                    {{ plainCaption }}
+                }
+            </ng-template>
         </doc-playground>
     </doc-section>
 

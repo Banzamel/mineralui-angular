@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, signal} from '@angular/core'
+import {MCard, MCardBody} from '@banzamel/mineralui-angular/cards/card'
 import {MAlert} from '@banzamel/mineralui-angular/feedback/alert'
 import {MToastService} from '@banzamel/mineralui-angular/feedback/toast'
 import type {MIllustrationDef} from '@banzamel/mineralui-angular/illustrations'
@@ -15,10 +16,10 @@ export interface GalleryScene {
 
 const COPIED_FOR_MS = 1200
 
-/** Searchable scene gallery; each card copies the export name. TEMP: MCard (etap 6). */
+/** Searchable scene gallery; each card copies the export name. */
 @Component({
     selector: 'doc-illustration-gallery',
-    imports: [MAlert, MStack, MText, MIllustration, MInputSearch],
+    imports: [MAlert, MCard, MCardBody, MStack, MText, MIllustration, MInputSearch],
     templateUrl: './illustration-gallery.html',
     styleUrl: './illustration-gallery.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

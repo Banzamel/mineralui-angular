@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, signal} from '@angular/core'
+import {MCard, MCardBody} from '@banzamel/mineralui-angular/cards/card'
 import {MAlert} from '@banzamel/mineralui-angular/feedback/alert'
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
 import {MToastService} from '@banzamel/mineralui-angular/feedback/toast'
@@ -35,12 +36,10 @@ const COPIED_FOR_MS = 1200
 
 /**
  * Searchable, tabbed icon catalog; each card copies the export name (counterpart of the docs-react icon browsers).
- *
- * TEMP: cards replace with MCard (etap 6).
  */
 @Component({
     selector: 'doc-icon-browser',
-    imports: [MAlert, MBadge, MStack, MTab, MTabContent, MTabs, MText, MIcon, MHeading, MInputSearch],
+    imports: [MAlert, MBadge, MCard, MCardBody, MStack, MTab, MTabContent, MTabs, MText, MIcon, MHeading, MInputSearch],
     templateUrl: './icon-browser.html',
     styleUrl: './icon-browser.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -7,29 +7,8 @@
     list-style: none;
 }
 
-.doc-scene-card {
-    display: grid;
-    justify-items: center;
-    gap: var(--mineral-spacing-xs);
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    padding: var(--mineral-spacing-md);
-    border: 1px solid var(--mineral-border);
-    border-radius: var(--mineral-radius-md);
-    background: var(--mineral-surface);
-    color: var(--mineral-text);
-    font: inherit;
-    cursor: pointer;
-}
-
-.doc-scene-card:hover {
-    border-color: var(--mineral-primary);
-}
-
-.doc-scene-card:focus-visible {
-    outline: 2px solid var(--mineral-border-focus);
-    outline-offset: 2px;
+.doc-scene-name {
+    overflow-wrap: anywhere;
 }
 
 .doc-scene-empty {

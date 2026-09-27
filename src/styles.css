@@ -1,7 +1,6 @@
 /*
- * Docs-only styles. Everything below `TEMP` is the temporary docs shell built on --mineral-* tokens until the
- * library components exist (inventory: project/inventory/docs-shell.md). Each block names the component that
- * replaces it.
+ * Docs-only styles on top of the library: page chrome, docs' own spacing helpers and adjustments of library
+ * components in docs contexts (inventory: project/inventory/docs-shell.md).
  */
 
 html {
@@ -77,4 +76,37 @@ m-card-header.doc-section-header {
 .doc-reference-table .m-data-table-td {
     vertical-align: top;
     overflow-wrap: anywhere;
+}
+
+/* Copy tiles of the icon and illustration catalogs: a native button stretched over MCard interactive (docs-react
+   puts the click handler on the card itself, which leaves it without a button role). */
+.doc-copy-card {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    gap: var(--mineral-spacing-sm);
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+}
+
+.doc-copy-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.doc-copy-card:focus-visible {
+    outline: none;
+}
+
+/* Outline, not --mineral-focus-ring: that token resolves on :root, where --color-rgb is unset, so it is empty. */
+.m-card:has(.doc-copy-card:focus-visible) {
+    outline: 2px solid var(--mineral-border-focus);
+    outline-offset: 2px;
 }
