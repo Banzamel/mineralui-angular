@@ -4,6 +4,7 @@ import type {MFileManagerNode, MFileManagerView} from '@banzamel/mineralui-angul
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import fileManagerWorkspace from '@generated/examples/data/file-manager/file-manager-workspace'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -33,12 +34,17 @@ const FILES: readonly MFileManagerNode[] = [
 
 @Component({
     selector: 'doc-file-manager-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MFileManager, MStack],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MFileManager, MStack],
     template: `
         <doc-article
             title="MFileManager"
             description="File browser with breadcrumbs, search, a folder tree, list and grid views and a preview panel."
         >
+            <doc-pro-notice
+                [components]="['MFileManager']"
+                reason="The file manager is a higher-level workflow module of MineralUI Pro."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-file-manager

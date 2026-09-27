@@ -3,6 +3,7 @@ import {MAreaChart} from '@banzamel/mineralui-angular/data/area-chart'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import areaChartCompact from '@generated/examples/charts/area-chart/area-chart-compact'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -11,12 +12,17 @@ import {flagAttributes, MONTHS, MULTI_SERIES, SINGLE_SERIES} from '../chart-samp
 
 @Component({
     selector: 'doc-area-chart-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MAreaChart, MStack],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MAreaChart, MStack],
     template: `
         <doc-article
             title="MAreaChart"
             description="Line chart with a gradient fill under each series — stacked, it shows how parts add up to a total over time."
         >
+            <doc-pro-notice
+                [components]="['MAreaChart']"
+                reason="Area chart is part of the MineralUI Pro charts module."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-area-chart

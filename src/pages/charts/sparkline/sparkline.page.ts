@@ -4,6 +4,7 @@ import type {MSparklineType} from '@banzamel/mineralui-angular/data/sparkline'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import sparklineKpi from '@generated/examples/charts/sparkline/sparkline-kpi'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -14,12 +15,17 @@ const TYPES: readonly MSparklineType[] = ['line', 'bar', 'area']
 
 @Component({
     selector: 'doc-sparkline-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MSparkline],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MSparkline],
     template: `
         <doc-article
             title="MSparkline"
             description="Tiny trend chart without axes — a line, an area or bars — for KPI cards, table cells and lists."
         >
+            <doc-pro-notice
+                [components]="['MSparkline']"
+                reason="Sparkline is part of the MineralUI Pro charts module."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-sparkline

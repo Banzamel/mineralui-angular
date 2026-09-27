@@ -8,6 +8,7 @@ import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import topbarRouter from '@generated/examples/navigation/topbar/topbar-router'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -19,12 +20,28 @@ const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
 
 @Component({
     selector: 'doc-topbar-page',
-    imports: [DocArticle, DocPlayground, DocPreview, DocPropsTable, DocSection, MCode, MList, MListItem, MTopbar],
+    imports: [
+        DocArticle,
+        DocProNotice,
+        DocPlayground,
+        DocPreview,
+        DocPropsTable,
+        DocSection,
+        MCode,
+        MList,
+        MListItem,
+        MTopbar,
+    ],
     template: `
         <doc-article
             title="MTopbar"
             description="Horizontal application menu placed below the main header, with dropdown sections that mirror richer sidebar structures."
         >
+            <doc-pro-notice
+                [components]="['MTopbar']"
+                reason="Application top-bars with rich dropdown sections are part of MineralUI Pro."
+            />
+
             <doc-section
                 title="Playground"
                 description="Links, an action and dropdowns from [items]. When the entries do not fit the row scrolls sideways; arrows show on hover. The bar hides itself at and below compactBreakpoint (1024 px)."

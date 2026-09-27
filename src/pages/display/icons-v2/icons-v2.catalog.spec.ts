@@ -1,4 +1,4 @@
-import * as icons from '@banzamel/mineralui-angular/icons'
+import * as icons from '@banzamel/mineralui-angular/icons/v2'
 import {iconMap} from '@kit/icon-browser/icon-browser'
 import {ICON_TABS, PLAYGROUND_ICONS} from './icons-v2.catalog'
 

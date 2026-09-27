@@ -1,17 +1,23 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
 import showcaseCarouselCardsProducts from '@generated/examples/cards/showcase-carousel-cards/showcase-carousel-cards-products'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 @Component({
     selector: 'doc-showcase-carousel-cards-page',
-    imports: [DocArticle, DocSection, DocPreview, DocPropsTable],
+    imports: [DocArticle, DocProNotice, DocSection, DocPreview, DocPropsTable],
     template: `
         <doc-article
             title="Showcase Carousel Cards"
             description="Product cards in a centered carousel: MShowcaseCarouselItem with a save button, body content and a footer action."
         >
+            <doc-pro-notice
+                [components]="['MShowcaseCarousel']"
+                reason="This composition depends on the Pro showcase carousel component."
+            />
+
             <doc-section
                 title="Featured products"
                 description="Only the centered card is interactive; the side previews are inert. Drag, scroll or use the buttons to bring another card to the center."

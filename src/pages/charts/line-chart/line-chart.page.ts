@@ -3,6 +3,7 @@ import {MLineChart} from '@banzamel/mineralui-angular/data/line-chart'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import lineChartInteractive from '@generated/examples/charts/line-chart/line-chart-interactive'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -11,12 +12,17 @@ import {flagAttributes, MONTHS, MULTI_SERIES, SINGLE_SERIES} from '../chart-samp
 
 @Component({
     selector: 'doc-line-chart-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MLineChart, MStack],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MLineChart, MStack],
     template: `
         <doc-article
             title="MLineChart"
             description="Line chart for trends and continuous series, with optional Bézier curves, axes, grid, legend and a tooltip that follows the pointer."
         >
+            <doc-pro-notice
+                [components]="['MLineChart']"
+                reason="Line chart is part of the MineralUI Pro charts module."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-line-chart

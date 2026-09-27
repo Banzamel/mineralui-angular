@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
-import {MIcon, mCalendarIconV2, mFlagPlIconV2, mHomeIconV2} from '@banzamel/mineralui-angular/icons'
+import {MIcon} from '@banzamel/mineralui-angular/icons'
+import {mCalendarIconV2, mFlagPlIconV2, mHomeIconV2} from '@banzamel/mineralui-angular/icons/v2'
 
 @Component({
     selector: 'app-icon-v2-shell',

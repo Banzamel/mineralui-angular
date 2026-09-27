@@ -4,6 +4,7 @@ import type {MCardBusinessSocial, MCardBusinessVariant} from '@banzamel/mineralu
 import type {MQrCodeStatus} from '@banzamel/mineralui-angular/display/qr-code'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
@@ -21,12 +22,17 @@ const SOCIALS: readonly MCardBusinessSocial[] = [
 
 @Component({
     selector: 'doc-card-business-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPropsTable, MCardBusiness],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPropsTable, MCardBusiness],
     template: `
         <doc-article
             title="MCardBusiness"
             description="Compact business card for a person or a company: avatar or logo with status, job title, QR code, contact links and social profiles."
         >
+            <doc-pro-notice
+                [components]="['MCardBusiness', 'MQrCode']"
+                reason="The business card supports embedded QR generation, so this surface stays in the Pro layer."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-card-business

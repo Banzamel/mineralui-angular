@@ -15,6 +15,7 @@ import timelineBoardRange from '@generated/examples/data/timeline-board/timeline
 import timelineBoardRooms from '@generated/examples/data/timeline-board/timeline-board-rooms'
 import timelineBoardScheduling from '@generated/examples/data/timeline-board/timeline-board-scheduling'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -60,12 +61,27 @@ const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
 
 @Component({
     selector: 'doc-timeline-board-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MStack, MText, MTimelineBoard],
+    imports: [
+        DocArticle,
+        DocProNotice,
+        DocSection,
+        DocPlayground,
+        DocPreview,
+        DocPropsTable,
+        MStack,
+        MText,
+        MTimelineBoard,
+    ],
     template: `
         <doc-article
             title="MTimelineBoard"
             description="Resource timeline: rows of people, rooms or machines against an endless horizontal time axis with working hours, unavailable slots, conflict highlights and a 'now' line."
         >
+            <doc-pro-notice
+                [components]="['MTimelineBoard']"
+                reason="Multi-resource scheduling timelines are part of MineralUI Pro alongside MCalendarBoard."
+            />
+
             <doc-section
                 title="Playground"
                 description="Drag the canvas, use the wheel sideways (or Shift + wheel), the day strip or the keys to move in time; open an event for its details. Today has overlapping events in Anna's row; another conflict waits three days ahead."

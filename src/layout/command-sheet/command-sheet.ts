@@ -2,11 +2,8 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core'
 import {Router} from '@angular/router'
 import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {MInline} from '@banzamel/mineralui-angular/layout/inline'
-import {
-    commandPaletteFromNavGroups,
-    MCommandPalette,
-    MCommandPaletteFooter,
-} from '@banzamel/mineralui-angular/overlays/command-palette'
+import {MCommandPalette, MCommandPaletteFooter} from '@banzamel/mineralui-angular/overlays/command-palette'
+import {commandPaletteFromNavGroups} from '@banzamel/mineralui-angular/overlays/command-palette-nav'
 import {MKbd} from '@banzamel/mineralui-angular/typography/kbd'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import {DOCS_NAVIGATION, sectionIcon} from '@locales/docs-navigation'

@@ -83,7 +83,7 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
                 title="From your navigation"
                 description="commandPaletteFromNavGroups turns the menu model (MNavGroup[]) into palette items, so both share one source. Pass your router in onSelect — the library does not depend on @angular/router."
             >
-                <doc-props-table api="overlays/command-palette/command-palette-from-nav-groups" />
+                <doc-props-table api="overlays/command-palette-nav/command-palette-from-nav-groups" />
             </doc-section>
 
             <doc-section title="Differences from MineralUI for React">

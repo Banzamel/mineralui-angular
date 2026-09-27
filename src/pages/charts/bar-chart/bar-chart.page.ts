@@ -3,6 +3,7 @@ import {MBarChart} from '@banzamel/mineralui-angular/data/bar-chart'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import barChartFormatted from '@generated/examples/charts/bar-chart/bar-chart-formatted'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -11,12 +12,17 @@ import {flagAttributes, MONTHS, MULTI_SERIES, SINGLE_SERIES} from '../chart-samp
 
 @Component({
     selector: 'doc-bar-chart-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MBarChart, MStack],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MBarChart, MStack],
     template: `
         <doc-article
             title="MBarChart"
             description="Vertical bar chart for comparing categories: the series side by side, or piled in one bar with stacked."
         >
+            <doc-pro-notice
+                [components]="['MBarChart']"
+                reason="Bar chart is part of the MineralUI Pro charts module."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-bar-chart

@@ -9,6 +9,7 @@ import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import masonryMixed from '@generated/examples/media/masonry/masonry-mixed'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -21,6 +22,7 @@ const EFFECTS: readonly MMediaInteractionEffect[] = ['zoom-ripple', 'zoom', 'dim
     selector: 'doc-masonry-page',
     imports: [
         DocArticle,
+        DocProNotice,
         DocSection,
         DocPlayground,
         DocPreview,
@@ -38,6 +40,11 @@ const EFFECTS: readonly MMediaInteractionEffect[] = ['zoom-ripple', 'zoom', 'dim
             title="MMasonry"
             description="Responsive masonry wall for uneven images, promos and discovery cards with different heights."
         >
+            <doc-pro-notice
+                [components]="['MMasonry']"
+                reason="Masonry layouts are part of the Pro media surface, together with the richer gallery examples built on top of them."
+            />
+
             <doc-section
                 title="Playground"
                 description="Adjust the number of columns and enrich each tile with an overlay action or body content."

@@ -33,8 +33,11 @@
                         #rla="routerLinkActive"
                         [active]="rla.isActive"
                         [description]="item.description"
-                        >{{ item.title }}</a
-                    >
+                        >{{ item.title }}
+                        @if (isProDoc(item.id)) {
+                            <m-badge mEnd size="xs" color="warning" pulsing>Pro</m-badge>
+                        }
+                    </a>
                 }
             </m-sidebar-group>
         } @empty {

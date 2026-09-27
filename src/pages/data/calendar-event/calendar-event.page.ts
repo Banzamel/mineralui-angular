@@ -11,6 +11,7 @@ import calendarEventMenu from '@generated/examples/data/calendar-event/calendar-
 import calendarEventTemplate from '@generated/examples/data/calendar-event/calendar-event-template'
 import calendarTimelineDay from '@generated/examples/data/calendar-event/calendar-timeline-day'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -43,12 +44,27 @@ const EVENTS: readonly MCalendarEvent[] = [
 
 @Component({
     selector: 'doc-calendar-event-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MCalendarEventList, MStack, MText],
+    imports: [
+        DocArticle,
+        DocProNotice,
+        DocSection,
+        DocPlayground,
+        DocPreview,
+        DocPropsTable,
+        MCalendarEventList,
+        MStack,
+        MText,
+    ],
     template: `
         <doc-article
             title="Calendar events"
             description="The agenda of a day as an event list (MCalendarEventList) or an hour timeline (MCalendarTimeline) — the building blocks MCalendarBoard shows in its day details, usable on their own."
         >
+            <doc-pro-notice
+                [components]="['MCalendarEventList', 'MCalendarTimeline']"
+                reason="Calendar building blocks ship with MineralUI Pro alongside MCalendarBoard."
+            />
+
             <doc-section
                 title="Playground"
                 description="Rows show the time, status and type badges, the owner and an actions menu. An event with href is a link; selectable turns the other titles into buttons. The list reports (eventSelect) and (eventAction); the page changes events."

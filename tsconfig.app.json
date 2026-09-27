@@ -5,5 +5,9 @@
         "types": ["node"]
     },
     "include": ["src/**/*.ts"],
-    "exclude": ["src/**/*.spec.ts"]
+    "exclude": [
+        "src/**/*.spec.ts",
+        // Snippet with the Pro package name (the docs build against Basic paths); shown as text only.
+        "src/pages/getting-started/installation/snippets/revenue.component.ts"
+    ]
 }

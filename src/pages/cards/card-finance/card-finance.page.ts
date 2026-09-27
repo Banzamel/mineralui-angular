@@ -6,6 +6,7 @@ import {MIcon, mWalletIcon} from '@banzamel/mineralui-angular/icons'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import cardFinanceTrends from '@generated/examples/cards/card-finance/card-finance-trends'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -18,12 +19,17 @@ const MODES = ['surface', 'link'] as const
 
 @Component({
     selector: 'doc-card-finance-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MCardFinance, MIcon],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MCardFinance, MIcon],
     template: `
         <doc-article
             title="MCardFinance"
             description="Finance KPI card: a value with its change in percent and a sparkline along the bottom edge, tinted by the direction of the change."
         >
+            <doc-pro-notice
+                [components]="['MCardFinance']"
+                reason="Finance card is a Pro component in MineralUI licensing."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     @if (mode() === 'link') {

@@ -1,11 +1,11 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
-import {MAlert} from '@banzamel/mineralui-angular/feedback/alert'
 import type {MIconColor} from '@banzamel/mineralui-angular/icons'
-import * as icons from '@banzamel/mineralui-angular/icons'
+import * as icons from '@banzamel/mineralui-angular/icons/v2'
 import {MIcon} from '@banzamel/mineralui-angular/icons'
 import iconV2Shell from '@generated/examples/display/icons-v2/icon-v2-shell'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
@@ -29,7 +29,17 @@ const COLORS: readonly MIconColor[] = [
 
 @Component({
     selector: 'doc-icons-v2-page',
-    imports: [MAlert, DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, IconBrowser, MIcon, MCode],
+    imports: [
+        DocArticle,
+        DocProNotice,
+        DocSection,
+        DocPlayground,
+        DocPreview,
+        DocPropsTable,
+        IconBrowser,
+        MIcon,
+        MCode,
+    ],
     templateUrl: './icons-v2.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

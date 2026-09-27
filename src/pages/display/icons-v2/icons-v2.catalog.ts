@@ -1,5 +1,5 @@
 // Icon catalog of the docs browser, taken from docs-react (same groups and order). Names are export names of
-// @banzamel/mineralui-angular/icons (V2); icons-catalog.spec.ts checks that each one exists.
+// @banzamel/mineralui-angular/icons/v2; icons-v2.catalog.spec.ts checks that each one exists.
 import type {IconTab} from '@kit/icon-browser/icon-browser'
 
 export const PLAYGROUND_ICONS = [

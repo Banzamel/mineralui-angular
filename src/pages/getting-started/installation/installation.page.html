@@ -38,6 +38,42 @@
     </doc-section>
 
     <doc-section
+        title="MineralUI Pro"
+        description="The Pro edition adds charts, calendar and timeline boards, chat, the file manager, the dashboard grid, V2 icons and more. Pages of Pro components carry a Pro badge in the navigation."
+    >
+        <p mText>
+            Pro is a separate package, <code mCode>&#64;banzamel/mineralui-angular-pro</code>, with every component of
+            Basic inside — install it instead of <code mCode>&#64;banzamel/mineralui-angular</code>, not next to it.
+            Then activate the installation in the project root with your license key:
+        </p>
+        <doc-code-block [snippet]="snippets.proInstallSh" />
+        <p mText>
+            The CLI registers the project and stores the activation in
+            <code mCode>.mineralui-pro/angular-activation.json</code>. Until then the browser console shows an
+            activation warning once per page load. After activating, restart <code mCode>ng serve</code> (and clear
+            <code mCode>.angular/cache</code> if the warning stays).
+        </p>
+        <p mText>
+            Every path on this site works with the <code mCode>-pro</code> package name — imports, the stylesheet in
+            <code mCode>angular.json</code> and the providers:
+        </p>
+        <doc-code-block [snippet]="snippets.revenueComponentTs" />
+        <p mText tone="muted" size="sm">
+            Licenses for Angular and React are separate — see
+            <a
+                mLink
+                tone="accent"
+                underline="always"
+                class="doc-prose-link"
+                href="https://mineralui.io/pricing"
+                target="_blank"
+                rel="noopener noreferrer"
+                >pricing on mineralui.io</a
+            >.
+        </p>
+    </doc-section>
+
+    <doc-section
         title="Entry points"
         description="Every component is standalone and has its own entry point; groups re-export their components. Import only what you use."
     >

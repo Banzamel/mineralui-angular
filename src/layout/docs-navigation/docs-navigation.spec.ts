@@ -23,9 +23,27 @@ describe('DocsNavigation', () => {
             input.dispatchEvent(new Event('input'))
             await fixture.whenStable()
         }
-        const links = () => [...element.querySelectorAll('[mSidebarItem]')].map((link) => link.textContent?.trim())
+        const links = () =>
+            [...element.querySelectorAll('[mSidebarItem] .m-sidebar-item-label')].map((label) =>
+                label.textContent?.trim()
+            )
         return {element, search, links}
     }
+
+    it('badges the pages of Pro components, like docs-react', async () => {
+        const {element} = await render()
+
+        const proLinks = [...element.querySelectorAll('[mSidebarItem]')]
+            .filter((link) => link.querySelector('.m-sidebar-item-badge m-badge'))
+            .map((link) => link.getAttribute('href'))
+        expect(proLinks).toContain('/docs/chat')
+        expect(proLinks).toContain('/docs/calendar-event')
+        expect(proLinks).toContain('/docs/icons-v2')
+        expect(proLinks).not.toContain('/docs/stepper')
+        expect(proLinks).not.toContain('/docs/data-table')
+        const badge = element.querySelector('a[href="/docs/chat"] m-badge')!
+        expect(badge.textContent?.trim()).toBe('Pro')
+    })
 
     it('lists every page, sorted by title within a section, under a labelled search', async () => {
         const {element, links} = await render()

@@ -4,6 +4,7 @@ import {MPieChart} from '@banzamel/mineralui-angular/data/pie-chart'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import pieChartDatasets from '@generated/examples/charts/pie-chart/pie-chart-datasets'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -12,12 +13,17 @@ import {flagAttributes} from '../chart-samples'
 
 @Component({
     selector: 'doc-pie-chart-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MPieChart, MStack],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MPieChart, MStack],
     template: `
         <doc-article
             title="MPieChart"
             description="Pie or donut chart for the shares of a whole, with a legend, a tooltip and the total in the middle of the donut."
         >
+            <doc-pro-notice
+                [components]="['MPieChart']"
+                reason="Pie chart is part of the MineralUI Pro charts module."
+            />
+
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-pie-chart

@@ -10,7 +10,8 @@ const LIBRARY_INTERNAL = {
     message: 'The docs use the public API only.',
 }
 const LIBRARY_DEEP = {
-    regex: '^@banzamel/mineralui-angular/(theme|i18n|utils|icons|illustrations|[a-z]+/[a-z-]+)/.+',
+    // `icons/v2` is an entry point nested in `icons` (Pro V2 constants).
+    regex: '^@banzamel/mineralui-angular/(theme|i18n|utils|icons/v2|icons(?!/v2(?:/|$))|illustrations|[a-z]+/[a-z-]+)/.+',
     message: 'Deep imports are forbidden — import through the entry point.',
 }
 

@@ -7,6 +7,7 @@ import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import avatarStackStatic from '@generated/examples/media/avatar-stack/avatar-stack-static'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -19,12 +20,27 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
 
 @Component({
     selector: 'doc-avatar-stack-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MAvatarStack, MStack, MText],
+    imports: [
+        DocArticle,
+        DocProNotice,
+        DocSection,
+        DocPlayground,
+        DocPreview,
+        DocPropsTable,
+        MAvatarStack,
+        MStack,
+        MText,
+    ],
     template: `
         <doc-article
             title="MAvatarStack"
             description="Overlapping avatar group for participants, collaborators, likes or comment authors. Hover lifts the active avatar above its neighbours and shows a tooltip with the name and description."
         >
+            <doc-pro-notice
+                [components]="['MAvatarStack']"
+                reason="Overlapping avatar groups with hover lift and tooltips are part of MineralUI Pro."
+            />
+
             <doc-section
                 title="Playground"
                 description="Hover or focus an avatar to see the lift and the tooltip. clickable turns the avatars into buttons that report (itemClick); interactive off gives a static stack."

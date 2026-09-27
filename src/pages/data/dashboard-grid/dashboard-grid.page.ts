@@ -11,6 +11,7 @@ import dashboardGridCatalogue from '@generated/examples/data/dashboard-grid/dash
 import dashboardGridPinned from '@generated/examples/data/dashboard-grid/dashboard-grid-pinned'
 import dashboardGridStatic from '@generated/examples/data/dashboard-grid/dashboard-grid-static'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -32,6 +33,7 @@ const GAPS = ['lg', 'md', 'sm', 'xl'] as const satisfies readonly MUtilityScale[
     selector: 'doc-dashboard-grid-page',
     imports: [
         DocArticle,
+        DocProNotice,
         DocSection,
         DocPlayground,
         DocPreview,
@@ -51,6 +53,11 @@ const GAPS = ['lg', 'md', 'sm', 'xl'] as const satisfies readonly MUtilityScale[
             title="MDashboardGrid"
             description="Flowing widget grid with drag and drop. The user sets order and width — by dragging, from the keyboard or from the tile menu — and the layout is a model the application stores."
         >
+            <doc-pro-notice
+                [components]="['MDashboardGrid']"
+                reason="Configurable dashboards are part of MineralUI Pro alongside MTimelineBoard and MCalendarBoard."
+            />
+
             <doc-section
                 title="Playground"
                 description="Turn on edit mode, then drag a tile by its handle, drag its right edge to resize it, or open the tile menu. Everything works from the keyboard too: Tab to a handle and use the arrow keys."

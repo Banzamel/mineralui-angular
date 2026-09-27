@@ -13,6 +13,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
 import calendarBoardAgenda from '@generated/examples/data/calendar-board/calendar-board-agenda'
 import calendarBoardTemplates from '@generated/examples/data/calendar-board/calendar-board-templates'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -63,12 +64,27 @@ const EVENTS: readonly MCalendarEvent[] = [
 
 @Component({
     selector: 'doc-calendar-board-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MCalendarBoard, MStack, MText],
+    imports: [
+        DocArticle,
+        DocProNotice,
+        DocSection,
+        DocPlayground,
+        DocPreview,
+        DocPropsTable,
+        MCalendarBoard,
+        MStack,
+        MText,
+    ],
     template: `
         <doc-article
             title="MCalendarBoard"
             description="Month and week calendar of events with filters, an hour bar per day and the day's agenda — an hour timeline or an event list — in a popover or a modal."
         >
+            <doc-pro-notice
+                [components]="['MCalendarBoard']"
+                reason="Scheduling boards and their exported building blocks are part of MineralUI Pro."
+            />
+
             <doc-section
                 title="Playground"
                 description="Choose a day for its details; the hour bar in each cell shows the covered hours. The board reports (addEvent), (eventAction) and the models; the page changes events."

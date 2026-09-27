@@ -22,6 +22,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
 import chatLazyWindow from '@generated/examples/data/chat/chat-lazy-window'
 import chatRouter from '@generated/examples/data/chat/chat-router'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -70,6 +71,7 @@ const CONVERSATIONS: readonly MChatConversation[] = [
     selector: 'doc-chat-page',
     imports: [
         DocArticle,
+        DocProNotice,
         DocSection,
         DocPlayground,
         DocPreview,
@@ -90,6 +92,11 @@ const CONVERSATIONS: readonly MChatConversation[] = [
             title="MChat"
             description="Chat shell composed of parts: a conversation list, a header, the message log, a typing indicator and the message field — inline in the page or as a floating window."
         >
+            <doc-pro-notice
+                [components]="['MChat']"
+                reason="Chat shells with conversation lists and message threads are part of MineralUI Pro."
+            />
+
             <doc-section
                 title="Playground"
                 description="Pick a conversation and send a message (Enter sends, Shift+Enter adds a line). The floating variant puts a round button in the corner of the page; it opens the chat as a non-modal dialog and Escape closes it."

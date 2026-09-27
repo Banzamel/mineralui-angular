@@ -1,17 +1,23 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
 import masonryCardsProducts from '@generated/examples/cards/masonry-cards/masonry-cards-products'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 @Component({
     selector: 'doc-masonry-cards-page',
-    imports: [DocArticle, DocSection, DocPreview, DocPropsTable],
+    imports: [DocArticle, DocProNotice, DocSection, DocPreview, DocPropsTable],
     template: `
         <doc-article
             title="Masonry Cards"
             description="Product cards on a masonry wall: MMasonryItem with a save button over the image, body content and a footer line."
         >
+            <doc-pro-notice
+                [components]="['MMasonry']"
+                reason="This composition depends on the Pro masonry layout component."
+            />
+
             <doc-section
                 title="Product wall"
                 description="Uneven image heights and text lengths pack into columns; each card stays whole. The heart sits beside the image area, so pressing it does not ripple the photo."

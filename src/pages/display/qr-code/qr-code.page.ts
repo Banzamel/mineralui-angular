@@ -5,6 +5,7 @@ import {MInput} from '@banzamel/mineralui-angular/inputs/input'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import qrCodePairing from '@generated/examples/display/qr-code/qr-code-pairing'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -21,12 +22,17 @@ const STATUSES: readonly MQrCodeStatus[] = ['idle', 'loading', 'success', 'error
 
 @Component({
     selector: 'doc-qr-code-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MInput, MQrCode, MStack],
+    imports: [DocArticle, DocProNotice, DocSection, DocPlayground, DocPreview, DocPropsTable, MInput, MQrCode, MStack],
     template: `
         <doc-article
             title="MQrCode"
             description="Local SVG QR code generator for links, onboarding steps and share actions."
         >
+            <doc-pro-notice
+                [components]="['MQrCode']"
+                reason="QR generation is a paid display feature of MineralUI Pro."
+            />
+
             <doc-section
                 title="Playground"
                 description="Type a value — up to 106 UTF-8 bytes; the code grows from version 1 to 5 as it gets longer."

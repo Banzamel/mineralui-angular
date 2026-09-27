@@ -2,10 +2,14 @@
     title="Icons v2"
     description="Second-generation icons in the illustration-inspired style. Same <m-icon> component, V2 constants (m*IconV2) and an optional card shell."
 >
-    <m-alert color="warning" heading="MineralUI Pro">
-        The illustration-style icon set is delivered with MineralUI Pro. Until the Basic / Pro split of the Angular
-        packages, every V2 constant ships in <code mCode>&#64;banzamel/mineralui-angular/icons</code>.
-    </m-alert>
+    <doc-pro-notice
+        [components]="['MIconV2']"
+        reason="The illustration-style icon set is delivered with MineralUI Pro."
+    >
+        The V2 constants live in their own entry point, <code mCode>&#64;banzamel/mineralui-angular-pro/icons/v2</code>,
+        rendered by the same <code mCode>&lt;m-icon&gt;</code> from
+        <code mCode>&#64;banzamel/mineralui-angular-pro/icons</code>.
+    </doc-pro-notice>
 
     <doc-section>
         <doc-playground [controls]="controls" [code]="code()">

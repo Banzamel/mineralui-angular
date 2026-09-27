@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core'
 import {toSignal} from '@angular/core/rxjs-interop'
 import {NavigationEnd, Router, RouterLink, RouterLinkActive} from '@angular/router'
+import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
 import {MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {mCopyrightIcon, MIcon} from '@banzamel/mineralui-angular/icons'
 import {MInputSearch} from '@banzamel/mineralui-angular/inputs/input-search'
@@ -15,7 +16,7 @@ import {
 import {MLink} from '@banzamel/mineralui-angular/typography/link'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import type {DocsNavSection} from '@locales/docs-navigation'
-import {DOCS_NAVIGATION, docIdFromUrl, sectionIcon} from '@locales/docs-navigation'
+import {DOCS_NAVIGATION, docIdFromUrl, isProDoc, sectionIcon} from '@locales/docs-navigation'
 import {filter, map} from 'rxjs'
 
 const SEARCH_THRESHOLD = 2
@@ -29,6 +30,7 @@ const byTitle = (section: DocsNavSection): DocsNavSection => ({
 @Component({
     selector: 'doc-docs-navigation',
     imports: [
+        MBadge,
         MIcon,
         MInputSearch,
         MLink,
@@ -52,6 +54,7 @@ export class DocsNavigation {
 
     protected readonly search = signal('')
     protected readonly sectionIcon = sectionIcon
+    protected readonly isProDoc = isProDoc
     protected readonly copyrightIcon = mCopyrightIcon
 
     private readonly docId = toSignal(

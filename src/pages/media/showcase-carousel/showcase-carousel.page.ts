@@ -9,6 +9,7 @@ import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import showcaseIllustrations from '@generated/examples/media/showcase-carousel/showcase-carousel-illustrations'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
+import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
@@ -45,6 +46,7 @@ const INDEXES = ['0', '1', '2', '3'] as const
     selector: 'doc-showcase-carousel-page',
     imports: [
         DocArticle,
+        DocProNotice,
         DocSection,
         DocPlayground,
         DocPreview,
@@ -63,6 +65,11 @@ const INDEXES = ['0', '1', '2', '3'] as const
             title="MShowcaseCarousel"
             description="Centered carousel with drag, wheel and partial side previews for editorial stories and featured media."
         >
+            <doc-pro-notice
+                [components]="['MShowcaseCarousel']"
+                reason="The showcase carousel is a Pro media component."
+            />
+
             <doc-section
                 title="Playground"
                 description="Drag the slides, scroll with the mouse wheel over them, or use the buttons and ← / →. composed mode adds a corner action and a body to every slide."
