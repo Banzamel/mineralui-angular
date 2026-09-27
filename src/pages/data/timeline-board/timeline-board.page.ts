@@ -13,6 +13,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
 import timelineBoardDetails from '@generated/examples/data/timeline-board/timeline-board-details'
 import timelineBoardRange from '@generated/examples/data/timeline-board/timeline-board-range'
 import timelineBoardRooms from '@generated/examples/data/timeline-board/timeline-board-rooms'
+import timelineBoardScheduling from '@generated/examples/data/timeline-board/timeline-board-scheduling'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, sliderControl} from '@kit/doc-playground/playground-controls'
@@ -110,6 +111,13 @@ const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
             </doc-section>
 
             <doc-section
+                title="Moving events and selecting slots"
+                description="With draggable a job is dragged to another time (snapped to dragSnapMinutes) and row, or moved from the keyboard with Move in its details. dropValidator refuses maintenance and double booking with a reason. The board only reports (eventDrop): the example shows the move at once through a computed over the saved jobs and the pending changes, then 'saves' it. event.draggable: false (or canDrag) locks a job. With emptySlotSelectable a drag on an empty lane selects a stretch — a single press selects one step — and (emptySlotSelect) adds a job."
+            >
+                <doc-preview [example]="examples.scheduling" />
+            </doc-section>
+
+            <doc-section
                 title="Own event details"
                 description="ng-template mTimelineEventHeader replaces the title and the row label in the details; ng-template mTimelineEventDetails adds content at the end."
             >
@@ -118,12 +126,12 @@ const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
 
             <doc-section
                 title="Accessibility"
-                description="The canvas is a region named by label: ← / → pan by panKeyStepMinutes, Shift + ← / → and PageUp / PageDown by a day, Home back to now — each move is announced. Rows are groups named by their label; their events are lists of buttons with one Tab stop: ← / → (Home / End) move within the row, ↑ / ↓ to the nearest event of the next row with events, and the axis follows the focus. An event is named by its title, row, date and time, a conflict and the unavailable slots it overlaps; Enter opens its details as a dialog, Escape returns to the event. The day strip is a toolbar (← / → between days, the shown day aria-current='date'), the axis, bands and the 'now' line are hidden decoration."
+                description="The canvas is a region named by label: ← / → pan by panKeyStepMinutes, Shift + ← / → and PageUp / PageDown by a day, Home back to now — each move is announced. Rows are groups named by their label; their events are lists of buttons with one Tab stop: ← / → (Home / End) move within the row, ↑ / ↓ to the nearest event of the next row with events, and the axis follows the focus. An event is named by its title, row, date and time, a conflict and the unavailable slots it overlaps; Enter opens its details as a dialog, Escape returns to the event. Moving does not need dragging: Move in the details puts the event in move mode on the region — ← / → by dragSnapMinutes, ↑ / ↓ row, Enter drops (through dropValidator; a refusal keeps the mode and announces the reason), Escape or Tab cancels, and every step is announced with the row, date, time and a refusal reason. Selecting an empty slot has no keyboard version — offer your own 'New' button next to the board. The day strip is a toolbar (← / → between days, the shown day aria-current='date'), the axis, bands and the 'now' line are hidden decoration."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Callbacks become outputs: onEventClick / onEventOpen → (eventClick) / (eventOpen), onLeaderClick / onParticipantClick → (personClick) {person, event, role} with peopleClickable, menu items' onSelect → (eventAction) {actionId, event}, onCenterChange → [(centerAt)], ref.current.scrollToNow() → viewChild(MTimelineBoard).scrollToNow(), getVisibleRange() → visibleRange(). popoverHeader / renderEventDetails → ng-template mTimelineEventHeader / mTimelineEventDetails; icon and description are an MIconDef and a string. label is required (React: region named 'Timeline'). The day strip is a toolbar (React: a tablist without panels), events have one Tab stop with arrow keys (React: every bar a Tab stop, no keys), day counts use local dates (React: UTC — the wrong day west of Greenwich). The row labels and the canvas share one scroll container, so autoRowHeight needs no measuring. Dragging, keyboard moving and range selection come in the next step."
+                description="Callbacks become outputs: onEventClick / onEventOpen → (eventClick) / (eventOpen), onLeaderClick / onParticipantClick → (personClick) {person, event, role} with peopleClickable, menu items' onSelect → (eventAction) {actionId, event}, onCenterChange → [(centerAt)], ref.current.scrollToNow() → viewChild(MTimelineBoard).scrollToNow(), getVisibleRange() → visibleRange(). popoverHeader / renderEventDetails → ng-template mTimelineEventHeader / mTimelineEventDetails; icon and description are an MIconDef and a string. label is required (React: region named 'Timeline'). The day strip is a toolbar (React: a tablist without panels), events have one Tab stop with arrow keys (React: every bar a Tab stop, no keys), day counts use local dates (React: UTC — the wrong day west of Greenwich). The row labels and the canvas share one scroll container, so autoRowHeight needs no measuring. onEventDrop(id, change) → (eventDrop) {event, change}; onEventDropValidate → dropValidator, whose reason is announced and reported by (eventDropReject) (React drops it silently); eventOverrides → a computed in the app; onEmptySlotSelect(rowId, start, end) → (emptySlotSelect) {rowId, startAt, endAt}. The drag preview is a ghost at the snapped target place (React: the bar follows the pointer unsnapped). A single press on the empty lane selects one step (React: only a drag), and the selection covers the dragged stretch (floor / ceil to the step; React rounds both ends). A drop onto the same place reports nothing. Moving from the keyboard is new."
             />
 
             <doc-section title="API">
@@ -135,6 +143,10 @@ const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
                     <doc-props-table api="MTimelineBoardUnavailableSlot" />
                     <doc-props-table api="MTimelineBoardMenuItem" />
                     <doc-props-table api="MTimelineBoardRange" />
+                    <doc-props-table api="MTimelineBoardDropChange" />
+                    <doc-props-table api="MTimelineBoardDropEvent" />
+                    <doc-props-table api="MTimelineBoardDropRejectEvent" />
+                    <doc-props-table api="MTimelineBoardSlotSelectEvent" />
                     <doc-props-table api="MTimelineEventHeaderDef" />
                     <doc-props-table api="MTimelineEventDetailsDef" />
                 </m-stack>
@@ -144,7 +156,12 @@ const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimelineBoardPage {
-    protected readonly examples = {rooms: timelineBoardRooms, range: timelineBoardRange, details: timelineBoardDetails}
+    protected readonly examples = {
+        rooms: timelineBoardRooms,
+        range: timelineBoardRange,
+        details: timelineBoardDetails,
+        scheduling: timelineBoardScheduling,
+    }
     protected readonly rows = ROWS
     protected readonly events = EVENTS
     protected readonly slots = SLOTS
