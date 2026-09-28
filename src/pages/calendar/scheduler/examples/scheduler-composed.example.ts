@@ -1,6 +1,11 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core'
 import {MMiniCalendar} from '@banzamel/mineralui-angular/calendar/mini-calendar'
-import {injectMScheduler, MSchedulerBody, MSchedulerProvider} from '@banzamel/mineralui-angular/calendar/scheduler'
+import {
+    injectMScheduler,
+    MSchedulerBody,
+    MSchedulerEventDetailsDef,
+    MSchedulerProvider,
+} from '@banzamel/mineralui-angular/calendar/scheduler'
 import type {MSchedulerEvent, MSchedulerView} from '@banzamel/mineralui-angular/calendar/scheduler'
 import {MButton} from '@banzamel/mineralui-angular/controls/button'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
@@ -13,8 +18,22 @@ function at(dayOffset: number, hour: number): Date {
 }
 
 const EVENTS: readonly MSchedulerEvent[] = [
-    {id: 'c1', title: 'Design review', startAt: at(0, 10), endAt: at(0, 11), color: 'var(--mineral-info)'},
-    {id: 'c2', title: 'Sprint planning', startAt: at(1, 9), endAt: at(1, 11), color: 'var(--mineral-success)'},
+    {
+        id: 'c1',
+        title: 'Design review',
+        startAt: at(0, 10),
+        endAt: at(0, 11),
+        color: 'var(--mineral-info)',
+        meta: {agenda: 'Walk through the new onboarding screens.'},
+    },
+    {
+        id: 'c2',
+        title: 'Sprint planning',
+        startAt: at(1, 9),
+        endAt: at(1, 11),
+        color: 'var(--mineral-success)',
+        meta: {agenda: 'Pick the stories for sprint 14.'},
+    },
     {id: 'c3', title: 'Retro', startAt: at(4, 15), endAt: at(4, 16), color: 'var(--mineral-warning)'},
 ]
 
@@ -46,7 +65,7 @@ class SchedulerHeader {
 
 @Component({
     selector: 'app-scheduler-composed',
-    imports: [MMiniCalendar, MSchedulerBody, MSchedulerProvider, SchedulerHeader],
+    imports: [MMiniCalendar, MSchedulerBody, MSchedulerEventDetailsDef, MSchedulerProvider, MText, SchedulerHeader],
     template: `
         <div
             class="composed"
@@ -56,6 +75,10 @@ class SchedulerHeader {
             [(view)]="view"
             [(date)]="date"
         >
+            <!-- Declared on the provider, the template applies to every part. -->
+            <ng-template mSchedulerEventDetails let-event>
+                <p mText>{{ event.meta?.['agenda'] ?? 'No agenda yet.' }}</p>
+            </ng-template>
             <aside>
                 <m-mini-calendar size="sm" [value]="date() ?? today" (valueChange)="date.set($event ?? undefined)" />
             </aside>
