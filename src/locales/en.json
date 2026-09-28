@@ -860,6 +860,11 @@
                     "description": "Compact month grid for picking a day, with marker dots and a tinted range."
                 },
                 {
+                    "id": "scheduler",
+                    "title": "Scheduler",
+                    "description": "Week, day, month and agenda views with a toolbar, filters and event details (Pro)."
+                },
+                {
                     "id": "timeline-board",
                     "title": "Timeline Calendar",
                     "description": "Resource time axis with panning, working hours, conflicts and a now line (Pro)."

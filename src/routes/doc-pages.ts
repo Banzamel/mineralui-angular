@@ -195,6 +195,7 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'calendar-event': () =>
         import('@pages/calendar/calendar-event/calendar-event.page').then((m) => m.CalendarEventPage),
     'mini-calendar': () => import('@pages/calendar/mini-calendar/mini-calendar.page').then((m) => m.MiniCalendarPage),
+    scheduler: () => import('@pages/calendar/scheduler/scheduler.page').then((m) => m.SchedulerPage),
     'timeline-board': () =>
         import('@pages/calendar/timeline-board/timeline-board.page').then((m) => m.TimelineBoardPage),
 }

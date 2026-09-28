@@ -64,6 +64,7 @@ export const DOCS_PRO_COMPONENTS: Readonly<Record<string, readonly string[]>> = 
     'calendar-board': ['MCalendarBoard'],
     'calendar-event': ['MCalendarEventList', 'MCalendarTimeline'],
     'timeline-board': ['MTimelineBoard'],
+    scheduler: ['MScheduler'],
     'dashboard-grid': ['MDashboardGrid'],
     'file-manager': ['MFileManager'],
     'showcase-carousel': ['MShowcaseCarousel'],
