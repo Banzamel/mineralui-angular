@@ -12,6 +12,7 @@ import {MPopoverTrigger} from '@banzamel/mineralui-angular/primitives/popover'
 import type {MPopoverPlacement} from '@banzamel/mineralui-angular/primitives/popover'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
+import dropdownCheckable from '@generated/examples/overlays/dropdown-menu/dropdown-checkable'
 import dropdownIsolated from '@generated/examples/overlays/dropdown-menu/dropdown-isolated'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -73,6 +74,13 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
             </doc-section>
 
             <doc-section
+                title="Checkable items"
+                description="itemRole='menuitemradio' or 'menuitemcheckbox' with [checked] exposes aria-checked (a checkbox gets a check mark); description adds a muted second line."
+            >
+                <doc-preview [example]="examples.dropdownCheckable" />
+            </doc-section>
+
+            <doc-section
                 title="Inside a clickable card"
                 description="isolateClick keeps item clicks from reaching a clickable parent; stop the trigger's own click with $event.stopPropagation()."
             >
@@ -108,6 +116,11 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                         <code mCode>routerLink</code> on the <code mCode>a</code>.
                     </li>
                     <li mListItem>
+                        <code mCode>role</code> prop → <code mCode>itemRole</code> input: a static
+                        <code mCode>role="menuitemradio"</code> on the button would make template linters demand an
+                        <code mCode>aria-checked</code> attribute the item already sets.
+                    </li>
+                    <li mListItem>
                         No <code mCode>openOn="hover"</code> (a menu that opens on hover cannot be used from the
                         keyboard or a touch screen) and no <code mCode>active</code> on items — the highlight follows
                         focus.
@@ -133,7 +146,7 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownMenuPage {
-    protected readonly examples = {dropdownIsolated}
+    protected readonly examples = {dropdownCheckable, dropdownIsolated}
     protected readonly icons = {edit: mEditIcon, copy: mCopyIcon, share: mShareIcon, trash: mTrashIcon}
     private readonly toast = inject(MToastService)
 

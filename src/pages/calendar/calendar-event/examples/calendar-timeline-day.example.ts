@@ -3,8 +3,8 @@ import type {
     MCalendarAddEvent,
     MCalendarEvent,
     MCalendarEventActionEvent,
-} from '@banzamel/mineralui-angular/data/calendar-event'
-import {MCalendarTimeline} from '@banzamel/mineralui-angular/data/calendar-timeline'
+} from '@banzamel/mineralui-angular/calendar/calendar-event'
+import {MCalendarTimeline} from '@banzamel/mineralui-angular/calendar/calendar-timeline'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 

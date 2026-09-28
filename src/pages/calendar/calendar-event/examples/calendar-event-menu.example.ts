@@ -3,8 +3,8 @@ import type {
     MCalendarActionItem,
     MCalendarEvent,
     MCalendarEventActionEvent,
-} from '@banzamel/mineralui-angular/data/calendar-event'
-import {MCalendarEventList} from '@banzamel/mineralui-angular/data/calendar-event-list'
+} from '@banzamel/mineralui-angular/calendar/calendar-event'
+import {MCalendarEventList} from '@banzamel/mineralui-angular/calendar/calendar-event-list'
 import {mArchiveIcon, mCheckIcon} from '@banzamel/mineralui-angular/icons'
 
 @Component({

@@ -3,13 +3,13 @@ import type {
     MCalendarEvent,
     MCalendarEventActionEvent,
     MCalendarEventActionId,
-} from '@banzamel/mineralui-angular/data/calendar-event'
-import {MCalendarEventList} from '@banzamel/mineralui-angular/data/calendar-event-list'
+} from '@banzamel/mineralui-angular/calendar/calendar-event'
+import {MCalendarEventList} from '@banzamel/mineralui-angular/calendar/calendar-event-list'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
-import calendarEventMenu from '@generated/examples/data/calendar-event/calendar-event-menu'
-import calendarEventTemplate from '@generated/examples/data/calendar-event/calendar-event-template'
-import calendarTimelineDay from '@generated/examples/data/calendar-event/calendar-timeline-day'
+import calendarEventMenu from '@generated/examples/calendar/calendar-event/calendar-event-menu'
+import calendarEventTemplate from '@generated/examples/calendar/calendar-event/calendar-event-template'
+import calendarTimelineDay from '@generated/examples/calendar/calendar-event/calendar-timeline-day'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'

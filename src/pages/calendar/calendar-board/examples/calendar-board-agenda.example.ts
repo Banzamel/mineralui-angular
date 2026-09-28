@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
-import {MCalendarBoard} from '@banzamel/mineralui-angular/data/calendar-board'
-import type {MCalendarEvent} from '@banzamel/mineralui-angular/data/calendar-event'
-import {MCalendarTimeline} from '@banzamel/mineralui-angular/data/calendar-timeline'
+import {MCalendarBoard} from '@banzamel/mineralui-angular/calendar/calendar-board'
+import type {MCalendarEvent} from '@banzamel/mineralui-angular/calendar/calendar-event'
+import {MCalendarTimeline} from '@banzamel/mineralui-angular/calendar/calendar-timeline'
 
 const today = new Date()
 const day = (offset: number) => new Date(today.getFullYear(), today.getMonth(), today.getDate() + offset)

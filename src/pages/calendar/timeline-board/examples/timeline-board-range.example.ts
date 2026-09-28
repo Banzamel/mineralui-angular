@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core'
-import {MTimelineBoard} from '@banzamel/mineralui-angular/data/timeline-board'
+import {MTimelineBoard} from '@banzamel/mineralui-angular/calendar/timeline-board'
 import type {
     MTimelineBoardEvent,
     MTimelineBoardRange,
     MTimelineBoardRow,
-} from '@banzamel/mineralui-angular/data/timeline-board'
+} from '@banzamel/mineralui-angular/calendar/timeline-board'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 

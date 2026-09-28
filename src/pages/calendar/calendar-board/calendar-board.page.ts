@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
-import {MCalendarBoard} from '@banzamel/mineralui-angular/data/calendar-board'
+import {MCalendarBoard} from '@banzamel/mineralui-angular/calendar/calendar-board'
 import type {
     MCalendarAddEvent,
     MCalendarBoardView,
@@ -7,11 +7,11 @@ import type {
     MCalendarEvent,
     MCalendarEventActionEvent,
     MCalendarFilterOption,
-} from '@banzamel/mineralui-angular/data/calendar-event'
+} from '@banzamel/mineralui-angular/calendar/calendar-event'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
-import calendarBoardAgenda from '@generated/examples/data/calendar-board/calendar-board-agenda'
-import calendarBoardTemplates from '@generated/examples/data/calendar-board/calendar-board-templates'
+import calendarBoardAgenda from '@generated/examples/calendar/calendar-board/calendar-board-agenda'
+import calendarBoardTemplates from '@generated/examples/calendar/calendar-board/calendar-board-templates'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'

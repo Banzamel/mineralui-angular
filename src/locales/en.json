@@ -803,16 +803,6 @@
             "collapsible": true,
             "items": [
                 {
-                    "id": "calendar-board",
-                    "title": "Calendar",
-                    "description": "Month / week calendar of events with filters, hour bars and the day agenda (Pro)."
-                },
-                {
-                    "id": "calendar-event",
-                    "title": "Calendar Events",
-                    "description": "Day agenda as an event list or an hour timeline, with action menus (Pro)."
-                },
-                {
                     "id": "chat",
                     "title": "Chat",
                     "description": "Chat shell with conversations list and message stream (Pro)."
@@ -838,11 +828,6 @@
                     "description": "Checklist of tasks with a completion state."
                 },
                 {
-                    "id": "timeline-board",
-                    "title": "Timeline Calendar",
-                    "description": "Resource time axis with panning, working hours, conflicts and a now line (Pro)."
-                },
-                {
                     "id": "tree-view",
                     "title": "TreeView",
                     "description": "Tree view with selection, drag-drop, keyboard moves and context menu."
@@ -851,6 +836,28 @@
                     "id": "week-grid",
                     "title": "Week Grid",
                     "description": "Day × hour heatmap with density bands, tooltips and a legend."
+                }
+            ]
+        },
+        {
+            "category": "Calendar",
+            "icon": "calendar",
+            "collapsible": true,
+            "items": [
+                {
+                    "id": "calendar-board",
+                    "title": "Calendar",
+                    "description": "Month / week calendar of events with filters, hour bars and the day agenda (Pro)."
+                },
+                {
+                    "id": "calendar-event",
+                    "title": "Calendar Events",
+                    "description": "Day agenda as an event list or an hour timeline, with action menus (Pro)."
+                },
+                {
+                    "id": "timeline-board",
+                    "title": "Timeline Calendar",
+                    "description": "Resource time axis with panning, working hours, conflicts and a now line (Pro)."
                 }
             ]
         }

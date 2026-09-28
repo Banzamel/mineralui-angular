@@ -3,8 +3,8 @@ import {
     MTimelineBoard,
     MTimelineEventDetailsDef,
     MTimelineEventHeaderDef,
-} from '@banzamel/mineralui-angular/data/timeline-board'
-import type {MTimelineBoardEvent, MTimelineBoardRow} from '@banzamel/mineralui-angular/data/timeline-board'
+} from '@banzamel/mineralui-angular/calendar/timeline-board'
+import type {MTimelineBoardEvent, MTimelineBoardRow} from '@banzamel/mineralui-angular/calendar/timeline-board'
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 

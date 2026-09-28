@@ -1,19 +1,19 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
-import {MTimelineBoard} from '@banzamel/mineralui-angular/data/timeline-board'
+import {MTimelineBoard} from '@banzamel/mineralui-angular/calendar/timeline-board'
 import type {
     MTimelineBoardEvent,
     MTimelineBoardEventActionEvent,
     MTimelineBoardMenuFn,
     MTimelineBoardRow,
     MTimelineBoardUnavailableSlot,
-} from '@banzamel/mineralui-angular/data/timeline-board'
+} from '@banzamel/mineralui-angular/calendar/timeline-board'
 import {mEditIcon, mTrashIcon} from '@banzamel/mineralui-angular/icons'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
-import timelineBoardDetails from '@generated/examples/data/timeline-board/timeline-board-details'
-import timelineBoardRange from '@generated/examples/data/timeline-board/timeline-board-range'
-import timelineBoardRooms from '@generated/examples/data/timeline-board/timeline-board-rooms'
-import timelineBoardScheduling from '@generated/examples/data/timeline-board/timeline-board-scheduling'
+import timelineBoardDetails from '@generated/examples/calendar/timeline-board/timeline-board-details'
+import timelineBoardRange from '@generated/examples/calendar/timeline-board/timeline-board-range'
+import timelineBoardRooms from '@generated/examples/calendar/timeline-board/timeline-board-rooms'
+import timelineBoardScheduling from '@generated/examples/calendar/timeline-board/timeline-board-scheduling'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'

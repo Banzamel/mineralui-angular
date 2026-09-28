@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, signal, viewChild} from '@angular/core'
 import {MButton} from '@banzamel/mineralui-angular/controls/button'
-import {MTimelineBoard} from '@banzamel/mineralui-angular/data/timeline-board'
+import {MTimelineBoard} from '@banzamel/mineralui-angular/calendar/timeline-board'
 import type {
     MTimelineBoardEvent,
     MTimelineBoardEventActionEvent,
@@ -8,7 +8,7 @@ import type {
     MTimelineBoardPersonClickEvent,
     MTimelineBoardRow,
     MTimelineBoardUnavailableSlot,
-} from '@banzamel/mineralui-angular/data/timeline-board'
+} from '@banzamel/mineralui-angular/calendar/timeline-board'
 import {mBookIcon, mBuildingIcon, mCameraIcon, mEditIcon, mEyeIcon, mTrashIcon} from '@banzamel/mineralui-angular/icons'
 import {MInline} from '@banzamel/mineralui-angular/layout/inline'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'

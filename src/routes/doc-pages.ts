@@ -181,16 +181,21 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'pie-chart': () => import('@pages/charts/pie-chart/pie-chart.page').then((m) => m.PieChartPage),
     sparkline: () => import('@pages/charts/sparkline/sparkline.page').then((m) => m.SparklinePage),
 
-    'calendar-board': () => import('@pages/data/calendar-board/calendar-board.page').then((m) => m.CalendarBoardPage),
-    'calendar-event': () => import('@pages/data/calendar-event/calendar-event.page').then((m) => m.CalendarEventPage),
     chat: () => import('@pages/data/chat/chat.page').then((m) => m.ChatPage),
     'dashboard-grid': () => import('@pages/data/dashboard-grid/dashboard-grid.page').then((m) => m.DashboardGridPage),
     'data-table': () => import('@pages/data/data-table/data-table.page').then((m) => m.DataTablePage),
     'file-manager': () => import('@pages/data/file-manager/file-manager.page').then((m) => m.FileManagerPage),
     'task-list': () => import('@pages/data/task-list/task-list.page').then((m) => m.TaskListPage),
-    'timeline-board': () => import('@pages/data/timeline-board/timeline-board.page').then((m) => m.TimelineBoardPage),
     'tree-view': () => import('@pages/data/tree-view/tree-view.page').then((m) => m.TreeViewPage),
     'week-grid': () => import('@pages/data/week-grid/week-grid.page').then((m) => m.WeekGridPage),
+
+    // Calendar
+    'calendar-board': () =>
+        import('@pages/calendar/calendar-board/calendar-board.page').then((m) => m.CalendarBoardPage),
+    'calendar-event': () =>
+        import('@pages/calendar/calendar-event/calendar-event.page').then((m) => m.CalendarEventPage),
+    'timeline-board': () =>
+        import('@pages/calendar/timeline-board/timeline-board.page').then((m) => m.TimelineBoardPage),
 }
 
 /** Old or shared docIds redirected to their page (counterpart of `canonicalDocIdMap` in docs-react). */
