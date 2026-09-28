@@ -855,6 +855,11 @@
                     "description": "Day agenda as an event list or an hour timeline, with action menus (Pro)."
                 },
                 {
+                    "id": "mini-calendar",
+                    "title": "Mini Calendar",
+                    "description": "Compact month grid for picking a day, with marker dots and a tinted range."
+                },
+                {
                     "id": "timeline-board",
                     "title": "Timeline Calendar",
                     "description": "Resource time axis with panning, working hours, conflicts and a now line (Pro)."
