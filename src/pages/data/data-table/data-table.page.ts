@@ -3,9 +3,13 @@ import type {MDataFilterKey, MDataSortKey} from '@banzamel/mineralui-angular/dat
 import {MDataTable, MDataTableCell} from '@banzamel/mineralui-angular/data/data-table'
 import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table'
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
+import dataTableDetail from '@generated/examples/data/data-table/data-table-detail'
+import dataTableExternal from '@generated/examples/data/data-table/data-table-external'
 import dataTableOrders from '@generated/examples/data/data-table/data-table-orders'
+import dataTableRange from '@generated/examples/data/data-table/data-table-range'
 import dataTableSelection from '@generated/examples/data/data-table/data-table-selection'
 import dataTableServer from '@generated/examples/data/data-table/data-table-server'
+import dataTableSticky from '@generated/examples/data/data-table/data-table-sticky'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, sliderControl} from '@kit/doc-playground/playground-controls'
@@ -48,7 +52,7 @@ const USERS: readonly User[] = [
     template: `
         <doc-article
             title="MDataTable"
-            description="Data-driven table with sorting, search, filters, pagination, row selection and custom cells — on in-memory rows or on a server data source."
+            description="Data-driven table with sorting, search, filters, pagination, row selection, expandable rows and custom cells — on in-memory rows, a server data source or a store you drive."
         >
             <doc-section title="Playground">
                 <doc-playground [controls]="controls" [code]="code()">
@@ -92,10 +96,38 @@ const USERS: readonly User[] = [
             </doc-section>
 
             <doc-section
+                title="Range selection"
+                description="Shift with a row checkbox (click or Shift+Space) or a row click selects every row from the last toggled one to this one, on the current page, and gives them the state of the last toggled row — like a file explorer. The header checkbox and leaving the page forget that row. Every header and data cell has data-key='column key' (select for the checkbox column) — a stable hook for tests and column styles."
+            >
+                <doc-preview [example]="examples.range" />
+            </doc-section>
+
+            <doc-section
+                title="Expandable rows"
+                description="A ng-template mRowDetail adds an expand button (a disclosure: aria-expanded, aria-controls) to every row and shows the template in a full-width row below the open ones. [(expanded)] holds the open row keys, expandMode='single' keeps one open. The buttons get a first column of their own unless a column in [columns] has expander: true. rowClick picks what a click on the row does: select (default with selectable), expand or none."
+            >
+                <doc-preview [example]="examples.detail" />
+            </doc-section>
+
+            <doc-section
                 title="Server data source"
                 description="injectMDataSource(fetcher, options) keeps the query (page, search, filters, sort) and loads one page per query from your service — Promise or Observable, answered with {items, total}. A new search, filter or sort goes back to page 1, a new query aborts the previous one, and the previous rows stay under the loading scrim. With [source] the table state lives in the source; the [(page)] / [(sort)] models are for in-memory rows."
             >
                 <doc-preview [example]="examples.server" />
+            </doc-section>
+
+            <doc-section
+                title="Source driven from outside"
+                description="When a store, a service or the URL already holds page and sort and loads the page, wrap its signals with externalMDataSource({items, total, page, pageSize, sort, …, onPage, onSort}). The table only reads the signals and calls the callbacks — nothing changes until your state does, and going back to page 1 after a new sort or search is your call. Needs no injection context."
+            >
+                <doc-preview [example]="examples.external" />
+            </doc-section>
+
+            <doc-section
+                title="Sticky header"
+                description="stickyHeader keeps the header row visible. Without maxHeight it follows the page scroll and stays below scrollOffset (your sticky app bar); a wide table keeps scrolling sideways under it. With maxHeight the rows scroll inside the table and the header sticks to its top."
+            >
+                <doc-preview sticky [example]="examples.sticky" />
             </doc-section>
 
             <doc-section
@@ -105,17 +137,20 @@ const USERS: readonly User[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort type is MSort {key, direction} (React: dir). The search is applied after a short pause (at once on Enter). New: label, rowHeader, aria-sort, the mixed header checkbox."
+                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort type is MSort {key, direction} (React: dir). The search is applied after a short pause (at once on Enter). New: label, rowHeader, aria-sort, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight and a header that stays visible while the page scrolls."
             />
 
             <doc-section title="API">
                 <m-stack>
                     <doc-props-table api="MDataTable" />
                     <doc-props-table api="MDataTableCell" />
+                    <doc-props-table api="MDataTableRowDetail" />
                     <doc-props-table api="MDataTableColumn" />
                     <doc-props-table api="MDataSource" />
                     <doc-props-table api="MDataSourceOptions" />
+                    <doc-props-table api="MExternalDataSourceOptions" />
                     <doc-props-table api="data/data-source/data-source" />
+                    <doc-props-table api="data/data-source/external-data-source" />
                     <doc-props-table api="data/data-source/data-query" />
                     <doc-props-table api="MDataQuery" />
                     <doc-props-table api="MDataPage" />
@@ -131,6 +166,10 @@ export class DataTablePage {
         orders: dataTableOrders,
         selection: dataTableSelection,
         server: dataTableServer,
+        external: dataTableExternal,
+        detail: dataTableDetail,
+        range: dataTableRange,
+        sticky: dataTableSticky,
     }
     protected readonly users = USERS
     protected readonly columns: readonly MDataTableColumn[] = [

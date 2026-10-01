@@ -110,3 +110,9 @@ m-card-header.doc-section-header {
     outline: 2px solid var(--mineral-border-focus);
     outline-offset: 2px;
 }
+
+/* A sticky preview (doc-preview sticky) follows the page: overflow: hidden on the section card would make the card
+   the scroll container of position: sticky; clip cuts the same corners without being one. */
+.m-card:has(.doc-preview-stage-sticky) {
+    overflow: clip;
+}
