@@ -12,10 +12,14 @@ import {MThemeScope} from '@banzamel/mineralui-angular/theme'
             <m-icon [icon]="palette" color="primary" size="lg" />
             Always light
         </div>
-        <!-- Only light can be forced: dark is the :root default, so a dark scope inside a light page stays light. -->
-        <div class="panel" mTheme [theme]="violet">
+        <div class="panel" mTheme="dark">
             <m-icon [icon]="palette" color="primary" size="lg" />
-            Violet primary, page mode
+            Always dark
+        </div>
+        <!-- "system" follows the OS preference (a bare mTheme is dark); overrides apply inside only. -->
+        <div class="panel" mTheme="system" [theme]="violet">
+            <m-icon [icon]="palette" color="primary" size="lg" />
+            Violet primary, system mode
         </div>
     `,
     styles: `
