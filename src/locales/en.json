@@ -290,6 +290,11 @@
                     "description": "Dropdown select with keyboard nav and groups."
                 },
                 {
+                    "id": "signal-forms",
+                    "title": "Signal Forms",
+                    "description": "Every field with [formField]: schema-driven state, MRules, submit and focus."
+                },
+                {
                     "id": "textarea",
                     "title": "Textarea",
                     "description": "Multi-line input with auto-resize support."

@@ -1,7 +1,8 @@
 import api from '@generated/api.json'
 
-// `functions`: the exported functions of one source file, keyed `<entry point>/<file>` (e.g. `utils/validators`).
-const ENTRY_KINDS = ['component', 'directive', 'pipe', 'service', 'interface', 'functions'] as const
+// `functions`: the exported functions (and objects of functions, `MRules.email`) of one source file, keyed
+// `<entry point>/<file>` (e.g. `utils/validators`). `class`: a plain exported class (e.g. an error type).
+const ENTRY_KINDS = ['component', 'directive', 'pipe', 'service', 'interface', 'class', 'functions'] as const
 const MEMBER_KINDS = ['input', 'model', 'output', 'property', 'method', 'function'] as const
 
 /** One public member of a documented class or interface (see `scripts/generate-docs.mjs`). */

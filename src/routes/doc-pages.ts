@@ -57,6 +57,7 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     input: () => import('@pages/forms/input/input.page').then((m) => m.InputPage),
     'input-group': () => import('@pages/forms/input-group/input-group.page').then((m) => m.InputGroupPage),
     select: () => import('@pages/forms/select/select.page').then((m) => m.SelectPage),
+    'signal-forms': () => import('@pages/forms/signal-forms/signal-forms.page').then((m) => m.SignalFormsPage),
     textarea: () => import('@pages/forms/textarea/textarea.page').then((m) => m.TextareaPage),
     'time-picker': () => import('@pages/forms/time-picker/time-picker.page').then((m) => m.TimePickerPage),
 

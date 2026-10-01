@@ -1,8 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {RouterLink} from '@angular/router'
 import {MDataTable, MDataTableCell} from '@banzamel/mineralui-angular/data/data-table'
 import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
+import {MLink} from '@banzamel/mineralui-angular/typography/link'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import formCustomField from '@generated/examples/forms/form/form-custom-field'
@@ -63,10 +65,12 @@ const MESSAGE_ORDER = [
         DocPreview,
         DocPropsTable,
         MCode,
+        MLink,
         MList,
         MListItem,
         MStack,
         MText,
+        RouterLink,
     ],
     templateUrl: './form.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

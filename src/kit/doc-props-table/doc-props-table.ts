@@ -39,7 +39,9 @@ export class DocPropsTable {
 
     protected readonly importLine = computed(() => {
         const {kind, name, entryPoint, members} = this.entry()
-        const names = kind === 'functions' ? members.map((member) => member.name).join(', ') : name
+        // Members of an object of functions (`MRules.email`) are imported through the object.
+        const names =
+            kind === 'functions' ? [...new Set(members.map((member) => member.name.split('.')[0]))].join(', ') : name
         return `import {${names}} from '${entryPoint}'`
     })
 

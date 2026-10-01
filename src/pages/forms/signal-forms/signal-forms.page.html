@@ -1,0 +1,71 @@
+<doc-article
+    title="Signal Forms"
+    description="Every MineralUI field works with Angular Signal Forms: bind it with [formField]. The components stay ControlValueAccessors, so Reactive Forms and ngModel keep working the same way."
+>
+    <doc-section
+        title="Signup"
+        description="form() holds the model in a signal, [formField] binds each component, [formRoot] submits. Specialized inputs keep validating themselves (name words, email format, phone digits); their errors join the field's errors. A field shows its error once touched — submit() touches every field."
+    >
+        <doc-preview [example]="examples.signalFormsSignup" />
+    </doc-section>
+
+    <doc-section
+        title="Schema drives state"
+        description="required(), disabled() and readonly() rules reach the component: the label marker and aria-required, the disabled field, the read-only text. With [formField] the schema wins over the component's own required / disabled inputs. MRules brings the react-pro validation rules to a schema."
+    >
+        <doc-preview [example]="examples.signalFormsSchema" />
+    </doc-section>
+
+    <doc-section
+        title="Submit"
+        description="submit() runs the action only for a valid form and puts the errors it returns — e.g. from the server — on their fields. focusBoundControl() moves focus into the component (its text field, the checked radio, the first empty OTP cell)."
+    >
+        <doc-preview [example]="examples.signalFormsSubmit" />
+    </doc-section>
+
+    <doc-section title="Error messages" description="The text of a field's error, first match wins.">
+        <m-stack>
+            <m-data-table
+                compact
+                class="doc-reference-table"
+                label="Sources of a field's error message with Signal Forms"
+                [columns]="messageColumns"
+                [data]="messageOrder"
+            >
+                <ng-template mCell="0" let-value="value"
+                    ><code mCode>{{ value }}</code></ng-template
+                >
+            </m-data-table>
+            <p mText size="sm" tone="muted">
+                The key is the error's kind. MRules uses the keys of MValidators (<code mCode>mPesel</code>,
+                <code mCode>mMinLength</code>), so one dictionary translates Reactive and Signal Forms alike — see
+                <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/form">Forms</a>.
+            </p>
+            <doc-code-block [snippet]="snippets.ruleMessagesTs" />
+        </m-stack>
+    </doc-section>
+
+    <doc-section title="Good to know">
+        <ul mList>
+            <li mListItem>
+                There is no <code mCode>MRules.required</code>: use <code mCode>required()</code> of Angular — it also
+                marks the field required.
+            </li>
+            <li mListItem>
+                Fields that show read-only state (text inputs, pickers, OTP, rating) follow
+                <code mCode>readonly()</code>; checkboxes, radios, sliders and file inputs have no read-only state.
+            </li>
+            <li mListItem>
+                Calendar, MiniCalendar and ColorPicker show no error text — render the field's errors next to them.
+            </li>
+        </ul>
+    </doc-section>
+
+    <doc-section title="API">
+        <m-stack>
+            <doc-props-table api="form/rules" />
+            <doc-props-table api="MRuleOptions" />
+            <doc-props-table api="MRuleError" />
+        </m-stack>
+    </doc-section>
+</doc-article>

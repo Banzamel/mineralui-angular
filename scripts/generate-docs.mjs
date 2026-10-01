@@ -290,6 +290,51 @@ function functionMember(fn, errors) {
     }
 }
 
+// JSDoc of a node ts-morph does not treat as JSDoc-able (an object literal property): its leading `/** */` comment.
+function leadingJsDoc(node) {
+    const block = node
+        .getLeadingCommentRanges()
+        .map((range) => range.getText())
+        .filter((text) => text.startsWith('/**'))
+        .at(-1)
+    if (!block) return ''
+    return block
+        .replace(/^\/\*\*|\*\/$/g, '')
+        .split('\n')
+        .map((line) => line.replace(/^\s*\* ?/, '').trim())
+        .filter(Boolean)
+        .join('\n')
+}
+
+/**
+ * Members of an exported `const X = {…} as const` whose properties are functions (`MValidators`, `MRules`), named
+ * `X.property`. Other exported constants are not documented.
+ */
+function functionObjectMembers(statement, errors) {
+    const flags = TypeFormatFlags.UseAliasDefinedOutsideCurrentScope | TypeFormatFlags.NoTruncation
+    return statement.getDeclarations().flatMap((declaration) => {
+        let initializer = declaration.getInitializer()
+        if (initializer && Node.isAsExpression(initializer)) initializer = initializer.getExpression()
+        if (!initializer || !Node.isObjectLiteralExpression(initializer)) return []
+        const properties = initializer.getProperties().filter((prop) => Node.isPropertyAssignment(prop))
+        const callable = properties.filter((prop) => prop.getType().getCallSignatures().length > 0)
+        if (callable.length === 0 || callable.length !== properties.length) return []
+        return callable.map((prop) => {
+            const name = `${declaration.getName()}.${prop.getName()}`
+            const description = leadingJsDoc(prop)
+            if (!description) errors.push(`${name}: exported function without JSDoc`)
+            const value = prop.getInitializer()
+            const type = Node.isArrowFunction(value)
+                ? `(${value
+                      .getParameters()
+                      .map((param) => param.getText())
+                      .join(', ')}) => ${value.getReturnType().getText(value, flags)}`
+                : prop.getType().getText(prop, flags)
+            return {name, kind: 'function', type, required: false, default: null, description, from: null}
+        })
+    })
+}
+
 function interfaceMembers(declaration) {
     return declaration.getProperties().map((prop) => ({
         name: prop.getName(),
@@ -325,7 +370,20 @@ function generateApi(errors) {
             const name = cls.getName()
             if (!name || !exportedFrom(entry, name)) continue
             const decorator = decoratorArgs(cls, ['Component', 'Directive', 'Pipe', 'Injectable'])
-            if (!decorator) continue
+            if (!decorator) {
+                // A plain exported class (an error type like MRuleError): its public properties and methods.
+                api[name] = {
+                    name,
+                    kind: 'class',
+                    selector: null,
+                    entryPoint: entry.importPath,
+                    facade,
+                    description: jsDocText(cls),
+                    members: serviceMembers(cls),
+                    slots: [],
+                }
+                continue
+            }
             const kind = {Component: 'component', Directive: 'directive', Pipe: 'pipe', Injectable: 'service'}[
                 decorator.name
             ]
@@ -370,9 +428,13 @@ function generateApi(errors) {
             }
         }
 
-        // Exported functions, one entry per source file: `utils/validators`, `theme/responsive`…
+        // Exported functions and objects of functions, one entry per source file: `utils/validators`, `form/rules`…
         const functions = file.getFunctions().filter((fn) => fn.getName() && exportedFrom(entry, fn.getName()))
-        if (functions.length > 0) {
+        const objectMembers = file
+            .getVariableStatements()
+            .filter((statement) => statement.getDeclarations().some((item) => exportedFrom(entry, item.getName())))
+            .flatMap((statement) => functionObjectMembers(statement, errors))
+        if (functions.length > 0 || objectMembers.length > 0) {
             const key = `${entry.path}/${basename(filePath, '.ts')}`
             api[key] = {
                 name: key,
@@ -381,7 +443,7 @@ function generateApi(errors) {
                 entryPoint: entry.importPath,
                 facade,
                 description: '',
-                members: functions.map((fn) => functionMember(fn, errors)),
+                members: [...objectMembers, ...functions.map((fn) => functionMember(fn, errors))],
                 slots: [],
             }
         }
