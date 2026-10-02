@@ -54,7 +54,7 @@ const LAYOUTS: readonly MDateRangePresetsLayout[] = ['inline', 'sidebar']
 
             <doc-section
                 title="Unavailable dates"
-                description="min, max and disabledDates (a list or a predicate) make days unavailable: they stay reachable with the keyboard but cannot be picked."
+                description="minDate, maxDate and disabledDates (a list or a predicate) make days unavailable: they stay reachable with the keyboard but cannot be picked."
             >
                 <doc-preview [example]="examples.calendarConstraints" />
             </doc-section>

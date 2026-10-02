@@ -14,7 +14,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             <m-date-range-picker
                 label="Stay"
                 helperText="From today on, at least one night"
-                [min]="today"
+                [minDate]="today"
                 [allowSameDay]="false"
                 [formControl]="stay"
             />

@@ -58,6 +58,13 @@
             <li mListItem>
                 Calendar, MiniCalendar and ColorPicker show no error text — render the field's errors next to them.
             </li>
+            <li mListItem>
+                Date bounds of the pickers and calendars are the <code mCode>minDate</code> /
+                <code mCode>maxDate</code> inputs, bound next to <code mCode>[formField]</code>. They disable days in
+                the calendar and validate typed text as the <code mCode>mDate</code> error — also for date ranges.
+                Angular's <code mCode>minDate()</code> / <code mCode>maxDate()</code> rules only validate the model and
+                do not reach the calendar.
+            </li>
         </ul>
     </doc-section>
 

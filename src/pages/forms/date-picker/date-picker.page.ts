@@ -75,7 +75,7 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
 
             <doc-section
                 title="Forms and validation"
-                description="As a form control the value is a Date or null. The typed text is validated as the mDate error with a reason: incomplete, invalid, invalidTime, min, max or unavailable (min, max, disabledDates)."
+                description="As a form control the value is a Date or null. The typed text is validated as the mDate error with a reason: incomplete, invalid, invalidTime, min, max or unavailable (minDate, maxDate, disabledDates)."
             >
                 <doc-preview [example]="examples.datePickerForm" />
             </doc-section>

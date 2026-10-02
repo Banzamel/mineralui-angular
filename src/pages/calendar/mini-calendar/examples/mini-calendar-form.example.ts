@@ -13,8 +13,8 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             <m-mini-calendar
                 size="sm"
                 [formControl]="visit"
-                [min]="today"
-                [max]="inSixWeeks"
+                [minDate]="today"
+                [maxDate]="inSixWeeks"
                 [disabledDates]="isWeekend"
                 [showOutsideDays]="false"
             />

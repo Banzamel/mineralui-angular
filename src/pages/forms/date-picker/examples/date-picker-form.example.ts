@@ -13,7 +13,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             <m-date-picker
                 label="Delivery"
                 helperText="Weekdays from today on"
-                [min]="today"
+                [minDate]="today"
                 [disabledDates]="weekend"
                 [formControl]="delivery"
             />

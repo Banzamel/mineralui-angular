@@ -56,7 +56,7 @@ const WEEK_STARTS = ['monday', 'sunday'] as const
 
             <doc-section
                 title="Forms and unavailable days"
-                description="MMiniCalendar is a form control (a Date, null when empty). min, max and disabledDates (a list or a predicate) make days unavailable; showOutsideDays off leaves the neighbouring months' cells empty."
+                description="MMiniCalendar is a form control (a Date, null when empty). minDate, maxDate and disabledDates (a list or a predicate) make days unavailable; showOutsideDays off leaves the neighbouring months' cells empty."
             >
                 <doc-preview [example]="examples.miniCalendarForm" />
             </doc-section>

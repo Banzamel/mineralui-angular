@@ -5,7 +5,12 @@ import type {MDateRange} from '@banzamel/mineralui-angular/dropdowns/calendar'
 @Component({
     selector: 'app-calendar-constraints',
     imports: [MCalendar],
-    template: `<m-calendar [min]="today" [max]="inTwoMonths" [disabledDates]="isWeekend" [(value)]="delivery" />`,
+    template: `<m-calendar
+        [minDate]="today"
+        [maxDate]="inTwoMonths"
+        [disabledDates]="isWeekend"
+        [(value)]="delivery"
+    />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarConstraintsExample {
