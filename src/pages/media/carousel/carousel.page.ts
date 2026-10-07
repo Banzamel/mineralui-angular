@@ -146,7 +146,7 @@ const TRANSITIONS: readonly MCarouselTransition[] = ['slide', 'fade']
 
             <doc-section
                 title="Accessibility"
-                description="Follows the WAI-ARIA APG Carousel: the host is a region with aria-roledescription 'carousel' and a name (ariaLabel or mineralui.carousel.label); each slide is a group announced as 'slide, 2 of 3', and hidden slides are inert. ← / → change the slide while focus is inside. The slides container is a polite live region, switched off while autoplay rotates. Arrows, dots and the rotation button are named buttons (mineralui.carousel.*); the current dot has aria-current."
+                description="Follows the WAI-ARIA APG Carousel: the host is a region with aria-roledescription 'carousel' and a name (ariaLabel or mineralui.carousel.label); each slide is a group announced as 'slide, 2 of 3', and hidden slides are inert. ← / → change the slide while focus is inside. The slides container is a polite live region, switched off while autoplay rotates. Arrows, dots and the rotation button are named buttons (mineralui.common.previousSlide / nextSlide / slideNumber, mineralui.carousel.*); the current dot has aria-current."
             />
 
             <doc-section

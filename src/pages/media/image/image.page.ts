@@ -63,7 +63,7 @@ const CLICK: readonly MClickEffectMode[] = ['none', 'ripple']
 
             <doc-section
                 title="Accessibility"
-                description="The <img> is yours, so its alt is the text alternative. With preview, the image sits in a button named 'Preview <alt>' (mineralui.mediaLightbox.open). The preview is a modal dialog named by the image: focus moves in and returns to the button on close, Escape or a click beside the image closes it, ← / → move through the group, and the '2 / 5' counter is a polite live region. When an arrow button reaches the end of the group, its focus moves to the other one."
+                description="The <img> is yours, so its alt is the text alternative. With preview, the image sits in a button named 'Preview <alt>' (mineralui.common.previewItem). The preview is a modal dialog named by the image: focus moves in and returns to the button on close, Escape or a click beside the image closes it, ← / → move through the group, and the '2 / 5' counter is a polite live region. When an arrow button reaches the end of the group, its focus moves to the other one."
             />
 
             <doc-section

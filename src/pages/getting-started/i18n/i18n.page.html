@@ -43,6 +43,30 @@
         <doc-props-table api="MTranslatePipe" />
     </doc-section>
 
+    <doc-section
+        title="Framework texts"
+        description="Every built-in text of the library (button names, live announcements, empty states) is a mineralui.* key with an English default. Put the keys you want to translate in your locale dictionaries; missing keys stay English."
+    >
+        <ul mList>
+            <li mListItem>
+                <code mCode>mineralui.common.*</code> keys are shared with MineralUI for React — one dictionary
+                translates both. One key always means one text, wherever it is used.
+            </li>
+            <li mListItem>
+                Placeholders such as <code mCode>{{ '{' }}name{{ '}' }}</code> are filled in by the component; keep them
+                in the translation.
+            </li>
+        </ul>
+        <doc-framework-texts-table scope="common" label="Shared texts (mineralui.common.*)" />
+    </doc-section>
+
+    <doc-section
+        title="Component texts"
+        description="Keys used by a single component or component family. Search by key, English text or component name, or filter by group."
+    >
+        <doc-framework-texts-table scope="components" label="Component texts" />
+    </doc-section>
+
     <doc-section title="Usage notes">
         <ul mList>
             <li mListItem>

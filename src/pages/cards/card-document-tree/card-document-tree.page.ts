@@ -101,7 +101,7 @@ const DETAILS: Readonly<Record<string, {heading: string; meta: string; items: MD
 
             <doc-section
                 title="Accessibility"
-                description="The tree is a full MTreeView named by the card heading (keyboard, aria-selected). The actions button is named by mineralui.documentTree.actions and opens a WAI-ARIA menu; the details follow the selection."
+                description="The tree is a full MTreeView named by the card heading (keyboard, aria-selected). The actions button is named by mineralui.common.documentActions and opens a WAI-ARIA menu; the details follow the selection."
             />
 
             <doc-section

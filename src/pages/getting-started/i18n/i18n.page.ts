@@ -14,13 +14,24 @@ import {CodeBlock} from '@kit/code-block/code-block'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
+import {FrameworkTextsTable} from './framework-texts-table'
 import {locales} from './snippets/locales'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 
 @Component({
     selector: 'doc-i18n-page',
-    imports: [CodeBlock, DocArticle, DocSection, DocPreview, DocPropsTable, MCode, MList, MListItem],
+    imports: [
+        CodeBlock,
+        DocArticle,
+        DocSection,
+        DocPreview,
+        DocPropsTable,
+        FrameworkTextsTable,
+        MCode,
+        MList,
+        MListItem,
+    ],
     templateUrl: './i18n.page.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

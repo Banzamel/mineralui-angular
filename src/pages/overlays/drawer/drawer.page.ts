@@ -106,7 +106,7 @@ const SIZES: readonly MDrawerSize[] = ['sm', 'md', 'lg', 'full']
                         focus moves in and back, the drawer is named by its header, and without the overlay the page is
                         not blocked (React still covers it with a transparent backdrop).
                     </li>
-                    <li mListItem>The header close button has a translatable label (mineralui.drawer.close).</li>
+                    <li mListItem>The header close button has a translatable label (mineralui.common.close).</li>
                 </ul>
             </doc-section>
 

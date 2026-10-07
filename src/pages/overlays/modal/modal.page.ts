@@ -65,7 +65,7 @@ const SIZES: readonly MModalSize[] = ['sm', 'md', 'lg', 'xl']
 
             <doc-section
                 title="Form, lazy content and focus"
-                description="Content in <ng-template mModalContent> exists only while the modal is open. Focus starts on the field marked autoFocus (or autofocus); Save shows a toast above the open modal."
+                description="Content in <ng-template mModalContent> exists only while the modal is open. Focus starts on the field marked autoFocus (or autofocus); Escape in the open Visibility list closes only the list; Save shows a toast above the open modal."
             >
                 <doc-preview [example]="examples.modalForm" />
             </doc-section>

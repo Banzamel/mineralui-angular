@@ -12,6 +12,9 @@
 // 3. src/generated/snippets/** — one module per page with every file of `pages/**/snippets/`.
 // 4. src/index.html — M_THEME_INIT_SCRIPT (from the library sources) between the `m-theme-init` markers.
 // 5. public/downloads/*.css — theme starter files built from the library tokens (same output as docs-react).
+// 6. src/generated/i18n-keys.json — every built-in text (`t('mineralui.…', 'English')` in the library sources, plus
+//    dynamic `mineralui.<group>.${key}` lookups resolved from their English object). A key with two different
+//    English texts is an error (ADR 0026: one key = one text).
 import {existsSync, mkdirSync, readdirSync, readFileSync, rmSync, watch, writeFileSync} from 'node:fs'
 import {basename, dirname, extname, join, relative, resolve, sep} from 'node:path'
 import {Node, Project, SyntaxKind, TypeFormatFlags} from 'ts-morph'
@@ -604,6 +607,112 @@ async function generateDownloads(errors) {
 }
 
 // ---------------------------------------------------------------------------------------------------------------
+// 6. i18n-keys.json
+
+const I18N_PREFIX = 'mineralui.'
+const placeholdersOf = (text) => [...new Set([...(text ?? '').matchAll(/\{(\w+)\}/g)].map((match) => match[1]))]
+
+/** Object literal behind an identifier (`const en = SCHEDULER_TEXTS_EN` → its initializer), unwrapping `as` / `satisfies`. */
+function objectLiteralOf(node) {
+    for (let current = node, depth = 0; current && depth < 5; depth++) {
+        if (
+            Node.isAsExpression(current) ||
+            Node.isSatisfiesExpression(current) ||
+            Node.isParenthesizedExpression(current)
+        ) {
+            current = current.getExpression()
+        } else if (Node.isObjectLiteralExpression(current)) {
+            return current
+        } else if (Node.isIdentifier(current)) {
+            const declaration = current.getSymbol()?.getDeclarations()[0]
+            current = Node.isVariableDeclaration(declaration) ? declaration.getInitializer() : undefined
+        } else {
+            return undefined
+        }
+    }
+    return undefined
+}
+
+/** `{key → text}` of an object literal; a function value (plural rule) maps to `null`. */
+function objectTexts(literal) {
+    const texts = new Map()
+    for (const property of literal.getProperties()) {
+        if (!Node.isPropertyAssignment(property)) continue
+        const value = property.getInitializer()
+        const name = property.getName().replace(/^['"]|['"]$/g, '')
+        if (Node.isStringLiteral(value) || Node.isNoSubstitutionTemplateLiteral(value)) {
+            texts.set(name, value.getLiteralValue())
+        } else if (Node.isArrowFunction(value) || Node.isFunctionExpression(value)) {
+            texts.set(name, null)
+        }
+    }
+    return texts
+}
+
+/**
+ * Keys of a dynamic lookup `t(`mineralui.<group>.${key}`, …)`: the enclosing function reads the English defaults as
+ * `<object>[key]` (`builtInValidationMessages[key]`, `en[key]`) — the keys of that object literal.
+ */
+function dynamicTexts(call, template) {
+    const spans = template.getTemplateSpans()
+    if (spans.length !== 1 || spans[0].getLiteral().getLiteralText() !== '') return undefined
+    const variable = spans[0].getExpression()
+    if (!Node.isIdentifier(variable)) return undefined
+    const scope = call.getFirstAncestor((node) => Node.isFunctionDeclaration(node)) ?? call.getSourceFile()
+    for (const access of scope.getDescendantsOfKind(SyntaxKind.ElementAccessExpression)) {
+        const argument = access.getArgumentExpression()
+        if (!argument || argument.getText() !== variable.getText()) continue
+        const literal = objectLiteralOf(access.getExpression())
+        if (literal) return {group: template.getHead().getLiteralText(), texts: objectTexts(literal)}
+    }
+    return undefined
+}
+
+/**
+ * Every built-in text of the library: `t('mineralui.…', 'English')` calls in the sources (ADR 0026). One key = one
+ * text — a key used with two different English fallbacks is an error.
+ */
+function generateI18nKeys(project, errors) {
+    const keys = new Map()
+    const add = (key, text, source, location) => {
+        const known = keys.get(key)
+        if (!known) {
+            keys.set(key, {key, text, placeholders: placeholdersOf(text), sources: [source]})
+            return
+        }
+        if (known.text !== text) {
+            errors.push(
+                `${location}: ${key} has two English texts — "${known.text}" and "${text}" (one key = one text)`
+            )
+        }
+        if (!known.sources.includes(source)) known.sources.push(source)
+    }
+    for (const file of project.getSourceFiles()) {
+        for (const call of file.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+            const [keyArg, textArg] = call.getArguments()
+            if (!keyArg || !Node.isIdentifier(call.getExpression()) || call.getExpression().getText() !== 't') continue
+            const fn = call.getFirstAncestor((node) => Node.isFunctionDeclaration(node))
+            const source = fn?.getName() ?? toPosix(relative(libRoot, file.getFilePath()))
+            const location = `${toPosix(relative(workspaceRoot, file.getFilePath()))}:${call.getStartLineNumber()}`
+            if (Node.isStringLiteral(keyArg) && keyArg.getLiteralValue().startsWith(I18N_PREFIX)) {
+                if (!textArg || !Node.isStringLiteral(textArg)) {
+                    errors.push(`${location}: ${keyArg.getLiteralValue()} needs a string literal English fallback`)
+                    continue
+                }
+                add(keyArg.getLiteralValue(), textArg.getLiteralValue(), source, location)
+            } else if (Node.isTemplateExpression(keyArg) && keyArg.getHead().getLiteralText().startsWith(I18N_PREFIX)) {
+                const dynamic = dynamicTexts(call, keyArg)
+                if (!dynamic) continue // e.g. the plural lookup `t(i18nKey, i18nKey)` — covered by the object above
+                for (const [name, text] of dynamic.texts) add(`${dynamic.group}${name}`, text, source, location)
+            }
+        }
+    }
+    const sorted = [...keys.values()].sort((a, b) => a.key.localeCompare(b.key))
+    writeIfChanged(join(generatedRoot, 'i18n-keys.json'), JSON.stringify(sorted, null, 4) + '\n')
+    return sorted.length
+}
+
+// ---------------------------------------------------------------------------------------------------------------
 
 async function run() {
     const started = Date.now()
@@ -612,12 +721,13 @@ async function run() {
     checkApiReferences(api, errors)
     const examples = generateExamples(errors)
     const snippets = generateSnippets(errors)
+    const i18nKeys = generateI18nKeys(project, errors)
     syncThemeInitScript(project, errors)
     await generateDownloads(errors)
     for (const error of errors) console.error(`[generate-docs] ${error}`)
     console.log(
-        `[generate-docs] api ${Object.keys(api).length}, examples ${examples}, snippets ${snippets}` +
-            `${errors.length ? `, ${errors.length} error(s)` : ''} (${Date.now() - started} ms)`
+        `[generate-docs] api ${Object.keys(api).length}, examples ${examples}, snippets ${snippets}, ` +
+            `i18n keys ${i18nKeys}${errors.length ? `, ${errors.length} error(s)` : ''} (${Date.now() - started} ms)`
     )
     return errors.length === 0
 }
