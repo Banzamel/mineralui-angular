@@ -16,6 +16,7 @@ import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
+import {CALENDAR_AVATARS} from '../calendar-samples'
 
 const EVENTS: readonly MCalendarEvent[] = [
     {
@@ -27,7 +28,12 @@ const EVENTS: readonly MCalendarEvent[] = [
         endTime: '10:00',
         status: 'planned',
         type: 'Meeting',
-        user: {id: 'anna', name: 'Anna Kowalska', color: 'rgba(14, 165, 233, 0.18)'},
+        user: {
+            id: 'anna',
+            name: 'Anna Kowalska',
+            avatar: CALENDAR_AVATARS.annaKowalska,
+            color: 'rgba(14, 165, 233, 0.18)',
+        },
     },
     {
         id: 'review',

@@ -1,9 +1,14 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core'
 import {MCalendarBoard, MCalendarDayBadgeDef} from '@banzamel/mineralui-angular/calendar/calendar-board'
 import type {MCalendarDayMenuFn} from '@banzamel/mineralui-angular/calendar/calendar-board'
-import type {MCalendarDayActionEvent, MCalendarEvent} from '@banzamel/mineralui-angular/calendar/calendar-event'
+import type {
+    MCalendarDayActionEvent,
+    MCalendarEvent,
+    MCalendarEventActionEvent,
+    MCalendarEventMenuFn,
+} from '@banzamel/mineralui-angular/calendar/calendar-event'
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
-import {mCopyIcon, mTrashIcon} from '@banzamel/mineralui-angular/icons'
+import {mCheckCircleIcon, mCopyIcon, mEditIcon, mTrashIcon} from '@banzamel/mineralui-angular/icons'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 
@@ -19,9 +24,9 @@ const day = (offset: number) => new Date(today.getFullYear(), today.getMonth(), 
                 [showTimeline]="false"
                 [events]="events()"
                 [dayMenuItems]="dayMenu"
-                [eventActions]="['delete']"
+                [eventMenuItems]="eventMenu"
                 (dayAction)="onDayAction($event)"
-                (eventAction)="remove($event.event)"
+                (eventAction)="onEventAction($event)"
             >
                 <ng-template mCalendarDayBadge let-events="events">
                     @if (events.length > 2) {
@@ -64,7 +69,28 @@ export class CalendarBoardTemplatesExample {
         this.status.set(`Copy ${events.length} events from ${label}.`)
     }
 
-    protected remove(event: MCalendarEvent): void {
-        this.events.update((all) => all.filter((item) => item.id !== event.id))
+    // Menu of every event row in the day details; chosen items arrive in (eventAction) with their id.
+    protected readonly eventMenu: MCalendarEventMenuFn = (event) => [
+        {id: 'edit', label: 'Edit', icon: mEditIcon},
+        {id: 'duplicate', label: 'Duplicate', icon: mCopyIcon},
+        {id: 'done', label: 'Mark as done', icon: mCheckCircleIcon, disabled: event.status === 'done'},
+        {id: 'delete', label: 'Delete', icon: mTrashIcon, color: 'error'},
+    ]
+
+    private copies = 0
+
+    protected onEventAction({actionId, event}: MCalendarEventActionEvent): void {
+        if (actionId === 'delete') {
+            this.events.update((all) => all.filter((item) => item.id !== event.id))
+            this.status.set(`Deleted ${event.title}.`)
+        } else if (actionId === 'duplicate') {
+            this.events.update((all) => [...all, {...event, id: `${event.id}-copy-${++this.copies}`}])
+            this.status.set(`Duplicated ${event.title}.`)
+        } else if (actionId === 'done') {
+            this.events.update((all) => all.map((item) => (item.id === event.id ? {...item, status: 'done'} : item)))
+            this.status.set(`${event.title} is done.`)
+        } else {
+            this.status.set(`Edit ${event.title}.`)
+        }
     }
 }

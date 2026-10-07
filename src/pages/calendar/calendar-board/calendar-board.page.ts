@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
+import {RouterLink} from '@angular/router'
 import {MCalendarBoard} from '@banzamel/mineralui-angular/calendar/calendar-board'
 import type {
     MCalendarAddEvent,
@@ -9,6 +10,9 @@ import type {
     MCalendarFilterOption,
 } from '@banzamel/mineralui-angular/calendar/calendar-event'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
+import {MCode} from '@banzamel/mineralui-angular/typography/code'
+import {MLink} from '@banzamel/mineralui-angular/typography/link'
+import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import calendarBoardAgenda from '@generated/examples/calendar/calendar-board/calendar-board-agenda'
 import calendarBoardTemplates from '@generated/examples/calendar/calendar-board/calendar-board-templates'
@@ -72,8 +76,13 @@ const EVENTS: readonly MCalendarEvent[] = [
         DocPreview,
         DocPropsTable,
         MCalendarBoard,
+        MCode,
+        MLink,
+        MList,
+        MListItem,
         MStack,
         MText,
+        RouterLink,
     ],
     template: `
         <doc-article
@@ -120,10 +129,38 @@ const EVENTS: readonly MCalendarEvent[] = [
             </doc-section>
 
             <doc-section
-                title="Own badges and day menu"
-                description="ng-template mCalendarDayBadge replaces the event count in the cells (ng-template mCalendarDay replaces the whole cell content). dayMenuItems builds the menu in the day details; chosen items arrive in (dayAction) with the day and its events."
+                title="Own badges and menus"
+                description="ng-template mCalendarDayBadge replaces the event count in the cells (ng-template mCalendarDay replaces the whole cell content). dayMenuItems builds the menu in the day details; chosen items arrive in (dayAction) with the day and its events. eventMenuItems does the same for every event row — with icons, colors and disabled items — reported by (eventAction)."
             >
                 <doc-preview [example]="examples.templates" />
+            </doc-section>
+
+            <doc-section title="Building blocks">
+                <p mText>
+                    The day details are made of public components — the event list and the hour timeline — which can
+                    also be used on their own, with their own menu and rows: see
+                    <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/calendar-event"
+                        >Calendar events</a
+                    >.
+                </p>
+            </doc-section>
+
+            <doc-section title="Texts">
+                <ul mList>
+                    <li mListItem>
+                        Labels, the view switch, the empty day and the timeline come from
+                        <code mCode>mineralui.calendarBoard.*</code> in <code mCode>provideMineralI18n()</code> (English
+                        by default; see
+                        <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/i18n"
+                            >Languages (i18n)</a
+                        >); <code mCode>emptyText</code> overrides the empty day.
+                    </li>
+                    <li mListItem>
+                        Month, day and time formats follow <code mCode>locale</code> — without it the locale of
+                        <code mCode>MI18nService</code> (then <code mCode>LOCALE_ID</code>). These docs use
+                        <code mCode>en</code>, so the dates are in US format.
+                    </li>
+                </ul>
             </doc-section>
 
             <doc-section

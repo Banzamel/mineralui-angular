@@ -1,8 +1,11 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
 import {MMiniCalendar} from '@banzamel/mineralui-angular/calendar/mini-calendar'
+import {injectLocale} from '@banzamel/mineralui-angular/i18n'
+import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
+import {MText} from '@banzamel/mineralui-angular/typography/text'
 import miniCalendarForm from '@generated/examples/calendar/mini-calendar/mini-calendar-form'
 import miniCalendarMarkers from '@generated/examples/calendar/mini-calendar/mini-calendar-markers'
 import miniCalendarWeek from '@generated/examples/calendar/mini-calendar/mini-calendar-week'
@@ -12,13 +15,25 @@ import {booleanControl, selectControl} from '@kit/doc-playground/playground-cont
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
-const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'warning', 'info']
+const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'warning', 'info', 'light', 'dark', 'news']
 const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
 const WEEK_STARTS = ['monday', 'sunday'] as const
 
 @Component({
     selector: 'doc-mini-calendar-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MMiniCalendar, MCode, MList, MListItem],
+    imports: [
+        DocArticle,
+        DocSection,
+        DocPlayground,
+        DocPreview,
+        DocPropsTable,
+        MMiniCalendar,
+        MCode,
+        MList,
+        MListItem,
+        MStack,
+        MText,
+    ],
     template: `
         <doc-article
             title="MMiniCalendar"
@@ -29,14 +44,17 @@ const WEEK_STARTS = ['monday', 'sunday'] as const
                 description="Tab into the grid, then use the arrows, PageUp / PageDown (Shift for years) and Home / End; Enter or Space picks. Moving past the month's edge turns the page."
             >
                 <doc-playground [controls]="controls" [code]="code()">
-                    <m-mini-calendar
-                        [(value)]="value"
-                        [size]="size()"
-                        [color]="color()"
-                        [weekStartsOn]="weekStart() === 'sunday' ? 0 : 1"
-                        [showOutsideDays]="showOutsideDays()"
-                        [disabled]="disabled()"
-                    />
+                    <m-stack>
+                        <m-mini-calendar
+                            [(value)]="value"
+                            [size]="size()"
+                            [color]="color()"
+                            [weekStartsOn]="weekStart() === 'sunday' ? 0 : 1"
+                            [showOutsideDays]="showOutsideDays()"
+                            [disabled]="disabled()"
+                        />
+                        <p mText size="sm" tone="muted">Selected: {{ selectedLabel() }}</p>
+                    </m-stack>
                 </doc-playground>
             </doc-section>
 
@@ -70,6 +88,11 @@ const WEEK_STARTS = ['monday', 'sunday'] as const
                         <code mCode>locale</code>.
                     </li>
                     <li mListItem>
+                        Without <code mCode>locale</code> dates are formatted in the locale of
+                        <code mCode>MI18nService</code> (then <code mCode>LOCALE_ID</code>) — these docs use
+                        <code mCode>en</code>, so the examples show US dates.
+                    </li>
+                    <li mListItem>
                         react-pro also has built-in Polish defaults picked by locale; in Angular Polish comes from the
                         dictionary.
                     </li>
@@ -101,7 +124,12 @@ const WEEK_STARTS = ['monday', 'sunday'] as const
 export class MiniCalendarPage {
     protected readonly examples = {miniCalendarForm, miniCalendarMarkers, miniCalendarWeek}
 
-    protected readonly value = signal<Date | null>(null)
+    protected readonly value = signal<Date | null>(new Date())
+    private readonly locale = injectLocale()
+    protected readonly selectedLabel = computed(
+        () =>
+            this.value()?.toLocaleDateString(this.locale(), {weekday: 'long', day: 'numeric', month: 'long'}) ?? 'none'
+    )
     protected readonly size = signal<MSize>('md')
     protected readonly color = signal<MColor>('primary')
     protected readonly weekStart = signal<(typeof WEEK_STARTS)[number]>('monday')

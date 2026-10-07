@@ -84,7 +84,7 @@ const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
 
             <doc-section
                 title="Playground"
-                description="Drag the canvas, use the wheel sideways (or Shift + wheel), the day strip or the keys to move in time; open an event for its details. Today has overlapping events in Anna's row; another conflict waits three days ahead."
+                description="Drag the canvas, use the wheel sideways (or Shift + wheel), the day strip or the keys to move in time; open an event for its details. Today has overlapping events in Anna's row; another conflict waits three days ahead — a marker at the edge of the canvas counts the days to the nearest conflict out of view on each side, and clicking it moves the axis there."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-stack>

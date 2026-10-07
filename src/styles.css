@@ -13,7 +13,6 @@ body {
     background: var(--mineral-page-bg);
     color: var(--mineral-page-text);
     font-family: var(--mineral-font-family-sans, var(--mineral-font-family));
-    line-height: 1.5;
     transition:
         background-color 180ms ease,
         color 180ms ease;
