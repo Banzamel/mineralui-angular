@@ -17,47 +17,126 @@ import timelineBoardScheduling from '@generated/examples/calendar/timeline-board
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
-import {booleanControl, sliderControl} from '@kit/doc-playground/playground-controls'
+import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
+import {CALENDAR_AVATARS} from '../calendar-samples'
 
 const today = new Date()
-const at = (dayOffset: number, hour: number, minute = 0) =>
-    new Date(today.getFullYear(), today.getMonth(), today.getDate() + dayOffset, hour, minute)
+const at = (dayOffset: number, time: string) => {
+    const [hour = 0, minute = 0] = time.split(':').map(Number)
+    return new Date(today.getFullYear(), today.getMonth(), today.getDate() + dayOffset, hour, minute)
+}
 
 const ROWS: readonly MTimelineBoardRow[] = [
-    {id: 'anna', label: 'Anna Kowalska', sublabel: 'Design'},
-    {id: 'jan', label: 'Jan Nowak', sublabel: 'Frontend'},
-    {id: 'ola', label: 'Ola Wiśniewska', sublabel: 'Backend', workdaySpec: {start: '10:00', end: '18:00'}},
-    {id: 'piotr', label: 'Piotr Zieliński', sublabel: 'QA'},
+    {id: 'anna', label: 'Anna Kowalska', sublabel: 'Design', avatar: CALENDAR_AVATARS.annaKowalska, color: '#0ea5e9'},
+    {id: 'jan', label: 'Jan Nowak', sublabel: 'Frontend', avatar: CALENDAR_AVATARS.janNowak, color: '#22c55e'},
+    {
+        id: 'kasia',
+        label: 'Katarzyna Lewandowska',
+        sublabel: 'Backend · 10:00–18:00',
+        avatar: CALENDAR_AVATARS.katarzynaLewandowska,
+        color: '#f59e0b',
+        workdaySpec: {start: '10:00', end: '18:00'},
+    },
+    {id: 'piotr', label: 'Piotr Wójcik', sublabel: 'QA', avatar: CALENDAR_AVATARS.piotrWojcik, color: '#a855f7'},
+    {id: 'ewa', label: 'Ewa Mazur', sublabel: 'Product', avatar: CALENDAR_AVATARS.ewaMazur, color: '#ef4444'},
 ]
 
+type Slot = readonly [start: string, end: string, title: string]
+
+// Ordinary work of each row, without overlaps. The first slot runs every day, one of the others rests in turn — so
+// the days differ while the double bookings below always land on the first slot.
+const PLANS: Readonly<Record<string, readonly Slot[]>> = {
+    anna: [
+        ['10:00', '11:30', 'Wireframes'],
+        ['08:30', '09:30', 'Design QA'],
+        ['13:00', '14:00', 'Icon set'],
+        ['14:30', '16:00', 'Prototype'],
+    ],
+    jan: [
+        ['09:00', '11:00', 'Pairing'],
+        ['11:30', '12:30', 'Code review'],
+        ['13:30', '15:00', 'Calendar feature'],
+        ['15:30', '16:30', 'Release prep'],
+    ],
+    kasia: [
+        ['10:30', '12:00', 'API work'],
+        ['12:15', '12:45', 'Backend sync'],
+        ['15:00', '16:30', 'Database migration'],
+        ['16:45', '17:45', 'On-call handover'],
+    ],
+    piotr: [
+        ['09:00', '10:00', 'Smoke tests'],
+        ['10:30', '12:00', 'Test plan'],
+        ['13:00', '15:00', 'Regression run'],
+        ['15:30', '16:30', 'Bug triage'],
+    ],
+    ewa: [
+        ['09:30', '10:30', 'Roadmap'],
+        ['11:00', '12:00', 'Customer call'],
+        ['13:30', '14:30', 'Backlog grooming'],
+        ['15:00', '16:00', 'Metrics review'],
+    ],
+}
+
+// Double bookings on a few days: the day strip counts them and the edge markers jump to them.
+const CONFLICTS: readonly (readonly [rowId: string, dayOffset: number, ...slot: Slot])[] = [
+    ['kasia', -2, '11:00', '12:00', 'Incident review'],
+    ['anna', 0, '10:30', '12:00', 'User interviews'],
+    ['piotr', 1, '09:30', '10:30', 'Hotfix verification'],
+    ['jan', 3, '10:00', '12:00', 'Demo prep'],
+    ['ewa', 5, '10:00', '11:00', 'Board meeting'],
+]
+
+const DAYS = 7
+const person = (row: MTimelineBoardRow) => ({name: row.label, role: row.sublabel, avatar: row.avatar})
+const teammates = (rowIndex: number, count: number) =>
+    Array.from({length: count}, (_, step) => ROWS[(rowIndex + step + 1) % ROWS.length]).flatMap((row) =>
+        row ? [person(row)] : []
+    )
+
 const EVENTS: readonly MTimelineBoardEvent[] = [
-    {
-        id: 'e1',
-        rowId: 'anna',
-        title: 'Design review',
-        startAt: at(0, 9),
-        endAt: at(0, 10, 30),
-        color: '#0ea5e9',
-        description: 'Walk through the new calendar screens.',
-        leader: {name: 'Anna Kowalska', role: 'Lead designer'},
-        participants: [{name: 'Jan Nowak'}, {name: 'Ola Wiśniewska'}, {name: 'Piotr Zieliński'}],
-    },
-    {id: 'e2', rowId: 'anna', title: 'User interviews', startAt: at(0, 10), endAt: at(0, 12), color: '#8b5cf6'},
-    {id: 'e3', rowId: 'jan', title: 'Pairing', startAt: at(0, 8), endAt: at(0, 11), color: '#22c55e'},
-    {id: 'e4', rowId: 'jan', title: 'Release', startAt: at(0, 15), endAt: at(0, 16), color: '#f59e0b'},
-    {id: 'e5', rowId: 'ola', title: 'API sync', startAt: at(0, 11), endAt: at(0, 12), color: '#22c55e'},
-    {id: 'e6', rowId: 'piotr', title: 'Regression run', startAt: at(0, 13), endAt: at(0, 17), color: '#ef4444'},
-    {id: 'e7', rowId: 'piotr', title: 'Night checks', startAt: at(1, 7), endAt: at(1, 9), color: '#ef4444'},
-    {id: 'e8', rowId: 'jan', title: 'Hotfix', startAt: at(3, 9), endAt: at(3, 11), color: '#f59e0b'},
-    {id: 'e9', rowId: 'jan', title: 'Demo prep', startAt: at(3, 10), endAt: at(3, 12), color: '#0ea5e9'},
+    ...ROWS.flatMap((row, rowIndex) =>
+        Array.from({length: DAYS * 2 + 1}, (_, index) => index - DAYS).flatMap((dayOffset) => {
+            const resting = 1 + ((((dayOffset + rowIndex) % 3) + 3) % 3)
+            return (PLANS[row.id] ?? []).flatMap(([start, end, title], slot) =>
+                slot === resting
+                    ? []
+                    : [
+                          {
+                              id: `${row.id}-${dayOffset}-${slot}`,
+                              rowId: row.id,
+                              title,
+                              startAt: at(dayOffset, start),
+                              endAt: at(dayOffset, end),
+                              color: row.color,
+                              leader: person(row),
+                              participants: teammates(rowIndex, 1 + ((slot + rowIndex) % 3)),
+                          },
+                      ]
+            )
+        })
+    ),
+    ...CONFLICTS.map(([rowId, dayOffset, start, end, title]) => ({
+        id: `conflict-${rowId}-${dayOffset}`,
+        rowId,
+        title,
+        startAt: at(dayOffset, start),
+        endAt: at(dayOffset, end),
+        color: '#64748b',
+        description: 'Booked on top of the regular work — needs a new time.',
+    })),
 ]
 
 const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
-    {rowId: 'ola', startAt: at(0, 13), endAt: at(0, 15), kind: 'vacation', label: 'Doctor'},
-    {rowId: 'anna', startAt: at(0, 14), endAt: at(0, 16), kind: 'busy', label: 'Workshop'},
+    {rowId: 'kasia', startAt: at(0, '13:00'), endAt: at(0, '15:00'), kind: 'vacation', label: 'Doctor'},
+    {rowId: 'anna', startAt: at(0, '16:30'), endAt: at(0, '18:00'), kind: 'busy', label: 'Workshop'},
+    {rowId: 'ewa', startAt: at(2, '08:00'), endAt: at(2, '18:00'), kind: 'vacation', label: 'Day off'},
 ]
+
+const WORKDAYS = ['none', '08:00–16:00', '09:00–18:00', '06:00–22:00'] as const
+type Workday = (typeof WORKDAYS)[number]
 
 @Component({
     selector: 'doc-timeline-board-page',
@@ -84,29 +163,36 @@ const SLOTS: readonly MTimelineBoardUnavailableSlot[] = [
 
             <doc-section
                 title="Playground"
-                description="Drag the canvas, use the wheel sideways (or Shift + wheel), the day strip or the keys to move in time; open an event for its details. Today has overlapping events in Anna's row; another conflict waits three days ahead — a marker at the edge of the canvas counts the days to the nearest conflict out of view on each side, and clicking it moves the axis there."
+                description="Drag the canvas, use the wheel sideways (or Shift + wheel), the day strip or the keys to move in time; open an event for its details. Every row has regular work a week back and ahead, and a few days carry a double booking — the day strip counts them, and a marker at the edge of the canvas counts the days to the nearest conflict out of view on each side; clicking it moves the axis there. Katarzyna works 10:00–18:00 (workdaySpec), whatever workday says."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-stack>
-                        <m-timeline-board
-                            label="Team plan"
-                            workdayStart="08:00"
-                            workdayEnd="16:00"
-                            [height]="420"
-                            [fullHeight]="false"
-                            [rows]="rows"
-                            [events]="events"
-                            [unavailableSlots]="slots"
-                            [pixelsPerHour]="pixelsPerHour()"
-                            [showDayStrip]="showDayStrip()"
-                            [showNowLine]="showNowLine()"
-                            [overlapHighlight]="overlapHighlight()"
-                            [autoRowHeight]="autoRowHeight()"
-                            [loading]="loading()"
-                            [eventMenuItems]="menu"
-                            (eventOpen)="log.set('Opened ' + $event.title)"
-                            (eventAction)="onAction($event)"
-                        />
+                        <!-- fullHeight fills its parent: this frame stands for the app's layout. -->
+                        <div [style.height.px]="fullHeight() ? 560 : null">
+                            <m-timeline-board
+                                label="Team plan"
+                                [workdayStart]="workday()?.start"
+                                [workdayEnd]="workday()?.end"
+                                [height]="fullHeight() ? undefined : 420"
+                                [fullHeight]="fullHeight()"
+                                [rows]="rows"
+                                [events]="events"
+                                [unavailableSlots]="slots"
+                                [pixelsPerHour]="pixelsPerHour()"
+                                [rowHeight]="rowHeight()"
+                                [rowLabelWidth]="rowLabelWidth()"
+                                [dayStripDays]="dayStripDays()"
+                                [panKeyStepMinutes]="panKeyStepMinutes()"
+                                [showDayStrip]="showDayStrip()"
+                                [showNowLine]="showNowLine()"
+                                [overlapHighlight]="overlapHighlight()"
+                                [autoRowHeight]="autoRowHeight()"
+                                [loading]="loading()"
+                                [eventMenuItems]="menu"
+                                (eventOpen)="log.set('Opened ' + $event.title)"
+                                (eventAction)="onAction($event)"
+                            />
+                        </div>
                         <p mText size="sm" tone="muted" role="status">{{ log() }}</p>
                     </m-stack>
                 </doc-playground>
@@ -188,32 +274,55 @@ export class TimelineBoardPage {
     ]
 
     protected readonly pixelsPerHour = signal(96)
+    protected readonly rowHeight = signal(56)
+    protected readonly rowLabelWidth = signal(168)
+    protected readonly dayStripDays = signal(14)
+    protected readonly panKeyStepMinutes = signal(30)
+    protected readonly workdayOption = signal<Workday>('09:00–18:00')
     protected readonly showDayStrip = signal(true)
     protected readonly showNowLine = signal(true)
     protected readonly overlapHighlight = signal(true)
+    protected readonly fullHeight = signal(false)
     protected readonly autoRowHeight = signal(false)
     protected readonly loading = signal(false)
     protected readonly controls = [
-        sliderControl('pixelsPerHour', this.pixelsPerHour, {min: 48, max: 192, step: 8}),
+        sliderControl('pixelsPerHour', this.pixelsPerHour, {min: 48, max: 220, step: 4}),
+        sliderControl('rowHeight', this.rowHeight, {min: 40, max: 96, step: 4}),
+        sliderControl('rowLabelWidth', this.rowLabelWidth, {min: 96, max: 280, step: 8}),
+        sliderControl('dayStripDays', this.dayStripDays, {min: 3, max: 30}),
+        sliderControl('panKeyStepMinutes', this.panKeyStepMinutes, {min: 5, max: 120, step: 5}),
+        selectControl('workday', this.workdayOption, WORKDAYS),
         booleanControl('showDayStrip', this.showDayStrip),
         booleanControl('showNowLine', this.showNowLine),
         booleanControl('overlapHighlight', this.overlapHighlight),
+        booleanControl('fullHeight', this.fullHeight),
         booleanControl('autoRowHeight', this.autoRowHeight),
         booleanControl('loading', this.loading),
     ]
+    protected readonly workday = computed(() => {
+        const [start, end] = this.workdayOption().split('–')
+        return start && end ? {start, end} : undefined
+    })
 
     protected readonly code = computed(() => {
+        const workday = this.workday()
         const attrs = [
             'label="Team plan"',
-            'workdayStart="08:00"',
-            'workdayEnd="16:00"',
+            workday && `workdayStart="${workday.start}"`,
+            workday && `workdayEnd="${workday.end}"`,
             '[rows]="rows"',
             '[events]="events()"',
             '[unavailableSlots]="slots"',
             this.pixelsPerHour() !== 96 && `[pixelsPerHour]="${this.pixelsPerHour()}"`,
+            this.rowHeight() !== 56 && `[rowHeight]="${this.rowHeight()}"`,
+            this.rowLabelWidth() !== 168 && `[rowLabelWidth]="${this.rowLabelWidth()}"`,
+            this.dayStripDays() !== 14 && `[dayStripDays]="${this.dayStripDays()}"`,
+            this.panKeyStepMinutes() !== 30 && `[panKeyStepMinutes]="${this.panKeyStepMinutes()}"`,
             !this.showDayStrip() && '[showDayStrip]="false"',
             !this.showNowLine() && '[showNowLine]="false"',
             !this.overlapHighlight() && '[overlapHighlight]="false"',
+            this.fullHeight() ? null : '[height]="420"',
+            this.fullHeight() ? null : '[fullHeight]="false"',
             this.autoRowHeight() && 'autoRowHeight',
             this.loading() && '[loading]="true"',
             '[eventMenuItems]="menu"',

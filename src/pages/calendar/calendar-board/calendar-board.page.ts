@@ -22,6 +22,7 @@ import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
+import {CALENDAR_AVATARS} from '../calendar-samples'
 
 const VIEWS: readonly MCalendarBoardView[] = ['month', 'week']
 const MODES: readonly MCalendarDetailsMode[] = ['auto', 'popover', 'modal', 'none']
@@ -29,42 +30,86 @@ const MODES: readonly MCalendarDetailsMode[] = ['auto', 'popover', 'modal', 'non
 const today = new Date()
 const day = (date: number) => new Date(today.getFullYear(), today.getMonth(), date)
 
-const EVENTS: readonly MCalendarEvent[] = [
-    {
-        id: 'planning',
-        title: 'Sprint planning',
-        description: 'Define scope for the next framework pass.',
-        date: day(3),
-        startTime: '09:00',
-        endTime: '10:00',
-        type: 'Meeting',
-        user: {id: 'anna', name: 'Anna Kowalska'},
-    },
-    {
-        id: 'release',
-        title: 'Release window',
-        date: day(5),
-        startTime: '12:00',
-        endTime: '13:00',
-        status: 'active',
-        type: 'Release',
-    },
-    {id: 'invoices', title: 'Invoice review', date: day(6), startTime: '11:00', endTime: '11:30', type: 'Finance'},
-    {id: 'polish', title: 'UI polish session', date: day(8), startTime: '15:00', endTime: '16:30', type: 'Workshop'},
-    {id: 'sync', title: 'Design sync', date: day(8), startTime: '16:00', endTime: '17:00', type: 'Meeting'},
-    {id: 'offsite', title: 'Team offsite', date: day(12), type: 'Meeting', status: 'done'},
-    {id: 'retro', title: 'Retrospective', date: day(15), startTime: '14:00', endTime: '15:00', type: 'Meeting'},
-    {id: 'audit', title: 'Accessibility audit', date: day(18), startTime: '10:00', endTime: '12:30', type: 'Workshop'},
-    {
-        id: 'launch',
-        title: 'Launch',
-        date: day(22),
-        startTime: '09:30',
-        endTime: '10:00',
-        status: 'cancelled',
-        type: 'Release',
-    },
+const COLORS: Readonly<Record<string, string>> = {
+    Meeting: '#0ea5e9',
+    Release: '#22c55e',
+    Finance: '#f59e0b',
+    Workshop: '#a855f7',
+    People: '#ec4899',
+    Facilities: '#78716c',
+}
+
+const PEOPLE = {
+    anna: {id: 'anna', name: 'Anna Kowalska', avatar: CALENDAR_AVATARS.annaKowalska},
+    jan: {id: 'jan', name: 'Jan Nowak', avatar: CALENDAR_AVATARS.janNowak},
+    ewa: {id: 'ewa', name: 'Ewa Mazur', avatar: CALENDAR_AVATARS.ewaMazur},
+    tomasz: {id: 'tomasz', name: 'Tomasz Kaczmarek', avatar: CALENDAR_AVATARS.tomaszKaczmarek},
+} as const
+
+type Sample = readonly [date: number, time: string, title: string, type: string, extra?: Partial<MCalendarEvent>]
+
+// A month like the one in docs-react: quiet days next to busy ones (up to seven events), all-day badges and owners.
+const SAMPLES: readonly Sample[] = [
+    [
+        3,
+        '09:00–10:00',
+        'Sprint planning',
+        'Meeting',
+        {description: 'Define scope for the next pass.', user: PEOPLE.anna},
+    ],
+    [5, '12:00–13:00', 'Release window', 'Release', {status: 'active', user: PEOPLE.jan}],
+    [6, '11:00–11:30', 'Invoice review', 'Finance'],
+    [7, '10:00–11:00', 'Pairing session', 'Workshop'],
+    [7, '10:30–11:30', 'Quick call', 'Meeting'],
+    [8, '15:00–16:30', 'UI polish session', 'Workshop', {user: PEOPLE.ewa}],
+    [9, '', 'Birthday reminder', 'People', {badgeLabel: 'Birthday', status: 'done'}],
+    [10, '09:00–09:30', 'Standup', 'Meeting'],
+    [10, '09:45–11:00', '1:1 with manager', 'Meeting', {user: PEOPLE.tomasz}],
+    [10, '10:30–12:00', 'Architecture review', 'Workshop'],
+    [10, '12:00–13:00', 'Team lunch', 'People'],
+    [10, '14:30–17:00', 'Design critique', 'Workshop', {user: PEOPLE.ewa}],
+    [10, '17:15–18:30', 'Postmortem', 'Meeting'],
+    [11, '09:00–12:00', 'Strategy huddle', 'Meeting'],
+    [11, '10:00–11:00', 'Client check-in', 'Meeting', {user: PEOPLE.jan}],
+    [11, '12:30–13:45', 'Lunch & learn', 'Workshop'],
+    [11, '14:00–15:30', 'Office hours', 'People'],
+    [11, '16:00–17:30', 'Sprint demo', 'Meeting', {status: 'active'}],
+    [12, '17:15–20:00', 'Customer onboarding', 'Meeting', {status: 'active', user: PEOPLE.anna}],
+    [13, '13:45–16:30', 'Quarterly retro', 'Meeting'],
+    [14, '', 'Office maintenance', 'Facilities'],
+    [16, '09:00–09:30', 'Coffee chat', 'People', {status: 'done'}],
+    [16, '09:30–10:00', 'Standup', 'Meeting'],
+    [16, '11:00–12:00', 'Backend deploy', 'Release'],
+    [16, '12:00–13:00', 'Team lunch', 'People'],
+    [16, '13:00–14:30', 'Customer call', 'Meeting', {user: PEOPLE.tomasz}],
+    [16, '15:00–16:00', 'Bug bash', 'Workshop'],
+    [16, '16:30–18:00', 'Roadmap workshop', 'Workshop', {user: PEOPLE.anna}],
+    [17, '14:00–15:30', 'Marketing review', 'Workshop'],
+    [18, '10:00–12:30', 'Accessibility audit', 'Workshop', {user: PEOPLE.ewa}],
+    [19, '09:00–09:45', 'Morning standup', 'Meeting'],
+    [19, '10:00–11:30', 'Sprint planning', 'Meeting', {user: PEOPLE.anna}],
+    [19, '11:30–12:30', 'Interview round 1', 'People'],
+    [19, '13:30–14:30', 'Interview round 2', 'People'],
+    [19, '15:00–16:00', 'Design crit', 'Workshop'],
+    [19, '16:30–18:00', 'Retro', 'Meeting', {status: 'cancelled'}],
+    [20, '16:00–17:00', 'Town hall', 'Meeting'],
+    [21, '', 'Public holiday', 'People', {badgeLabel: 'Holiday', status: 'done'}],
+    [22, '09:30–10:00', 'Launch', 'Release', {status: 'cancelled'}],
+    [23, '09:00–09:15', 'Standup', 'Meeting'],
+    [23, '09:30–11:00', 'Planning', 'Meeting'],
+    [23, '11:00–12:00', 'Design walkthrough', 'Workshop', {user: PEOPLE.ewa}],
+    [23, '13:00–15:30', 'Customer demo', 'Meeting', {user: PEOPLE.jan}],
+    [23, '17:00–18:00', 'Weekly retro', 'Meeting'],
+    [24, '09:00–11:00', 'Finance close', 'Finance'],
+    [26, '', 'Release freeze', 'Release'],
+    [27, '09:00–13:00', 'Hackday kickoff', 'Workshop'],
+    [28, '14:00–17:00', 'Hackday demos', 'Workshop', {user: PEOPLE.tomasz}],
 ]
+
+const EVENTS: readonly MCalendarEvent[] = SAMPLES.map(([date, time, title, type, extra], index) => {
+    const [startTime, endTime] = time ? time.split('–') : []
+    return {id: `event-${index}`, title, date: day(date), startTime, endTime, type, color: COLORS[type], ...extra}
+})
 
 @Component({
     selector: 'doc-calendar-board-page',
@@ -96,7 +141,7 @@ const EVENTS: readonly MCalendarEvent[] = [
 
             <doc-section
                 title="Playground"
-                description="Choose a day for its details; the hour bar in each cell shows the covered hours. The board reports (addEvent), (eventAction) and the models; the page changes events."
+                description="Choose a day for its details; the hour bar in each cell shows the covered hours — busy days fill it with several segments. In the details, rows show the type, a badgeLabel (Birthday, Holiday) and the owner. The board reports (addEvent), (eventAction) and the models; the page changes events."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-stack>
@@ -196,6 +241,7 @@ export class CalendarBoardPage {
         {id: 'meetings', label: 'Meetings', predicate: (event) => event.type === 'Meeting'},
         {id: 'releases', label: 'Releases', predicate: (event) => event.type === 'Release'},
         {id: 'workshops', label: 'Workshops', predicate: (event) => event.type === 'Workshop'},
+        {id: 'people', label: 'People', predicate: (event) => event.type === 'People'},
     ]
 
     protected readonly view = signal<MCalendarBoardView>('month')
