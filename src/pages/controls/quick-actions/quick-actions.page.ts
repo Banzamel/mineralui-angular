@@ -6,6 +6,7 @@ import type {MQuickActionItem, MQuickActionsLayout} from '@banzamel/mineralui-an
 import {mCalendarIcon, mChartIcon, mUsersIcon} from '@banzamel/mineralui-angular/icons'
 import type {MSimpleGridColumns} from '@banzamel/mineralui-angular/layout/simple-grid'
 import type {MSize} from '@banzamel/mineralui-angular/theme'
+import quickActionsDescription from '@generated/examples/controls/quick-actions/quick-actions-description'
 import quickActionsGrid from '@generated/examples/controls/quick-actions/quick-actions-grid'
 import quickActionsItems from '@generated/examples/controls/quick-actions/quick-actions-items'
 import quickActionsProjected from '@generated/examples/controls/quick-actions/quick-actions-projected'
@@ -76,6 +77,13 @@ const ITEMS: readonly MQuickActionItem[] = [
             </doc-section>
 
             <doc-section
+                title="Descriptions"
+                description="An item's description renders as a smaller, muted second line under the label. It is part of the button's text, so screen readers read it with the label."
+            >
+                <doc-preview [example]="examples.quickActionsDescription" />
+            </doc-section>
+
+            <doc-section
                 title="Projected buttons"
                 description="For router links or custom handlers, project mButton elements: they inherit variant, size, color and fullWidth through M_BUTTON_GROUP, and their own inputs still win."
             >
@@ -90,7 +98,7 @@ const ITEMS: readonly MQuickActionItem[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuickActionsPage {
-    protected readonly examples = {quickActionsGrid, quickActionsItems, quickActionsProjected}
+    protected readonly examples = {quickActionsDescription, quickActionsGrid, quickActionsItems, quickActionsProjected}
     protected readonly items = ITEMS
 
     protected readonly layout = signal<MQuickActionsLayout>('group')

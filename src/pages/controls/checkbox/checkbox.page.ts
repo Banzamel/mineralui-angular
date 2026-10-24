@@ -3,6 +3,7 @@ import {MCheckbox} from '@banzamel/mineralui-angular/controls/checkbox'
 import type {MColor, MLabelPosition, MSize} from '@banzamel/mineralui-angular/theme'
 import checkboxForm from '@generated/examples/controls/checkbox/checkbox-form'
 import checkboxSelectAll from '@generated/examples/controls/checkbox/checkbox-select-all'
+import checkboxWithoutLabel from '@generated/examples/controls/checkbox/checkbox-without-label'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -47,6 +48,13 @@ const EFFECTS = ['ripple', 'none'] as const
             </doc-section>
 
             <doc-section
+                title="Without a visible label"
+                description="A checkbox in a table header or row often has no text of its own. ariaLabel names the native input directly; ariaLabelledby points it at an element that already shows the name, such as the row's first cell. An aria-label attribute on m-checkbox itself would land on the host element, not on the input."
+            >
+                <doc-preview [example]="examples.checkboxWithoutLabel" />
+            </doc-section>
+
+            <doc-section
                 title="Forms"
                 description="MCheckbox is a ControlValueAccessor — use formControlName, [formControl] or ngModel. The control's error shows by itself once it is touched or the form is submitted, as a live alert linked with aria-describedby; errorMessages replaces the text per error key, errorText forces a message."
             >
@@ -61,7 +69,7 @@ const EFFECTS = ['ripple', 'none'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxPage {
-    protected readonly examples = {checkboxForm, checkboxSelectAll}
+    protected readonly examples = {checkboxForm, checkboxSelectAll, checkboxWithoutLabel}
 
     protected readonly size = signal<MSize>('md')
     protected readonly color = signal<MColor>('primary')

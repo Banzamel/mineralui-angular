@@ -22,7 +22,7 @@ const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
         >
             <doc-section
                 title="Playground"
-                description="Hold a stepper button to repeat; ArrowUp / ArrowDown step, PageUp / PageDown step ten times. The value snaps to min, max and precision on blur."
+                description="Hold a stepper button to repeat; ArrowUp / ArrowDown step, PageUp / PageDown step ten times, Home / End jump to min / max when they are set (otherwise they move the caret). The value snaps to min, max and precision on blur."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-input-number

@@ -22,7 +22,7 @@ const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
         >
             <doc-section
                 title="Playground"
-                description="The reveal toggle is a focusable button with aria-pressed; the strength label is announced politely."
+                description="The reveal toggle is a focusable button with aria-pressed; pressing it keeps focus in the field. With showStrength a polite status region (mounted before the first character) announces “Password strength: …”; the visible label is hidden from screen readers."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-input-password

@@ -43,7 +43,7 @@ const MARKS: readonly MSliderMark[] = [
 
             <doc-section
                 title="Forms, marks and value text"
-                description="MSlider is a ControlValueAccessor. The thumb is a role=slider: arrows move by step, Page Up / Page Down by ten steps, Home / End jump to the ends. Marks are decorative — valueText gives the announced value."
+                description="MSlider is a ControlValueAccessor. The thumb is a role=slider: arrows move to the neighbouring step, Page Up / Page Down by a tenth of the range (rounded to the step), Home / End jump to the ends. Marks are decorative; at a mark's value its label is announced (aria-valuetext) unless valueText says otherwise."
             >
                 <doc-preview [example]="examples.sliderBudget" />
             </doc-section>

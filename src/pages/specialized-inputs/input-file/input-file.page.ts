@@ -23,7 +23,7 @@ const ACCEPTS = ['any', 'image/*', '.pdf,.docx'] as const
         >
             <doc-section
                 title="Playground"
-                description="Click or press Enter / Space on the drop zone to browse, or drop files onto it."
+                description="Click or press Enter / Space on the drop zone to browse, or drop files onto it. A file outside accept rejects the whole batch with a message naming it; too large files or too many files are rejected the same way."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-input-file
@@ -45,7 +45,7 @@ const ACCEPTS = ['any', 'image/*', '.pdf,.docx'] as const
 
             <doc-section
                 title="Crop an avatar"
-                description="[crop] opens the crop editor for a single image: drag or use the arrow keys to move, wheel / slider / + − to zoom. The value is the cropped file."
+                description="[crop] opens the crop editor for a single image: drag or use the arrow keys to move, wheel / slider / + − to zoom (Shift + arrows move faster; Ctrl / Alt / Meta shortcuts stay with the browser). The value is the cropped file."
             >
                 <doc-preview [example]="examples.inputFileAvatar" />
             </doc-section>

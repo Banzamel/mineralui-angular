@@ -26,7 +26,7 @@ const MARKS = [
         >
             <doc-section
                 title="Playground"
-                description="A typed value inside min / max applies at once; anything else is clamped and rounded to precision on blur."
+                description="A typed value inside min / max applies at once; anything else is clamped and rounded to precision on blur or Enter."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-input-slider

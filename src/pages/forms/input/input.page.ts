@@ -3,6 +3,7 @@ import {MIcon, mMailIcon, mSearchIcon} from '@banzamel/mineralui-angular/icons'
 import {MInput} from '@banzamel/mineralui-angular/inputs/input'
 import type {MInputVariant} from '@banzamel/mineralui-angular/inputs/input'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
+import inputCombobox from '@generated/examples/forms/input/input-combobox'
 import inputForm from '@generated/examples/forms/input/input-form'
 import inputSlots from '@generated/examples/forms/input/input-slots'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
@@ -67,6 +68,13 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
                 <doc-preview [example]="examples.inputForm" />
             </doc-section>
 
+            <doc-section
+                title="Combobox field"
+                description="[combobox] makes the native input the combobox of a popup list (WAI-ARIA APG): role, aria-controls, aria-expanded, aria-autocomplete and aria-haspopup land on the input itself. Point [mKeyboardNav]'s keyTarget at the input (reach it through inputId) and it keeps aria-activedescendant up to date. MineralUI for React passes such attributes through a free-form inputProps object; here they are a typed input."
+            >
+                <doc-preview [example]="examples.inputCombobox" />
+            </doc-section>
+
             <doc-section title="API">
                 <doc-props-table api="MInput" />
             </doc-section>
@@ -75,7 +83,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputPage {
-    protected readonly examples = {inputForm, inputSlots}
+    protected readonly examples = {inputCombobox, inputForm, inputSlots}
     protected readonly searchIcon = mSearchIcon
     protected readonly mailIcon = mMailIcon
 
