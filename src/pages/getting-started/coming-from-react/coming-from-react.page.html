@@ -1,0 +1,226 @@
+<doc-article
+    title="Coming from React"
+    description="MineralUI for Angular has the components, tokens, themes, icons and translation keys of MineralUI for React 2.5.2 — the API follows Angular. Each section shows React first, then Angular."
+>
+    <doc-section
+        title="Setup and providers"
+        description="Context providers become provider functions in app.config.ts; hooks become root services."
+    >
+        <p mText>
+            <code mCode>MThemeProvider</code> → <code mCode>provideMineralUI()</code>,
+            <code mCode>MI18nProvider</code> → <code mCode>provideMineralI18n()</code>,
+            <code mCode>MToastProvider</code> → the optional <code mCode>provideMineralToast()</code>. The theme class
+            and token overrides go on <code mCode>&lt;html&gt;</code>. Every component has its own entry point (<code
+                mCode
+                >&#64;banzamel/mineralui-angular/controls/button</code
+            >); groups and the root re-export them. See
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/installation"
+                >Installation</a
+            >.
+        </p>
+        <doc-code-block [snippet]="snippets.mainTsx" />
+        <doc-code-block [snippet]="snippets.appConfigTs" />
+    </doc-section>
+
+    <doc-section
+        title="Styles and the m- prefix"
+        description="No runtime CSS injection: one stylesheet for the reset, tokens and utilities, component styles ship with the components."
+    >
+        <p mText>
+            Add <code mCode>&#64;banzamel/mineralui-angular/styles.css</code> to <code mCode>styles</code> in
+            <code mCode>angular.json</code>. Every class has the <code mCode>m-</code> prefix (<code mCode
+                >.button.outlined</code
+            >
+            → <code mCode>.m-button.m-outlined</code>, utilities such as <code mCode>.m-mt-md</code>), keyframes too.
+            The <code mCode>--mineral-*</code> tokens and <code mCode>.theme-light</code> /
+            <code mCode>.theme-dark</code> are unchanged, so
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/theming">theme files</a>
+            work for both frameworks.
+        </p>
+        <doc-code-block [snippet]="snippets.appCss" />
+        <doc-code-block [snippet]="snippets.stylesCss" />
+    </doc-section>
+
+    <doc-section
+        title="Selectors instead of polymorphic props"
+        description="A component that wraps one native element is an attribute on that element."
+    >
+        <p mText>
+            <code mCode>component</code>, <code mCode>as</code>, <code mCode>href</code> and <code mCode>to</code> are
+            gone: <code mCode>button[mButton]</code>, <code mCode>a[mButton]</code>, <code mCode>a[mLink]</code>,
+            <code mCode>a[mCard]</code>. Semantic tags carry what <code mCode>level</code> and
+            <code mCode>ordered</code> did (<code mCode>h1[mHeading]</code>…<code mCode>h6[mHeading]</code>,
+            <code mCode>ul[mList]</code> / <code mCode>ol[mList]</code>). The library does not depend on
+            <code mCode>&#64;angular/router</code> — put your <code mCode>routerLink</code> on the host. Composite
+            components are elements: <code mCode>&lt;m-card&gt;</code>, <code mCode>&lt;m-stack&gt;</code>,
+            <code mCode>&lt;m-date-picker&gt;</code>.
+        </p>
+        <doc-code-block [snippet]="snippets.stepsTsx" />
+        <doc-code-block [snippet]="snippets.stepsComponentTs" />
+    </doc-section>
+
+    <doc-section
+        title="model() instead of value / defaultValue / onChange"
+        description="Controlled and uncontrolled pairs are one model() with two-way binding; callbacks are outputs."
+    >
+        <p mText>
+            <code mCode>[(value)]</code>, <code mCode>[(open)]</code>, <code mCode>[(page)]</code> — bind a signal or
+            leave the model alone. Callbacks are outputs (<code mCode>(closed)</code>, <code mCode>(itemClick)</code>,
+            <code mCode>(action)</code>), and data items hold no functions: an output emits the item. Inputs never reuse
+            global HTML attribute names: <code mCode>title</code> on modals and sheets is <code mCode>heading</code>, on
+            icons and illustrations <code mCode>label</code>.
+        </p>
+        <doc-code-block [snippet]="snippets.deleteDialogTsx" />
+        <doc-code-block [snippet]="snippets.deleteDialogComponentTs" />
+    </doc-section>
+
+    <doc-section
+        title="Forms"
+        description="Every field is a ControlValueAccessor and works with Signal Forms [formField] — no MForm, no useFormField."
+    >
+        <p mText>
+            Use <code mCode>formControlName</code>, <code mCode>[formControl]</code>, <code mCode>ngModel</code> or
+            <code mCode>[formField]</code>. <code mCode>MValidators</code> adapt the React validation rules to
+            <code mCode>ValidatorFn</code>, <code mCode>MRules</code> to Signal Forms schemas; the React
+            <code mCode>ValidatorFn</code> type is <code mCode>MValueValidator</code>. Specialized inputs validate for
+            real, and their models hold raw values (phone digits, <code mCode>number | null</code>,
+            <code mCode>Date | null</code>). Date bounds are <code mCode>minDate</code> / <code mCode>maxDate</code>.
+            See <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/form">Form</a> and
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/signal-forms"
+                >Signal Forms</a
+            >.
+        </p>
+        <doc-code-block [snippet]="snippets.signupFormTsx" />
+        <doc-code-block [snippet]="snippets.signupFormComponentTs" />
+        <doc-code-block [snippet]="snippets.signupSignalFormComponentTs" />
+    </doc-section>
+
+    <doc-section
+        title="Slots and icons"
+        description="ReactNode props rendered once become content projection; icons are constants for one MIcon component."
+    >
+        <p mText>
+            <code mCode>startIcon</code> / <code mCode>endIcon</code>, headers and addons are slot attributes:
+            <code mCode>mStart</code>, <code mCode>mEnd</code>, <code mCode>mPrepend</code> /
+            <code mCode>mAppend</code> in <code mCode>MInputGroup</code>. One
+            <code mCode>&lt;m-icon [icon]&gt;</code> renders V1 and V2 icons; V2 constants are in
+            <code mCode>icons/v2</code> (Pro) and there is no <code mCode>MIconV2 icon="name"</code> registry.
+            Illustrations: <code mCode>&lt;m-illustration [illustration]&gt;</code>. See
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/icons">Icons</a>.
+        </p>
+        <doc-code-block [snippet]="snippets.searchBarTsx" />
+        <doc-code-block [snippet]="snippets.searchBarComponentTs" />
+    </doc-section>
+
+    <doc-section
+        title="Templates instead of render props"
+        description="Content repeated in lists and tables is an ng-template directive with a typed context."
+    >
+        <p mText>
+            <code mCode>mCell</code>, <code mCode>mRowDetail</code>, <code mCode>mSelectOption</code>,
+            <code mCode>mPopoverContent</code>. Data hooks <code mCode>useMTable</code> /
+            <code mCode>useMCardGrid</code> become <code mCode>injectMDataSource(fetcher)</code> /
+            <code mCode>externalMDataSource()</code> passed as <code mCode>[source]</code>, with
+            <code mCode>&#123;items, total&#125;</code> responses. See
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/data-table">DataTable</a
+            >.
+        </p>
+        <doc-code-block [snippet]="snippets.ordersTableTsx" />
+        <doc-code-block [snippet]="snippets.ordersTableComponentTs" />
+    </doc-section>
+
+    <doc-section title="Responsive visibility" description="Shared props are host directives: MHidden and MSpacing.">
+        <p mText>
+            <code mCode>hidden="md"</code> → <code mCode>hiddenUpTo="md"</code> (with
+            <code mCode>hiddenAbove</code> unchanged); spacing props (<code mCode>mt</code>, <code mCode>px</code>,
+            <code mCode>spacing</code>…) come from <code mCode>MSpacing</code>. <code mCode>useMaxWidth</code> →
+            <code mCode>injectMaxWidth(breakpoint)</code>, a <code mCode>Signal&lt;boolean&gt;</code>. See
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/responsive-hidden"
+                >Responsive Hidden</a
+            >.
+        </p>
+        <doc-code-block [snippet]="snippets.exportActionsTsx" />
+        <doc-code-block [snippet]="snippets.exportActionsComponentTs" />
+    </doc-section>
+
+    <doc-section
+        title="Theme, translations and toasts"
+        description="useMTheme, useMI18n and useMToast become MThemeService, MI18nService and MToastService."
+    >
+        <p mText>
+            Services expose signals (<code mCode>mode</code>, <code mCode>resolvedMode</code>,
+            <code mCode>locale</code>, <code mCode>dict</code>); templates translate with the
+            <code mCode>mT</code> pipe. A scoped theme (<code mCode>scope="wrapper"</code>) is the
+            <code mCode>[mTheme]</code> directive, not persisted by default. <code mCode>mineralui.*</code> keys are the
+            same as in React; texts hard-coded in React have new keys and overriding inputs. See
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/theming">Theming</a>,
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/i18n"
+                >Languages (i18n)</a
+            >
+            and <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/toast">Toast</a>.
+        </p>
+        <doc-code-block [snippet]="snippets.themeToggleTsx" />
+        <doc-code-block [snippet]="snippets.themeToggleComponentTs" />
+    </doc-section>
+
+    <doc-section title="Hooks become directives" description="Behaviour attaches to the element in the template.">
+        <ul mList>
+            <li mListItem>
+                <code mCode>useClickOutside</code> → <code mCode>(mClickOutside)</code>,
+                <code mCode>useKeyboardNav</code> → <code mCode>[mKeyboardNav]</code> +
+                <code mCode>mKeyboardNavItem</code>, <code mCode>useGhostText</code> → <code mCode>[mGhostText]</code>,
+                ripple → <code mCode>[mClickEffect]</code>, reveal → <code mCode>[mReveal]</code>.
+            </li>
+            <li mListItem>
+                Removed: <code mCode>useDebounce*</code> (use RxJS or signals), <code mCode>cn</code> (class bindings),
+                <code mCode>useControllableString</code> (<code mCode>model()</code>).
+            </li>
+        </ul>
+        <doc-code-block [snippet]="snippets.accountMenuTsx" />
+        <doc-code-block [snippet]="snippets.accountMenuComponentTs" />
+    </doc-section>
+
+    <doc-section title="Overlays on the top layer" description="No portal and no z-index stacking.">
+        <p mText>
+            Modals, drawers and sheets are a native <code mCode>&lt;dialog&gt;</code> opened with
+            <code mCode>showModal()</code>; popovers, dropdowns, tooltips and pickers use
+            <code mCode>popover="manual"</code>. A toast shown from a modal stays above it.
+            <code mCode>MPortal</code> stays as a primitive for your own content — see
+            <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/primitives">Primitives</a
+            >.
+        </p>
+    </doc-section>
+
+    <doc-section
+        title="Accessibility"
+        description="Built to WCAG 2.2 AA and the WAI-ARIA Authoring Practices where React differs."
+    >
+        <ul mList>
+            <li mListItem>Select and autocomplete are APG comboboxes.</li>
+            <li mListItem>Date pickers are APG date picker dialogs with grid keyboard navigation.</li>
+            <li mListItem>Sortable tables use <code mCode>aria-sort</code> and header buttons.</li>
+            <li mListItem>Dialogs restore focus and make the page behind them <code mCode>inert</code>.</li>
+            <li mListItem>Toasts use two live regions; the timer pauses on hover and focus.</li>
+        </ul>
+    </doc-section>
+
+    <doc-section
+        title="MineralUI Pro"
+        description="A separate package and CLI; the Angular licence is separate from the React licence."
+    >
+        <p mText>
+            Install <code mCode>&#64;banzamel/mineralui-angular-pro</code> instead of the Basic package — see
+            <a
+                mLink
+                tone="accent"
+                underline="always"
+                class="doc-prose-link"
+                routerLink="/docs/installation"
+                fragment="mineralui-pro"
+                >MineralUI Pro installation</a
+            >
+            for the registry setup.
+        </p>
+        <doc-code-block [snippet]="snippets.proSh" />
+    </doc-section>
+</doc-article>

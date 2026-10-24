@@ -1,0 +1,4 @@
+/* MineralUI for React: unprefixed class names. */
+.button.outlined {
+    border-radius: 999px;
+}

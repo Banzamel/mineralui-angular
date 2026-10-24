@@ -4,6 +4,8 @@ import type {Type} from '@angular/core'
 export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> = {
     // Getting Started
     installation: () => import('@pages/getting-started/installation/installation.page').then((m) => m.InstallationPage),
+    'coming-from-react': () =>
+        import('@pages/getting-started/coming-from-react/coming-from-react.page').then((m) => m.ComingFromReactPage),
     'quick-start': () => import('@pages/getting-started/quick-start/quick-start.page').then((m) => m.QuickStartPage),
     theming: () => import('@pages/getting-started/theming/theming.page').then((m) => m.ThemingPage),
     'layout-system': () =>

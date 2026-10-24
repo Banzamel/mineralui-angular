@@ -57,6 +57,11 @@
                     "description": "Install the npm package and bootstrap the providers."
                 },
                 {
+                    "id": "coming-from-react",
+                    "title": "Coming from React",
+                    "description": "Differences from MineralUI for React, with React and Angular snippets."
+                },
+                {
                     "id": "i18n",
                     "title": "Languages (i18n)",
                     "description": "MI18nService, dictionaries and the mT pipe."

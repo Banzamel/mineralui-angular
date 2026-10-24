@@ -471,7 +471,10 @@ function checkApiReferences(api, errors) {
 // 2. examples, 3. snippets
 // ---------------------------------------------------------------------------------------------------------------
 
-const LANGUAGES = {'.ts': 'typescript', '.html': 'html', '.css': 'css', '.json': 'json', '.sh': 'bash'}
+// React snippets (.tsx) are shown next to Angular ones on the Coming from React page; they are not compiled.
+const LANGUAGES = {'.ts': 'typescript', '.tsx': 'tsx', '.html': 'html', '.css': 'css', '.json': 'json', '.sh': 'bash'}
+// Dotfiles without an extension, matched by name (highlight.js has no grammar for them: shown as plain text).
+const NAMED_LANGUAGES = {'.npmrc': 'ini'}
 
 function generateExamples(errors) {
     const files = walk(pagesRoot, (path) => path.endsWith('.example.ts'))
@@ -515,7 +518,7 @@ function generateSnippets(errors) {
     const files = walk(pagesRoot, (path) => toPosix(path).includes('/snippets/'))
     const byPage = new Map()
     for (const file of files) {
-        const language = LANGUAGES[extname(file)]
+        const language = LANGUAGES[extname(file)] ?? NAMED_LANGUAGES[basename(file)]
         const rel = toPosix(relative(pagesRoot, file))
         if (!language) {
             errors.push(`${rel}: unsupported snippet extension`)

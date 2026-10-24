@@ -46,8 +46,13 @@
         <p mText>
             Pro is a separate package, <code mCode>&#64;banzamel/mineralui-angular-pro</code>, with every component of
             Basic inside — install it instead of <code mCode>&#64;banzamel/mineralui-angular</code>, not next to it.
-            Then activate the installation in the project root with your license key:
         </p>
+        <p mText>
+            Pro is installed from a private registry — the registry address and the token come with your licence.
+            Configure them first in <code mCode>.npmrc</code> of the project:
+        </p>
+        <doc-code-block [snippet]="snippets.npmrc" />
+        <p mText>Then install the package and activate the installation in the project root with your license key:</p>
         <doc-code-block [snippet]="snippets.proInstallSh" />
         <p mText>
             The CLI registers the project and stores the activation in

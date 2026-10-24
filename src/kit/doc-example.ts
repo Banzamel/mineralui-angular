@@ -1,7 +1,7 @@
 import type {Type} from '@angular/core'
 
 /** Language of a code sample (highlight.js grammar). */
-export type DocLanguage = 'typescript' | 'html' | 'css' | 'json' | 'bash'
+export type DocLanguage = 'typescript' | 'tsx' | 'html' | 'css' | 'json' | 'bash' | 'ini'
 
 /**
  * A live example: a standalone component and its own source. Emitted by `scripts/generate-docs.mjs` for every

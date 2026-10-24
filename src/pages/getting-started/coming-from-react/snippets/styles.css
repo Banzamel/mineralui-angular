@@ -1,0 +1,4 @@
+/* MineralUI for Angular: every class (and keyframe) has the m- prefix; --mineral-* tokens are unchanged. */
+.m-button.m-outlined {
+    border-radius: 999px;
+}
