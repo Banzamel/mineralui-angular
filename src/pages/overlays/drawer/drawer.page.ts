@@ -102,9 +102,8 @@ const SIZES: readonly MDrawerSize[] = ['sm', 'md', 'lg', 'full']
                         <code mCode>&lt;m-drawer-footer&gt;</code>; content outside them becomes the body, as in React.
                     </li>
                     <li mListItem>
-                        React keeps focus behind the drawer and marks every drawer <code mCode>aria-modal</code>; here
-                        focus moves in and back, the drawer is named by its header, and without the overlay the page is
-                        not blocked (React still covers it with a transparent backdrop).
+                        Without the overlay the drawer is non-modal here: Tab can leave it for the page (React keeps Tab
+                        inside even then).
                     </li>
                     <li mListItem>The header close button has a translatable label (mineralui.common.close).</li>
                 </ul>

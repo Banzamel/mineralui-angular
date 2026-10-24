@@ -100,9 +100,8 @@ const SIZES: readonly MModalSize[] = ['sm', 'md', 'lg', 'xl']
                         <code mCode>footer</code> → an element with <code mCode>mModalFooter</code>.
                     </li>
                     <li mListItem>
-                        React keeps focus on the page behind the modal and lets Tab wander out of it; the Angular modal
-                        traps focus, starts it inside and restores it on close (WAI-ARIA dialog pattern). The
-                        description is announced as the dialog's description.
+                        The description is announced as the dialog's description (<code mCode>aria-describedby</code>;
+                        React leaves it unlinked).
                     </li>
                     <li mListItem>
                         The modal renders where you place it, not in a portal: the top layer puts it above everything,

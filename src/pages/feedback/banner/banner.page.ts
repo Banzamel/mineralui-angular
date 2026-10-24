@@ -42,7 +42,7 @@ const VARIANTS: readonly MBannerVariant[] = ['filled', 'outlined', 'ghost']
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description='React renders role="banner" — the landmark for the site header — on every banner. The Angular banner has no role; put role="status" on it when it appears in response to something the user did. The icon and the action are content slots instead of props.'
+                description='The banner has no role (as in React); put role="status" on it when it appears in response to something the user did. The icon and the action are content slots instead of props.'
             />
 
             <doc-section title="API">

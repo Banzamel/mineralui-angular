@@ -69,8 +69,11 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
                         result (<code mCode>aria-activedescendant</code>); Enter runs it, Escape closes the sheet.
                     </li>
                     <li mListItem>
-                        Typing filters titles, descriptions, groups, action labels and keywords; the result count is
-                        announced politely.
+                        Typing filters titles, descriptions, groups, action labels and keywords; while a query is typed,
+                        a hidden status region announces the result count (<code mCode
+                            >mineralui.commandPalette.resultsAnnouncement</code
+                        >). The field is named <code mCode>mineralui.commandPalette.searchLabel</code> ("Search
+                        commands") and is collapsed (<code mCode>aria-expanded="false"</code>) when nothing matches.
                     </li>
                     <li mListItem>
                         <code mCode>shortcut</code> (default <code mCode>ctrl+k</code>) listens on the document; an
@@ -98,9 +101,6 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
                     <li mListItem>
                         Item texts are strings and icons are icon constants; no <code mCode>component</code> /
                         <code mCode>to</code> — navigate in <code mCode>onSelect</code>.
-                    </li>
-                    <li mListItem>
-                        React leaves the list without roles, so a screen reader does not hear the highlighted result.
                     </li>
                 </ul>
             </doc-section>

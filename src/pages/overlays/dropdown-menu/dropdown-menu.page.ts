@@ -90,8 +90,9 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
             <doc-section title="Keyboard and focus">
                 <ul mList>
                     <li mListItem>
-                        Opening moves focus to the first item. ↑ / ↓, Home / End and type-ahead move between items
-                        (disabled ones are skipped); Enter or Space chooses one.
+                        Opening moves focus to the first item; ↓ on the closed trigger opens at the first item, ↑ at the
+                        last one. ↑ / ↓, Home / End and type-ahead move between items (disabled ones are skipped); Enter
+                        or Space chooses one.
                     </li>
                     <li mListItem>
                         Escape, Tab or a click outside close the menu; focus returns to the trigger.
@@ -126,8 +127,13 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                         focus.
                     </li>
                     <li mListItem>
-                        React keeps focus on the trigger (the items are never focused) and its trigger is a
-                        <code mCode>div role="button"</code> around your button.
+                        <code mCode>MDropdownGroup</code> <code mCode>label</code> as a node → an element with
+                        <code mCode>mDropdownGroupLabel</code> inside the group; <code mCode>label</code> stays the
+                        plain-text shortcut.
+                    </li>
+                    <li mListItem>
+                        A click on the trigger moves focus to the first item, as a key press does (React: to the menu
+                        itself).
                     </li>
                 </ul>
             </doc-section>

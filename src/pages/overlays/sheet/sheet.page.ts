@@ -116,10 +116,6 @@ const SIZES: readonly MSheetSize[] = ['sm', 'md', 'lg', 'full']
                         <code mCode>(closed)</code>; <code mCode>title</code> → <code mCode>heading</code>;
                         <code mCode>footer</code> → an element with <code mCode>mSheetFooter</code>.
                     </li>
-                    <li mListItem>
-                        In React the handle does nothing from the keyboard and focus stays behind the sheet; here the
-                        handle closes the sheet and focus is kept inside and restored afterwards.
-                    </li>
                 </ul>
             </doc-section>
 

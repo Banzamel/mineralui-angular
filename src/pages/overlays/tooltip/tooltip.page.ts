@@ -78,10 +78,6 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
                         <code mCode>delay</code> → <code mCode>tooltipPlacement</code> /
                         <code mCode>tooltipDelay</code>.
                     </li>
-                    <li mListItem>
-                        React renders the text without linking it to the element, ignores Escape and hides the bubble
-                        when the pointer moves onto it.
-                    </li>
                 </ul>
             </doc-section>
 

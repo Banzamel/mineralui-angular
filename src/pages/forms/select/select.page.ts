@@ -82,7 +82,9 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
                     </li>
                     <li mListItem>
                         Without <code mCode>searchable</code> it is a select-only combobox: type-ahead, Space and Tab
-                        commit like a native select. With it, an editable combobox with list autocomplete.
+                        commit like a native select. ↓ opens on the selected option (else the first), ↑ on the selected
+                        option (else the last), Alt+↓ opens with no active option. With <code mCode>searchable</code>,
+                        an editable combobox with list autocomplete.
                     </li>
                     <li mListItem>
                         <code mCode>multiple</code> sets <code mCode>aria-multiselectable</code>; the list stays open

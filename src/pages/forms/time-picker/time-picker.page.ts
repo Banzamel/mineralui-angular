@@ -28,7 +28,7 @@ const FORMATS = ['24h', '12h'] as const
         >
             <doc-section
                 title="Playground"
-                description="Type a partial time and leave the field, or open the columns with the clock button or Alt+ArrowDown."
+                description="Type a partial time and leave the field, or open the columns with the clock button or ArrowDown."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-time-picker
@@ -74,13 +74,15 @@ const FORMATS = ['24h', '12h'] as const
                 <ul mList>
                     <li mListItem>
                         The clock button has <code mCode>aria-haspopup="dialog"</code> and
-                        <code mCode>aria-expanded</code>; the popup is a non-modal <code mCode>dialog</code>. Clicking
-                        the text field does not open it — typing stays undisturbed.
+                        <code mCode>aria-expanded</code>; the popup is a non-modal <code mCode>dialog</code> named by
+                        the field label (fallback: "Choose time"). Clicking the text field does not open it — typing
+                        stays undisturbed; ↓ (or Alt+↓) does.
                     </li>
                     <li mListItem>
-                        Each column is a <code mCode>listbox</code>: the arrows, PageUp / PageDown and Home / End change
-                        the selection at once, skipping times outside min / max. Enter or Escape closes the dialog and
-                        returns focus to the button; Tab and Shift+Tab cycle inside it.
+                        Each column is a <code mCode>listbox</code>: the arrows, PageUp / PageDown, Home / End and typed
+                        digits (A / P for the meridiem) change the selection at once, skipping times outside min / max.
+                        Enter or Escape closes the dialog and returns focus to the button; Tab and Shift+Tab cycle
+                        inside it.
                     </li>
                     <li mListItem>
                         With <code mCode>name</code> a hidden input carries the value as ISO 8601 time (<code mCode

@@ -32,7 +32,7 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
         >
             <doc-section
                 title="Playground"
-                description="Type a partial date and leave the field, or open the calendar with the button or Alt+ArrowDown."
+                description="Type a partial date and leave the field, or open the calendar with the button or ArrowDown."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-date-picker
@@ -88,12 +88,13 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
                         APG Date Picker Dialog). Clicking the text field does not open it — typing stays undisturbed.
                     </li>
                     <li mListItem>
-                        Opening moves focus to the selected day (or today); Tab and Shift+Tab cycle inside the dialog,
-                        Escape closes it and returns focus to the button, as does picking a day.
+                        ↓ (or Alt+↓) in the field opens it. Opening moves focus to the selected day (or today); Tab and
+                        Shift+Tab cycle inside the dialog, Escape closes it and returns focus to the button, as does
+                        picking a day. The dialog is named by the field label (fallback: "Choose date").
                     </li>
                     <li mListItem>
-                        The time columns are <code mCode>listbox</code> elements: the arrows, PageUp / PageDown and Home
-                        / End change the selection at once.
+                        The time columns are <code mCode>listbox</code> elements: the arrows, PageUp / PageDown, Home /
+                        End and typed digits change the selection at once.
                     </li>
                     <li mListItem>
                         With <code mCode>name</code> a hidden input carries the value as local ISO 8601 (<code mCode

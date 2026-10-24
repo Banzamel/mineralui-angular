@@ -60,11 +60,12 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['top-start', 'top-end', 'botto
                     </li>
                     <li mListItem>
                         An <code mCode>alertdialog</code> named by the heading and described by the description. Focus
-                        starts on the cancel button (the safer choice) and returns to the trigger.
+                        starts on the cancel button (the safer choice), Tab and Shift+Tab cycle between the two buttons
+                        (WAI-ARIA APG), and focus returns to the trigger.
                     </li>
                     <li mListItem>
                         <code mCode>(confirmed)</code> for the confirm button; <code mCode>(cancelled)</code> for the
-                        cancel button, Escape, a click outside, Tab away and the trigger.
+                        cancel button, Escape, a click outside and the trigger.
                     </li>
                     <li mListItem>
                         Default button labels come from i18n: <code mCode>mineralui.popconfirm.confirm</code> ("Yes"),
@@ -81,10 +82,6 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['top-start', 'top-end', 'botto
                         <code mCode>onConfirm</code> / <code mCode>onCancel</code> → <code mCode>(confirmed)</code> /
                         <code mCode>(cancelled)</code>; <code mCode>title</code> → <code mCode>heading</code>;
                         <code mCode>icon</code> takes an icon constant.
-                    </li>
-                    <li mListItem>
-                        React keeps focus on the trigger, so a keyboard user cannot reach the buttons, and gives the
-                        popover a listbox role.
                     </li>
                 </ul>
             </doc-section>

@@ -43,7 +43,7 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
         >
             <doc-section
                 title="Playground"
-                description="Type two partial dates separated by a space, or open the calendar with the button or Alt+ArrowDown and click the start and the end."
+                description="Type two partial dates separated by a space, or open the calendar with the button or ArrowDown and click the start and the end."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-date-range-picker
@@ -85,7 +85,7 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
 
             <doc-section
                 title="Forms and validation"
-                description="As a form control the value is {start, end} or null — never half a range: closing the calendar after the first click keeps the previous value. The typed text is validated as the mDate error with a reason: incomplete, invalid, min, max, unavailable or order (end before start, or the same day with allowSameDay false)."
+                description="As a form control the value is {start, end} or null — never half a range: closing the calendar after the first click keeps the previous value. The typed text is validated as the mDate error with a reason: incomplete, invalid, min, max, unavailable or order (end before start, or the same day with allowSameDay false). With allowSameDay false one-day presets are hidden and Today only starts the range."
             >
                 <doc-preview [example]="examples.dateRangePickerForm" />
             </doc-section>
@@ -95,7 +95,8 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
                     <li mListItem>
                         The calendar button has <code mCode>aria-haspopup="dialog"</code> and
                         <code mCode>aria-expanded</code>; the popup is a non-modal <code mCode>dialog</code> (WAI-ARIA
-                        APG Date Picker Dialog) with two month grids.
+                        APG Date Picker Dialog) with two month grids, named by the field label (fallback: "Choose date
+                        range"). ↓ (or Alt+↓) in the field opens it; Tab and Shift+Tab cycle inside it.
                     </li>
                     <li mListItem>
                         The grids use roving focus: arrows, PageUp / PageDown (month), Shift+PageUp / PageDown (year),
