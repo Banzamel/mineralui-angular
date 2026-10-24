@@ -69,7 +69,7 @@ const FILES: readonly MFileManagerNode[] = [
 
             <doc-section
                 title="Accessibility"
-                description="Breadcrumbs are a named nav with aria-current='location' on the open folder; the view switch is a pair of toggle buttons (aria-pressed); the panels are named regions. Items are buttons: Enter selects a file or opens a folder, Enter on the selected file opens it (the keyboard's double click). The folder tree is a full MTreeView (keyboard, context menu with Shift+F10, moves with Ctrl+X / Ctrl+V). Texts: mineralui.fileManager.*."
+                description="Breadcrumbs are a nav named 'Breadcrumbs' with aria-current='location' on the open folder; the view switch is a group named 'View' of two toggle buttons (aria-pressed); the panels are named regions. Items are buttons: Enter selects a file or opens a folder, Enter on the selected file opens it (the keyboard's double click). The folder tree is a full MTreeView (keyboard, context menu with Shift+F10, moves with Ctrl+X / Ctrl+V). Texts: mineralui.fileManager.*."
             />
 
             <doc-section

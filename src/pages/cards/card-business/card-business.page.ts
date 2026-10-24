@@ -64,7 +64,7 @@ const SOCIALS: readonly MCardBusinessSocial[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="title is renamed jobTitle (ADR 0004: title is a global HTML attribute). A social icon is an MIconDef. The QR image gets the alt text mineralui.cardBusiness.qr instead of 'QR'."
+                description="title is renamed jobTitle (ADR 0004: title is a global HTML attribute). A social icon is an MIconDef. The QR image gets the alt text mineralui.cardBusiness.qrCode ('QR', as in React)."
             />
 
             <doc-section title="MCardBusiness API">

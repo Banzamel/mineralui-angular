@@ -52,7 +52,7 @@ const BRAND_SWATCHES: readonly string[] = ['#0f172a', '#1d4ed8', '#0891b2', '#16
 
             <doc-section
                 title="Accessibility"
-                description='The saturation / brightness area is a slider with aria-roledescription "2D slider" and a spoken value (←/→ saturation, ↑/↓ brightness, Shift ×10, PageUp / PageDown); the hue is a slider from 0 to 360 (arrows, Shift ×10, Home / End); the swatches are a radio group named by their color value, with arrow keys; the text field is an m-input named mineralui.colorPicker.field.'
+                description='The saturation / brightness area is a slider with aria-roledescription "2D slider" and a spoken value (←/→ saturation, ↑/↓ brightness, Shift ×10, PageUp / PageDown); the hue is a slider from 0 to 360 (arrows, Shift ×10, Home / End); the swatches are a radio group of radios named "Color #3b82f6" (mineralui.colorPicker.swatch), with arrow keys; the text field is an m-input named mineralui.colorPicker.input.'
             />
 
             <doc-section

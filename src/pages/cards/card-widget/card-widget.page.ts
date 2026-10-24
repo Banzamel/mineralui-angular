@@ -56,7 +56,7 @@ const MODES = ['surface', 'interactive', 'link'] as const
 
             <doc-section
                 title="Accessibility"
-                description="The trend direction is read as a hidden word before the value (mineralui.card.trendUp / trendDown). a[mCardWidget] is one link with a focus ring; interactive only adds the hover lift and ripple — the tile gets no role or click handling."
+                description="The trend direction is read as a hidden word before the value (mineralui.common.increase / decrease). a[mCardWidget] is one link with a focus ring; interactive only adds the hover lift and ripple — the tile gets no role or click handling."
             />
 
             <doc-section

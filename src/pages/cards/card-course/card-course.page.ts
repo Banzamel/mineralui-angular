@@ -21,7 +21,7 @@ import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
             <doc-section
                 title="Accessibility"
-                description='The heading is an h3; images are decorative (the heading names the card). The rating is one image named "Rated 4.8 of 5, 126 reviews" (mineralui.serviceCard.rating). Gallery dots are buttons named "Image 2" with aria-current; autoplay stops under reduced motion. The favorite toggle has aria-pressed; the menu is a WAI-ARIA menu button. The seat count is named "6 of 20 participants" (mineralui.serviceCard.participants).'
+                description='The heading is an h3; images are decorative (the heading names the card). The rating is one image named "Rated 4.8 out of 5, 126 reviews" (mineralui.serviceCard.ratingWithReviews). Gallery dots are buttons named "Image 2" with aria-current; autoplay stops under reduced motion. The favorite toggle has aria-pressed; the menu is a WAI-ARIA menu button. The seat count is named "6 of 20 participants" (mineralui.serviceCard.participants).'
             />
 
             <doc-section

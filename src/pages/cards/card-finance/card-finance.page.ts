@@ -82,7 +82,7 @@ const MODES = ['surface', 'link'] as const
 
             <doc-section
                 title="Accessibility"
-                description="The arrow is decorative; the direction is read as a hidden word before the change ('Increase +12.5% vs last month', mineralui.card.trendUp / trendDown). The sparkline is decorative — the value and the change are the text. On an anchor the whole card is one link with a focus ring."
+                description="The arrow is decorative; the direction is read as a hidden word before the change ('Increase +12.5% vs last month', mineralui.common.increase / decrease). The sparkline is decorative — the value and the change are the text. On an anchor the whole card is one link with a focus ring."
             />
 
             <doc-section

@@ -131,7 +131,7 @@ const FITS = ['scroll', 'scale'] as const satisfies readonly MCanvasGridFit[]
 
             <doc-section
                 title="Accessibility"
-                description="In edit mode every tile has a move handle — a button named 'Move Monthly revenue' with aria-pressed while lifted. Moves, size changes, drops and cancels are announced in a polite live region (mineralui.canvasGrid.*). Tile buttons are named after the tile ('Edit Note'). The guide and the resize corner are hidden from assistive technology — the keyboard resizes through the handle."
+                description="In edit mode every tile has a move handle — a button named 'Move or resize Monthly revenue', described by the keyboard instructions, with aria-pressed while lifted. Moves, size changes, drops and cancels are announced with the column, row and size in a polite live region (mineralui.canvasGrid.*). Tile buttons are named after the tile ('Edit Note'; a tile without label is 'Tile 2'). The guide and the resize corner are hidden from assistive technology — the keyboard resizes through the handle."
             />
 
             <doc-section

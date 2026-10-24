@@ -49,7 +49,7 @@ const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
 
             <doc-section
                 title="Accessibility"
-                description="Interactive, the host is a radiogroup of star radios (aria-checked) with a single tab stop on the checked star: arrows change the rating (clamped at the ends, not wrapping), Home / End jump to 1 and max. Star names come from mineralui.rating.star / .stars, the group name from ariaLabel or mineralui.rating.label."
+                description="Interactive, the host is a radiogroup of star radios (aria-checked) with a single tab stop on the checked star: arrows change the rating (clamped at the ends, not wrapping), Home / End jump to 1 and max. Star names come from mineralui.rating.star / .stars ({count}), a read-only rating is named by mineralui.rating.readOnlyValue, the group name from ariaLabel or mineralui.rating.label."
             />
 
             <doc-section

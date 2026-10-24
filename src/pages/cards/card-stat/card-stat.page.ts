@@ -71,7 +71,7 @@ const MODES = ['surface', 'link'] as const
 
             <doc-section
                 title="Accessibility"
-                description="The trend arrow is decorative; the direction is read as a hidden word before the value ('Increase +12', mineralui.card.trendUp / trendDown). On an anchor the whole card is one link with a focus ring."
+                description="The trend arrow is decorative; the direction is read as a hidden word before the value ('Increase +12', mineralui.common.increase / decrease). On an anchor the whole card is one link with a focus ring."
             />
 
             <doc-section

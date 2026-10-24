@@ -60,7 +60,7 @@ const STATUSES: readonly MQrCodeStatus[] = ['idle', 'loading', 'success', 'error
 
             <doc-section
                 title="Status overlay"
-                description="status dims the code and shows a spinner, a check or an error mark in the middle — for a pairing or sign-in flow that waits for the phone. The state is announced through a polite live region (statusLabel or mineralui.qrCode.*)."
+                description="status dims the code and shows a spinner, a check or an error mark in the middle — for a pairing or sign-in flow that waits for the phone. The state is announced through a polite live region (statusLabel or mineralui.qrCode.status, 'QR code loading')."
             >
                 <doc-preview [example]="examples.pairing" />
             </doc-section>

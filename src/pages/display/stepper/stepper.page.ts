@@ -90,7 +90,7 @@ const STEPS = 4
 
             <doc-section
                 title="Accessibility"
-                description='The stepper is an ordered list and the current step is aria-current="step". Completed and failed steps are announced after the heading (mineralui.stepper.completed / .error), because the check mark and ! are decorative. With clickable, headings are native buttons — reachable with Tab and operated with Enter or Space; give the list an aria-label.'
+                description='The stepper is an ordered list and the current step is aria-current="step". Completed and failed steps are announced after the heading ("Account, Completed" — mineralui.stepper.completed / .error), because the check mark and ! are decorative. With clickable, headings are native buttons — reachable with Tab and operated with Enter or Space; give the list an aria-label.'
             />
 
             <doc-section

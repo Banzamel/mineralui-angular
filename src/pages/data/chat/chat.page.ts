@@ -168,7 +168,7 @@ const CONVERSATIONS: readonly MChatConversation[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="open + onToggle become [(open)]; the floating window lives in the top layer (React: a fixed div in a portal). openMChat / useMChatRouter become the MChatRouter service and injectMChatRouter (React: window events). onSend(content, images) becomes (send) with {content, images}, onTyping (typing), onScrollTop (reachedTop), the conversation onClick (itemClick); MChatInput has a [(value)] draft and inserts emoji at the caret. The floating window mounts its content on open only with ng-template mChatWindow. Every text is translatable: Send, Emoji, Attach image and Remove image share mineralui.common.* with React, the rest is mineralui.chat.* (React: hard-coded English)."
+                description="open + onToggle become [(open)]; the floating window lives in the top layer (React: a fixed div in a portal). openMChat / useMChatRouter become the MChatRouter service and injectMChatRouter (React: window events). onSend(content, images) becomes (send) with {content, images}, onTyping (typing), onScrollTop (reachedTop), the conversation onClick (itemClick); MChatInput has a [(value)] draft and inserts emoji at the caret. The floating window mounts its content on open only with ng-template mChatWindow. Every text is translatable: Send, Emoji, Attach image and Remove image share mineralui.common.* with React, the rest is mineralui.chat.* (the same keys as React, plus the Angular-only unread, conversations and you)."
             />
 
             <doc-section title="API">

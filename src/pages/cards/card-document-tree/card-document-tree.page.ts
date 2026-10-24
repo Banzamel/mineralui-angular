@@ -106,7 +106,7 @@ const DETAILS: Readonly<Record<string, {heading: string; meta: string; items: MD
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="title is heading (ADR 0004) and names the tree; primaryAction and renderDetails are slots ([mCardDocumentTreeAction], [mCardDocumentTreeDetails]); detailsTitle is detailsHeading; actions report (detailsAction) with the id instead of per-action onClick / href. selected + onSelect and expanded + onExpandChange are [(selected)] / [(expanded)]. The texts hard-coded in React (Documents, the empty details text, the button name) are mineralui.documentTree.*. The two columns follow the card width, not the viewport."
+                description="title is heading (ADR 0004) and names the tree; primaryAction and renderDetails are slots ([mCardDocumentTreeAction], [mCardDocumentTreeDetails]); detailsTitle is detailsHeading; actions report (detailsAction) with the id instead of per-action onClick / href. selected + onSelect and expanded + onExpandChange are [(selected)] / [(expanded)]. The texts (Documents, the empty details text, the button name) are mineralui.cardDocumentTree.title / .emptyDetails and mineralui.common.documentActions, as in React. The two columns follow the card width, not the viewport."
             />
 
             <doc-section title="API">

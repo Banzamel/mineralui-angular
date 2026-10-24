@@ -68,7 +68,7 @@ const PHOTO = SAMPLE_PEOPLE[0].avatar
 
             <doc-section
                 title="Accessibility"
-                description="A plain avatar is an image (role img) named by alt or name — the photo inside has an empty alt and the initials are hidden, so the name is read once. The presence status joins the name ('Anna Kowalska (online)', mineralui.avatar.withPresence / .presence.*) instead of relying on the dot color alone. On a link or a button the same text is the control's name. Skeleton mode sets aria-busy and the name mineralui.avatar.loading."
+                description="A plain avatar is an image (role img) named by alt or name — the photo inside has an empty alt and the initials are hidden, so the name is read once. The presence status joins the name ('Anna Kowalska, Online', mineralui.avatar.presenceLabel / .presence.*) instead of relying on the dot color alone. On a link or a button the same text is the control's name. Skeleton mode sets aria-busy and the name mineralui.common.loading."
             />
 
             <doc-section

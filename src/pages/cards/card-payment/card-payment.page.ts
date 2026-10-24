@@ -53,7 +53,7 @@ const MODES = ['surface', 'interactive', 'link'] as const
 
             <doc-section
                 title="Accessibility"
-                description="The masked number is read as 'Card ending in 4242' (mineralui.cardPayment.ending) instead of a row of dots; holder and expiry are a description list with translatable terms (mineralui.cardPayment.holder / expiry). a[mCardPayment] is one link with a focus ring."
+                description="The masked number is read as 'Card ending in 4242' (mineralui.cardPayment.ending) instead of a row of dots; holder and expiry are a description list with translatable terms (mineralui.cardPayment.cardHolder / expirationDate). a[mCardPayment] is one link with a focus ring."
             />
 
             <doc-section
