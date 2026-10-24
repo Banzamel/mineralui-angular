@@ -239,8 +239,8 @@ const UNAVAILABLE: readonly MSchedulerUnavailableSlot[] = [
             <doc-section title="Accessibility">
                 <ul mList>
                     <li mListItem>
-                        The toolbar is a WAI-ARIA toolbar with one Tab stop: ← / → move between its controls (react-pro
-                        has the role without the keys). Period changes are announced in a live region.
+                        The toolbar is a WAI-ARIA toolbar with one Tab stop: ← / → (Home / End) move between its
+                        controls. Period changes are announced in a live region.
                     </li>
                     <li mListItem>
                         Events are buttons named by title, date, time and state (recurring, cancelled, conflict) with
@@ -252,11 +252,13 @@ const UNAVAILABLE: readonly MSchedulerUnavailableSlot[] = [
                         (<code mCode>aria-pressed</code>, <code mCode>aria-keyshortcuts</code>), arrows move it by
                         <code mCode>snapMinutes</code> or to the next day / resource, Shift+arrows by an hour, Enter
                         drops and Escape cancels; Shift+M changes the end (<code mCode>resizable</code>). The details
-                        offer "Move" / "Resize" as the discoverable path. Every step and refusal is announced.
+                        offer "Move" / "Resize" as the discoverable path. Every step and refusal is announced; the
+                        target frame shows the title, the time and the key instructions — in a callout under the frame
+                        when it is too short for them (in the month the frame grows instead).
                     </li>
                     <li mListItem>
-                        The month is a table (react-pro: a grid without grid keyboard navigation); day numbers are
-                        buttons that open the day, with <code mCode>aria-current="date"</code> on today.
+                        The month is a table; day numbers are buttons that open the day, with
+                        <code mCode>aria-current="date"</code> on today.
                     </li>
                 </ul>
             </doc-section>

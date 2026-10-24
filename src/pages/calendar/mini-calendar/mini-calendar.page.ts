@@ -108,7 +108,7 @@ const WEEK_STARTS = ['monday', 'sunday'] as const
                     </li>
                     <li mListItem>
                         Unavailable days use <code mCode>aria-disabled</code> instead of <code mCode>disabled</code>, so
-                        the keyboard can move through them (react-pro disables them, which drops the tab stop).
+                        the keyboard can move through them.
                     </li>
                     <li mListItem>The title is a live region: turning the page is announced.</li>
                 </ul>

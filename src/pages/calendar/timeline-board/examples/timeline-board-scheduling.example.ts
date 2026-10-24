@@ -70,7 +70,9 @@ export class TimelineBoardSchedulingExample {
     protected readonly maintenance: readonly MTimelineBoardUnavailableSlot[] = [
         {rowId: 'press', startAt: at(11), endAt: at(13), kind: 'maintenance', label: 'Maintenance'},
     ]
-    protected readonly log = signal('Drag a job, or open it and choose Move. Drag on an empty lane to add a job.')
+    protected readonly log = signal(
+        'Drag a job, or press M on it (or open it and choose Move). Drag on an empty lane to add a job.'
+    )
 
     // What the server has confirmed, and the drops still being saved: the board shows both at once.
     private readonly saved = signal<readonly MTimelineBoardEvent[]>(JOBS)
