@@ -49,6 +49,9 @@
                 },
                 "serve": {
                     "builder": "@angular/build:dev-server",
+                    "options": {
+                        "prebundle": {"exclude": ["@banzamel/mineralui-angular"]}
+                    },
                     "configurations": {
                         "production": {"buildTarget": "docs-angular:build:production"},
                         "development": {"buildTarget": "docs-angular:build:development"}
