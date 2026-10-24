@@ -131,12 +131,12 @@ const FITS = ['scroll', 'scale'] as const satisfies readonly MCanvasGridFit[]
 
             <doc-section
                 title="Accessibility"
-                description="In edit mode every tile has a move handle — a button named 'Move or resize Monthly revenue', described by the keyboard instructions, with aria-pressed while lifted. Moves, size changes, drops and cancels are announced with the column, row and size in a polite live region (mineralui.canvasGrid.*). Tile buttons are named after the tile ('Edit Note'; a tile without label is 'Tile 2'). The guide and the resize corner are hidden from assistive technology — the keyboard resizes through the handle."
+                description="In edit mode every tile has a move handle — a button named 'Move or resize Monthly revenue', described by the keyboard instructions, with aria-pressed while lifted: Enter or Space lifts and drops, the arrows move by one cell, Shift + arrows resize, Escape — or moving focus away — cancels. Moves, size changes, drops and cancels are announced with the column, row and size in a polite live region (mineralui.canvasGrid.*). Tile buttons are named after the tile ('Edit Note'; a tile without label is 'Tile 2'). The guide and the resize corner are hidden from assistive technology — the keyboard resizes through the handle."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="renderItem becomes projected <m-canvas-grid-tile [id]> elements, and items + onItemMove / onItemResize become the [(layout)] model. minItemSize → minSize on the item (maxItemSize was unused in React and is gone). onItemEdit / onItemExpand / onItemRemove → actions + (itemAction). compactBreakpoint / mobileBreakpoint are gone: the compact guide and the stacked layout follow the canvas width (container queries at 1024 / 768 px) instead of the viewport, so the canvas renders its final layout on the server. The keyboard, the move handle and the live region are new (React: pointer only); tile placement no longer halves its resolution in the compact view, and pointercancel or Escape cancel a drag."
+                description="renderItem becomes projected <m-canvas-grid-tile [id]> elements, and items + onItemMove / onItemResize become the [(layout)] model. minItemSize → minSize on the item (maxItemSize was unused in React and is gone). onItemEdit / onItemExpand / onItemRemove → actions + (itemAction). compactBreakpoint / mobileBreakpoint are gone: the compact guide and the stacked layout follow the canvas width (container queries at 1024 / 768 px) instead of the viewport, so the canvas renders its final layout on the server. getItemLabel → label on the item (both fall back to 'Tile {n}'). The keyboard arrows move and resize by one cell (React: one snap unit, as fine as the pointer)."
             />
 
             <doc-section title="API">

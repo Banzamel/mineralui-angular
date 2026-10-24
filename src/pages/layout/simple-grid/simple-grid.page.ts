@@ -12,6 +12,7 @@ import {selectControl} from '@kit/doc-playground/playground-controls'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 const COLUMNS = mSimpleGridColumnValues.map(String)
+const MIN_ITEM_WIDTHS = ['none', '180px', '260px', '320px'] as const
 
 const TILES = [
     {title: 'Portfolio card', description: 'Useful for equal-width previews, feature blocks and compact grids.'},
@@ -51,7 +52,15 @@ export class SimpleGridPage {
     ].join('\n')
 
     protected readonly columnsOption = signal('3')
-    protected readonly controls = [selectControl('columns', this.columnsOption, COLUMNS)]
+    protected readonly minItemWidthOption = signal<(typeof MIN_ITEM_WIDTHS)[number]>('none')
+    protected readonly controls = [
+        selectControl('columns', this.columnsOption, COLUMNS),
+        selectControl('minItemWidth', this.minItemWidthOption, MIN_ITEM_WIDTHS),
+    ]
+    protected readonly minItemWidth = computed(() => {
+        const width = this.minItemWidthOption()
+        return width === 'none' ? undefined : width
+    })
 
     protected readonly columns = computed<MSimpleGridColumns>(() => {
         const columns = Number(this.columnsOption())
@@ -60,8 +69,10 @@ export class SimpleGridPage {
 
     protected readonly code = computed(() => {
         const columns = this.columns() === 2 ? '' : ` [columns]="${this.columns()}"`
+        const width = this.minItemWidth()
+        const minItemWidth = width ? ` minItemWidth="${width}"` : ''
         return [
-            `<m-simple-grid${columns}>`,
+            `<m-simple-grid${columns}${minItemWidth}>`,
             '    <div mSurface>',
             '        <p mText weight="semibold">Portfolio card</p>',
             '        <p mText tone="muted" size="sm">Useful for equal-width previews and simple content grids.</p>',

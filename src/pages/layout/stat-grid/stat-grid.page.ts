@@ -37,7 +37,7 @@ const isColumns = (value: number): value is MSimpleGridColumns =>
         >
             <doc-section
                 title="Playground"
-                description="Four columns by default. Render the tiles with @for — it replaces items + renderItem from MineralUI for React and keeps the item type."
+                description="Four columns by default, each tile at least 15rem wide (minItemWidth), so a narrower container shows fewer columns. Render the tiles with @for — it replaces items + renderItem from MineralUI for React and keeps the item type."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <m-stat-grid [columns]="columns()" style="width: 100%">

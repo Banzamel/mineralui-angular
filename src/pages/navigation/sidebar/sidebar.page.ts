@@ -122,11 +122,15 @@ const MODES: readonly MSidebarMode[] = ['expanded', 'collapsed']
                     </li>
                     <li mListItem>
                         Collapsed rows keep their label for screen readers and show it as a tooltip; a collapsed group
-                        is a button with <code mCode>aria-expanded</code> opening a flyout.
+                        is a button with <code mCode>aria-expanded</code> opening a flyout — a group named after the
+                        section. Enter, Space or → (← in a right-to-left layout) open it with focus on the first row; a
+                        mouse click opens it without moving focus. Escape or Tab out close it.
                     </li>
                     <li mListItem>
                         The mobile dialog traps focus, returns it to the opener and closes on Escape or a click on the
-                        backdrop.
+                        backdrop. Without <code mCode>ariaLabel</code> it is named "Navigation" (<code mCode
+                            >mineralui.sidebar.dialogLabel</code
+                        >).
                     </li>
                 </ul>
             </doc-section>

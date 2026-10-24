@@ -75,6 +75,11 @@ const EFFECTS = ['ripple', 'none'] as const
                 <doc-preview [example]="examples.tabsItems" />
             </doc-section>
 
+            <doc-section
+                title="Accessibility"
+                description="The triggers form an APG tablist with one Tab stop: the active tab. The arrow keys along the orientation (left / right, or up / down when vertical) select the next enabled tab and wrap around; Home and End jump to the first and last. In a right-to-left layout the horizontal arrows follow the reading direction. Arrows with Alt, Ctrl or Meta are left to the browser. Each panel is a tabpanel labelled by its tab and focusable, so the next Tab moves into the content; aria-controls is set only when the panel exists."
+            />
+
             <doc-section title="API">
                 <doc-props-table api="MTabs" />
                 <doc-props-table api="MTab" />

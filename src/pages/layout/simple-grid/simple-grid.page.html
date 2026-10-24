@@ -4,10 +4,10 @@
 >
     <doc-section
         title="Playground"
-        description="Every item shares the same width. Four and three columns step down to two at 1024 px, everything to one at 720 px."
+        description="Every item shares the same width. Four and three columns step down to two at 1024 px, everything to one at 720 px. With minItemWidth the grid drops columns earlier, whenever a tile would get narrower than that width."
     >
         <doc-playground [controls]="controls" [code]="code()">
-            <m-simple-grid [columns]="columns()" style="width: 100%">
+            <m-simple-grid [columns]="columns()" [minItemWidth]="minItemWidth()" style="width: 100%">
                 @for (tile of tiles; track tile.title) {
                     <div mSurface>
                         <p mText weight="semibold">{{ tile.title }}</p>
@@ -30,8 +30,9 @@
             </p>
             <doc-code-block [code]="usage" language="html" title="Template" />
             <p mText tone="muted" size="sm">
-                <code mCode>minItemWidth</code> sets <code mCode>--grid-min-item-width</code> for parity with MineralUI
-                for React; the grid stylesheet does not read it yet.
+                <code mCode>minItemWidth</code> (any CSS length) fills the row with as many columns as are at least that
+                wide, never more than <code mCode>columns</code> — the grid follows its own width, not only the
+                viewport. MStatGrid uses it with 15rem by default.
             </p>
         </m-stack>
     </doc-section>
