@@ -16,6 +16,8 @@
                 [placement]="placement()"
                 [matchWidth]="matchWidth()"
                 [offset]="offset()"
+                [restoreFocus]="restoreFocus()"
+                [closeOnTabOut]="closeOnTabOut()"
             >
                 <ng-template mPopoverContent>
                     <div class="doc-popover-demo">
@@ -37,6 +39,13 @@
         <doc-preview [example]="examples.popoverTrigger" />
     </doc-section>
 
+    <doc-section
+        title="Initial focus on a given element"
+        description="A confirmation starts on its safe action: pass a template reference to initialFocus. Untick restoreFocus to leave focus where it is after closing."
+    >
+        <doc-preview [example]="examples.popoverFocus" />
+    </doc-section>
+
     <doc-section title="How it closes and where focus goes">
         <ul mList>
             <li mListItem>
@@ -47,11 +56,26 @@
                 <strong>A press outside</strong> the popover and its anchor closes it. Popovers stay in the DOM next to
                 their anchor, so a press inside a nested popover counts as inside its parent.
             </li>
-            <li mListItem><strong>Tab</strong> out of the popover closes it and focus moves on in document order.</li>
+            <li mListItem>
+                A widget inside that handles <strong>Escape</strong> itself (a ghost text hint, a keyboard move) calls
+                <code mCode>preventDefault()</code>, and the popover stays open until the next press.
+            </li>
+            <li mListItem>
+                <strong>Tab</strong> out of the popover closes it and focus moves on in document order (<code mCode
+                    >closeOnTabOut</code
+                >, on by default; keep <code mCode>m-popover</code> right after its anchor in the markup). Turn it off
+                for a layer that should stay open while focus visits the page.
+            </li>
             <li mListItem>
                 <code mCode>initialFocus</code> decides where focus goes on open: <code mCode>none</code> (default —
-                comboboxes keep focus in their field), <code mCode>first</code> (menus, dialogs) or
-                <code mCode>panel</code>. When focus was inside, it returns to the anchor on close.
+                comboboxes keep focus in their field), <code mCode>first</code> (menus, dialogs; the popover itself when
+                nothing inside is tabbable), <code mCode>panel</code>, or a given element — a template reference or an
+                <code mCode>ElementRef</code>.
+            </li>
+            <li mListItem>
+                <code mCode>restoreFocus</code> (on by default): when focus was inside, it returns to the anchor on
+                close — or to the first focusable element inside an anchor that cannot take focus itself, and also when
+                the popover is destroyed while open. A press outside keeps focus where the press put it.
             </li>
             <li mListItem>
                 <code mCode>(closed)</code> reports why the popover closed itself: <code mCode>escape</code>,
@@ -78,8 +102,18 @@
                 No <code mCode>zIndex</code>: the top layer always stacks later layers above earlier ones.
             </li>
             <li mListItem>
-                No fixed <code mCode>role="listbox"</code>: set the role that fits the content (<code mCode>menu</code>,
-                <code mCode>listbox</code>, <code mCode>dialog</code>) on <code mCode>m-popover</code>.
+                No <code mCode>role</code> prop with the default <code mCode>listbox</code>: set the role that fits the
+                content (<code mCode>menu</code>, <code mCode>listbox</code>, <code mCode>dialog</code>) on
+                <code mCode>m-popover</code>, like <code mCode>aria-label</code> and <code mCode>id</code>.
+            </li>
+            <li mListItem>
+                <code mCode>closeOnTabOut</code> is on by default (React: off, every consumer that moves focus in turns
+                it on). The popover stays next to its anchor in the DOM, so Tab and Shift+Tab move on without being
+                redirected through the anchor.
+            </li>
+            <li mListItem>
+                <code mCode>initialFocus="container"</code> is <code mCode>panel</code> here, and
+                <code mCode>none</code> is spelled out instead of leaving the prop unset.
             </li>
         </ul>
     </doc-section>

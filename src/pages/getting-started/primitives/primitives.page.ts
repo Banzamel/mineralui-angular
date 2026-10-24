@@ -5,6 +5,7 @@ import {MPopover, MPopoverContent, MPopoverTrigger} from '@banzamel/mineralui-an
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import popoverFocus from '@generated/examples/getting-started/primitives/popover-focus'
 import popoverNested from '@generated/examples/getting-started/primitives/popover-nested'
 import popoverTrigger from '@generated/examples/getting-started/primitives/popover-trigger'
 import portalBasic from '@generated/examples/getting-started/primitives/portal-basic'
@@ -55,16 +56,20 @@ const PLACEMENTS: readonly MPopoverPlacement[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrimitivesPage {
-    protected readonly examples = {popoverTrigger, popoverNested, portalBasic}
+    protected readonly examples = {popoverTrigger, popoverFocus, popoverNested, portalBasic}
 
     protected readonly placement = signal<MPopoverPlacement>('bottom-start')
     protected readonly matchWidth = signal(false)
     protected readonly offset = signal(4)
+    protected readonly restoreFocus = signal(true)
+    protected readonly closeOnTabOut = signal(true)
 
     protected readonly controls = [
         selectControl('placement', this.placement, PLACEMENTS),
         booleanControl('matchWidth', this.matchWidth),
         sliderControl('offset', this.offset, {min: 0, max: 24, step: 2}),
+        booleanControl('restoreFocus', this.restoreFocus),
+        booleanControl('closeOnTabOut', this.closeOnTabOut),
     ]
 
     protected readonly code = computed(() => {
@@ -72,9 +77,12 @@ export class PrimitivesPage {
             '#pop',
             'role="dialog"',
             'aria-label="Popover demo"',
+            'initialFocus="first"',
             this.placement() !== 'bottom-start' && `placement="${this.placement()}"`,
             this.matchWidth() && 'matchWidth',
             this.offset() !== 4 && `[offset]="${this.offset()}"`,
+            !this.restoreFocus() && '[restoreFocus]="false"',
+            !this.closeOnTabOut() && '[closeOnTabOut]="false"',
         ].filter((attr) => typeof attr === 'string')
         return [
             '<button mButton [mPopoverTrigger]="pop">Toggle popover</button>',
