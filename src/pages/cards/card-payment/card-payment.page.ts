@@ -58,7 +58,7 @@ const MODES = ['surface', 'interactive', 'link'] as const
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="component / href / to / onClick become a[mCardPayment] with your href or routerLink (ADR 0016); brandIcon is the [mCardPaymentBrand] slot. The field labels are translatable — React has them hard-coded, and the holder label reads 'MCard holder' there (a rename artefact)."
+                description="component / href / to / onClick become a[mCardPayment] with your href or routerLink (ADR 0016); brandIcon is the [mCardPaymentBrand] slot. The captions balanceLabel, holderLabel and expiryLabel and their mineralui.cardPayment.* defaults are the same as in React."
             />
 
             <doc-section title="MCardPayment API">

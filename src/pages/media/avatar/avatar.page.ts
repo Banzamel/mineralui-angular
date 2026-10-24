@@ -73,7 +73,7 @@ const PHOTO = SAMPLE_PEOPLE[0].avatar
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="role, tabIndex and onClick on a span are replaced by a[mAvatar] and button[mAvatar] — native controls with focus and keyboard. hidden becomes hiddenUpTo / hiddenAbove. The badge takes a count, text or true (no ReactNode). New: a failing photo falls back to the initials, the presence status is part of the accessible name, and color also tints the border and focus ring (in React it only changed the background)."
+                description="href and onClick (React renders a link or a native button) become a[mAvatar] and button[mAvatar]. hidden becomes hiddenUpTo / hiddenAbove. The badge takes a count, text or true (no ReactNode). New: a failing photo falls back to the initials."
             />
 
             <doc-section title="MAvatar API">

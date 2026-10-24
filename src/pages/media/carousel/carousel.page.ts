@@ -146,12 +146,12 @@ const TRANSITIONS: readonly MCarouselTransition[] = ['slide', 'fade']
 
             <doc-section
                 title="Accessibility"
-                description="Follows the WAI-ARIA APG Carousel: the host is a region with aria-roledescription 'carousel' and a name (ariaLabel or mineralui.carousel.label); each slide is a group announced as 'slide, 2 of 3', and hidden slides are inert. ← / → change the slide while focus is inside. The slides container is a polite live region, switched off while autoplay rotates. Arrows, dots and the rotation button ('Stop slide rotation') are named buttons (mineralui.common.previousSlide / nextSlide / slideNumber, mineralui.carousel.*); the dots are a group named 'Choose slide' and the current dot has aria-current."
+                description="Follows the WAI-ARIA APG Carousel: the host is a region with aria-roledescription 'carousel' and a name (ariaLabel or mineralui.carousel.label); each slide is a group announced as 'slide, 2 of 3', and hidden slides are inert. ← / → change the slide while focus is inside (swapped in right-to-left layouts; ignored with a modifier key and inside a widget that uses the arrows itself, such as a slider or a text field). The slides container is a polite live region, switched off while autoplay rotates. Arrows, dots and the rotation button ('Stop slide rotation') are named buttons (mineralui.common.previousSlide / nextSlide / slideNumber, mineralui.carousel.*); the dots are a group named 'Choose slide' and the current dot has aria-current."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Slides are <m-carousel-slide> children (React wrapped every child itself). draggable is renamed dragScroll (ADR 0004), and a drag never starts from a link or a button inside a slide. New: [(activeIndex)], ariaLabel, the stop / start button with pause on hover and focus (WCAG 2.2.2), ← / →, slide roles and inert hidden slides — React had no carousel semantics, no pause and no keyboard support."
+                description="Slides are <m-carousel-slide> children (React wrapped every child itself). draggable is renamed dragScroll (ADR 0004), and a drag never starts from a link or a button inside a slide. New: [(activeIndex)]; the name is the ariaLabel input."
             />
 
             <doc-section title="MCarousel API">

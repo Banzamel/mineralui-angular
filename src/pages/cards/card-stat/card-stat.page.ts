@@ -76,7 +76,7 @@ const MODES = ['surface', 'link'] as const
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="label and value are strings; icon and badge are slots ([mCardStatIcon], [mCardStatBadge]). href / to / onClick become a[mCardStat] with your href or routerLink (ADR 0016). The content has its own padding (React placed it against the card border). The trend direction is also announced, not only shown by the arrow color."
+                description="label and value are strings; icon and badge are slots ([mCardStatIcon], [mCardStatBadge]). href / to / onClick become a[mCardStat] with your href or routerLink (ADR 0016). padded is on by default, as in React, and can be switched off. The trend direction is also announced, not only shown by the arrow color."
             />
 
             <doc-section title="MCardStat API">

@@ -52,12 +52,12 @@ const BRAND_SWATCHES: readonly string[] = ['#0f172a', '#1d4ed8', '#0891b2', '#16
 
             <doc-section
                 title="Accessibility"
-                description='The saturation / brightness area is a slider with aria-roledescription "2D slider" and a spoken value (←/→ saturation, ↑/↓ brightness, Shift ×10, PageUp / PageDown); the hue is a slider from 0 to 360 (arrows, Shift ×10, Home / End); the swatches are a radio group of radios named "Color #3b82f6" (mineralui.colorPicker.swatch), with arrow keys; the text field is an m-input named mineralui.colorPicker.input.'
+                description='The saturation / brightness area is a slider with aria-roledescription "2D slider" and a spoken value (←/→ saturation, ↑/↓ brightness, Shift ×10, PageUp / PageDown); the hue is a slider from 0 to 360 (arrows, Shift ×10, Home / End); the swatches are a radio group of radios named "Color #3b82f6" (mineralui.colorPicker.swatch), with arrow keys that wrap at the ends (← / → swapped in right-to-left layouts); the text field is an m-input named mineralui.colorPicker.input.'
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="React supports only the mouse on the area and the hue bar and names none of the parts. value + onChange is the [(value)] model; the text field reads hex, #rgb in values, rgb() and hsl() (React: hex and rgb only), and the hue is kept at black and greys."
+                description="value + onChange is the [(value)] model. The text field reads hex, rgb() / rgba() and hsl() / hsla() as in React, but takes a short hex (#0f0) only on Enter or blur: while typing, #3b8 is on its way to #3b82f6, so no in-between color is emitted (React applies it at once)."
             />
 
             <doc-section title="MColorPicker API">

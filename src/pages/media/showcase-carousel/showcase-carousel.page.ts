@@ -134,12 +134,12 @@ const INDEXES = ['0', '1', '2', '3'] as const
 
             <doc-section
                 title="Accessibility"
-                description="The host is a region with aria-roledescription 'carousel' and a name (ariaLabel or mineralui.carousel.label); every item is a group announced as 'slide, 3 of 4'. Only the centered slide is interactive — the side previews are inert, so Tab never lands on a dimmed card. ← / → move while focus is inside, the slides container is a polite live region, and the Previous / Next buttons are named 'Previous slide' / 'Next slide' (the visible word is part of the name)."
+                description="The host is a region with aria-roledescription 'carousel' and a name (ariaLabel or mineralui.carousel.label); every item is a group announced as 'slide, 3 of 4'. Only the centered slide is interactive — the side previews are inert, so Tab never lands on a dimmed card. ← / → move while focus is inside (swapped in right-to-left layouts; ignored with a modifier key and inside a widget that uses the arrows itself), the slides container is a polite live region, and the Previous / Next buttons are named 'Previous slide' / 'Next slide' (the visible word is part of the name)."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="items + renderItem (and the built-in image mode for items with src) are replaced by <m-showcase-carousel-item> children with @for. The item's media / overlay / body / footer props become slots ([mShowcaseItemMedia], [mShowcaseItemOverlay], default, [mShowcaseItemFooter]); imgProps becomes a loading input. draggable is renamed dragScroll (ADR 0004). The slide width and position are computed in CSS from the carousel width (container query units) instead of a ResizeObserver, so the first paint — also server-rendered — is already centered. New: slide roles, inert side slides, ← / → and ariaLabel."
+                description="items + renderItem (and the built-in image mode for items with src) are replaced by <m-showcase-carousel-item> children with @for. The item's media / overlay / body / footer props become slots ([mShowcaseItemMedia], [mShowcaseItemOverlay], default, [mShowcaseItemFooter]); imgProps becomes a loading input. draggable is renamed dragScroll (ADR 0004). The slide width and position are computed in CSS from the carousel width (container query units) instead of a ResizeObserver, so the first paint — also server-rendered — is already centered. The name is the ariaLabel input."
             />
 
             <doc-section title="MShowcaseCarousel API">

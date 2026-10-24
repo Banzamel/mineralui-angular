@@ -49,12 +49,12 @@ const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
 
             <doc-section
                 title="Accessibility"
-                description="Interactive, the host is a radiogroup of star radios (aria-checked) with a single tab stop on the checked star: arrows change the rating (clamped at the ends, not wrapping), Home / End jump to 1 and max. Star names come from mineralui.rating.star / .stars ({count}), a read-only rating is named by mineralui.rating.readOnlyValue, the group name from ariaLabel or mineralui.rating.label."
+                description="Interactive, the host is a radiogroup of star radios (aria-checked) with a single tab stop on the checked star: → / ↓ pick the next star and ← / ↑ the previous one, wrapping at the ends (APG radio group; ← / → swapped in right-to-left layouts), Home / End jump to 1 and max. Star names come from mineralui.rating.star / .stars ({count}), a read-only rating is named by mineralui.rating.readOnlyValue, the group name from ariaLabel or mineralui.rating.label."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description='React renders every star as a focusable button inside a radiogroup named "MRating"; here the stars are radios with a roving tab stop, and read-only mode is a single image. value + onChange is the [(value)] model, and the component works with Angular forms (disabled, touched, validation error).'
+                description='value + onChange is the [(value)] model, and the component works with Angular forms (disabled, touched, validation error). Without ariaLabel the group is named "Rating" (mineralui.rating.label); React falls back to "MRating".'
             />
 
             <doc-section title="MRating API">
