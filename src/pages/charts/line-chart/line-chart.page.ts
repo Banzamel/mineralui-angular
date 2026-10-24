@@ -56,7 +56,7 @@ import {flagAttributes, MONTHS, MULTI_SERIES, SINGLE_SERIES} from '../chart-samp
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="One component per chart type on a shared base (React: MChart with a type switch). New: label (required), the hidden data table, interactive with keyboard navigation — (dataClick) replaces onDataClick and only fires with interactive. labelFormatter is applied (React ignores it). height sizes the drawing only, the legend comes on top (React: the legend overflows the fixed height). Gradient ids are unique per chart; the line draws in with pathLength (no fixed 2000 px dash); reduced motion disables the animations."
+                description="One component per chart type on a shared base (React: MChart with a type switch); label is required (React falls back to a generic name). The keyboard model differs: in React every chart with data is a Tab stop — the arrows walk the points with a tooltip and an announcement, Enter / Space call onDataClick. Here a chart without interactive is an image with the hidden data table and no Tab stop (the table already gives every value to a screen reader); with interactive the points are buttons with one Tab stop, the arrows, Home / End and Enter / Space, and (dataClick) — which replaces onDataClick — fires only then. The line draws in with pathLength (React: a fixed 2000 px dash)."
             />
 
             <doc-section title="API">

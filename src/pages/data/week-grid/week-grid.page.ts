@@ -84,12 +84,12 @@ const AVAILABILITY = Array.from({length: 7}, (_, day) =>
 
             <doc-section
                 title="Accessibility"
-                description="A native table: the heading (or label) names it, days are row headers and hours column headers, so every value is read with its day and hour. The legend states the bands in text (WCAG 1.4.1). With interactive the table becomes a WAI-ARIA grid — one Tab stop, arrow keys, Home / End along the row, Ctrl+Home / Ctrl+End to the corners, Enter or Space for (cellClick); tooltips also show on focus."
+                description="A native table: the heading (or label) names it, days are row headers and hours column headers, so every value is read with its day and hour. The legend states the bands in text (WCAG 1.4.1). With interactive the table becomes a WAI-ARIA grid — one Tab stop, arrow keys (← / → swap in a right-to-left layout), Home / End along the row, PageUp / PageDown to the first / last day in the column, Ctrl+Home / Ctrl+End to the corners, Enter or Space for (cellClick); tooltips also show on focus."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="A table instead of a CSS grid of divs. title becomes heading (title is a global HTML attribute); title, description, hint and peakLabel are text. renderCell becomes ng-template mWeekGridCell, renderTooltip the tooltip function; onCellClick becomes interactive + (cellClick) with keyboard support (React: clickable divs). Default weekday names follow the active locale; the scale and band labels come from the mineralui.weekGrid.* dictionary."
+                description="Always a table (React: a CSS grid of divs, a grid only in interactive mode). title becomes heading (title is a global HTML attribute); title, description, hint and peakLabel are text. renderCell becomes ng-template mWeekGridCell, renderTooltip the tooltip function; onCellClick becomes (cellClick), and the grid keyboard needs interactive (React turns it on with onCellClick). Default weekday names follow the active locale through Intl (React: mineralui.weekGrid.days.*); the scale and band labels come from the mineralui.weekGrid.* dictionary."
             />
 
             <doc-section title="API">

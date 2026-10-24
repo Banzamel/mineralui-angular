@@ -129,7 +129,7 @@ const GAPS = ['lg', 'md', 'sm', 'xl'] as const satisfies readonly MUtilityScale[
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="items[].content becomes projected <m-dashboard-tile [id]> elements (widgets keep their state when tiles move), and items + onReorder / onResize become the [(layout)] model — overrides is gone, the model already holds the change while the app saves it. onRemove → removable + (itemRemove), itemMenuItems → menuItems + (menuAction), the ref handle → the public focusItem(). The locale prop is replaced by the mineralui.dashboardGrid.* dictionary. The single-column switch follows the grid's own width (container query) instead of the viewport; a press on the handle must travel 4 px before it lifts the tile, and pointercancel cancels a drag instead of dropping it."
+                description="items[].content becomes projected <m-dashboard-tile [id]> elements (widgets keep their state when tiles move), and items + onReorder / onResize become the [(layout)] model — overrides is gone, the model already holds the change while the app saves it. onRemove → removable + (itemRemove), itemMenuItems → menuItems + (menuAction), the ref handle → the public focusItem(). The locale prop is replaced by the mineralui.dashboardGrid.* dictionary. The single-column switch follows the grid's own width (container query) instead of the viewport; a press on the handle must travel 4 px before it lifts the tile."
             />
 
             <doc-section title="API">

@@ -48,14 +48,14 @@ import {CATEGORY_TREE} from '../tree-samples'
 
             <doc-section
                 title="File tree with moves and a context menu"
-                description="draggable moves nodes into folders by drag and drop — and without a pointer: Ctrl+X on a node, Ctrl+V on a folder (or on a file inside it), also as Cut / Move here in the context menu. contextMenuItems adds your entries; the menu opens with the right button, the ContextMenu key or Shift+F10. The tree only emits (move) and (contextMenuAction) — the page updates items."
+                description="draggable moves nodes into folders by drag and drop — and without a pointer: Ctrl+X on a node, Ctrl+V on a folder (or on a file inside it), also as Cut / Move here in the context menu; while a move is pending the menu offers Cancel move (the pointer's way to call it off). keyboardMove=false leaves drag and drop only. contextMenuItems adds your entries; the menu opens with the right button, the ContextMenu key or Shift+F10. The tree only emits (move) and (contextMenuAction) — the page updates items."
             >
                 <doc-preview [example]="examples.files" />
             </doc-section>
 
             <doc-section
                 title="Keyboard"
-                description="One Tab stop (WAI-ARIA Tree View): ↑ / ↓ move between visible nodes, → opens a folder or enters it, ← closes it or goes to the parent, Home / End jump to the ends, typing a name jumps to it, * opens all folders on the level. Enter (or a click) opens / closes a folder and selects the node; Space checks it with checkable. Escape cancels a pending Ctrl+X."
+                description="One Tab stop (WAI-ARIA Tree View): ↑ / ↓ move between visible nodes, → opens a folder or enters it, ← closes it or goes to the parent (the two swap in a right-to-left layout), Home / End jump to the ends, typing a name jumps to it (the same letter again goes to the next match; a space inside a typed name is part of it), * opens all folders on the level. Enter (or a click) opens / closes a folder and selects the node; Space checks it with checkable. Escape cancels a pending Ctrl+X."
             />
 
             <doc-section
@@ -65,7 +65,7 @@ import {CATEGORY_TREE} from '../tree-samples'
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="defaultExpanded / expanded + onExpandChange, selected + onSelect and checked + onCheckedChange become [(expanded)], [(selected)] and [(checked)]; label is new and required. The keyboard is new (React: mouse only), and so are moving without dragging (WCAG 2.5.7), the live region, the menu keys and a named menu (React: an unnamed fixed div). Node icons and menu icons are MIconDef, menu labels strings. A node cannot be dropped into the folder it is already in. The menu is MDropdownMenu in the top layer."
+                description="defaultExpanded / expanded + onExpandChange, selected + onSelect and checked + onCheckedChange become [(expanded)], [(selected)] and [(checked)]; label is required (React: aria-label optional). Moving needs draggable only (React also needs onMove — an output does not tell whether it is listened to). Ctrl+V on a file moves into that file's folder, and a refused move is announced (React ignores it). Node icons and menu icons are MIconDef, menu labels strings. The menu is MDropdownMenu in the top layer."
             />
 
             <doc-section title="API">

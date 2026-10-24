@@ -54,7 +54,7 @@ import {flagAttributes} from '../chart-samples'
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Its own component instead of MChart type='pie', required label, the hidden data table, interactive with keyboard, (dataClick) only with interactive. Segments without a label are named by mineralui.chart.segment (React: a hard-coded 'Segment n'). labelFormatter applies to the segment names."
+                description="Its own component instead of MChart type='pie', required label, keyboard and (dataClick) only with interactive (React: every chart with data is a Tab stop, the arrows walk the segments)."
             />
 
             <doc-section title="API">

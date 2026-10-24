@@ -137,7 +137,7 @@ const USERS: readonly User[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort type is MSort {key, direction} (React: dir). The search is applied after a short pause (at once on Enter). New: label, rowHeader, aria-sort, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight and a header that stays visible while the page scrolls."
+                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort type is MSort {key, direction} (React: dir). The search is applied after a short pause (at once on Enter). New: label, rowHeader, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight and a header that stays visible while the page scrolls."
             />
 
             <doc-section title="API">

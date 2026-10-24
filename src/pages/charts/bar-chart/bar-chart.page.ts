@@ -56,7 +56,7 @@ import {flagAttributes, MONTHS, MULTI_SERIES, SINGLE_SERIES} from '../chart-samp
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Same as MLineChart: its own component instead of MChart type='bar', required label, the hidden data table, interactive with keyboard, (dataClick) only with interactive, gradient ids unique per chart, height of the drawing only. Bars are vertical only, as in React."
+                description="Same as MLineChart: its own component instead of MChart type='bar', required label, keyboard and (dataClick) only with interactive (React: every chart with data is a Tab stop). Bars are vertical only, as in React."
             />
 
             <doc-section title="API">

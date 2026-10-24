@@ -56,7 +56,7 @@ const TYPES: readonly MSparklineType[] = ['line', 'bar', 'area']
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="New label input (React: never announced, always a bare div). The line really draws in (React animated a dash offset without a dash); the area fades in; reduced motion disables the animations."
+                description="None in the API: label works as in React (with a name the sparkline is an image, without one it is decoration). The draw-in animation is built on pathLength and the area fades in; both frameworks honour reduced motion."
             />
 
             <doc-section title="MSparkline API">

@@ -57,7 +57,7 @@ import {flagAttributes, MONTHS, MULTI_SERIES, SINGLE_SERIES} from '../chart-samp
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Same as MLineChart: its own component, required label, the hidden data table, interactive with keyboard, (dataClick) only with interactive, height of the drawing only. A stacked chart has (hidden) points too, so it can be walked from the keyboard and shows them on hover. curved defaults to false (React docs showed it on)."
+                description="Same as MLineChart: its own component, required label, keyboard and (dataClick) only with interactive (React: every chart with data is a Tab stop). curved defaults to false, as in React."
             />
 
             <doc-section title="API">
