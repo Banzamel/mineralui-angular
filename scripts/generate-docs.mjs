@@ -10,14 +10,15 @@
 //    A public input / model / output without JSDoc, or an inconsistent @slot, is an error.
 // 2. src/generated/examples/** — `{component, source, title} satisfies DocExample` per `*.example.ts` (ADR 0005).
 // 3. src/generated/snippets/** — one module per page with every file of `pages/**/snippets/`.
-// 4. src/index.html — M_THEME_INIT_SCRIPT (from the library sources) between the `m-theme-init` markers.
+// 4. src/index.html — getMThemeInitScript({defaultMode}) (library sources, mode of app.config.ts) between the
+//    `m-theme-init` markers.
 // 5. public/downloads/*.css — theme starter files built from the library tokens (same output as docs-react).
 // 6. src/generated/i18n-keys.json — every built-in text (`t('mineralui.…', 'English')` in the library sources, plus
 //    dynamic `mineralui.<group>.${key}` lookups resolved from their English object). A key with two different
 //    English texts is an error (ADR 0026: one key = one text).
 import {existsSync, mkdirSync, readdirSync, readFileSync, rmSync, watch, writeFileSync} from 'node:fs'
 import {basename, dirname, extname, join, relative, resolve, sep} from 'node:path'
-import {Node, Project, SyntaxKind, TypeFormatFlags} from 'ts-morph'
+import {Node, Project, SyntaxKind, ts, TypeFormatFlags} from 'ts-morph'
 
 const docsRoot = resolve(import.meta.dirname, '..')
 const workspaceRoot = resolve(docsRoot, '..', 'angular-pro')
@@ -567,13 +568,32 @@ function removeStale(dir, expected) {
 // 4. anti-FOUC script in index.html
 // ---------------------------------------------------------------------------------------------------------------
 
-function syncThemeInitScript(project, errors) {
+/**
+ * `getMThemeInitScript({defaultMode})` from the library SOURCES (the function and its storage key, transpiled), with
+ * the `mode` the docs pass to `provideMineralUI()` in app.config.ts — the script falls back to the same mode.
+ */
+function themeInitScript(project, errors) {
     const provider = project.getSourceFile(join(libRoot, 'theme', 'theme.provider.ts'))
-    const initializer = provider?.getVariableDeclaration('M_THEME_INIT_SCRIPT')?.getInitializer()
-    if (!initializer || !Node.isNoSubstitutionTemplateLiteral(initializer)) {
-        errors.push('M_THEME_INIT_SCRIPT not found in theme/theme.provider.ts')
-        return
+    const fn = provider?.getFunction('getMThemeInitScript')
+    const storageKey = provider?.getVariableStatement('STORAGE_KEY')
+    if (!fn || !storageKey) {
+        errors.push('getMThemeInitScript / STORAGE_KEY not found in theme/theme.provider.ts')
+        return undefined
     }
+    const config = readFileSync(resolve(docsRoot, 'src', 'app', 'app.config.ts'), 'utf8')
+    const defaultMode = /provideMineralUI\(\{[^}]*\bmode:\s*'(\w+)'/.exec(config)?.[1]
+    if (!defaultMode) {
+        errors.push("src/app/app.config.ts: provideMineralUI({mode: '…'}) not found")
+        return undefined
+    }
+    const source = `${storageKey.getText()}\n${fn.getText().replace(/^export\s+/, '')}\nreturn getMThemeInitScript`
+    const {outputText} = ts.transpileModule(source, {compilerOptions: {target: ts.ScriptTarget.ES2022}})
+    return new Function(outputText)()({defaultMode})
+}
+
+function syncThemeInitScript(project, errors) {
+    const script = themeInitScript(project, errors)
+    if (script === undefined) return
     const indexPath = resolve(docsRoot, 'src', 'index.html')
     const html = readFileSync(indexPath, 'utf8')
     const pattern = /(<!-- m-theme-init:[^\n]*-->\n)([\s\S]*?)(\n\s*<!-- \/m-theme-init -->)/
@@ -582,12 +602,7 @@ function syncThemeInitScript(project, errors) {
         return
     }
     const indent = ' '.repeat(8)
-    const script = initializer
-        .getLiteralText()
-        .split('\n')
-        .map((line) => (line ? `${indent}    ${line}` : line))
-        .join('\n')
-    writeIfChanged(indexPath, html.replace(pattern, `$1${indent}<script>\n${script}\n${indent}</script>$3`))
+    writeIfChanged(indexPath, html.replace(pattern, `$1${indent}<script>${script}</script>$3`))
 }
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -668,9 +683,13 @@ function dynamicTexts(call, template) {
     return undefined
 }
 
+// Failed results of the /utils validators (`validationFailure(key, template)`, aliased `fail` in validators.ts).
+const VALIDATION_FAILURE_CALLS = new Set(['fail', 'validationFailure'])
+
 /**
- * Every built-in text of the library: `t('mineralui.…', 'English')` calls in the sources (ADR 0026). One key = one
- * text — a key used with two different English fallbacks is an error.
+ * Every built-in text of the library: `t('mineralui.…', 'English')` calls in the sources (ADR 0026), plus the
+ * reasons of the /utils validators (`mineralui.validation.<reason>`). One key = one text — a key used with two
+ * different English fallbacks is an error.
  */
 function generateI18nKeys(project, errors) {
     const keys = new Map()
@@ -690,10 +709,24 @@ function generateI18nKeys(project, errors) {
     for (const file of project.getSourceFiles()) {
         for (const call of file.getDescendantsOfKind(SyntaxKind.CallExpression)) {
             const [keyArg, textArg] = call.getArguments()
-            if (!keyArg || !Node.isIdentifier(call.getExpression()) || call.getExpression().getText() !== 't') continue
+            const callee = Node.isIdentifier(call.getExpression()) ? call.getExpression().getText() : ''
+            if (!keyArg || (!VALIDATION_FAILURE_CALLS.has(callee) && callee !== 't')) continue
             const fn = call.getFirstAncestor((node) => Node.isFunctionDeclaration(node))
             const source = fn?.getName() ?? toPosix(relative(libRoot, file.getFilePath()))
             const location = `${toPosix(relative(workspaceRoot, file.getFilePath()))}:${call.getStartLineNumber()}`
+            if (VALIDATION_FAILURE_CALLS.has(callee)) {
+                // `fail('ibanChecksum', 'Invalid IBAN checksum')` in /utils: `mineralui.validation.<reason>` (X2).
+                // Template keys (`postCode.${countryCode}`) are left out — one key per country.
+                if (Node.isStringLiteral(keyArg) && textArg && Node.isStringLiteral(textArg)) {
+                    add(
+                        `${I18N_PREFIX}validation.${keyArg.getLiteralValue()}`,
+                        textArg.getLiteralValue(),
+                        source,
+                        location
+                    )
+                }
+                continue
+            }
             if (Node.isStringLiteral(keyArg) && keyArg.getLiteralValue().startsWith(I18N_PREFIX)) {
                 if (!textArg || !Node.isStringLiteral(textArg)) {
                     errors.push(`${location}: ${keyArg.getLiteralValue()} needs a string literal English fallback`)

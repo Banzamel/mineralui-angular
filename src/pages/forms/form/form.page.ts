@@ -49,7 +49,11 @@ const MIGRATION = [
 const MESSAGE_ORDER = [
     ['errorText', 'always shown, also for a valid control'],
     ['errorMessages', 'per error key on the component: {required: …, mEmail: …}'],
-    ['mineralui.validation.<key>', 'the i18n dictionary (MI18nService), for the whole app'],
+    ['mineralui.validation.<key>', 'the i18n dictionary (MI18nService) by error key, one text per validator (mIban)'],
+    [
+        'mineralui.validation.<reason>',
+        'the dictionary by the reason of the failure, shared with MineralUI for React (ibanChecksum, minLength {min})',
+    ],
     ['message of the error', 'the English text of the rule (MValidators, built-in validation)'],
     ['built-in default', "English text for Angular's own validators (required, minlength, min, …)"],
 ] as const

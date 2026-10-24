@@ -51,13 +51,27 @@
     >
         <doc-preview [example]="examples.themeMode" />
         <doc-code-block [snippet]="snippets.themeBadgeComponentTs" />
-        <p mText tone="muted" size="sm">
-            With SSR or prerendering add <code mCode>M_THEME_INIT_SCRIPT</code> to your <code mCode>index.html</code> —
-            see
+    </doc-section>
+
+    <doc-section
+        title="No theme flash on first paint"
+        description="On server-rendered or prerendered pages, put the init script in the <head> of index.html so the stored mode is applied before Angular starts. provideMineralUI() keeps <html> in sync afterwards."
+    >
+        <p mText tone="muted">
+            <code mCode>getMThemeInitScript()</code> returns the script; pass the same <code mCode>defaultMode</code> as
+            the <code mCode>mode</code> of <code mCode>provideMineralUI()</code>, so a visitor without a stored choice
+            gets that mode too. <code mCode>M_THEME_INIT_SCRIPT</code> is the script with the defaults (dark,
+            persisted). Setup steps:
             <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/installation"
                 >Installation</a
             >.
         </p>
+        <doc-props-table api="MThemeInitScriptOptions" />
+        <doc-code-block
+            [code]="themeInitScript"
+            language="html"
+            title="index.html — getMThemeInitScript({defaultMode: 'light'})"
+        />
     </doc-section>
 
     <doc-section

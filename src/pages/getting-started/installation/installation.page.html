@@ -31,8 +31,10 @@
         description="With SSR or prerendering, add the theme init script to the <head> of index.html so a stored light / dark choice applies before the first paint."
     >
         <p mText>
-            The snippet is exported as <code mCode>M_THEME_INIT_SCRIPT</code> from
-            <code mCode>&#64;banzamel/mineralui-angular/theme</code>; its current value:
+            <code mCode>getMThemeInitScript(&#123;defaultMode&#125;)</code> from
+            <code mCode>&#64;banzamel/mineralui-angular/theme</code> returns the script — pass the
+            <code mCode>mode</code> you give <code mCode>provideMineralUI()</code>.
+            <code mCode>M_THEME_INIT_SCRIPT</code> is the script with the defaults (dark, persisted); its current value:
         </p>
         <doc-code-block [code]="themeInitScript" language="html" title="index.html" />
     </doc-section>

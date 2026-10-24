@@ -4,6 +4,7 @@ import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table
 import {RouterLink} from '@angular/router'
 import {MI18nService, MTranslatePipe} from '@banzamel/mineralui-angular/i18n'
 import {MIcon, mDownloadIcon} from '@banzamel/mineralui-angular/icons'
+import {getMThemeInitScript} from '@banzamel/mineralui-angular/theme'
 import themeMode from '@generated/examples/getting-started/theming/theme-mode'
 import themeScope from '@generated/examples/getting-started/theming/theme-scope'
 import * as snippets from '@generated/snippets/getting-started/theming'
@@ -100,4 +101,5 @@ export class ThemingPage {
     ])
     protected readonly tokenGroups = TOKEN_GROUPS
     protected readonly themeTypes = THEME_TYPES
+    protected readonly themeInitScript = `<script>${getMThemeInitScript({defaultMode: 'light'})}</script>`
 }
