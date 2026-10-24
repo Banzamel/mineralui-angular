@@ -96,38 +96,23 @@ const minimalSections = [
     },
 ]
 
-const darkModeReferenceSection = `/* explicit dark mode overrides
+// Built from the `.theme-light .theme-dark` block of the framework tokens (docs-react 70af32c), so the shadows,
+// fcolor and focus ring tokens come along and both sites serve the same file.
+function buildDarkModeReferenceSection(tokensRoot) {
+    const layers = readFileSync(resolve(tokensRoot, 'layers.css'), 'utf8')
+    const match = layers.match(/^\.theme-light \.theme-dark \{([^}]*)\}/m)
+
+    if (!match) {
+        throw new Error('layers.css has no ".theme-light .theme-dark" block to build the .theme-dark section from')
+    }
+
+    return `/* explicit dark mode overrides
    Dark mode is already the default in :root.
    Keep this block only if you want to toggle an explicit .theme-dark class in your app.
 */
-.theme-dark {
-    --mineral-dark-rgb: 15, 23, 42;
-    --mineral-dark: rgba(var(--mineral-dark-rgb), 1);
-    --mineral-dark-light-rgb: 30, 41, 59;
-    --mineral-dark-light: rgba(var(--mineral-dark-light-rgb), 1);
-    --mineral-surface-rgb: 21, 29, 46;
-    --mineral-surface: rgba(var(--mineral-surface-rgb), 1);
-    --mineral-surface-contrast: rgba(10, 16, 30, 1);
-    --mineral-input-bg: rgba(37, 51, 71, 1);
-    --mineral-page-bg: var(--mineral-dark);
-    --mineral-page-text: var(--mineral-text);
-    --mineral-text-rgb: 226, 232, 240;
-    --mineral-text: rgba(var(--mineral-text-rgb), 1);
-    --mineral-text-secondary: rgba(100, 116, 139, 1);
-    --mineral-text-muted: var(--mineral-text-secondary);
-    --mineral-text-heading: rgba(241, 245, 249, 0.96);
-    --mineral-text-inverted: rgba(15, 23, 42, 1);
-    --mineral-tooltip-text: rgba(255, 255, 255, 1);
-    --mineral-tooltip-bg: rgba(15, 23, 42, 0.92);
-    --mineral-border: rgba(255, 255, 255, 0.15);
-    --mineral-border-hover: rgba(255, 255, 255, 0.25);
-    --mineral-border-focus: var(--mineral-primary);
-    --mineral-popover-bg: rgba(30, 41, 59, 0.95);
-    --mineral-popover-border: rgba(255, 255, 255, 0.08);
-    --mineral-option-hover-bg: rgba(255, 255, 255, 0.05);
-    --mineral-option-selected-bg: rgba(var(--mineral-primary-rgb), 0.15);
-    --mineral-option-active-bg: rgba(var(--mineral-primary-rgb), 0.25);
+.theme-dark {${match[1].trimEnd()}
 }`
+}
 
 function buildVariablesCss(tokensRoot) {
     const sections = tokenFiles.map(([label, fileName]) => {
@@ -144,7 +129,7 @@ function buildVariablesCss(tokensRoot) {
 
 ${sections.join('\n\n')}
 
-${darkModeReferenceSection}
+${buildDarkModeReferenceSection(tokensRoot)}
 `
 }
 
