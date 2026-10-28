@@ -3,6 +3,7 @@ import {MDetailList, MDetailListStatus} from '@banzamel/mineralui-angular/displa
 import type {MDetailListItem} from '@banzamel/mineralui-angular/display/detail-list'
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
 import type {MSize} from '@banzamel/mineralui-angular/theme'
+import detailListColumns from '@generated/examples/display/detail-list/detail-list-columns'
 import detailListLinks from '@generated/examples/display/detail-list/detail-list-links'
 import detailListProfile from '@generated/examples/display/detail-list/detail-list-profile'
 import detailListSizes from '@generated/examples/display/detail-list/detail-list-sizes'
@@ -63,6 +64,13 @@ const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
             </doc-section>
 
             <doc-section
+                title="Columns"
+                description="columns (1–3) lays the rows out side by side — reading order goes across, then down; the separators stay between grid rows. At collapseBelow (sm by default; a breakpoint name, null for never) and narrower the list folds into one column. The markup is the same <dl> with <div> rows. Not in MineralUI for React."
+            >
+                <doc-preview [example]="examples.columns" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description="The list is a real <dl>: each row is a <div> with a <dt> term and <dd> descriptions (value, helper, status), so screen readers announce the pairs. When items is empty, the content of the [mDetailListEmpty] slot is shown instead."
             />
@@ -87,7 +95,12 @@ const SIZES: readonly MSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailListPage {
-    protected readonly examples = {links: detailListLinks, profile: detailListProfile, sizes: detailListSizes}
+    protected readonly examples = {
+        columns: detailListColumns,
+        links: detailListLinks,
+        profile: detailListProfile,
+        sizes: detailListSizes,
+    }
 
     protected readonly items: readonly MDetailListItem[] = [
         {key: 'family', label: 'Family', value: 'Kowalski family'},

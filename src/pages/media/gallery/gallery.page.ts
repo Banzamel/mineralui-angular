@@ -3,9 +3,11 @@ import {MGallery} from '@banzamel/mineralui-angular/media/gallery'
 import type {MGalleryColumns, MGalleryItem} from '@banzamel/mineralui-angular/media/gallery'
 import type {MMediaHoverEffect} from '@banzamel/mineralui-angular/media/image'
 import type {MClickEffectMode} from '@banzamel/mineralui-angular/utils'
+import galleryActions from '@generated/examples/media/gallery/gallery-actions'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
+import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 const COLUMNS = ['2', '3', '4', '5', '6'] as const
@@ -28,7 +30,7 @@ const PHOTOS: readonly MGalleryItem[] = [
 
 @Component({
     selector: 'doc-gallery-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPropsTable, MGallery],
+    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MGallery],
     template: `
         <doc-article
             title="MGallery"
@@ -51,6 +53,13 @@ const PHOTOS: readonly MGalleryItem[] = [
             </doc-section>
 
             <doc-section
+                title="Tile actions"
+                description='An ng-template mGalleryItemActions (context: the item and index) adds actions to every tile, in the top corner beside the preview button — never inside it, so each is its own Tab stop. They show on hover and while one has focus, and always on touch screens. Name each action with the image ("Delete Logo 1"). Not in MineralUI for React.'
+            >
+                <doc-preview [example]="examples.actions" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description="Every tile is a <figure> with the image's alt text and a <figcaption>. With preview, the tile is a button named 'Preview <alt>'; the preview is a modal dialog with the whole gallery: ← / → or the arrow buttons move through it, the counter is a polite live region, Escape or a click beside the image closes it and focus returns to the tile."
             />
@@ -62,12 +71,14 @@ const PHOTOS: readonly MGalleryItem[] = [
 
             <doc-section title="MGallery API">
                 <doc-props-table api="MGallery" />
+                <doc-props-table api="MGalleryItemActions" />
             </doc-section>
         </doc-article>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryPage {
+    protected readonly examples = {actions: galleryActions}
     protected readonly columns = signal<(typeof COLUMNS)[number]>('3')
     protected readonly hoverEffect = signal<MMediaHoverEffect>('zoom')
     protected readonly clickEffect = signal<MClickEffectMode>('ripple')

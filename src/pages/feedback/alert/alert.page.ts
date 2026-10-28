@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {MAlert} from '@banzamel/mineralui-angular/feedback/alert'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import alertColors from '@generated/examples/feedback/alert/alert-colors'
+import alertDismissible from '@generated/examples/feedback/alert/alert-dismissible'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -34,6 +35,13 @@ const COLORS: readonly MColor[] = ['info', 'success', 'warning', 'error', 'prima
             </doc-section>
 
             <doc-section
+                title="Dismissible"
+                description='dismissible adds a close button named "Dismiss" (mineralui.common.dismiss, or dismissLabel). The alert hides itself and emits (dismissed); show() brings it back. The close button had focus — move it somewhere sensible in (dismissed). Not in MineralUI for React.'
+            >
+                <doc-preview [example]="examples.alertDismissible" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description='The alert is a polite live status, so text that appears later is read out. For an urgent error that must interrupt, put role="alert" on the host. MineralUI for React calls the heading title — in Angular that name would clash with the global HTML attribute.'
             />
@@ -46,7 +54,7 @@ const COLORS: readonly MColor[] = ['info', 'success', 'warning', 'error', 'prima
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertPage {
-    protected readonly examples = {alertColors}
+    protected readonly examples = {alertColors, alertDismissible}
 
     protected readonly color = signal<MColor>('info')
     protected readonly icon = signal(true)

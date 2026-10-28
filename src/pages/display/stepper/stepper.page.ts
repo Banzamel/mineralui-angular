@@ -6,6 +6,7 @@ import {MInline} from '@banzamel/mineralui-angular/layout/inline'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import stepperStates from '@generated/examples/display/stepper/stepper-states'
+import stepperWizard from '@generated/examples/display/stepper/stepper-wizard'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -89,6 +90,13 @@ const STEPS = 4
             </doc-section>
 
             <doc-section
+                title="Wizard: step content"
+                description='Put each step&apos;s content in an ng-template mStepContent inside its li[mStep] and place m-stepper-panel after the list ([stepper]="wizard" with #wizard="mStepper") — an <ol> may only hold <li>. navigation adds Back / Next (mineralui.stepper.back / .next, or backText / nextText) that skip disabled steps; Back is gone on the first step, Next on the last — the [mStepperPanelActions] slot holds your Finish button. The panel is a group named by the active step heading; when the step changes from inside the panel, focus moves to it. Not in MineralUI for React.'
+            >
+                <doc-preview [example]="examples.wizard" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description='The stepper is an ordered list and the current step is aria-current="step". Completed and failed steps are announced after the heading ("Account, Completed" — mineralui.stepper.completed / .error), because the check mark and ! are decorative. With clickable, headings are native buttons — reachable with Tab and operated with Enter or Space; give the list an aria-label.'
             />
@@ -101,6 +109,8 @@ const STEPS = 4
             <doc-section title="API">
                 <doc-props-table api="MStepper" />
                 <doc-props-table api="MStep" />
+                <doc-props-table api="MStepperPanel" />
+                <doc-props-table api="MStepContent" />
             </doc-section>
         </doc-article>
     `,
@@ -113,7 +123,7 @@ const STEPS = 4
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepperPage {
-    protected readonly examples = {states: stepperStates}
+    protected readonly examples = {states: stepperStates, wizard: stepperWizard}
     protected readonly steps = STEPS
 
     protected readonly active = signal(1)

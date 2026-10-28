@@ -4,6 +4,7 @@ import type {MTimelineAlign} from '@banzamel/mineralui-angular/display/timeline'
 import {mBellIcon, mCheckIcon, MIcon, mMailIcon, mStarIcon} from '@banzamel/mineralui-angular/icons'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import timelineActivity from '@generated/examples/display/timeline/timeline-activity'
+import timelineGroups from '@generated/examples/display/timeline/timeline-groups'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {selectControl} from '@kit/doc-playground/playground-controls'
@@ -72,8 +73,15 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
             </doc-section>
 
             <doc-section
+                title="Groups"
+                description="Group events (e.g. by day) with li[mTimelineGroup] and a nested ol[mTimeline] inside: the label sits on the line as a chip, the outer line runs through, and the nested list inherits align, size and color unless you set them. Not in MineralUI for React."
+            >
+                <doc-preview [example]="examples.groups" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
-                description="The timeline is an ordered list (ol[mTimeline] > li[mTimelineItem]), the dots are decorative and hidden from screen readers, and the date is a <time> element."
+                description='The timeline is an ordered list (ol[mTimeline] > li[mTimelineItem]), the dots are decorative and hidden from screen readers, and the date is a <time> element. A group is a list item holding a nested list named by the group label (aria-labelledby), so screen readers announce "Today, list, 2 items".'
             />
 
             <doc-section
@@ -84,6 +92,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
             <doc-section title="API">
                 <doc-props-table api="MTimeline" />
                 <doc-props-table api="MTimelineItem" />
+                <doc-props-table api="MTimelineGroup" />
             </doc-section>
         </doc-article>
     `,
@@ -95,7 +104,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimelinePage {
-    protected readonly examples = {activity: timelineActivity}
+    protected readonly examples = {activity: timelineActivity, groups: timelineGroups}
     protected readonly icons = {check: mCheckIcon, star: mStarIcon, mail: mMailIcon, bell: mBellIcon}
 
     protected readonly align = signal<MTimelineAlign>('left')

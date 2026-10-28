@@ -82,9 +82,16 @@
 
     <doc-section
         title="Levels"
-        description="Six sizes, one per tag. Keep the outline honest: one h1 per page, no skipped levels. Need a different size at a given level? Override font-size in your CSS."
+        description="Six sizes, one per tag. Keep the outline honest: one h1 per page, no skipped levels — and pick the look with size (below)."
     >
         <doc-preview [example]="examples.headingLevels" />
+    </doc-section>
+
+    <doc-section
+        title="Size apart from the tag"
+        description='size picks the step of the scale without changing the level: [size]="4" on an h2, or a level per breakpoint, mobile-first — {base: 3, md: 1} is an h1 that is smaller on phones. Breakpoints and keys follow MCardGrid columns (base, sm 640, md 768, lg 1024, xl 1280, xxl 1536 px); the switch is pure CSS, so a prerendered page is right from the first paint. Not in MineralUI for React.'
+    >
+        <doc-preview [example]="examples.headingSize" />
     </doc-section>
 
     <doc-section title="API">

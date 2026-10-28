@@ -57,7 +57,7 @@ const MODES: readonly MSidebarMode[] = ['expanded', 'collapsed']
         >
             <doc-section
                 title="Playground"
-                description="The header toggle switches between expanded and collapsed; in a collapsed sidebar a group opens its rows in a flyout. The page's own sidebar shows the responsive behavior — narrow the window."
+                description="The header toggle switches between expanded and collapsed; in a collapsed sidebar a group opens its rows in a flyout. A label cut off with an ellipsis shows in full as a tooltip on hover (Angular only) — hover the long one. The page's own sidebar shows the responsive behavior — narrow the window."
             >
                 <doc-playground [controls]="controls" [code]="code()">
                     <!-- Breakpoints at 0: the demo keeps its desktop layout at any window width. -->
@@ -86,6 +86,9 @@ const MODES: readonly MSidebarMode[] = ['expanded', 'collapsed']
                                     >
                                         <m-icon mStart [icon]="icons.users" />Team
                                         <m-badge mEnd size="xs" color="news">3</m-badge>
+                                    </a>
+                                    <a mSidebarItem href="#committee" (click)="$event.preventDefault()">
+                                        <m-icon mStart [icon]="icons.users" />Head of the regional competition committee
                                     </a>
                                     <m-sidebar-group label="Reports" [icon]="icons.chart">
                                         <a mSidebarItem href="#sales" (click)="$event.preventDefault()">Sales</a>

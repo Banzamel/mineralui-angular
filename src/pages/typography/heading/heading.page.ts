@@ -3,6 +3,7 @@ import type {MBreakpoint, MColor} from '@banzamel/mineralui-angular/theme'
 import type {MHeadingTone} from '@banzamel/mineralui-angular/typography/heading'
 import {MHeading} from '@banzamel/mineralui-angular/typography/heading'
 import headingLevels from '@generated/examples/typography/heading/heading-levels'
+import headingSize from '@generated/examples/typography/heading/heading-size'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {selectControl} from '@kit/doc-playground/playground-controls'
@@ -24,7 +25,7 @@ const TITLE = 'Build calm, readable product interfaces'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeadingPage {
-    protected readonly examples = {headingLevels}
+    protected readonly examples = {headingLevels, headingSize}
     protected readonly title = TITLE
 
     protected readonly tag = signal<(typeof TAGS)[number]>('h2')

@@ -3,6 +3,7 @@ import {MCardStat} from '@banzamel/mineralui-angular/cards/card-stat'
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
 import {MIcon, mUsersIcon} from '@banzamel/mineralui-angular/icons'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
+import cardStatFooter from '@generated/examples/cards/card-stat/card-stat-footer'
 import cardStatGrid from '@generated/examples/cards/card-stat/card-stat-grid'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -70,6 +71,13 @@ const MODES = ['surface', 'link'] as const
             </doc-section>
 
             <doc-section
+                title="Footer link"
+                description='[mCardStatFooter] adds a footer under a hairline, pinned to the bottom so a row of cards lines up — e.g. a "Show list →" link. Only on m-card-stat: in a[mCardStat] the whole card is already the link, and the footer is not rendered (a link inside a link is invalid HTML). Not in MineralUI for React.'
+            >
+                <doc-preview [example]="examples.footer" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description="The trend arrow is decorative; the direction is read as a hidden word before the value ('Increase +12', mineralui.common.increase / decrease). On an anchor the whole card is one link with a focus ring."
             />
@@ -92,7 +100,7 @@ const MODES = ['surface', 'link'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardStatPage {
-    protected readonly examples = {grid: cardStatGrid}
+    protected readonly examples = {footer: cardStatFooter, grid: cardStatGrid}
     protected readonly usersIcon = mUsersIcon
 
     protected readonly mode = signal<(typeof MODES)[number]>('surface')

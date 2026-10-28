@@ -3,10 +3,12 @@ import {MCardStat} from '@banzamel/mineralui-angular/cards/card-stat'
 import type {MSimpleGridColumns} from '@banzamel/mineralui-angular/layout/simple-grid'
 import {mSimpleGridColumnValues} from '@banzamel/mineralui-angular/layout/simple-grid'
 import {MStatGrid} from '@banzamel/mineralui-angular/layout/stat-grid'
+import statGridFive from '@generated/examples/layout/stat-grid/stat-grid-five'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {selectControl} from '@kit/doc-playground/playground-controls'
+import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 interface Stat {
@@ -29,7 +31,7 @@ const isColumns = (value: number): value is MSimpleGridColumns =>
 
 @Component({
     selector: 'doc-stat-grid-page',
-    imports: [DocArticle, DocSection, DocPlayground, DocPropsTable, MCardStat, MStatGrid],
+    imports: [DocArticle, DocSection, DocPlayground, DocPreview, DocPropsTable, MCardStat, MStatGrid],
     template: `
         <doc-article
             title="MStatGrid"
@@ -53,6 +55,13 @@ const isColumns = (value: number): value is MSimpleGridColumns =>
                 </doc-playground>
             </doc-section>
 
+            <doc-section
+                title="Five columns"
+                description='[columns]="5" puts five tiles in a row (each at least 10rem by default) and two per row at 1024 px and narrower — also on phones, where KPI tiles stay side by side. 1–4 step down like MSimpleGrid (2, then 1). Not in MineralUI for React.'
+            >
+                <doc-preview [example]="examples.five" />
+            </doc-section>
+
             <doc-section title="API">
                 <doc-props-table api="MStatGrid" />
             </doc-section>
@@ -61,6 +70,7 @@ const isColumns = (value: number): value is MSimpleGridColumns =>
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatGridPage {
+    protected readonly examples = {five: statGridFive}
     protected readonly stats = STATS
 
     protected readonly columnsOption = signal('4')
