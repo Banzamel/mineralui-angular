@@ -37,6 +37,15 @@
             <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/theming">theme files</a>
             work for both frameworks.
         </p>
+        <p mText>
+            As in React 2.5.3+, all framework CSS sits in the cascade layer <code mCode>mineral</code>, so your
+            overrides need no extra specificity. React injects its style tag first in <code mCode>&lt;head&gt;</code>;
+            in Angular the order comes from <code mCode>angular.json</code> — keep the library's
+            <code mCode>styles.css</code> first in <code mCode>styles</code>
+            (<a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/installation"
+                >Installation</a
+            >).
+        </p>
         <doc-code-block [snippet]="snippets.appCss" />
         <doc-code-block [snippet]="snippets.stylesCss" />
     </doc-section>

@@ -1,0 +1,5 @@
+/*
+ * src/tailwind.css — listed after the library, so Tailwind's layers come after `mineral` and win:
+ * "styles": ["@banzamel/mineralui-angular/styles.css", "src/tailwind.css", "src/styles.css"]
+ */
+@import 'tailwindcss';

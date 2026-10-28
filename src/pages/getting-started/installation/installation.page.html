@@ -12,6 +12,22 @@
             build target. It is a plain stylesheet, so it also works with SSR and never flashes unstyled content.
         </p>
         <doc-code-block [snippet]="snippets.angularJson" />
+        <p mText>
+            All framework CSS — this stylesheet and every component's — sits in the cascade layer
+            <code mCode>mineral</code>, and the file opens with <code mCode>&#64;layer mineral;</code>. Keep it
+            <strong>first</strong> in <code mCode>styles</code>: the first declared layer has the lowest priority, so
+            your own CSS overrides any component without matching its specificity or adding
+            <code mCode>!important</code>. Global element rules (<code mCode>a &#123; color &#125;</code>,
+            <code mCode>button &#123; … &#125;</code>) win over the components too.
+        </p>
+        <doc-code-block [snippet]="snippets.stylesCss" />
+        <p mText>
+            A CSS framework with its own layers wins as well when it comes after the library — Tailwind's
+            <code mCode>theme, base, components, utilities</code>, for example. Its base layer (Preflight) then also
+            outranks the components; to keep them above it, declare the order in a stylesheet listed before the
+            library: <code mCode>&#64;layer theme, base, mineral, components, utilities;</code>.
+        </p>
+        <doc-code-block [snippet]="snippets.tailwindCss" />
     </doc-section>
 
     <doc-section

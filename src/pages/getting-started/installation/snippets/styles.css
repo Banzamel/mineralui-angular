@@ -1,0 +1,4 @@
+/* src/styles.css — unlayered, so it beats the framework's `mineral` layer at any specificity. */
+.m-button {
+    border-radius: 999px; /* also over .m-button.m-outlined, .m-button:hover, … */
+}

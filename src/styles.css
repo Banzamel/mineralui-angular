@@ -19,8 +19,8 @@ body {
 }
 
 /* Heading sizes of the docs chrome. The tag carries the semantics (h1 page, h2 section, h3 group); docs-react shows
-   the same sizes with MHeading level 3 / 4. The tag in the selector outranks the component rule (.m-heading.m-h1),
-   which loads after this file. */
+   the same sizes with MHeading level 3 / 4. This file is unlayered, so it beats the component rule (.m-heading.m-h1)
+   in the `mineral` cascade layer whatever the specificity. */
 h1.m-heading.doc-title {
     font-size: 1.75rem;
 }
