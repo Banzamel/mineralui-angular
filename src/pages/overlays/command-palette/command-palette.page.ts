@@ -16,9 +16,11 @@ import type {MSheetSize} from '@banzamel/mineralui-angular/overlays/sheet'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import commandPaletteDialog from '@generated/examples/overlays/command-palette/command-palette-dialog'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
+import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
@@ -29,6 +31,7 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
         DocArticle,
         DocSection,
         DocPlayground,
+        DocPreview,
         DocPropsTable,
         MCode,
         MCommandPalette,
@@ -60,6 +63,13 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
                         </p>
                     </m-command-palette>
                 </doc-playground>
+            </doc-section>
+
+            <doc-section
+                title="As a dialog"
+                description="variant='dialog' opens the palette as a centered dialog (width from dialogSize, default lg) on wider screens and as a bottom sheet on a phone (640 px and below). The search field, the result list and the keyboard work exactly as in the sheet."
+            >
+                <doc-preview [example]="examples.commandPaletteDialog" />
             </doc-section>
 
             <doc-section title="Keyboard and screen readers">
@@ -102,6 +112,7 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
                         Item texts are strings and icons are icon constants; no <code mCode>component</code> /
                         <code mCode>to</code> — navigate in <code mCode>onSelect</code>.
                     </li>
+                    <li mListItem>Angular only: <code mCode>variant="dialog"</code> (React: always a bottom sheet).</li>
                 </ul>
             </doc-section>
 
@@ -117,6 +128,7 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommandPalettePage {
+    protected readonly examples = {commandPaletteDialog}
     private readonly toast = inject(MToastService)
 
     protected readonly size = signal<MSheetSize>('lg')

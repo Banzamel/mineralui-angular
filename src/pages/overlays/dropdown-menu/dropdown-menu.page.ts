@@ -15,6 +15,7 @@ import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import dropdownCheckable from '@generated/examples/overlays/dropdown-menu/dropdown-checkable'
 import dropdownIsolated from '@generated/examples/overlays/dropdown-menu/dropdown-isolated'
 import dropdownLong from '@generated/examples/overlays/dropdown-menu/dropdown-long'
+import dropdownSubmenu from '@generated/examples/overlays/dropdown-menu/dropdown-submenu'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -82,6 +83,13 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
             </doc-section>
 
             <doc-section
+                title="Submenus, values and confirmations"
+                description="A submenu is an m-dropdown-menu declared inside the menu, right after the item that opens it with [mPopoverTrigger]. [mEnd] shows the current value at the end of a row. An item that opens an m-popconfirm keeps the menu open while asking: the confirm button runs the action and closes the menu, the cancel button returns focus to the item."
+            >
+                <doc-preview [example]="examples.dropdownSubmenu" />
+            </doc-section>
+
+            <doc-section
                 title="Inside a clickable card"
                 description="isolateClick keeps item clicks from reaching a clickable parent; stop the trigger's own click with $event.stopPropagation()."
             >
@@ -111,6 +119,17 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                     <li mListItem>
                         The trigger gets <code mCode>aria-haspopup="menu"</code>, <code mCode>aria-expanded</code> and
                         names the menu (<code mCode>aria-labelledby</code>).
+                    </li>
+                    <li mListItem>
+                        Submenus (WAI-ARIA APG menu): the item has <code mCode>aria-haspopup="menu"</code> and
+                        <code mCode>aria-expanded</code>. → (← in a right-to-left layout), Enter or Space open the
+                        submenu at its first item; resting the pointer on the item opens it without moving focus. ← (→
+                        in RTL) and Escape close only the submenu and return focus to its item; choosing an item, Tab or
+                        a click outside close every level.
+                    </li>
+                    <li mListItem>
+                        A confirmation (<code mCode>m-popconfirm</code>) of an item is an alertdialog above the menu:
+                        Escape closes only the confirmation, keys inside it never move or choose menu items.
                     </li>
                 </ul>
             </doc-section>
@@ -147,6 +166,10 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                         No fixed 300px height: the menu is as tall as its items up to the room in the viewport; cap it
                         with <code mCode>--m-dropdown-menu-max-height</code>.
                     </li>
+                    <li mListItem>
+                        Angular only: submenus, the <code mCode>[mEnd]</code> value slot and items that open a
+                        confirmation without closing the menu.
+                    </li>
                 </ul>
             </doc-section>
 
@@ -164,7 +187,7 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownMenuPage {
-    protected readonly examples = {dropdownCheckable, dropdownIsolated, dropdownLong}
+    protected readonly examples = {dropdownCheckable, dropdownIsolated, dropdownLong, dropdownSubmenu}
     protected readonly icons = {edit: mEditIcon, copy: mCopyIcon, share: mShareIcon, trash: mTrashIcon}
     private readonly toast = inject(MToastService)
 

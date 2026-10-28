@@ -4,6 +4,7 @@ import {MTab, MTabs} from '@banzamel/mineralui-angular/layout/tabs'
 import type {MTabsOrientation, MTabsVariant} from '@banzamel/mineralui-angular/layout/tabs'
 import type {MSize} from '@banzamel/mineralui-angular/theme'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import tabsBadge from '@generated/examples/navigation/tabs/tabs-badge'
 import tabsItems from '@generated/examples/navigation/tabs/tabs-items'
 import tabsLazy from '@generated/examples/navigation/tabs/tabs-lazy'
 import tabsOverflow from '@generated/examples/navigation/tabs/tabs-overflow'
@@ -77,6 +78,13 @@ const EFFECTS = ['ripple', 'none'] as const
             </doc-section>
 
             <doc-section
+                title="Badges"
+                description="badge on m-tab or MTabsItem shows a count or, with true (or the bare attribute), a dot after the label; badgeColor picks the palette color. The badge itself is hidden from screen readers — hidden text after the label carries it into the tab name (mineralui.tabs.badgeCount '{count} new', mineralui.tabs.badgeDot 'has updates', or your badgeLabel). Not in MineralUI for React."
+            >
+                <doc-preview [example]="examples.tabsBadge" />
+            </doc-section>
+
+            <doc-section
                 title="Many tabs in a narrow space"
                 description="Horizontal tabs keep their width and stay on one line; the tab list scrolls sideways instead of squeezing the labels (MineralUI for React shrinks them). With fullWidth the tabs share the width equally."
             >
@@ -91,6 +99,7 @@ const EFFECTS = ['ripple', 'none'] as const
             <doc-section title="API">
                 <doc-props-table api="MTabs" />
                 <doc-props-table api="MTab" />
+                <doc-props-table api="MTabsItem" />
             </doc-section>
         </doc-article>
     `,
@@ -102,7 +111,7 @@ const EFFECTS = ['ripple', 'none'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsPage {
-    protected readonly examples = {tabsItems, tabsLazy, tabsOverflow, tabsPanels}
+    protected readonly examples = {tabsBadge, tabsItems, tabsLazy, tabsOverflow, tabsPanels}
     protected readonly docIcon = mDocIcon
     protected readonly paletteIcon = mPaletteIcon
     protected readonly dashboardIcon = mDashboardIcon

@@ -7,6 +7,7 @@ import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import modalForm from '@generated/examples/overlays/modal/modal-form'
+import modalPhone from '@generated/examples/overlays/modal/modal-phone'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -70,6 +71,13 @@ const SIZES: readonly MModalSize[] = ['sm', 'md', 'lg', 'xl']
                 <doc-preview [example]="examples.modalForm" />
             </doc-section>
 
+            <doc-section
+                title="On a phone"
+                description="fullscreenBelow='md' fills the viewport at 768 px and below: no margins, the header and footer stay in place and the body scrolls (pure CSS, right on a prerendered page). mModalFooter='actions' aligns the actions to the end; at 640 px and below they take the full width and stack with the last one — the primary action — on top. Without these inputs the modal looks as in MineralUI for React."
+            >
+                <doc-preview [example]="examples.modalPhone" />
+            </doc-section>
+
             <doc-section title="Behaviour">
                 <ul mList>
                     <li mListItem>
@@ -110,18 +118,23 @@ const SIZES: readonly MModalSize[] = ['sm', 'md', 'lg', 'xl']
                     <li mListItem>
                         The body and footer have the same horizontal padding as the header (React: a smaller one).
                     </li>
+                    <li mListItem>
+                        Angular only: <code mCode>fullscreenBelow</code> and the <code mCode>actions</code> footer
+                        layout (<code mCode>mModalFooter="actions"</code>).
+                    </li>
                 </ul>
             </doc-section>
 
             <doc-section title="API">
                 <doc-props-table api="MModal" />
+                <doc-props-table api="MModalFooter" />
             </doc-section>
         </doc-article>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalPage {
-    protected readonly examples = {modalForm}
+    protected readonly examples = {modalForm, modalPhone}
 
     protected readonly open = signal(false)
     protected readonly size = signal<MModalSize>('md')
