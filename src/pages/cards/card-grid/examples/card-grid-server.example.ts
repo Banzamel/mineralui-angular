@@ -82,6 +82,6 @@ export class CardGridServerExample {
     protected readonly categories = CATEGORIES
     protected readonly products = injectMDataSource<Product>(
         (query, {abortSignal}) => this.api.list(query, abortSignal),
-        {pageSize: 6, initialSort: {key: 'name', direction: 'asc'}}
+        {pageSize: 6, initialSort: [{key: 'name', direction: 'asc'}]}
     )
 }

@@ -3,7 +3,10 @@ import type {MDataFilterKey, MDataSortKey} from '@banzamel/mineralui-angular/dat
 import {MDataTable, MDataTableCell} from '@banzamel/mineralui-angular/data/data-table'
 import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table'
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
+import dataTableActivate from '@generated/examples/data/data-table/data-table-activate'
+import dataTableCard from '@generated/examples/data/data-table/data-table-card'
 import dataTableDetail from '@generated/examples/data/data-table/data-table-detail'
+import dataTableMultiSort from '@generated/examples/data/data-table/data-table-multi-sort'
 import dataTableExternal from '@generated/examples/data/data-table/data-table-external'
 import dataTableOrders from '@generated/examples/data/data-table/data-table-orders'
 import dataTableRange from '@generated/examples/data/data-table/data-table-range'
@@ -89,6 +92,27 @@ const USERS: readonly User[] = [
             </doc-section>
 
             <doc-section
+                title="Sorting by several columns"
+                description="[(sort)] is a list of sort keys (readonly MSort[], empty = unsorted): the first decides, the next ones break its ties. A header click sorts by that column alone (ascending, descending, off); Shift+click — or Shift+Enter on the header button — adds the column as the next key or steps its direction, keeping the others. With more than one key every sorted header shows its position next to the arrow; aria-sort marks the deciding column and the others say 'sort key 2, ascending' to screen readers (mineralui.dataTable.sortKey). Set the model for a default order. The toolbar sort popover still picks one key and replaces the list."
+            >
+                <doc-preview [example]="examples.multiSort" />
+            </doc-section>
+
+            <doc-section
+                title="Row activation and row classes"
+                description="rowClick='activate' emits (rowActivate) with the row — on a click in the empty row area (links, buttons and inputs inside keep their own click) and on Enter. The rows become one tab stop (roving tabindex: the first row, then the last focused one); ↑ / ↓ / Home / End move between rows and Tab still reaches the controls in the cells. The rows keep native table semantics and show a focus ring. rowClass returns extra classes for a row's tr, e.g. to dim archived rows."
+            >
+                <doc-preview [example]="examples.activate" />
+            </doc-section>
+
+            <doc-section
+                title="In a card, with page size and range"
+                description="[bordered]='false' drops the table's own border and rounded corners, so the card is the frame. pageSizeOptions adds a page size select to the pagination ([(pageSize)] is a model) and paginationRange shows '1–5 of 37' (MPagination showRange). Both are opt-in. With [source], the select needs a source that can change its size: injectMDataSource, or externalMDataSource with onPageSize."
+            >
+                <doc-preview [example]="examples.card" />
+            </doc-section>
+
+            <doc-section
                 title="Row selection"
                 description="selectable adds a checkbox per row and a header checkbox for the page (mixed while part of it is selected). [(selected)] holds the row keys — rowKey picks the field (default id). A click on the row toggles it too, except on links, buttons and inputs inside."
             >
@@ -132,12 +156,12 @@ const USERS: readonly User[] = [
 
             <doc-section
                 title="Accessibility"
-                description="A native table (WAI-ARIA Sortable Table): name it with label, sortable headers are buttons, the sorted column has aria-sort. rowHeader: true makes a column the row header (th scope='row'). The toolbar popovers are named dialogs; the sort direction is also given as text. While loading, the rows are aria-busy and the loader is a live status."
+                description="A native table (WAI-ARIA Sortable Table): name it with label, sortable headers are buttons, the deciding sort column has aria-sort, further sort keys are named in hidden text. With rowClick='activate' the rows are one tab stop (arrows, Home / End, Enter). rowHeader: true makes a column the row header (th scope='row'). The toolbar popovers are named dialogs; the sort direction is also given as text. While loading, the rows are aria-busy and the loader is a live status."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort type is MSort {key, direction} (React: dir). The search is applied after a short pause (at once on Enter). New: label, rowHeader, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight and a header that stays visible while the page scrolls."
+                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort is a list of MSort {key, direction} keys (React: one {key, dir} or null). The search is applied after a short pause (at once on Enter). New: label, rowHeader, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight, a header that stays visible while the page scrolls, multi-key sort (Shift+click), rowClick='activate' with (rowActivate), rowClass, bordered, pageSizeOptions and paginationRange."
             />
 
             <doc-section title="API">
@@ -164,6 +188,9 @@ const USERS: readonly User[] = [
 export class DataTablePage {
     protected readonly examples = {
         orders: dataTableOrders,
+        multiSort: dataTableMultiSort,
+        activate: dataTableActivate,
+        card: dataTableCard,
         selection: dataTableSelection,
         server: dataTableServer,
         external: dataTableExternal,

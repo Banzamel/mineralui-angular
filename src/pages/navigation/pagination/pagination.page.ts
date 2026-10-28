@@ -4,6 +4,7 @@ import type {MPaginationVariant} from '@banzamel/mineralui-angular/layout/pagina
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import paginationDensity from '@generated/examples/navigation/pagination/pagination-density'
+import paginationPageSize from '@generated/examples/navigation/pagination/pagination-page-size'
 import paginationResults from '@generated/examples/navigation/pagination/pagination-results'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -57,6 +58,18 @@ const PAGE_SIZES = ['10', '20', '25'] as const
                 <doc-preview [example]="examples.paginationDensity" />
             </doc-section>
 
+            <doc-section
+                title="Range and page size"
+                description='Both opt-in, the default look stays as in React. showRange adds the rows of the page ("11–20 of 95", mineralui.pagination.range, overridden by rangeText with {start}, {end}, {total}). pageSizeOptions adds a select of sizes ("10 / page", mineralui.pagination.perPage / pageSizeText; named "Items per page", mineralui.pagination.pageSize / pageSizeLabel) that writes [(pageSize)] and moves the page so the first item stays on screen. With extras the bar wraps on narrow screens.'
+            >
+                <doc-preview [example]="examples.paginationPageSize" />
+            </doc-section>
+
+            <doc-section
+                title="Differences from MineralUI for React"
+                description="pageSize is a two-way model ([(pageSize)]), so a static pageSize='20' attribute needs a binding: [pageSize]='20'. New in Angular: showRange, pageSizeOptions and their texts — React has neither."
+            />
+
             <doc-section title="API">
                 <doc-props-table api="MPagination" />
             </doc-section>
@@ -65,7 +78,7 @@ const PAGE_SIZES = ['10', '20', '25'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationPage {
-    protected readonly examples = {paginationDensity, paginationResults}
+    protected readonly examples = {paginationDensity, paginationPageSize, paginationResults}
 
     protected readonly variant = signal<MPaginationVariant>('numbered')
     protected readonly pageSize = signal<(typeof PAGE_SIZES)[number]>('10')

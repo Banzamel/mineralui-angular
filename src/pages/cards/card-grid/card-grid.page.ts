@@ -117,7 +117,7 @@ const ITEMS: readonly ComponentItem[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="renderCard becomes ng-template mCardGridItem ([mCardGridItemOf] types the item). filterable / sortable are gone — the popovers show when filterKeys / sortKeys are given. defaultSort is the initial [sort]. useMCardGrid + manual* flags become [source] (injectMDataSource), shared with MDataTable; the sort type is MSort. emptyMessage is emptyText or a [mCardGridEmpty] slot. Columns use minmax(0, 1fr), so long card content cannot widen a column. New: label and list semantics."
+                description="renderCard becomes ng-template mCardGridItem ([mCardGridItemOf] types the item). filterable / sortable are gone — the popovers show when filterKeys / sortKeys are given. defaultSort is the initial [sort]. useMCardGrid + manual* flags become [source] (injectMDataSource), shared with MDataTable; [(sort)] is a list of MSort keys (readonly MSort[], empty = unsorted — React: one sort or null), the sort popover sets one key. emptyMessage is emptyText or a [mCardGridEmpty] slot. Columns use minmax(0, 1fr), so long card content cannot widen a column. New: label and list semantics."
             />
 
             <doc-section title="API">
@@ -149,7 +149,7 @@ export class CardGridPage {
     ]
     protected readonly sortKeys: readonly MDataSortKey[] = [{key: 'name', label: 'Name'}]
 
-    protected readonly sort = signal<MSort | null>({key: 'name', direction: 'asc'})
+    protected readonly sort = signal<readonly MSort[]>([{key: 'name', direction: 'asc'}])
     protected readonly color = signal<MColor>('primary')
     protected readonly searchable = signal(true)
     protected readonly filters = signal(true)
