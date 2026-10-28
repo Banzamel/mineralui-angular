@@ -19,6 +19,7 @@ import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MAvatar} from '@banzamel/mineralui-angular/media/avatar'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import chatFiles from '@generated/examples/data/chat/chat-files'
 import chatLazyWindow from '@generated/examples/data/chat/chat-lazy-window'
 import chatRouter from '@generated/examples/data/chat/chat-router'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
@@ -134,7 +135,7 @@ const CONVERSATIONS: readonly MChatConversation[] = [
                                     <p mText size="sm" tone="muted">{{ activeUser().online ? 'Online' : 'Offline' }}</p>
                                 </div>
                             </m-chat-header>
-                            <m-chat-body [messages]="thread()" [loading]="loading()" />
+                            <m-chat-body [messages]="thread()" [loading]="loading()" [showSender]="showSender()" />
                             <m-chat-typing-indicator [users]="showTyping() ? [activeUser()] : []" />
                             <m-chat-input [showEmoji]="showEmoji()" [showAttach]="showAttach()" (send)="post($event)" />
                         </m-chat>
@@ -145,6 +146,13 @@ const CONVERSATIONS: readonly MChatConversation[] = [
                         }
                     </m-stack>
                 </doc-playground>
+            </doc-section>
+
+            <doc-section
+                title="Files, groups and header actions"
+                description="attachAccept opens the picker (and dropping) to other files: .pdf, image/* or exact MIME types. Images get a preview, other files an icon and the name; maxFiles and maxSize limit them, and (attachReject) reports each refused file with the reason (type, size or count). (send) carries every file in files and the images among them in images. Message attachments (MChatAttachment) render as download chips with a file-type icon and the size; text keeps its line breaks and an image without text has no bubble. A group conversation without an avatar shows the initials of its title. Buttons with mChatHeaderActions sit at the right edge of the header, with mChatInputActions next to the attach button; insertText() (exportAs mChatInput) puts text at the caret."
+            >
+                <doc-preview [example]="examples.files" />
             </doc-section>
 
             <doc-section
@@ -163,12 +171,12 @@ const CONVERSATIONS: readonly MChatConversation[] = [
 
             <doc-section
                 title="Accessibility"
-                description="The inline chat is a named region; the floating one a non-modal dialog opened by a button with aria-expanded (its name includes the unread count), focus moves to the message field and returns to the button on Escape. The body is a polite log (focusable, so it scrolls from the keyboard, aria-busy while loading older messages); own messages carry a hidden 'You' and the read receipt in text. Conversations are buttons in a named list, the open one with aria-current. The typing indicator is a status region. The emoji picker is a dialog with the arrow keys moving over the grid."
+                description="The inline chat is a named region; the floating one a non-modal dialog opened by a button with aria-expanded (its name includes the unread count), focus moves to the message field and returns to the button on Escape. The body is a polite log (focusable, so it scrolls from the keyboard, aria-busy while loading older messages); own messages carry a hidden 'You' and the read receipt in text. Attachments are links in a list, named by the file name and size (the icon is hidden); the remove button of a waiting file is named by the file ('Remove plan.pdf'), and the attach button says Attach file once attachAccept allows more than images. Conversations are buttons in a named list, the open one with aria-current. The typing indicator is a status region. The emoji picker is a dialog with the arrow keys moving over the grid."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="open + onToggle become [(open)]; the floating window lives in the top layer (React: a fixed div in a portal). openMChat / useMChatRouter become the MChatRouter service and injectMChatRouter (React: window events). onSend(content, images) becomes (send) with {content, images}, onTyping (typing), onScrollTop (reachedTop), the conversation onClick (itemClick); MChatInput has a [(value)] draft and inserts emoji at the caret. The floating window mounts its content on open only with ng-template mChatWindow. Every text is translatable: Send, Emoji, Attach image and Remove image share mineralui.common.* with React, the rest is mineralui.chat.* (the same keys as React, plus the Angular-only unread, conversations and you)."
+                description="open + onToggle become [(open)]; the floating window lives in the top layer (React: a fixed div in a portal). openMChat / useMChatRouter become the MChatRouter service and injectMChatRouter (React: window events). onSend(content, files) becomes (send) with {content, files, images}, onAttachReject (attachReject) with {file, reason}, the actions props the mChatHeaderActions and mChatInputActions slots, ref.insertText() / focus() public methods (exportAs mChatInput), onTyping (typing), onScrollTop (reachedTop), the conversation onClick (itemClick); MChatInput has a [(value)] draft (React: value / defaultValue / onValueChange). conversation.avatar is an image URL (React also takes a node). A file chip's size is formatted for the locale (2 KB; React: 2.0 KB). The floating window mounts its content on open only with ng-template mChatWindow. Every text is translatable: Send, Emoji, Attach image and Remove image share mineralui.common.* with React, the rest is mineralui.chat.* (attachFile and removeFile with the attachLabel and removeFileLabel inputs) (the same keys as React, plus the Angular-only unread, conversations and you)."
             />
 
             <doc-section title="API">
@@ -183,9 +191,11 @@ const CONVERSATIONS: readonly MChatConversation[] = [
                     <doc-props-table api="MChatHeader" />
                     <doc-props-table api="MChatWindow" />
                     <doc-props-table api="MChatMessageData" />
+                    <doc-props-table api="MChatAttachment" />
                     <doc-props-table api="MChatConversation" />
                     <doc-props-table api="MChatUser" />
                     <doc-props-table api="MChatSendEvent" />
+                    <doc-props-table api="MChatAttachRejectEvent" />
                     <doc-props-table api="MChatOpenRequest" />
                 </m-stack>
             </doc-section>
@@ -208,7 +218,7 @@ const CONVERSATIONS: readonly MChatConversation[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatPage {
-    protected readonly examples = {router: chatRouter, lazyWindow: chatLazyWindow}
+    protected readonly examples = {files: chatFiles, router: chatRouter, lazyWindow: chatLazyWindow}
 
     protected readonly variant = signal<MChatVariant>('inline')
     protected readonly color = signal<MColor>('primary')
@@ -216,6 +226,7 @@ export class ChatPage {
     protected readonly showAttach = signal(true)
     protected readonly showConversations = signal(true)
     protected readonly showTyping = signal(false)
+    protected readonly showSender = signal(true)
     protected readonly loading = signal(false)
     protected readonly unreadCount = signal(3)
     protected readonly open = signal(false)
@@ -226,6 +237,7 @@ export class ChatPage {
         booleanControl('showAttach', this.showAttach),
         booleanControl('showConversations', this.showConversations),
         booleanControl('showTyping', this.showTyping),
+        booleanControl('showSender', this.showSender),
         booleanControl('loading', this.loading),
         sliderControl('unreadCount', this.unreadCount, {min: 0, max: 20}),
     ]
@@ -265,7 +277,7 @@ export class ChatPage {
         return (
             `<m-chat${attrs.length ? ' ' + attrs.join(' ') : ''}>\n${list}` +
             `    <m-chat-header bordered>{{ person().name }}</m-chat-header>\n` +
-            `    <m-chat-body [messages]="thread()"${this.loading() ? ' loading' : ''} />\n${typing}` +
+            `    <m-chat-body [messages]="thread()"${this.loading() ? ' loading' : ''}${this.showSender() ? '' : ' [showSender]="false"'} />\n${typing}` +
             `    <m-chat-input ${inputAttrs.join(' ')} />\n</m-chat>`
         )
     })
@@ -285,6 +297,14 @@ export class ChatPage {
             isOwn: true,
             status: 'sent',
             images: event.images.length > 0 ? event.images.map((file) => URL.createObjectURL(file)) : undefined,
+            attachments: event.files
+                .filter((file) => !event.images.includes(file))
+                .map((file, index) => ({
+                    id: `${id}-${index}`,
+                    name: file.name,
+                    url: URL.createObjectURL(file),
+                    size: file.size,
+                })),
         }
         this.threads.update((threads) => ({...threads, [id]: [...(threads[id] ?? []), sent]}))
     }
