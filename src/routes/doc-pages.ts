@@ -40,9 +40,12 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     button: () => import('@pages/controls/button/button.page').then((m) => m.ButtonPage),
     'button-group': () => import('@pages/controls/button-group/button-group.page').then((m) => m.ButtonGroupPage),
     checkbox: () => import('@pages/controls/checkbox/checkbox.page').then((m) => m.CheckboxPage),
+    'checkbox-group': () =>
+        import('@pages/controls/checkbox-group/checkbox-group.page').then((m) => m.CheckboxGroupPage),
     'load-more': () => import('@pages/controls/load-more/load-more.page').then((m) => m.LoadMorePage),
     'quick-actions': () => import('@pages/controls/quick-actions/quick-actions.page').then((m) => m.QuickActionsPage),
     radio: () => import('@pages/controls/radio/radio.page').then((m) => m.RadioPage),
+    segmented: () => import('@pages/controls/segmented/segmented.page').then((m) => m.SegmentedPage),
     'scroll-top': () => import('@pages/controls/scroll-top/scroll-top.page').then((m) => m.ScrollTopPage),
     slider: () => import('@pages/controls/slider/slider.page').then((m) => m.SliderPage),
     'social-button': () => import('@pages/controls/social-button/social-button.page').then((m) => m.SocialButtonPage),

@@ -208,9 +208,19 @@
                     "description": "Single, indeterminate or grouped checkboxes."
                 },
                 {
+                    "id": "checkbox-group",
+                    "title": "Checkbox Group",
+                    "description": "Fieldset of checkboxes with a string[] value, helper text and errors."
+                },
+                {
                     "id": "radio",
                     "title": "Radio",
                     "description": "Radio button and MRadioGroup primitive."
+                },
+                {
+                    "id": "segmented",
+                    "title": "Segmented",
+                    "description": "Segmented control — a single choice as a radio group of side-by-side options."
                 },
                 {
                     "id": "slider",

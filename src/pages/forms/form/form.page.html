@@ -44,6 +44,19 @@
         <doc-preview [example]="examples.formCustomField" />
     </doc-section>
 
+    <doc-section
+        title="Your own field markup: MFieldError"
+        description="Building a field from scratch? m-field-error (feedback/field-error) renders the validation message MineralUI fields render — the same m-field-error text with role=&quot;alert&quot;, the same message order (errorMessages, the mineralui.validation dictionary, the error's text) and the same timing (once touched or the form submitted). Give it an id for the control's aria-describedby and bind aria-invalid from hasError()."
+    >
+        <doc-preview [example]="examples.formFieldError" />
+        <p mText size="sm" tone="muted">
+            control takes the name of a control in the enclosing form group, an AbstractControl or a Signal Forms field;
+            errors shows explicit errors at once (a server response), message shows a text as is.
+        </p>
+        <doc-preview [example]="examples.formFieldErrorSignal" />
+        <doc-props-table api="MFieldError" />
+    </doc-section>
+
     <doc-section title="Error messages" description="The text of an automatic error, first match wins.">
         <m-stack>
             <m-data-table

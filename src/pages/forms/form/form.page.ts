@@ -8,6 +8,8 @@ import {MLink} from '@banzamel/mineralui-angular/typography/link'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import formCustomField from '@generated/examples/forms/form/form-custom-field'
+import formFieldError from '@generated/examples/forms/form/form-field-error'
+import formFieldErrorSignal from '@generated/examples/forms/form/form-field-error-signal'
 import formSignup from '@generated/examples/forms/form/form-signup'
 import * as snippets from '@generated/snippets/forms/form'
 import {CodeBlock} from '@kit/code-block/code-block'
@@ -80,7 +82,7 @@ const MESSAGE_ORDER = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormPage {
-    protected readonly examples = {formSignup, formCustomField}
+    protected readonly examples = {formSignup, formCustomField, formFieldError, formFieldErrorSignal}
     protected readonly snippets = snippets
     protected readonly messageColumns: readonly MDataTableColumn[] = [
         {key: '0', label: 'Source', rowHeader: true},
