@@ -4,6 +4,7 @@ import type {MWeekGridCellContext} from '@banzamel/mineralui-angular/data/week-g
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import weekGridSelect from '@generated/examples/data/week-grid/week-grid-select'
 import weekGridColors from '@generated/examples/data/week-grid/week-grid-colors'
 import weekGridShop from '@generated/examples/data/week-grid/week-grid-shop'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
@@ -83,18 +84,26 @@ const AVAILABILITY = Array.from({length: 7}, (_, day) =>
             </doc-section>
 
             <doc-section
+                title="Selecting an area"
+                description='selectable lets people drag over the grid instead of clicking every hour — with a mouse, pen or finger. Cells in the area are previewed while dragging; data only changes when you update it in (selectRange). Escape cancels, leaving the grid clamps to its edge, day and hour headers pick a whole day or hour. A press and release on one cell stays a (cellClick). selectable="row" keeps the area in the starting day.'
+            >
+                <doc-preview [example]="examples.select" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
-                description="A native table: the heading (or label) names it, days are row headers and hours column headers, so every value is read with its day and hour. The legend states the bands in text (WCAG 1.4.1). With interactive the table becomes a WAI-ARIA grid — one Tab stop, arrow keys (← / → swap in a right-to-left layout), Home / End along the row, PageUp / PageDown to the first / last day in the column, Ctrl+Home / Ctrl+End to the corners, Enter or Space for (cellClick); tooltips also show on focus."
+                description="A native table: the heading (or label) names it, days are row headers and hours column headers, so every value is read with its day and hour. The legend states the bands in text (WCAG 1.4.1). With interactive the table becomes a WAI-ARIA grid — one Tab stop, arrow keys (← / → swap in a right-to-left layout), Home / End along the row, PageUp / PageDown to the first / last day in the column, Ctrl+Home / Ctrl+End to the corners, Enter or Space for (cellClick); tooltips also show on focus. With selectable the grid is aria-multiselectable and the previewed cells are aria-selected; Shift + arrows extend the area from the active cell, Enter or Space commits it and Escape drops it, and a polite live region reads the area (mineralui.weekGrid.rangeLabel, e.g. “Mon 08 – Tue 09”; the rangeLabel input overrides it). The header buttons are a pointer shortcut outside the Tab order. Touch scrolling and text selection are blocked only on a selectable grid."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Always a table (React: a CSS grid of divs, a grid only in interactive mode). title becomes heading (title is a global HTML attribute); title, description, hint and peakLabel are text. renderCell becomes ng-template mWeekGridCell, renderTooltip the tooltip function; onCellClick becomes (cellClick), and the grid keyboard needs interactive (React turns it on with onCellClick). Default weekday names follow the active locale through Intl (React: mineralui.weekGrid.days.*); the scale and band labels come from the mineralui.weekGrid.* dictionary."
+                description="Always a table (React: a CSS grid of divs, a grid only in interactive mode). title becomes heading (title is a global HTML attribute); title, description, hint and peakLabel are text. renderCell becomes ng-template mWeekGridCell, renderTooltip the tooltip function; onCellClick becomes (cellClick), and the grid keyboard needs interactive or selectable (React turns it on with onCellClick). onSelectRange / onSelectingRange become (selectRange) / (selectingRange); a bare selectable is rect, as selectable={true} in React. Default weekday names follow the active locale through Intl (React: mineralui.weekGrid.days.*); the scale and band labels come from the mineralui.weekGrid.* dictionary."
             />
 
             <doc-section title="API">
                 <m-stack>
                     <doc-props-table api="MWeekGrid" />
+                    <doc-props-table api="MWeekGridRange" />
                     <doc-props-table api="MWeekGridCellContext" />
                     <doc-props-table api="MWeekGridCell" />
                 </m-stack>
@@ -109,7 +118,7 @@ const AVAILABILITY = Array.from({length: 7}, (_, day) =>
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekGridPage {
-    protected readonly examples = {colors: weekGridColors, shop: weekGridShop}
+    protected readonly examples = {colors: weekGridColors, shop: weekGridShop, select: weekGridSelect}
     protected readonly availability = AVAILABILITY
     protected readonly peakLabel = 'Peak: Mon 09:00 — 63/65'
 
