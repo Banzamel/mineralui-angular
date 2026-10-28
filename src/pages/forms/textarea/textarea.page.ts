@@ -3,6 +3,7 @@ import {MTextarea} from '@banzamel/mineralui-angular/inputs/textarea'
 import type {MTextareaVariant} from '@banzamel/mineralui-angular/inputs/textarea'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import textareaAutoResize from '@generated/examples/forms/textarea/textarea-auto-resize'
+import textareaCaret from '@generated/examples/forms/textarea/textarea-caret'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
@@ -50,6 +51,13 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
                 <doc-preview [example]="examples.textareaAutoResize" />
             </doc-section>
 
+            <doc-section
+                title="Caret and selection"
+                description="fieldElement() returns the native textarea (like MInput.fieldElement()) — for selectionStart / setRangeText or ARIA of your own. After changing its text, dispatch an input event so the model and the form control follow."
+            >
+                <doc-preview [example]="examples.textareaCaret" />
+            </doc-section>
+
             <doc-section title="API">
                 <doc-props-table api="MTextarea" />
             </doc-section>
@@ -58,7 +66,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextareaPage {
-    protected readonly examples = {textareaAutoResize}
+    protected readonly examples = {textareaAutoResize, textareaCaret}
 
     protected readonly variant = signal<MTextareaVariant>('outlined')
     protected readonly size = signal<MSize>('md')

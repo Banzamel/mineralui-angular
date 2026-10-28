@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
 import {MToggle} from '@banzamel/mineralui-angular/controls/toggle'
 import type {MColor, MLabelPosition, MSize} from '@banzamel/mineralui-angular/theme'
+import toggleConfirm from '@generated/examples/controls/toggle/toggle-confirm'
 import toggleSettings from '@generated/examples/controls/toggle/toggle-settings'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -43,6 +44,13 @@ const EFFECTS = ['ripple', 'none'] as const
                 <doc-preview [example]="examples.toggleSettings" />
             </doc-section>
 
+            <doc-section
+                title="Confirmation and switches without a label"
+                description="confirmHeading asks before the switch changes: a click or Space opens an MPopconfirm anchored on the toggle; the switch, [(checked)] and the form control change only after the confirm button. No, Escape or a click outside leave the value — focus returns to the switch. confirmOn limits the question to turning on or off; values set from code never ask. ariaLabel names a switch with no visible text (a table row)."
+            >
+                <doc-preview [example]="examples.toggleConfirm" />
+            </doc-section>
+
             <doc-section title="API">
                 <doc-props-table api="MToggle" />
             </doc-section>
@@ -51,7 +59,7 @@ const EFFECTS = ['ripple', 'none'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TogglePage {
-    protected readonly examples = {toggleSettings}
+    protected readonly examples = {toggleConfirm, toggleSettings}
 
     protected readonly size = signal<MSize>('md')
     protected readonly color = signal<MColor>('primary')

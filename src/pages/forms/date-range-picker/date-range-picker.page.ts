@@ -8,6 +8,7 @@ import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import type {DateFormat} from '@banzamel/mineralui-angular/utils'
 import dateRangePickerForm from '@generated/examples/forms/date-range-picker/date-range-picker-form'
 import dateRangePickerPresets from '@generated/examples/forms/date-range-picker/date-range-picker-presets'
+import dateRangePickerTime from '@generated/examples/forms/date-range-picker/date-range-picker-time'
 import dateRangePickerTyping from '@generated/examples/forms/date-range-picker/date-range-picker-typing'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -84,6 +85,13 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
             </doc-section>
 
             <doc-section
+                title="Start and end times"
+                description="withTime adds a time to both ends (Angular-only, like MDatePicker): typed after each date — digits or a space after a complete start time begin the end — and picked in Start time / End time columns beside the months, which stay open after the days are picked. timeFormat, showSeconds and minuteStep work as in MDatePicker; completion takes the start time from now (rounded to the step) and the end from the start. The end may not be earlier than the start (order); on a one-day range the columns disable the times that would invert it. minDate / maxDate are days: any time on the last allowed day is in range."
+            >
+                <doc-preview [example]="examples.dateRangePickerTime" />
+            </doc-section>
+
+            <doc-section
                 title="Forms and validation"
                 description="As a form control the value is {start, end} or null — never half a range: closing the calendar after the first click keeps the previous value. The typed text is validated as the mDate error with a reason: incomplete, invalid, min, max, unavailable or order (end before start, or the same day with allowSameDay false). With allowSameDay false one-day presets are hidden and Today only starts the range."
             >
@@ -105,7 +113,13 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
                     </li>
                     <li mListItem>
                         With <code mCode>name</code> a hidden input carries the range as an ISO 8601 interval of local
-                        dates (<code mCode>2026-09-01/2026-09-24</code>).
+                        dates (<code mCode>2026-09-01/2026-09-24</code>; with <code mCode>withTime</code>
+                        <code mCode>2026-09-01T09:00/2026-09-01T17:30</code>).
+                    </li>
+                    <li mListItem>
+                        With <code mCode>withTime</code> the start and end time columns are named groups ("Start time",
+                        "End time") of listboxes — arrows, PageUp / PageDown, Home / End and typed digits move the
+                        selection, as in <code mCode>MDatePicker</code>.
                     </li>
                 </ul>
             </doc-section>
@@ -118,7 +132,12 @@ const FIRST_DAYS = ['monday', 'sunday'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateRangePickerPage {
-    protected readonly examples = {dateRangePickerForm, dateRangePickerPresets, dateRangePickerTyping}
+    protected readonly examples = {
+        dateRangePickerForm,
+        dateRangePickerPresets,
+        dateRangePickerTime,
+        dateRangePickerTyping,
+    }
 
     protected readonly value = signal<MDateRange | null>(null)
     protected readonly format = signal<DateFormat>('DD/MM/YYYY')

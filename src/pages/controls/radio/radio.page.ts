@@ -3,6 +3,7 @@ import {MRadio, MRadioGroup} from '@banzamel/mineralui-angular/controls/radio'
 import type {MRadioGroupDirection} from '@banzamel/mineralui-angular/controls/radio'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import radioForm from '@generated/examples/controls/radio/radio-form'
+import radioRequired from '@generated/examples/controls/radio/radio-required'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -48,6 +49,13 @@ const EFFECTS = ['ripple', 'none'] as const
                 <doc-preview [example]="examples.radioForm" />
             </doc-section>
 
+            <doc-section
+                title="Required and helper text"
+                description="required adds the marker after the legend and aria-required on the radiogroup (allowed on that role, unlike a plain fieldset — see MCheckboxGroup). Validators.required or a Signal Forms required() rule imply it; under [formField] the schema sets it. helperText sits below the radios, linked with aria-describedby, hidden while an error shows."
+            >
+                <doc-preview [example]="examples.radioRequired" />
+            </doc-section>
+
             <doc-section title="MRadioGroup API">
                 <doc-props-table api="MRadioGroup" />
             </doc-section>
@@ -60,7 +68,7 @@ const EFFECTS = ['ripple', 'none'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioPage {
-    protected readonly examples = {radioForm}
+    protected readonly examples = {radioForm, radioRequired}
 
     protected readonly plan = signal<string | undefined>('pro')
     protected readonly direction = signal<MRadioGroupDirection>('vertical')

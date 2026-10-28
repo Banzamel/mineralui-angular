@@ -4,6 +4,7 @@ import {MInput} from '@banzamel/mineralui-angular/inputs/input'
 import type {MInputVariant} from '@banzamel/mineralui-angular/inputs/input'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import inputCombobox from '@generated/examples/forms/input/input-combobox'
+import inputCopyable from '@generated/examples/forms/input/input-copyable'
 import inputForm from '@generated/examples/forms/input/input-form'
 import inputSlots from '@generated/examples/forms/input/input-slots'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
@@ -75,6 +76,13 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
                 <doc-preview [example]="examples.inputCombobox" />
             </doc-section>
 
+            <doc-section
+                title="Copy button"
+                description="copyable adds a copy button after the end slot — also on a read-only field. It writes the value with the Clipboard API (browser, secure context; disabled otherwise and while the value is empty), shows a check for 2 s and announces 'Copied' in a polite live region; (copied) emits the text. Names from i18n (mineralui.input.copy / .copied) or copyLabel / copiedLabel. Also on MInputEmail, MInputUrl, MInputIBAN and MInputTaxId."
+            >
+                <doc-preview [example]="examples.inputCopyable" />
+            </doc-section>
+
             <doc-section title="API">
                 <doc-props-table api="MInput" />
             </doc-section>
@@ -83,7 +91,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputPage {
-    protected readonly examples = {inputCombobox, inputForm, inputSlots}
+    protected readonly examples = {inputCombobox, inputCopyable, inputForm, inputSlots}
     protected readonly searchIcon = mSearchIcon
     protected readonly mailIcon = mMailIcon
 

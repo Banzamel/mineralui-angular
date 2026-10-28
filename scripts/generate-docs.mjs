@@ -6,7 +6,8 @@
 // 1. src/generated/api.json — public API of the library from the ../angular-pro SOURCES (ts-morph): selector, entry
 //    point (+ group facade), inputs / model() / outputs (alias, type, required, default, JSDoc), inputs contributed by
 //    hostDirectives (`from`), content slots from JSDoc `@slot <select> <description>` (validated against
-//    `<ng-content select>`), `@template` for template directives, services and exported interfaces.
+//    `<ng-content select>`), `@template` for template directives, services and exported interfaces. `@default` gives
+//    the shown default of an input declared without an initial value.
 //    A public input / model / output without JSDoc, or an inconsistent @slot, is an error.
 // 2. src/generated/examples/** — `{component, source, title} satisfies DocExample` per `*.example.ts` (ADR 0005).
 // 3. src/generated/snippets/** — one module per page with every file of `pages/**/snippets/`.
@@ -151,7 +152,9 @@ function signalMembers(cls, errors) {
             kind: api.kind,
             type: stripUndefined(explicitType ?? inferred ?? 'unknown') || 'void',
             required: api.required,
-            default: hasDefault ? args[0].getText() : null,
+            // An input without an initial value (resolved later, e.g. from a parent group) names its effective
+            // default with a JSDoc `@default` tag.
+            default: hasDefault ? args[0].getText() : jsDocTags(prop, 'default')[0] || null,
             description,
             from: null,
         })
