@@ -46,6 +46,9 @@ class ProductsApi {
             color="info"
             searchable
             pagination
+            paginationRange
+            toolbarCollapseBelow="sm"
+            [pageSizeOptions]="[6, 12, 24]"
             [source]="products"
             [columns]="{base: 1, sm: 2, lg: 3}"
             [filterKeys]="[{key: 'category', label: 'Category', options: categories}]"

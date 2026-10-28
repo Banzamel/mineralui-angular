@@ -5,9 +5,11 @@ import type {MDataTableColumn} from '@banzamel/mineralui-angular/data/data-table
 import {MBadge} from '@banzamel/mineralui-angular/feedback/badge'
 import dataTableActivate from '@generated/examples/data/data-table/data-table-activate'
 import dataTableCard from '@generated/examples/data/data-table/data-table-card'
+import dataTableCards from '@generated/examples/data/data-table/data-table-cards'
 import dataTableDetail from '@generated/examples/data/data-table/data-table-detail'
 import dataTableMultiSort from '@generated/examples/data/data-table/data-table-multi-sort'
 import dataTableExternal from '@generated/examples/data/data-table/data-table-external'
+import dataTableGroups from '@generated/examples/data/data-table/data-table-groups'
 import dataTableOrders from '@generated/examples/data/data-table/data-table-orders'
 import dataTableRange from '@generated/examples/data/data-table/data-table-range'
 import dataTableSelection from '@generated/examples/data/data-table/data-table-selection'
@@ -106,6 +108,20 @@ const USERS: readonly User[] = [
             </doc-section>
 
             <doc-section
+                title="Row groups"
+                description="groupBy (a field, or a function of the row) puts a header row above each run of consecutive rows sharing a key on the current page — a tbody per group headed by a th scope='rowgroup' spanning every column. The header shows the key, or a ng-template mRowGroup (let-group is the key, rows and count the group's rows on the page). With [data] the rows are sorted by the group first — ascending, or in the direction of a sort key on the grouped field — then by [(sort)] within each group; with [source] the server's order stays. Selection, details and row activation work per row; the arrows skip the group headers."
+            >
+                <doc-preview [example]="examples.groups" />
+            </doc-section>
+
+            <doc-section
+                title="Cards on a narrow screen"
+                description="cardsBelow='md' (opt-in) renders every row as a card at most 768 px wide: the column labels next to their values (cell templates included), or your own ng-template mRowCard. There is no header row, so the sortable columns move to the toolbar sort popover (unless sortKeys is given). The checkbox, the expand button with the row detail and rowClick='activate' (arrows between cards, Enter) work in the cards; with selectable a 'Select all rows' checkbox sits above them. The cards are a list (role list / listitem, named by label; groups are labelled groups). toolbarCollapseBelow folds the filter popover into a 'Filter · N' sheet. The server render shows the table. Narrow the window to see it."
+            >
+                <doc-preview [example]="examples.cards" />
+            </doc-section>
+
+            <doc-section
                 title="In a card, with page size and range"
                 description="[bordered]='false' drops the table's own border and rounded corners, so the card is the frame. pageSizeOptions adds a page size select to the pagination ([(pageSize)] is a model) and paginationRange shows '1–5 of 37' (MPagination showRange). Both are opt-in. With [source], the select needs a source that can change its size: injectMDataSource, or externalMDataSource with onPageSize."
             >
@@ -156,12 +172,12 @@ const USERS: readonly User[] = [
 
             <doc-section
                 title="Accessibility"
-                description="A native table (WAI-ARIA Sortable Table): name it with label, sortable headers are buttons, the deciding sort column has aria-sort, further sort keys are named in hidden text. With rowClick='activate' the rows are one tab stop (arrows, Home / End, Enter). rowHeader: true makes a column the row header (th scope='row'). The toolbar popovers are named dialogs; the sort direction is also given as text. While loading, the rows are aria-busy and the loader is a live status."
+                description="A native table (WAI-ARIA Sortable Table): name it with label, sortable headers are buttons, the deciding sort column has aria-sort, further sort keys are named in hidden text. With rowClick='activate' the rows are one tab stop (arrows, Home / End, Enter). rowHeader: true makes a column the row header (th scope='row'); a group header is a th scope='rowgroup' heading its tbody. Row cards are a list of listitems with the label and value pairs in a dl; groups of cards are role group, named by their header. The toolbar popovers are named dialogs; the sort direction is also given as text. While loading, the rows are aria-busy and the loader is a live status."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort is a list of MSort {key, direction} keys (React: one {key, dir} or null). The search is applied after a short pause (at once on Enter). New: label, rowHeader, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight, a header that stays visible while the page scrolls, multi-key sort (Shift+click), rowClick='activate' with (rowActivate), rowClass, bordered, pageSizeOptions and paginationRange."
+                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort is a list of MSort {key, direction} keys (React: one {key, dir} or null). The search is applied after a short pause (at once on Enter). New: label, rowHeader, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight, a header that stays visible while the page scrolls, multi-key sort (Shift+click), rowClick='activate' with (rowActivate), rowClass, bordered, pageSizeOptions and paginationRange, groupBy with mRowGroup, cardsBelow with mRowCard, toolbarCollapseBelow. The toolbar is the public MDataToolbar."
             />
 
             <doc-section title="API">
@@ -169,6 +185,8 @@ const USERS: readonly User[] = [
                     <doc-props-table api="MDataTable" />
                     <doc-props-table api="MDataTableCell" />
                     <doc-props-table api="MDataTableRowDetail" />
+                    <doc-props-table api="MDataTableRowGroup" />
+                    <doc-props-table api="MDataTableRowCard" />
                     <doc-props-table api="MDataTableColumn" />
                     <doc-props-table api="MDataSource" />
                     <doc-props-table api="MDataSourceOptions" />
@@ -191,6 +209,8 @@ export class DataTablePage {
         multiSort: dataTableMultiSort,
         activate: dataTableActivate,
         card: dataTableCard,
+        groups: dataTableGroups,
+        cards: dataTableCards,
         selection: dataTableSelection,
         server: dataTableServer,
         external: dataTableExternal,

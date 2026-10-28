@@ -187,6 +187,7 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     chat: () => import('@pages/data/chat/chat.page').then((m) => m.ChatPage),
     'dashboard-grid': () => import('@pages/data/dashboard-grid/dashboard-grid.page').then((m) => m.DashboardGridPage),
     'data-table': () => import('@pages/data/data-table/data-table.page').then((m) => m.DataTablePage),
+    'data-toolbar': () => import('@pages/data/data-toolbar/data-toolbar.page').then((m) => m.DataToolbarPage),
     'file-manager': () => import('@pages/data/file-manager/file-manager.page').then((m) => m.FileManagerPage),
     'task-list': () => import('@pages/data/task-list/task-list.page').then((m) => m.TaskListPage),
     'tree-view': () => import('@pages/data/tree-view/tree-view.page').then((m) => m.TreeViewPage),

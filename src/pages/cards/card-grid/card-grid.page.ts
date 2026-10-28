@@ -105,7 +105,7 @@ const ITEMS: readonly ComponentItem[] = [
 
             <doc-section
                 title="Server data source"
-                description="The same injectMDataSource as MDataTable: the source keeps the query and loads a page per query — here a Promise that honours the abort signal, like fetch. An initial sort goes in the source options; with in-memory items bind [(sort)] instead."
+                description="The same injectMDataSource as MDataTable: the source keeps the query and loads a page per query — here a Promise that honours the abort signal, like fetch. An initial sort goes in the source options; with in-memory items bind [(sort)] instead. Like MDataTable, pageSizeOptions adds a page size select ([(pageSize)] is a model; with [source] the source changes its size), paginationRange shows '1–6 of 30' and toolbarCollapseBelow folds the filter popover into a 'Filter · N' sheet on a narrow screen — all opt-in."
             >
                 <doc-preview [example]="examples.server" />
             </doc-section>
@@ -117,7 +117,7 @@ const ITEMS: readonly ComponentItem[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="renderCard becomes ng-template mCardGridItem ([mCardGridItemOf] types the item). filterable / sortable are gone — the popovers show when filterKeys / sortKeys are given. defaultSort is the initial [sort]. useMCardGrid + manual* flags become [source] (injectMDataSource), shared with MDataTable; [(sort)] is a list of MSort keys (readonly MSort[], empty = unsorted — React: one sort or null), the sort popover sets one key. emptyMessage is emptyText or a [mCardGridEmpty] slot. Columns use minmax(0, 1fr), so long card content cannot widen a column. New: label and list semantics."
+                description="renderCard becomes ng-template mCardGridItem ([mCardGridItemOf] types the item). filterable / sortable are gone — the popovers show when filterKeys / sortKeys are given. defaultSort is the initial [sort]. useMCardGrid + manual* flags become [source] (injectMDataSource), shared with MDataTable; [(sort)] is a list of MSort keys (readonly MSort[], empty = unsorted — React: one sort or null), the sort popover sets one key. emptyMessage is emptyText or a [mCardGridEmpty] slot. Columns use minmax(0, 1fr), so long card content cannot widen a column. New: label and list semantics, pageSizeOptions, paginationRange, toolbarCollapseBelow."
             />
 
             <doc-section title="API">

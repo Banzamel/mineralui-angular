@@ -828,6 +828,11 @@
                     "description": "Table with sort, filter, search, selection and pagination."
                 },
                 {
+                    "id": "data-toolbar",
+                    "title": "Data Toolbar",
+                    "description": "Search, filter and sort bar with slots and a mobile filter sheet."
+                },
+                {
                     "id": "file-manager",
                     "title": "File Manager",
                     "description": "File / folder manager with tree, grid and toolbar (Pro)."
