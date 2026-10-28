@@ -42,6 +42,8 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     checkbox: () => import('@pages/controls/checkbox/checkbox.page').then((m) => m.CheckboxPage),
     'checkbox-group': () =>
         import('@pages/controls/checkbox-group/checkbox-group.page').then((m) => m.CheckboxGroupPage),
+    'language-switcher': () =>
+        import('@pages/controls/language-switcher/language-switcher.page').then((m) => m.LanguageSwitcherPage),
     'load-more': () => import('@pages/controls/load-more/load-more.page').then((m) => m.LoadMorePage),
     'quick-actions': () => import('@pages/controls/quick-actions/quick-actions.page').then((m) => m.QuickActionsPage),
     radio: () => import('@pages/controls/radio/radio.page').then((m) => m.RadioPage),
@@ -57,6 +59,7 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'date-picker': () => import('@pages/forms/date-picker/date-picker.page').then((m) => m.DatePickerPage),
     'date-range-picker': () =>
         import('@pages/forms/date-range-picker/date-range-picker.page').then((m) => m.DateRangePickerPage),
+    'field-array': () => import('@pages/forms/field-array/field-array.page').then((m) => m.FieldArrayPage),
     form: () => import('@pages/forms/form/form.page').then((m) => m.FormPage),
     'ghost-text': () => import('@pages/forms/ghost-text/ghost-text.page').then((m) => m.GhostTextPage),
     input: () => import('@pages/forms/input/input.page').then((m) => m.InputPage),

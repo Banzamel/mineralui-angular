@@ -213,6 +213,11 @@
                     "description": "Fieldset of checkboxes with a string[] value, helper text and errors."
                 },
                 {
+                    "id": "language-switcher",
+                    "title": "Language Switcher",
+                    "description": "Menu button or segmented control that switches the MI18nService locale."
+                },
+                {
                     "id": "radio",
                     "title": "Radio",
                     "description": "Radio button and MRadioGroup primitive."
@@ -278,6 +283,11 @@
                     "id": "date-range-picker",
                     "title": "DateRangePicker",
                     "description": "One start – end field with typed completion, a two-month calendar and presets."
+                },
+                {
+                    "id": "field-array",
+                    "title": "Field Array",
+                    "description": "Repeatable form rows for a FormArray, a Signal Forms array or a signal: add, remove, reorder."
                 },
                 {
                     "id": "form",
