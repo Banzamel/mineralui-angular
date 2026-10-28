@@ -33,7 +33,7 @@ const options = (values: readonly string[]): readonly MSelectOption[] => values.
     imports: [MButton, MDataTable, MDataToolbar, MDataToolbarActions, MDataToolbarFilters, MSelect, MStack],
     template: `
         <!-- Your own filters above a table: in a real app they go into the server query. -->
-        <m-stack spacing="sm">
+        <m-stack>
             <m-data-toolbar
                 searchable
                 collapseBelow="md"

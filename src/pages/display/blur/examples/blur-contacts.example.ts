@@ -8,7 +8,7 @@ import {MStack} from '@banzamel/mineralui-angular/layout/stack'
     selector: 'app-blur-contacts',
     imports: [MBlur, MIcon, MInline, MStack],
     template: `
-        <m-stack spacing="sm">
+        <m-stack>
             <m-inline spacing="sm">
                 <m-icon [icon]="mailIcon" [size]="14" color="primary" label="E-mail" />
                 <m-blur>rafal.polak&#64;example.com</m-blur>

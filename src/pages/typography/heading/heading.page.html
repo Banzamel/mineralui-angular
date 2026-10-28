@@ -4,7 +4,7 @@
 >
     <doc-section
         title="Playground"
-        description="Preview the heading level (host tag), tone, semantic color and truncation."
+        description="Preview the heading level (host tag), tone, semantic color, alignment and truncation. Unset align follows the container; tone inherit takes the parent colour."
     >
         <doc-playground [controls]="controls" [code]="code()">
             <div class="doc-playground-measure">
@@ -14,6 +14,7 @@
                             mHeading
                             [tone]="tone()"
                             [color]="color()"
+                            [align]="align()"
                             [truncate]="truncate()"
                             [hiddenUpTo]="hiddenUpTo()"
                         >
@@ -25,6 +26,7 @@
                             mHeading
                             [tone]="tone()"
                             [color]="color()"
+                            [align]="align()"
                             [truncate]="truncate()"
                             [hiddenUpTo]="hiddenUpTo()"
                         >
@@ -36,6 +38,7 @@
                             mHeading
                             [tone]="tone()"
                             [color]="color()"
+                            [align]="align()"
                             [truncate]="truncate()"
                             [hiddenUpTo]="hiddenUpTo()"
                         >
@@ -47,6 +50,7 @@
                             mHeading
                             [tone]="tone()"
                             [color]="color()"
+                            [align]="align()"
                             [truncate]="truncate()"
                             [hiddenUpTo]="hiddenUpTo()"
                         >
@@ -58,6 +62,7 @@
                             mHeading
                             [tone]="tone()"
                             [color]="color()"
+                            [align]="align()"
                             [truncate]="truncate()"
                             [hiddenUpTo]="hiddenUpTo()"
                         >
@@ -69,6 +74,7 @@
                             mHeading
                             [tone]="tone()"
                             [color]="color()"
+                            [align]="align()"
                             [truncate]="truncate()"
                             [hiddenUpTo]="hiddenUpTo()"
                         >
@@ -82,7 +88,7 @@
 
     <doc-section
         title="Levels"
-        description="Six sizes, one per tag. Keep the outline honest: one h1 per page, no skipped levels — and pick the look with size (below)."
+        description="Six sizes, one per tag, from the --mineral-font-size-h1 … h6 tokens; h1–h3 shrink below 640 px so long titles do not break word by word. Keep the outline honest: one h1 per page, no skipped levels — and pick the look with size (below)."
     >
         <doc-preview [example]="examples.headingLevels" />
     </doc-section>
@@ -92,6 +98,13 @@
         description='size picks the step of the scale without changing the level: [size]="4" on an h2, or a level per breakpoint, mobile-first — {base: 3, md: 1} is an h1 that is smaller on phones. Breakpoints and keys follow MCardGrid columns (base, sm 640, md 768, lg 1024, xl 1280, xxl 1536 px); the switch is pure CSS, so a prerendered page is right from the first paint. Not in MineralUI for React.'
     >
         <doc-preview [example]="examples.headingSize" />
+    </doc-section>
+
+    <doc-section
+        title="Coloured fragment"
+        description="A span[mText] inside a heading keeps the heading font, size, weight, line height and alignment unless it sets its own — handy for a coloured word in a hero title."
+    >
+        <doc-preview [example]="examples.headingFragment" />
     </doc-section>
 
     <doc-section title="API">

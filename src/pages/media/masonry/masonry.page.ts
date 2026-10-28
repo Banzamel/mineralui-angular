@@ -71,7 +71,7 @@ const EFFECTS: readonly MMediaInteractionEffect[] = ['zoom-ripple', 'zoom', 'dim
                                     </button>
                                 }
                                 @if (showBody()) {
-                                    <m-stack spacing="xs">
+                                    <m-stack>
                                         <h5 mHeading>{{ photo.alt }}</h5>
                                         <p mText tone="muted" size="sm">
                                             Uneven card height works well for discovery walls and moodboards.
@@ -138,7 +138,7 @@ export class MasonryPage {
             <m-icon [icon]="heartIcon" />
         </button>`,
             this.showBody() &&
-                `        <m-stack spacing="xs">
+                `        <m-stack>
             <h5 mHeading>{{ photo.alt }}</h5>
             <p mText tone="muted" size="sm">Uneven card height works well for moodboards.</p>
         </m-stack>`,

@@ -15,6 +15,7 @@ import {MSurface} from '@banzamel/mineralui-angular/layout/surface'
 import type {MBreakpoint} from '@banzamel/mineralui-angular/theme'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import stackBasics from '@generated/examples/layout/layout-primitives/stack-basics'
+import stackGap from '@generated/examples/layout/layout-primitives/stack-gap'
 import surfaceLink from '@generated/examples/layout/layout-primitives/surface-link'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -59,7 +60,7 @@ const SECTION_SPACINGS: readonly MSectionSpacing[] = ['sm', 'md', 'lg', 'xl']
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutPrimitivesPage {
-    protected readonly examples = {stackBasics, surfaceLink}
+    protected readonly examples = {stackBasics, stackGap, surfaceLink}
     protected readonly tiles = ['Sidebar', 'Main content', 'Actions'] as const
 
     protected readonly containerSize = signal<MContainerSize>('content')

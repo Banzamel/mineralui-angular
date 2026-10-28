@@ -75,7 +75,7 @@ const MOBILE_MENUS: readonly MNavbarMobileMenu[] = ['dropdown', 'drawer']
 
             <doc-section
                 title="Mobile menu"
-                description="The burger is a WAI-ARIA disclosure: aria-expanded, a closed menu that is inert, Escape returning focus to the burger, and a press outside or a link click closing it. [mNavbarMenu] and [mNavbarMenuFooter] add content to the menu; button[mNavbarToggle] replaces the default burger."
+                description='The burger is a WAI-ARIA disclosure: aria-expanded, a closed menu that is inert, Escape returning focus to the burger, and a press outside or a link click closing it. [mNavbarMenu] and [mNavbarMenuFooter] add content to the menu; button[mNavbarToggle] replaces the default burger. The menu panel is opaque; restyle it with the --mineral-navbar-menu-bg token. The default breakpoint is the same 1024 px that hiddenUpTo="lg" uses, so an action with hiddenUpTo="lg" leaves the bar exactly when the burger appears.'
             >
                 <doc-preview [example]="examples.navbarMobile" />
             </doc-section>

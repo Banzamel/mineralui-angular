@@ -29,7 +29,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             <m-card-body>
                 <!-- A button holds phrasing content only: spans, text, icons. -->
                 <button mCardActionArea color="success" (click)="opened.set(opened() + 1)">
-                    <m-stack spacing="xs">
+                    <m-stack>
                         <m-inline justify="between" align="center">
                             <!-- Icons without their own color take the area's color. -->
                             <m-icon [icon]="icons.user" />

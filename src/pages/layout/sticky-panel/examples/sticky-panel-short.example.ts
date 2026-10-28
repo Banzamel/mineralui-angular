@@ -23,7 +23,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             </m-grid-item>
             <m-grid-item [sm]="12" [md]="4">
                 <m-sticky-panel class="doc-sticky-short" [top]="88" label="Order summary">
-                    <m-stack spacing="xs">
+                    <m-stack>
                         <p mText size="sm" weight="semibold">Summary</p>
                         <p mText size="sm">3 items · 129.00 EUR</p>
                         <p mText size="sm" tone="muted">Ships tomorrow</p>

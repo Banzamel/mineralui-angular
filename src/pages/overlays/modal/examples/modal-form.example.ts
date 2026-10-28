@@ -20,7 +20,7 @@ import {MModal, MModalContent, MModalFooter} from '@banzamel/mineralui-angular/o
             size="sm"
         >
             <ng-template mModalContent>
-                <m-stack spacing="md">
+                <m-stack>
                     <m-input label="Project name" autoFocus [(value)]="name" />
                     <m-select label="Visibility" fullWidth [options]="visibilities" [(value)]="visibility" />
                 </m-stack>

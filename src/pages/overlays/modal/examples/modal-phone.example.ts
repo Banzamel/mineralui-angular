@@ -17,7 +17,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             description="Saturday, 14 March · City sports hall"
             fullscreenBelow="md"
         >
-            <m-stack spacing="sm">
+            <m-stack>
                 @for (round of rounds; track round) {
                     <p mText>{{ round }}</p>
                 }

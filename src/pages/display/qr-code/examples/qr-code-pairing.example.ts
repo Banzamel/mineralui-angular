@@ -24,7 +24,7 @@ const MESSAGES: Readonly<Record<MQrCodeStatus, string>> = {
                 [status]="status()"
                 [statusLabel]="message()"
             />
-            <m-stack align="start" spacing="sm">
+            <m-stack align="start">
                 <p mText>{{ message() }}</p>
                 <m-inline spacing="xs">
                     @for (option of statuses; track option) {

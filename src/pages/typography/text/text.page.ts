@@ -11,7 +11,7 @@ import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 const TAGS = ['p', 'span', 'div', 'strong', 'em'] as const
-const TONES: readonly MTextTone[] = ['default', 'muted', 'accent']
+const TONES: readonly MTextTone[] = ['default', 'muted', 'accent', 'inherit']
 const SIZES: readonly MTextSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
 const ALIGNS: readonly MTextAlign[] = ['left', 'center', 'right', 'justify']
 const WEIGHTS: readonly MTextWeight[] = ['normal', 'medium', 'semibold', 'bold']

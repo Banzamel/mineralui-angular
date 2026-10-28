@@ -12,7 +12,7 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
     template: `
         <m-stack>
             @for (size of sizes; track size) {
-                <m-stack spacing="xs">
+                <m-stack>
                     <p mText size="sm" tone="muted" weight="semibold">size = "{{ size }}"</p>
                     <div mSurface>
                         <m-detail-list [items]="items" [size]="size" />

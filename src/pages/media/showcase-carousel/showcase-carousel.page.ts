@@ -106,7 +106,7 @@ const INDEXES = ['0', '1', '2', '3'] as const
                                     >
                                         <m-icon [icon]="heartIcon" />
                                     </button>
-                                    <m-stack align="start" spacing="xs">
+                                    <m-stack align="start">
                                         <m-badge size="sm" color="info">Featured shot</m-badge>
                                         <h4 mHeading>{{ shot.title }}</h4>
                                         <p mText tone="muted" size="sm">{{ shot.note }}</p>
@@ -215,7 +215,7 @@ export class ShowcaseCarouselPage {
             <button mButton mShowcaseItemOverlay variant="ghost" iconOnly size="lg" aria-label="Save">
                 <m-icon [icon]="heartIcon" />
             </button>
-            <m-stack align="start" spacing="xs">
+            <m-stack align="start">
                 <m-badge size="sm" color="info">Featured shot</m-badge>
                 <h4 mHeading>{{ shot.title }}</h4>
                 <p mText tone="muted" size="sm">{{ shot.note }}</p>
