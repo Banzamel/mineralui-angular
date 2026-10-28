@@ -75,6 +75,26 @@
     </doc-section>
 
     <doc-section
+        title="Touch targets"
+        description="Opt-in touch mode: provideMineralUI({touchTargets: 'coarse'}) sets data-m-touch=&quot;coarse&quot; on <html>, and on a device whose primary pointer is coarse (@media (pointer: coarse)) small controls grow to 44 × 44 px. The default 'off' keeps the sizes of MineralUI for React; a mouse or a trackpad never sees a change."
+    >
+        <p mText tone="muted">
+            Raised to 44 px: <code mCode>mButton</code> sizes <code mCode>xs</code>–<code mCode>md</code> (icon-only
+            buttons in width too), <code mCode>mDropdownItem</code>, the brand link and the collapse toggle of
+            <code mCode>m-sidebar-header</code>, <code mCode>m-sidebar-item</code>, <code mCode>MNavs</code> links,
+            <code mCode>MTabs</code> triggers and <code mCode>MPagination</code> buttons. The rules live in
+            <code mCode>styles.css</code>. On prerendered pages pass the same option to
+            <code mCode>getMThemeInitScript()</code>, so the attribute is there before the first paint.
+        </p>
+        <doc-code-block [code]="touchTargetsConfig" language="typescript" title="app.config.ts" />
+        <doc-code-block
+            [code]="touchInitScript"
+            language="html"
+            title="index.html — getMThemeInitScript({touchTargets: 'coarse'})"
+        />
+    </doc-section>
+
+    <doc-section
         title="Local theme"
         description="[mTheme] creates its own MThemeService for the element: its mode class and tokens apply only inside. It is never persisted."
     >

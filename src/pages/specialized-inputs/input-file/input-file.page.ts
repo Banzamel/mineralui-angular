@@ -3,6 +3,7 @@ import {MInputFile} from '@banzamel/mineralui-angular/inputs/input-file'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import inputFileAccept from '@generated/examples/specialized-inputs/input-file/input-file-accept'
 import inputFileAvatar from '@generated/examples/specialized-inputs/input-file/input-file-avatar'
+import inputFileCropFormats from '@generated/examples/specialized-inputs/input-file/input-file-crop-formats'
 import inputFileForm from '@generated/examples/specialized-inputs/input-file/input-file-form'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -59,6 +60,13 @@ const ACCEPTS = ['any', 'image/*', '.pdf,.docx'] as const
             </doc-section>
 
             <doc-section
+                title="Crop output formats"
+                description="The cropped file keeps its format and the extension follows it: JPEG stays JPEG, WebP stays WebP (PNG in a browser that cannot encode WebP), other raster images become PNG — transparency is kept. SVG (vector) and GIF (possibly animated) skip the crop editor and are kept as picked. MineralUI for React encodes everything but PNG as JPEG under the original extension."
+            >
+                <doc-preview [example]="examples.inputFileCropFormats" />
+            </doc-section>
+
+            <doc-section
                 title="Forms"
                 description="The control holds readonly File[]; Validators.required fails for an empty list."
             >
@@ -73,7 +81,7 @@ const ACCEPTS = ['any', 'image/*', '.pdf,.docx'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputFilePage {
-    protected readonly examples = {inputFileAccept, inputFileAvatar, inputFileForm}
+    protected readonly examples = {inputFileAccept, inputFileAvatar, inputFileCropFormats, inputFileForm}
 
     protected readonly accept = signal<(typeof ACCEPTS)[number]>('any')
     protected readonly multiple = signal(true)

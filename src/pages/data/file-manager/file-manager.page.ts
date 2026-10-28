@@ -1,7 +1,12 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
 import {MFileManager} from '@banzamel/mineralui-angular/data/file-manager'
-import type {MFileManagerNode, MFileManagerView} from '@banzamel/mineralui-angular/data/file-manager'
+import type {
+    MFileManagerNode,
+    MFileManagerSelectionMode,
+    MFileManagerView,
+} from '@banzamel/mineralui-angular/data/file-manager'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
+import fileManagerMultiple from '@generated/examples/data/file-manager/file-manager-multiple'
 import fileManagerWorkspace from '@generated/examples/data/file-manager/file-manager-workspace'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
@@ -11,6 +16,7 @@ import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
 const VIEWS: readonly MFileManagerView[] = ['list', 'grid']
+const SELECTION_MODES: readonly MFileManagerSelectionMode[] = ['single', 'multiple']
 
 const FILES: readonly MFileManagerNode[] = [
     {
@@ -54,7 +60,9 @@ const FILES: readonly MFileManagerNode[] = [
                         [showPreview]="showPreview()"
                         [actions]="actions()"
                         [draggable]="draggable()"
+                        [selectionMode]="selectionMode()"
                         [(view)]="view"
+                        [(checked)]="checked"
                         [(expanded)]="expanded"
                     />
                 </doc-playground>
@@ -68,19 +76,28 @@ const FILES: readonly MFileManagerNode[] = [
             </doc-section>
 
             <doc-section
+                title="Multiple selection, a type filter and own details"
+                description="selectionMode='multiple' adds a checkbox to every file and a select-all of the open folder with a count; [(checked)] holds the ids (folders open, they are not checked) and toolbar events carry them in checked. Space on a focused file toggles its check, a click or Enter still selects it for the details panel ([(selected)] is unchanged). accept limits which files can be selected or checked — extensions like '.pdf,.png' matched against the label, or a predicate; the others stay visible, dimmed and aria-disabled. <ng-template mFileManagerDetails let-node let-path='path'> replaces the whole body of the details panel (name, description, badges and path too), while mFileManagerPreview replaces only the visual."
+            >
+                <doc-preview [example]="examples.multiple" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
-                description="Breadcrumbs are a nav named 'Breadcrumbs' with aria-current='location' on the open folder; the view switch is a group named 'View' of two toggle buttons (aria-pressed); the panels are named regions. Items are buttons: Enter selects a file or opens a folder, Enter on the selected file opens it (the keyboard's double click). The folder tree is a full MTreeView (keyboard, context menu with Shift+F10, moves with Ctrl+X / Ctrl+V). Texts: mineralui.fileManager.*."
+                description="Breadcrumbs are a nav named 'Breadcrumbs' with aria-current='location' on the open folder; the view switch is a group named 'View' of two toggle buttons (aria-pressed); the panels are named regions. Items are buttons: Enter selects a file or opens a folder, Enter on the selected file opens it (the keyboard's double click). In multiple mode every file has a checkbox named 'Select <file>', Space on an item toggles it, the select-all is a tri-state checkbox (mixed while some files are checked) and the count is a status region. The folder tree is a full MTreeView (keyboard, context menu with Shift+F10, moves with Ctrl+X / Ctrl+V). Texts: mineralui.fileManager.*."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Controlled / uncontrolled pairs become models: [(folderId)], [(selected)], [(view)], [(search)], [(expanded)]. onSelectionChange is [(selected)]; onItemAction and onContextMenuAction are one (itemAction); onOpenItem is (itemOpen), also on Enter. Menus and moves need explicit actions / draggable (an output does not tell whether it is listened to). renderPreview and node.preview are one mFileManagerPreview template; description is text, icons are MIconDef. The one-column layout follows the component width, not the viewport. Sizes follow the locale (1,5 MB in Polish) and the search field shrinks below 220px in a narrow container."
+                description="Controlled / uncontrolled pairs become models: [(folderId)], [(selected)], [(view)], [(search)], [(expanded)]. onSelectionChange is [(selected)]; onItemAction and onContextMenuAction are one (itemAction); onOpenItem is (itemOpen), also on Enter. Menus and moves need explicit actions / draggable (an output does not tell whether it is listened to). renderPreview and node.preview are one mFileManagerPreview template; description is text, icons are MIconDef. The one-column layout follows the component width, not the viewport. Sizes follow the locale (1,5 MB in Polish) and the search field shrinks below 220px in a narrow container. Angular-only: selectionMode / [(checked)] / accept and the mFileManagerDetails template."
             />
 
             <doc-section title="API">
                 <m-stack>
                     <doc-props-table api="MFileManager" />
                     <doc-props-table api="MFileManagerPreview" />
+                    <doc-props-table api="MFileManagerDetails" />
+                    <doc-props-table api="MFileManagerDetailsContext" />
                     <doc-props-table api="MFileManagerNode" />
                     <doc-props-table api="MFileManagerToolbarAction" />
                     <doc-props-table api="MFileManagerActionEvent" />
@@ -93,7 +110,7 @@ const FILES: readonly MFileManagerNode[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileManagerPage {
-    protected readonly examples = {workspace: fileManagerWorkspace}
+    protected readonly examples = {workspace: fileManagerWorkspace, multiple: fileManagerMultiple}
     protected readonly files = FILES
 
     protected readonly view = signal<MFileManagerView>('list')
@@ -103,7 +120,10 @@ export class FileManagerPage {
     protected readonly showPreview = signal(true)
     protected readonly actions = signal(false)
     protected readonly draggable = signal(false)
+    protected readonly selectionMode = signal<MFileManagerSelectionMode>('single')
+    protected readonly checked = signal<readonly string[]>([])
     protected readonly controls = [
+        selectControl('selectionMode', this.selectionMode, SELECTION_MODES),
         selectControl('view', this.view, VIEWS),
         booleanControl('searchable', this.searchable),
         booleanControl('showSidebar', this.showSidebar),
@@ -120,7 +140,9 @@ export class FileManagerPage {
             !this.showPreview() && '[showPreview]="false"',
             this.actions() && 'actions',
             this.draggable() && 'draggable',
+            this.selectionMode() === 'multiple' && 'selectionMode="multiple"',
             `[(view)]="view"`,
+            this.selectionMode() === 'multiple' && '[(checked)]="checked"',
             '[(expanded)]="expanded"',
             this.actions() && '(itemAction)="onAction($event)"',
             this.draggable() && '(move)="onMove($event)"',

@@ -61,7 +61,16 @@ const THEME_TYPES: readonly {readonly name: string; readonly type: string; reado
         description: 'Spacing scale of the MSpacing inputs.',
     },
     {name: 'MBreakpoint', type: "'sm' | 'md' | 'lg' | 'xl' | '2xl'", description: 'Responsive breakpoints.'},
+    {
+        name: 'MTouchTargets',
+        type: "'off' | 'coarse'",
+        description: 'Touch mode of provideMineralUI(): coarse raises small controls to 44 px on touch screens.',
+    },
 ]
+
+const TOUCH_TARGETS_CONFIG = `export const appConfig: ApplicationConfig = {
+    providers: [provideMineralUI({mode: 'dark', touchTargets: 'coarse'})],
+}`
 
 @Component({
     selector: 'doc-theming-page',
@@ -102,4 +111,6 @@ export class ThemingPage {
     protected readonly tokenGroups = TOKEN_GROUPS
     protected readonly themeTypes = THEME_TYPES
     protected readonly themeInitScript = `<script>${getMThemeInitScript({defaultMode: 'light'})}</script>`
+    protected readonly touchTargetsConfig = TOUCH_TARGETS_CONFIG
+    protected readonly touchInitScript = `<script>${getMThemeInitScript({touchTargets: 'coarse'})}</script>`
 }
