@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
 import {RouterLink} from '@angular/router'
 import {MCalendarBoard} from '@banzamel/mineralui-angular/calendar/calendar-board'
+import type {MCalendarBoardCellContent} from '@banzamel/mineralui-angular/calendar/calendar-board'
 import type {
     MCalendarAddEvent,
     MCalendarBoardView,
@@ -15,6 +16,8 @@ import {MLink} from '@banzamel/mineralui-angular/typography/link'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import calendarBoardAgenda from '@generated/examples/calendar/calendar-board/calendar-board-agenda'
+import calendarBoardHeader from '@generated/examples/calendar/calendar-board/calendar-board-header'
+import calendarBoardLabels from '@generated/examples/calendar/calendar-board/calendar-board-labels'
 import calendarBoardTemplates from '@generated/examples/calendar/calendar-board/calendar-board-templates'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
@@ -26,6 +29,7 @@ import {CALENDAR_AVATARS} from '../calendar-samples'
 
 const VIEWS: readonly MCalendarBoardView[] = ['month', 'week']
 const MODES: readonly MCalendarDetailsMode[] = ['auto', 'popover', 'modal', 'none']
+const CELL_CONTENTS: readonly MCalendarBoardCellContent[] = ['count', 'labels']
 
 const today = new Date()
 const day = (date: number) => new Date(today.getFullYear(), today.getMonth(), date)
@@ -153,6 +157,8 @@ const EVENTS: readonly MCalendarEvent[] = SAMPLES.map(([date, time, title, type,
                             [detailsMode]="detailsMode()"
                             [showTimeline]="showTimeline()"
                             [showHourBar]="showHourBar()"
+                            [cellContent]="cellContent()"
+                            [showToday]="showToday()"
                             [timelineStartHour]="startHour()"
                             [timelineEndHour]="endHour()"
                             [addable]="addable()"
@@ -164,6 +170,20 @@ const EVENTS: readonly MCalendarEvent[] = SAMPLES.map(([date, time, title, type,
                         <p mText size="sm" tone="muted" role="status">{{ log() }}</p>
                     </m-stack>
                 </doc-playground>
+            </doc-section>
+
+            <doc-section
+                title="Event labels and multi-day events"
+                description="cellContent='labels' shows event labels in the cells instead of the count and the hour bar — all-day events first, then by start time. An event with endDate (the last day, inclusive) covers several days: it is drawn as a bar across the days of a week row, with a rounded end where it starts or ends and a flat one where it goes on into the next row; its startTime / endTime apply to each day. Cancelled events are struck through. Beyond maxEventLabels (3) the last line becomes '+N more' (moreText) — the cell opens the day as usual. On a phone the labels become colored strips. A multi-day event counts on every covered day in the count mode too, and is listed in the details of each of them."
+            >
+                <doc-preview [example]="examples.labels" />
+            </doc-section>
+
+            <doc-section
+                title="Today and header actions"
+                description="showToday adds a Today button (todayText) between the previous and next buttons: it shows the period of today and moves the grid's Tab stop to it. Elements with the mCalendarBoardActions attribute are projected into the header above the period navigation — here an MSegmented that switches between a list and the calendar."
+            >
+                <doc-preview [example]="examples.header" />
             </doc-section>
 
             <doc-section
@@ -198,7 +218,8 @@ const EVENTS: readonly MCalendarEvent[] = SAMPLES.map(([date, time, title, type,
                         by default; see
                         <a mLink tone="accent" underline="always" class="doc-prose-link" routerLink="/docs/i18n"
                             >Languages (i18n)</a
-                        >); <code mCode>emptyText</code> overrides the empty day.
+                        >); <code mCode>emptyText</code> overrides the empty day, <code mCode>todayText</code> the Today
+                        button and <code mCode>moreText</code> the overflow of a day.
                     </li>
                     <li mListItem>
                         Month, day and time formats follow <code mCode>locale</code> — without it the locale of
@@ -210,12 +231,12 @@ const EVENTS: readonly MCalendarEvent[] = SAMPLES.map(([date, time, title, type,
 
             <doc-section
                 title="Accessibility"
-                description="The days are a WAI-ARIA grid (a table named by the period title) with one Tab stop: arrows move by day and week, Home / End to the week's edges, PageUp / PageDown by month (Shift: year) — moving past the period shows the next one. Each day is named by its date and event count, the chosen day is aria-selected, today aria-current='date'. Enter or Space chooses the day and opens its details: a dialog named by the date (a modal on narrow screens) that returns focus to the day on Escape. The '+' in the cells and the hour bars are for the mouse only (hidden from screen readers) — the keyboard adds events from the day menu or the timeline. Filters and the view switch are toggle buttons (aria-pressed)."
+                description="The days are a WAI-ARIA grid (a table named by the period title) with one Tab stop: arrows move by day and week, Home / End to the week's edges, PageUp / PageDown by month (Shift: year) — moving past the period shows the next one. Each day is named by its date and event count, the chosen day is aria-selected, today aria-current='date'. Enter or Space chooses the day and opens its details: a dialog named by the date (a modal on narrow screens) that returns focus to the day on Escape. The '+' in the cells and the hour bars are for the mouse only (hidden from screen readers) — the keyboard adds events from the day menu or the timeline. Filters and the view switch are toggle buttons (aria-pressed). With cellContent='labels' the day's name also lists the titles of its events (cancelled ones marked as such), and the labels and bars themselves are hidden decoration; a multi-day event is named on each day it covers."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Handlers become outputs: onDayClick → (dayClick) {date, events}, onAddEvent → (addEvent) {date, hour?}, renderDayMenu with onSelect → dayMenuItems + (dayAction), onEventEdit / onEventDelete → eventActions + (eventAction). month, view, selectedDate and activeFilters are models ([(month)]…) instead of value + default + onChange. renderDayCell / dayBadge / renderEventItem become ng-template mCalendarDay / mCalendarDayBadge / mCalendarEvent. weekStartsOn → firstDayOfWeek (as MCalendar), addEventLabel / dayMenuLabel → the translation dictionary, fullWidth dropped (the board always fills its container). The week view is the same keyboard grid as the month and keeps seven columns on narrow screens (React: a plain week list, 2 or 1 columns). Hour bar tooltips are native (title). The details popover closes on a click outside instead of a transparent shield over the page."
+                description="Handlers become outputs: onDayClick → (dayClick) {date, events}, onAddEvent → (addEvent) {date, hour?}, renderDayMenu with onSelect → dayMenuItems + (dayAction), onEventEdit / onEventDelete → eventActions + (eventAction). month, view, selectedDate and activeFilters are models ([(month)]…) instead of value + default + onChange. renderDayCell / dayBadge / renderEventItem become ng-template mCalendarDay / mCalendarDayBadge / mCalendarEvent. weekStartsOn → firstDayOfWeek (as MCalendar), addEventLabel / dayMenuLabel → the translation dictionary, fullWidth dropped (the board always fills its container). The week view is the same keyboard grid as the month and keeps seven columns on narrow screens (React: a plain week list, 2 or 1 columns). Hour bar tooltips are native (title). The details popover closes on a click outside instead of a transparent shield over the page. Angular-only: endDate (multi-day events), cellContent='labels' with maxEventLabels / moreText, showToday / todayText and the mCalendarBoardActions slot."
             />
 
             <doc-section title="API">
@@ -233,7 +254,12 @@ const EVENTS: readonly MCalendarEvent[] = SAMPLES.map(([date, time, title, type,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarBoardPage {
-    protected readonly examples = {agenda: calendarBoardAgenda, templates: calendarBoardTemplates}
+    protected readonly examples = {
+        agenda: calendarBoardAgenda,
+        templates: calendarBoardTemplates,
+        labels: calendarBoardLabels,
+        header: calendarBoardHeader,
+    }
 
     protected readonly events = signal<readonly MCalendarEvent[]>(EVENTS)
     protected readonly log = signal('Choose a day.')
@@ -248,6 +274,8 @@ export class CalendarBoardPage {
     protected readonly detailsMode = signal<MCalendarDetailsMode>('auto')
     protected readonly showTimeline = signal(true)
     protected readonly showHourBar = signal(true)
+    protected readonly cellContent = signal<MCalendarBoardCellContent>('count')
+    protected readonly showToday = signal(false)
     protected readonly startHour = signal(6)
     protected readonly endHour = signal(20)
     protected readonly withFilters = signal(true)
@@ -261,6 +289,8 @@ export class CalendarBoardPage {
         sliderControl('timelineStartHour', this.startHour, {min: 0, max: 12}),
         sliderControl('timelineEndHour', this.endHour, {min: 12, max: 23}),
         booleanControl('showHourBar', this.showHourBar),
+        selectControl('cellContent', this.cellContent, CELL_CONTENTS),
+        booleanControl('showToday', this.showToday),
         booleanControl('filters', this.withFilters),
         booleanControl('addable', this.addable),
         booleanControl('overlapWarning', this.overlapWarning),
@@ -276,6 +306,8 @@ export class CalendarBoardPage {
             this.detailsMode() !== 'auto' && `detailsMode="${this.detailsMode()}"`,
             !this.showTimeline() && '[showTimeline]="false"',
             !this.showHourBar() && '[showHourBar]="false"',
+            this.cellContent() !== 'count' && `cellContent="${this.cellContent()}"`,
+            this.showToday() && 'showToday',
             this.startHour() !== 0 && `[timelineStartHour]="${this.startHour()}"`,
             this.endHour() !== 23 && `[timelineEndHour]="${this.endHour()}"`,
             this.addable() && 'addable',

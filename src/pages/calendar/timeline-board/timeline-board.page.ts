@@ -10,9 +10,11 @@ import type {
 import {mEditIcon, mTrashIcon} from '@banzamel/mineralui-angular/icons'
 import {MStack} from '@banzamel/mineralui-angular/layout/stack'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
+import timelineBoardBlocks from '@generated/examples/calendar/timeline-board/timeline-board-blocks'
 import timelineBoardDetails from '@generated/examples/calendar/timeline-board/timeline-board-details'
 import timelineBoardRange from '@generated/examples/calendar/timeline-board/timeline-board-range'
 import timelineBoardRooms from '@generated/examples/calendar/timeline-board/timeline-board-rooms'
+import timelineBoardRows from '@generated/examples/calendar/timeline-board/timeline-board-rows'
 import timelineBoardScheduling from '@generated/examples/calendar/timeline-board/timeline-board-scheduling'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocProNotice} from '@kit/doc-pro-notice/doc-pro-notice'
@@ -220,6 +222,20 @@ type Workday = (typeof WORKDAYS)[number]
             </doc-section>
 
             <doc-section
+                title="Block content and looks"
+                description="ng-template mTimelineEventContent replaces the time, title and icon inside an event block; its context has the event, its row, startAt / endAt, the formatted time, overlapping, multiRow and the block's width in px (to drop details from short blocks). The block stays one button named by the title, row, date and time, so the content is decoration: no links, buttons or fields, and anything only it says belongs in the details too (here the occupancy). event.variant draws the block 'hatched' (e.g. a hold) or as a 'ghost' outline (e.g. a suggestion); event.className adds your own global classes."
+            >
+                <doc-preview [example]="examples.blocks" />
+            </doc-section>
+
+            <doc-section
+                title="One event in several rows"
+                description="rowId takes a list of rows: the event gets one block in each of them, every block named with its row, and the details list all the rows; the day strip counts it once. An event of several rows cannot be moved — dragging and M skip it, because a move names one target row."
+            >
+                <doc-preview [example]="examples.rows" />
+            </doc-section>
+
+            <doc-section
                 title="Own event details"
                 description="ng-template mTimelineEventHeader replaces the title and the row label in the details; ng-template mTimelineEventDetails adds content at the end."
             >
@@ -233,7 +249,7 @@ type Workday = (typeof WORKDAYS)[number]
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Callbacks become outputs: onEventClick / onEventOpen → (eventClick) / (eventOpen), onLeaderClick / onParticipantClick → (personClick) {person, event, role} with peopleClickable, menu items' onSelect → (eventAction) {actionId, event}, onCenterChange → [(centerAt)], ref.current.scrollToNow() → viewChild(MTimelineBoard).scrollToNow(), getVisibleRange() → visibleRange(). popoverHeader / renderEventDetails → ng-template mTimelineEventHeader / mTimelineEventDetails; icon and description are an MIconDef and a string. label is required (React: region named 'Timeline'). Events have one Tab stop and move the focus with the arrow keys. The row labels and the canvas share one scroll container, so autoRowHeight needs no measuring. onEventDrop(id, change) → (eventDrop) {event, change}; onEventDropValidate → dropValidator, whose reason is announced and reported by (eventDropReject) {event, change, reason}; eventOverrides → a computed in the app; onEmptySlotSelect(rowId, start, end) → (emptySlotSelect) {rowId, startAt, endAt}. The drag preview is a ghost at the snapped target place (React: the bar follows the pointer unsnapped). A single press on the empty lane selects one step (React: only a drag), and the selection covers the dragged stretch (floor / ceil to the step; React rounds both ends). A keyboard move draws a frame at the target, with the title and the instructions in a callout under it (React draws the event itself there); Move in the details is a second way in besides M."
+                description="Callbacks become outputs: onEventClick / onEventOpen → (eventClick) / (eventOpen), onLeaderClick / onParticipantClick → (personClick) {person, event, role} with peopleClickable, menu items' onSelect → (eventAction) {actionId, event}, onCenterChange → [(centerAt)], ref.current.scrollToNow() → viewChild(MTimelineBoard).scrollToNow(), getVisibleRange() → visibleRange(). popoverHeader / renderEventDetails → ng-template mTimelineEventHeader / mTimelineEventDetails; icon and description are an MIconDef and a string. label is required (React: region named 'Timeline'). Events have one Tab stop and move the focus with the arrow keys. The row labels and the canvas share one scroll container, so autoRowHeight needs no measuring. onEventDrop(id, change) → (eventDrop) {event, change}; onEventDropValidate → dropValidator, whose reason is announced and reported by (eventDropReject) {event, change, reason}; eventOverrides → a computed in the app; onEmptySlotSelect(rowId, start, end) → (emptySlotSelect) {rowId, startAt, endAt}. The drag preview is a ghost at the snapped target place (React: the bar follows the pointer unsnapped). A single press on the empty lane selects one step (React: only a drag), and the selection covers the dragged stretch (floor / ceil to the step; React rounds both ends). A keyboard move draws a frame at the target, with the title and the instructions in a callout under it (React draws the event itself there); Move in the details is a second way in besides M. Angular-only: ng-template mTimelineEventContent, rowId as a list of rows, event.variant and event.className."
             />
 
             <doc-section title="API">
@@ -251,6 +267,8 @@ type Workday = (typeof WORKDAYS)[number]
                     <doc-props-table api="MTimelineBoardSlotSelectEvent" />
                     <doc-props-table api="MTimelineEventHeaderDef" />
                     <doc-props-table api="MTimelineEventDetailsDef" />
+                    <doc-props-table api="MTimelineEventContentDef" />
+                    <doc-props-table api="MTimelineEventContentContext" />
                 </m-stack>
             </doc-section>
         </doc-article>
@@ -263,6 +281,8 @@ export class TimelineBoardPage {
         range: timelineBoardRange,
         details: timelineBoardDetails,
         scheduling: timelineBoardScheduling,
+        blocks: timelineBoardBlocks,
+        rows: timelineBoardRows,
     }
     protected readonly rows = ROWS
     protected readonly events = EVENTS
