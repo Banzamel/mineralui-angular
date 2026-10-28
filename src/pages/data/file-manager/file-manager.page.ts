@@ -74,7 +74,7 @@ const FILES: readonly MFileManagerNode[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Controlled / uncontrolled pairs become models: [(folderId)], [(selected)], [(view)], [(search)], [(expanded)]. onSelectionChange is [(selected)]; onItemAction and onContextMenuAction are one (itemAction); onOpenItem is (itemOpen), also on Enter. Menus and moves need explicit actions / draggable (an output does not tell whether it is listened to). renderPreview and node.preview are one mFileManagerPreview template; description is text, icons are MIconDef. The one-column layout follows the component width, not the viewport."
+                description="Controlled / uncontrolled pairs become models: [(folderId)], [(selected)], [(view)], [(search)], [(expanded)]. onSelectionChange is [(selected)]; onItemAction and onContextMenuAction are one (itemAction); onOpenItem is (itemOpen), also on Enter. Menus and moves need explicit actions / draggable (an output does not tell whether it is listened to). renderPreview and node.preview are one mFileManagerPreview template; description is text, icons are MIconDef. The one-column layout follows the component width, not the viewport. Sizes follow the locale (1,5 MB in Polish) and the search field shrinks below 220px in a narrow container."
             />
 
             <doc-section title="API">

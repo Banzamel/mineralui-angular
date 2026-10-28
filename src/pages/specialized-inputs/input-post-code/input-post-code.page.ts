@@ -4,6 +4,7 @@ import {MInputPostCode} from '@banzamel/mineralui-angular/inputs/input-post-code
 import type {MSize} from '@banzamel/mineralui-angular/theme'
 import {postCodeCountries} from '@banzamel/mineralui-angular/utils'
 import inputPostCodeForm from '@generated/examples/specialized-inputs/input-post-code/input-post-code-form'
+import inputPostCodeOther from '@generated/examples/specialized-inputs/input-post-code/input-post-code-other'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -47,6 +48,13 @@ const COUNTRIES: readonly string[] = postCodeCountries.map((country) => country.
                 <doc-preview [example]="examples.inputPostCodeForm" />
             </doc-section>
 
+            <doc-section
+                title="Other countries"
+                description="A country without a built-in rule gets a plain field: no mask, no format hint and no format validation; the value is the text as typed. MineralUI for React applies the Polish format instead."
+            >
+                <doc-preview [example]="examples.inputPostCodeOther" />
+            </doc-section>
+
             <doc-section title="API">
                 <doc-props-table api="MInputPostCode" />
             </doc-section>
@@ -55,7 +63,7 @@ const COUNTRIES: readonly string[] = postCodeCountries.map((country) => country.
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputPostCodePage {
-    protected readonly examples = {inputPostCodeForm}
+    protected readonly examples = {inputPostCodeForm, inputPostCodeOther}
 
     protected readonly variant = signal<MInputVariant>('outlined')
     protected readonly size = signal<MSize>('md')

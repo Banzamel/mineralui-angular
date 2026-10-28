@@ -1,6 +1,6 @@
 <doc-article
     title="MStickyPanel"
-    description="Side-rail panel that sticks to the viewport, fills viewport-relative height, scrolls internally with an optional hidden scrollbar and optional click-and-drag scrolling. Unifies the recurring pattern of activity logs, schedule rails, notification streams and notes panes that sit next to a long detail page."
+    description="Side-rail panel that sticks to the viewport, grows with its content up to the viewport height, scrolls internally with an optional hidden scrollbar and optional click-and-drag scrolling. Unifies the recurring pattern of activity logs, schedule rails, notification streams and notes panes that sit next to a long detail page."
 >
     <doc-section title="When to reach for it">
         <m-stack>
@@ -42,6 +42,13 @@
         </m-stack>
     </doc-section>
 
+    <doc-section
+        title="Short content"
+        description="The viewport height is a limit, not a size: a rail with little content stays as tall as its content and does not push the footer of the page down."
+    >
+        <doc-preview [example]="examples.stickyPanelShort" />
+    </doc-section>
+
     <doc-section title="Hidden scrollbar and keyboard">
         <m-stack>
             <p mText size="sm">
@@ -58,11 +65,11 @@
 
     <doc-section title="Sizing">
         <p mText size="sm">
-            Height is computed from the viewport, not from the content:
-            <code mCode>calc(100vh - top - bottomGap)</code>. Adjust <code mCode>top</code> to clear a fixed app header
-            (e.g. <code mCode>[top]="88"</code> for a 72 px header plus 16 px breathing room) and
-            <code mCode>bottomGap</code> to leave space for a footer. On viewports shorter than
-            <code mCode>top + bottomGap</code> the panel relies on <code mCode>min-height: 0</code>.
+            The panel is as tall as its content, at most <code mCode>calc(100vh - top - bottomGap)</code> (a
+            <code mCode>max-height</code>; MineralUI for React sets that as a fixed <code mCode>height</code>). Adjust
+            <code mCode>top</code> to clear a fixed app header (e.g. <code mCode>[top]="88"</code> for a 72 px header
+            plus 16 px breathing room) and <code mCode>bottomGap</code> to leave space for a footer. On viewports
+            shorter than <code mCode>top + bottomGap</code> the panel relies on <code mCode>min-height: 0</code>.
         </p>
     </doc-section>
 

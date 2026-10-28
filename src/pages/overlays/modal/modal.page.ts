@@ -107,6 +107,9 @@ const SIZES: readonly MModalSize[] = ['sm', 'md', 'lg', 'xl']
                         The modal renders where you place it, not in a portal: the top layer puts it above everything,
                         and a local <code mCode>[mTheme]</code> around it applies.
                     </li>
+                    <li mListItem>
+                        The body and footer have the same horizontal padding as the header (React: a smaller one).
+                    </li>
                 </ul>
             </doc-section>
 

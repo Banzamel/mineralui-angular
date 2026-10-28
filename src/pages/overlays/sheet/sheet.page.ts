@@ -116,6 +116,9 @@ const SIZES: readonly MSheetSize[] = ['sm', 'md', 'lg', 'full']
                         <code mCode>(closed)</code>; <code mCode>title</code> → <code mCode>heading</code>;
                         <code mCode>footer</code> → an element with <code mCode>mSheetFooter</code>.
                     </li>
+                    <li mListItem>
+                        The body and footer have the same horizontal padding as the header (React: a smaller one).
+                    </li>
                 </ul>
             </doc-section>
 

@@ -83,6 +83,12 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['top-start', 'top-end', 'botto
                         <code mCode>(cancelled)</code>; <code mCode>title</code> → <code mCode>heading</code>;
                         <code mCode>icon</code> takes an icon constant.
                     </li>
+                    <li mListItem>
+                        <code mCode>(confirmed)</code> / <code mCode>(cancelled)</code> come before
+                        <code mCode>(openChange)</code>, so state cleared on close is still there when you handle the
+                        answer (React calls <code mCode>onOpenChange(false)</code> first).
+                    </li>
+                    <li mListItem>The panel shrinks below 220px on a narrow screen (React: at least 220px).</li>
                 </ul>
             </doc-section>
 

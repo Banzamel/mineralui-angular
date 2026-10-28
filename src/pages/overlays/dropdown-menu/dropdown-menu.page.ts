@@ -14,6 +14,7 @@ import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import dropdownCheckable from '@generated/examples/overlays/dropdown-menu/dropdown-checkable'
 import dropdownIsolated from '@generated/examples/overlays/dropdown-menu/dropdown-isolated'
+import dropdownLong from '@generated/examples/overlays/dropdown-menu/dropdown-long'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -87,6 +88,13 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                 <doc-preview [example]="examples.dropdownIsolated" />
             </doc-section>
 
+            <doc-section
+                title="Height"
+                description="A short menu is as tall as its items; a long one grows up to the room left in the viewport and then scrolls. Set --m-dropdown-menu-max-height on the menu (or an ancestor) for a lower cap — the second menu stops at 200px."
+            >
+                <doc-preview [example]="examples.dropdownLong" />
+            </doc-section>
+
             <doc-section title="Keyboard and focus">
                 <ul mList>
                     <li mListItem>
@@ -135,6 +143,10 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                         A click on the trigger moves focus to the first item, as a key press does (React: to the menu
                         itself).
                     </li>
+                    <li mListItem>
+                        No fixed 300px height: the menu is as tall as its items up to the room in the viewport; cap it
+                        with <code mCode>--m-dropdown-menu-max-height</code>.
+                    </li>
                 </ul>
             </doc-section>
 
@@ -152,7 +164,7 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownMenuPage {
-    protected readonly examples = {dropdownCheckable, dropdownIsolated}
+    protected readonly examples = {dropdownCheckable, dropdownIsolated, dropdownLong}
     protected readonly icons = {edit: mEditIcon, copy: mCopyIcon, share: mShareIcon, trash: mTrashIcon}
     private readonly toast = inject(MToastService)
 

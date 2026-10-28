@@ -106,6 +106,9 @@ const SIZES: readonly MDrawerSize[] = ['sm', 'md', 'lg', 'full']
                         inside even then).
                     </li>
                     <li mListItem>The header close button has a translatable label (mineralui.common.close).</li>
+                    <li mListItem>
+                        The body has the same horizontal padding as the header and footer (React: a smaller one).
+                    </li>
                 </ul>
             </doc-section>
 

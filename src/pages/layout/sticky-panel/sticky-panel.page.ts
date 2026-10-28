@@ -4,6 +4,7 @@ import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import stickyPanelActions from '@generated/examples/layout/sticky-panel/sticky-panel-actions'
 import stickyPanelBasic from '@generated/examples/layout/sticky-panel/sticky-panel-basic'
+import stickyPanelShort from '@generated/examples/layout/sticky-panel/sticky-panel-short'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
@@ -15,5 +16,5 @@ import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StickyPanelPage {
-    protected readonly examples = {stickyPanelBasic, stickyPanelActions}
+    protected readonly examples = {stickyPanelBasic, stickyPanelActions, stickyPanelShort}
 }

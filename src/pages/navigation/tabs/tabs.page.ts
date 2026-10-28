@@ -6,6 +6,7 @@ import type {MSize} from '@banzamel/mineralui-angular/theme'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import tabsItems from '@generated/examples/navigation/tabs/tabs-items'
 import tabsLazy from '@generated/examples/navigation/tabs/tabs-lazy'
+import tabsOverflow from '@generated/examples/navigation/tabs/tabs-overflow'
 import tabsPanels from '@generated/examples/navigation/tabs/tabs-panels'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -76,6 +77,13 @@ const EFFECTS = ['ripple', 'none'] as const
             </doc-section>
 
             <doc-section
+                title="Many tabs in a narrow space"
+                description="Horizontal tabs keep their width and stay on one line; the tab list scrolls sideways instead of squeezing the labels (MineralUI for React shrinks them). With fullWidth the tabs share the width equally."
+            >
+                <doc-preview [example]="examples.tabsOverflow" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description="The triggers form an APG tablist with one Tab stop: the active tab. The arrow keys along the orientation (left / right, or up / down when vertical) select the next enabled tab and wrap around; Home and End jump to the first and last. In a right-to-left layout the horizontal arrows follow the reading direction. Arrows with Alt, Ctrl or Meta are left to the browser. Each panel is a tabpanel labelled by its tab and focusable, so the next Tab moves into the content; aria-controls is set only when the panel exists."
             />
@@ -94,7 +102,7 @@ const EFFECTS = ['ripple', 'none'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsPage {
-    protected readonly examples = {tabsItems, tabsLazy, tabsPanels}
+    protected readonly examples = {tabsItems, tabsLazy, tabsOverflow, tabsPanels}
     protected readonly docIcon = mDocIcon
     protected readonly paletteIcon = mPaletteIcon
     protected readonly dashboardIcon = mDashboardIcon

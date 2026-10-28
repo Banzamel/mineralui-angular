@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
 import {MInputFile} from '@banzamel/mineralui-angular/inputs/input-file'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
+import inputFileAccept from '@generated/examples/specialized-inputs/input-file/input-file-accept'
 import inputFileAvatar from '@generated/examples/specialized-inputs/input-file/input-file-avatar'
 import inputFileForm from '@generated/examples/specialized-inputs/input-file/input-file-form'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
@@ -44,6 +45,13 @@ const ACCEPTS = ['any', 'image/*', '.pdf,.docx'] as const
             </doc-section>
 
             <doc-section
+                title="Accepted types and sizes"
+                description="The drop zone lists the accepted types readably: extensions and MIME types become PNG, JPG, PDF…, and image/*, video/* and audio/* become translated words (mineralui.inputFile.acceptImages / acceptVideos / acceptAudio). acceptText replaces the line; an empty string hides it. File sizes follow the locale. MineralUI for React shows the raw accept value and formats sizes with a fixed point."
+            >
+                <doc-preview [example]="examples.inputFileAccept" />
+            </doc-section>
+
+            <doc-section
                 title="Crop an avatar"
                 description="[crop] opens the crop editor for a single image: drag or use the arrow keys to move, wheel / slider / + − to zoom (Shift + arrows move faster; Ctrl / Alt / Meta shortcuts stay with the browser). The value is the cropped file."
             >
@@ -65,7 +73,7 @@ const ACCEPTS = ['any', 'image/*', '.pdf,.docx'] as const
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputFilePage {
-    protected readonly examples = {inputFileAvatar, inputFileForm}
+    protected readonly examples = {inputFileAccept, inputFileAvatar, inputFileForm}
 
     protected readonly accept = signal<(typeof ACCEPTS)[number]>('any')
     protected readonly multiple = signal(true)
