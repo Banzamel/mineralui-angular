@@ -213,6 +213,11 @@
                     "description": "Fieldset of checkboxes with a string[] value, helper text and errors."
                 },
                 {
+                    "id": "chip-group",
+                    "title": "Chip Group",
+                    "description": "Filter chips — toggle buttons with a string[] value, counts and hints."
+                },
+                {
                     "id": "language-switcher",
                     "title": "Language Switcher",
                     "description": "Menu button or segmented control that switches the MI18nService locale."

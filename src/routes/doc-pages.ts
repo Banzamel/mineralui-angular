@@ -42,6 +42,7 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     checkbox: () => import('@pages/controls/checkbox/checkbox.page').then((m) => m.CheckboxPage),
     'checkbox-group': () =>
         import('@pages/controls/checkbox-group/checkbox-group.page').then((m) => m.CheckboxGroupPage),
+    'chip-group': () => import('@pages/controls/chip-group/chip-group.page').then((m) => m.ChipGroupPage),
     'language-switcher': () =>
         import('@pages/controls/language-switcher/language-switcher.page').then((m) => m.LanguageSwitcherPage),
     'load-more': () => import('@pages/controls/load-more/load-more.page').then((m) => m.LoadMorePage),
