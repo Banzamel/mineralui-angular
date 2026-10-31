@@ -56,7 +56,7 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
 
             <doc-section
                 title="Longer explanations"
-                description="By default the bubble keeps one line. tooltipWrap lets the text wrap within 20rem (never wider than the viewport); a short hint stays as narrow as its text."
+                description="By default the bubble keeps one line. tooltipWrap lets the text wrap within 20rem (never wider than the viewport); a short hint stays as narrow as its text, and a line feed in the text starts a new line."
             >
                 <doc-preview [example]="examples.tooltipWrap" />
             </doc-section>
@@ -68,8 +68,10 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
                         pointer can move onto the bubble without it disappearing (WCAG 1.4.13).
                     </li>
                     <li mListItem>
-                        The bubble is created on first use next to the element, in the browser's top layer, and linked
-                        with <code mCode>aria-describedby</code> (added to any description the element already has).
+                        The text is the element's accessible description from the first render: a hidden copy next to
+                        the element is linked with <code mCode>aria-describedby</code> (added to any description the
+                        element already has), so a screen reader announces it on the first focus. The bubble itself is
+                        created on first use, in the browser's top layer (a template: at once, unopened).
                     </li>
                     <li mListItem>
                         It flips to the opposite side and stays inside the viewport when there is no room.
@@ -87,8 +89,9 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
                         <code mCode>tooltipDelay</code>.
                     </li>
                     <li mListItem>
-                        Angular-only: <code mCode>tooltipWrap</code> (several lines within a bounded width); in React
-                        the bubble is always one line.
+                        Angular-only: <code mCode>tooltipWrap</code> (several lines within a bounded width, line feeds
+                        kept); in React the bubble is always one line. React links the description only while the bubble
+                        is shown.
                     </li>
                 </ul>
             </doc-section>

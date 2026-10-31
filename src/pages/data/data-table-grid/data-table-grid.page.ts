@@ -28,7 +28,7 @@ import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
             <doc-section
                 title="Keyboard"
-                description="The grid is one tab stop (the last focused cell). ← / → move within the row, ↑ / ↓ between rows — the header row and group header rows included; Home / End go to the first / last cell of the row, Ctrl+Home / Ctrl+End to the first / last cell of the grid, PageUp / PageDown by five rows. A cell with a single button, link or checkbox (sort buttons, row checkboxes, expand buttons) passes its focus to it, so Space and Enter work as usual. A cell with other controls (two buttons, a field) is entered with Enter or F2, Tab moves between its controls, Escape or F2 goes back to the cell. Enter on a plain cell activates the row with rowClick='activate'. Row details are not grid rows: their content stays in the page tab order."
+                description="The grid is one tab stop (the last focused cell). ← / → move within the row, ↑ / ↓ between rows — the header row and group header rows included; Home / End go to the first / last cell of the row, Ctrl+Home / Ctrl+End to the first / last cell of the grid, PageUp / PageDown by five rows. A cell with a single button, link or checkbox (sort buttons, row checkboxes, expand buttons, the label of a non-sortable header with a hint — its tooltip shows) passes its focus to it, so Space and Enter work as usual. A cell with other controls (two buttons, a field) is entered with Enter or F2, Tab moves between its controls, Escape or F2 goes back to the cell. Enter on a plain cell activates the row with rowClick='activate'. Row details are not grid rows: their content stays in the page tab order."
             />
 
             <doc-section

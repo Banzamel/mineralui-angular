@@ -50,7 +50,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
 
             <doc-section
                 title="Hints"
-                description="An item's hint shows as a tooltip on hover or keyboard focus and becomes the option's accessible description — handy to explain why an option is disabled (a disabled option still shows it to the pointer). With m-segment children, put [mTooltip] on the option. Angular-only."
+                description="An item's hint shows as a tooltip on hover or keyboard focus and becomes the option's accessible description — handy to explain why an option is disabled (a disabled option shows it to the pointer and to the arrow keys). With m-segment children, put [mTooltip] on the option. Angular-only."
             >
                 <doc-preview [example]="examples.segmentedHints" />
             </doc-section>
@@ -71,7 +71,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
 
             <doc-section
                 title="Keyboard"
-                description="Tab enters the group on the selected option (or the first enabled one). Arrow keys move and select, wrapping at the ends and mirrored in a right-to-left layout; Home / End jump to the first / last option; Space selects the focused option. Disabled options are skipped."
+                description="Tab enters the group on the selected option (or the first enabled one). Arrow keys move and select, wrapping at the ends and mirrored in a right-to-left layout; Home / End jump to the first / last option; Space selects the focused option. A disabled option still takes focus from the arrow keys — its hint shows and is read out — but is not selected: the value stays."
             />
 
             <doc-section title="MSegmented API">
