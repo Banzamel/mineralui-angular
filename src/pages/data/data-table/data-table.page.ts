@@ -179,6 +179,11 @@ const USERS: readonly User[] = [
             </doc-section>
 
             <doc-section
+                title="Printing"
+                description="In print the table drops its scroll box and maxHeight and prints every row of the current page at full height; the real header row repeats at the top of each page and a row is never split between pages (a group header stays with its first row). The toolbar, the pagination, the selection checkboxes, the expand buttons (open details still print) and the sticky header copy are hidden, and so are the arrows of unsorted columns. The frame, the tinted header and the selection tints give way to plain dark lines on white, in either theme — the global print palette of styles.css. Only the loaded page prints: to print all rows, raise the page size or turn pagination off on beforeprint. Your own unlayered CSS in @media print overrides any of it, e.g. .m-data-table .m-data-table-check-col { display: table-cell } to print the checkboxes. Angular-only."
+            />
+
+            <doc-section
                 title="Accessibility"
                 description="A native table (WAI-ARIA Sortable Table): name it with label, sortable headers are buttons, the deciding sort column has aria-sort, further sort keys are named in hidden text. With rowClick='activate' the rows are one tab stop (arrows, Home / End, Enter). rowHeader: true makes a column the row header (th scope='row'); a group header is a th scope='rowgroup' heading its tbody. Row cards are a list of listitems with the label and value pairs in a dl; groups of cards are role group, named by their header. The toolbar popovers are named dialogs; the sort direction is also given as text. While loading, the rows are aria-busy and the loader is a live status."
             />

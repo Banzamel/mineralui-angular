@@ -77,6 +77,11 @@ const TONES: readonly MSurfaceTone[] = ['raised', 'default', 'subtle', 'inverse'
             </doc-section>
 
             <doc-section
+                title="Printing"
+                description="In print every card — MCard and the components built on it (MCardStat, MCardDaySchedule, MCardDocumentTree, MCodeBlock, MMasonryItem) — becomes a thin dark frame on white: no shadow, gleam or tinted background, in either theme. A card that fits on a page is not split between pages. Your own unlayered CSS in @media print overrides it, e.g. m-card { break-inside: auto } for cards taller than most pages. Angular-only."
+            />
+
+            <doc-section
                 title="Differences from MineralUI for React"
                 description="href, to and component are replaced by a[mCard] with your own href or routerLink. A card cannot be a button and has no onClick: for a clickable region that does not navigate, place a button[mCardActionArea] inside the card. interactive only adds the hover lift and the ripple — the card gets no role, focus or click handling. The skeleton state also sets aria-busy on the card, and a link card shows a focus ring."
             />

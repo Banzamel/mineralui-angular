@@ -101,6 +101,11 @@
         <doc-preview [example]="examples.themeScope" />
     </doc-section>
 
+    <doc-section
+        title="Printing"
+        description="Paper is white, so in @media print styles.css switches the tokens to the light palette in every theme and every [mTheme] scope: dark text and borders, white surfaces and page, no shadows and no gleam; native controls print with color-scheme light. Backgrounds print only when the reader enables them in the print dialog — set print-color-adjust: exact on elements whose colour carries meaning. Token overrides from provideMineralUI({theme}) or [mTheme] are inline styles and also apply in print. MDataTable and MCard add print rules of their own (see their pages); app CSS outside the mineral layer overrides all of it. Angular-only."
+    />
+
     <doc-section title="Theme tokens overview">
         <m-data-table
             compact
