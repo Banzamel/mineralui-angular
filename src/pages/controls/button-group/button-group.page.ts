@@ -6,6 +6,7 @@ import type {MButtonGroupOrientation} from '@banzamel/mineralui-angular/controls
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import buttonGroupLayouts from '@generated/examples/controls/button-group/button-group-layouts'
 import buttonGroupToolbar from '@generated/examples/controls/button-group/button-group-toolbar'
+import buttonGroupWrap from '@generated/examples/controls/button-group/button-group-wrap'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -56,6 +57,13 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
                 <doc-preview [example]="examples.buttonGroupLayouts" />
             </doc-section>
 
+            <doc-section
+                title="Wrapping"
+                description="wrap lets a horizontal group break onto more lines in a narrow container. Prefer [attached]='false' for toolbars that wrap often: in an attached group the buttons at a line break keep their square inner corners. A vertical group ignores wrap."
+            >
+                <doc-preview [example]="examples.buttonGroupWrap" />
+            </doc-section>
+
             <doc-section title="API">
                 <doc-props-table api="MButtonGroup" />
             </doc-section>
@@ -64,7 +72,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonGroupPage {
-    protected readonly examples = {buttonGroupLayouts, buttonGroupToolbar}
+    protected readonly examples = {buttonGroupLayouts, buttonGroupToolbar, buttonGroupWrap}
 
     protected readonly orientation = signal<MButtonGroupOrientation>('horizontal')
     protected readonly variant = signal<MButtonVariant>('outlined')

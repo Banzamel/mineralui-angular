@@ -8,6 +8,7 @@ import dataTableCard from '@generated/examples/data/data-table/data-table-card'
 import dataTableCards from '@generated/examples/data/data-table/data-table-cards'
 import dataTableDetail from '@generated/examples/data/data-table/data-table-detail'
 import dataTableMultiSort from '@generated/examples/data/data-table/data-table-multi-sort'
+import dataTableHints from '@generated/examples/data/data-table/data-table-hints'
 import dataTableExternal from '@generated/examples/data/data-table/data-table-external'
 import dataTableGroups from '@generated/examples/data/data-table/data-table-groups'
 import dataTableOrders from '@generated/examples/data/data-table/data-table-orders'
@@ -101,6 +102,13 @@ const USERS: readonly User[] = [
             </doc-section>
 
             <doc-section
+                title="Column hints and first sort direction"
+                description="A column's hint shows in a tooltip on its header (hover or keyboard focus) and becomes the header's accessible description; the label gets a dotted underline. A header that does not sort becomes a tab stop to reach its hint. sortFirst: 'desc' makes the first click (or Enter) on the header sort descending — descending, ascending, off — for numbers where the largest matter first; Shift+click adds the column descending too. Angular-only."
+            >
+                <doc-preview [example]="examples.hints" />
+            </doc-section>
+
+            <doc-section
                 title="Row activation and row classes"
                 description="rowClick='activate' emits (rowActivate) with the row — on a click in the empty row area (links, buttons and inputs inside keep their own click) and on Enter. The rows become one tab stop (roving tabindex: the first row, then the last focused one); ↑ / ↓ / Home / End move between rows and Tab still reaches the controls in the cells. The rows keep native table semantics and show a focus ring. rowClass returns extra classes for a row's tr, e.g. to dim archived rows."
             >
@@ -177,7 +185,7 @@ const USERS: readonly User[] = [
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort is a list of MSort {key, direction} keys (React: one {key, dir} or null). The search is applied after a short pause (at once on Enter). New: label, rowHeader, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight, a header that stays visible while the page scrolls, multi-key sort (Shift+click), rowClick='activate' with (rowActivate), rowClass, bordered, pageSizeOptions and paginationRange, groupBy with mRowGroup, cardsBelow with mRowCard, toolbarCollapseBelow. The toolbar is the public MDataToolbar."
+                description="Columns have no render function — cells are ng-template mCell. filterable (search field) is searchable, filterPlaceholder is searchPlaceholder, a column's filterable: false is searchable: false; the filter and sort popovers show when filterKeys / sortKeys are given. useMTable + manual* flags become [source] (injectMDataSource): all server-side or all in memory. The sort is a list of MSort {key, direction} keys (React: one {key, dir} or null). The search is applied after a short pause (at once on Enter). New: label, rowHeader, the mixed header checkbox, externalMDataSource, expandable rows, Shift range selection, rowClick, data-key, maxHeight, a header that stays visible while the page scrolls, multi-key sort (Shift+click), rowClick='activate' with (rowActivate), rowClass, bordered, pageSizeOptions and paginationRange, groupBy with mRowGroup, cardsBelow with mRowCard, toolbarCollapseBelow, a column hint and sortFirst. The toolbar is the public MDataToolbar."
             />
 
             <doc-section title="API">
@@ -207,6 +215,7 @@ export class DataTablePage {
     protected readonly examples = {
         orders: dataTableOrders,
         multiSort: dataTableMultiSort,
+        hints: dataTableHints,
         activate: dataTableActivate,
         card: dataTableCard,
         groups: dataTableGroups,

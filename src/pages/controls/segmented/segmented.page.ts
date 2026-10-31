@@ -3,6 +3,7 @@ import {MSegmented} from '@banzamel/mineralui-angular/controls/segmented'
 import type {MSegmentedItem} from '@banzamel/mineralui-angular/controls/segmented'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import segmentedCustom from '@generated/examples/controls/segmented/segmented-custom'
+import segmentedHints from '@generated/examples/controls/segmented/segmented-hints'
 import segmentedForms from '@generated/examples/controls/segmented/segmented-forms'
 import segmentedSignalForms from '@generated/examples/controls/segmented/segmented-signal-forms'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
@@ -48,6 +49,13 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
             </doc-section>
 
             <doc-section
+                title="Hints"
+                description="An item's hint shows as a tooltip on hover or keyboard focus and becomes the option's accessible description — handy to explain why an option is disabled (a disabled option still shows it to the pointer). With m-segment children, put [mTooltip] on the option. Angular-only."
+            >
+                <doc-preview [example]="examples.segmentedHints" />
+            </doc-section>
+
+            <doc-section
                 title="Reactive forms"
                 description="MSegmented is a ControlValueAccessor. Validators.required marks the group required (aria-required); the error shows once focus leaves the group or the form is submitted, linked with aria-describedby."
             >
@@ -78,7 +86,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SegmentedPage {
-    protected readonly examples = {segmentedCustom, segmentedForms, segmentedSignalForms}
+    protected readonly examples = {segmentedCustom, segmentedForms, segmentedHints, segmentedSignalForms}
 
     protected readonly items: readonly MSegmentedItem[] = [
         {value: 'day', label: 'Day'},

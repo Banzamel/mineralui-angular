@@ -5,6 +5,7 @@ import type {MTooltipPlacement} from '@banzamel/mineralui-angular/overlays/toolt
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
 import tooltipIcons from '@generated/examples/overlays/tooltip/tooltip-icons'
+import tooltipWrap from '@generated/examples/overlays/tooltip/tooltip-wrap'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {selectControl, sliderControl} from '@kit/doc-playground/playground-controls'
@@ -53,6 +54,13 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
                 <doc-preview [example]="examples.tooltipIcons" />
             </doc-section>
 
+            <doc-section
+                title="Longer explanations"
+                description="By default the bubble keeps one line. tooltipWrap lets the text wrap within 20rem (never wider than the viewport); a short hint stays as narrow as its text."
+            >
+                <doc-preview [example]="examples.tooltipWrap" />
+            </doc-section>
+
             <doc-section title="Behaviour">
                 <ul mList>
                     <li mListItem>
@@ -78,6 +86,10 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
                         <code mCode>delay</code> → <code mCode>tooltipPlacement</code> /
                         <code mCode>tooltipDelay</code>.
                     </li>
+                    <li mListItem>
+                        Angular-only: <code mCode>tooltipWrap</code> (several lines within a bounded width); in React
+                        the bubble is always one line.
+                    </li>
                 </ul>
             </doc-section>
 
@@ -89,7 +101,7 @@ const PLACEMENTS: readonly MTooltipPlacement[] = ['top', 'bottom', 'left', 'righ
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipPage {
-    protected readonly examples = {tooltipIcons}
+    protected readonly examples = {tooltipIcons, tooltipWrap}
 
     protected readonly placement = signal<MTooltipPlacement>('top')
     protected readonly delay = signal(0)
