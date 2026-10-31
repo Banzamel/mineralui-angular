@@ -103,7 +103,7 @@ const USERS: readonly User[] = [
 
             <doc-section
                 title="Column hints and first sort direction"
-                description="A column's hint shows in a tooltip on its header (hover or keyboard focus) and becomes the header's accessible description; the label gets a dotted underline. A header that does not sort becomes a tab stop to reach its hint. sortFirst: 'desc' makes the first click (or Enter) on the header sort descending — descending, ascending, off — for numbers where the largest matter first; Shift+click adds the column descending too. Angular-only."
+                description="A column's hint shows in a tooltip on its header (hover or keyboard focus) and becomes the header's accessible description; the label gets a dotted underline. A header that does not sort becomes a tab stop to reach its hint. sortFirst: 'desc' makes the first click (or Enter) on the header sort descending — descending, ascending, off — for numbers where the largest matter first; Shift+click adds the column descending too. The toolbar sort popover starts the same way: a sortKeys entry without its own sortFirst takes the one of the column with the same key, and a header takes the one of its sortKeys entry. Angular-only."
             >
                 <doc-preview [example]="examples.hints" />
             </doc-section>
@@ -124,7 +124,7 @@ const USERS: readonly User[] = [
 
             <doc-section
                 title="Cards on a narrow screen"
-                description="cardsBelow='md' (opt-in) renders every row as a card at most 768 px wide: the column labels next to their values (cell templates included), or your own ng-template mRowCard. There is no header row, so the sortable columns move to the toolbar sort popover (unless sortKeys is given). The checkbox, the expand button with the row detail and rowClick='activate' (arrows between cards, Enter) work in the cards; with selectable a 'Select all rows' checkbox sits above them. The cards are a list (role list / listitem, named by label; groups are labelled groups). toolbarCollapseBelow folds the filter popover into a 'Filter · N' sheet. The server render shows the table. Narrow the window to see it."
+                description="cardsBelow='md' (opt-in) renders every row as a card at most 768 px wide: the column labels next to their values (cell templates included), or your own ng-template mRowCard. There is no header row, so the sortable columns move to the toolbar sort popover (unless sortKeys is given), each starting in the direction of its sortFirst (Rating here starts descending). The checkbox, the expand button with the row detail and rowClick='activate' (arrows between cards, Enter) work in the cards; with selectable a 'Select all rows' checkbox sits above them. The cards are a list (role list / listitem, named by label; groups are labelled groups). toolbarCollapseBelow folds the filter popover into a 'Filter · N' sheet. The server render shows the table. Narrow the window to see it."
             >
                 <doc-preview [example]="examples.cards" />
             </doc-section>

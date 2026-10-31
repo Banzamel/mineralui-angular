@@ -76,7 +76,7 @@ export class DataTableCardsExample {
     protected readonly columns: readonly MDataTableColumn[] = [
         {key: 'name', label: 'Player', rowHeader: true},
         {key: 'club', label: 'Club'},
-        {key: 'rating', label: 'Rating', align: 'right'},
+        {key: 'rating', label: 'Rating', align: 'right', sortFirst: 'desc'},
         {key: 'status', label: 'Status', sortable: false},
         {key: 'actions', label: 'Actions', sortable: false},
     ]

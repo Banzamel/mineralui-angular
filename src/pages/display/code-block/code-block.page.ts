@@ -91,6 +91,11 @@ const LANGUAGES: readonly Language[] = ['ts', 'js', 'php', 'html', 'css', 'json'
             />
 
             <doc-section
+                title="Printing"
+                description="In print the code always uses the light-theme syntax colours on a light background, also from the dark theme — the dark palette would print pale on white paper. The block prints as a thin frame like every card (see MCard). Angular-only."
+            />
+
+            <doc-section
                 title="Differences from MineralUI for React"
                 description="title is heading (a string — title is a global HTML attribute). The default copy labels come from mineralui.codeBlock.copy / .copied (copyLabel / copiedLabel still override them), and the new (copied) output fires after a successful copy. The code area is a focusable, named region so long lines can be scrolled with the keyboard, the copy result is announced, and the typing animation is skipped under prefers-reduced-motion."
             />

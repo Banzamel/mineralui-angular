@@ -146,7 +146,8 @@ export class DataToolbarListExample {
     protected readonly filterOptions = collectMDataFilterOptions(TOURNAMENTS, this.filterKeys)
     protected readonly sortKeys: readonly MDataSortKey[] = [
         {key: 'name', label: 'Name'},
-        {key: 'players', label: 'Players'},
+        // The largest field first: choosing Players sorts descending, choosing it again flips it.
+        {key: 'players', label: 'Players', sortFirst: 'desc'},
     ]
     protected readonly cities: readonly MSelectOption[] = ['Gdańsk', 'Kraków', 'Warszawa'].map((city) => ({
         value: city,
