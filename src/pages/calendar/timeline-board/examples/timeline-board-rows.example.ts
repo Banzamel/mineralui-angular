@@ -34,14 +34,28 @@ const at = (hour: number, minute = 0) => new Date(today.getFullYear(), today.get
 })
 export class TimelineBoardRowsExample {
     protected readonly center = at(12)
-    protected readonly status = signal('The tournament takes halls A and B; drag the training — the tournament stays.')
+    protected readonly status = signal(
+        'The tournament takes halls A and B: drag it (or M) to another time — its halls stay.'
+    )
     protected readonly halls: readonly MTimelineBoardRow[] = [
         {id: 'a', label: 'Hall A'},
         {id: 'b', label: 'Hall B'},
         {id: 'c', label: 'Hall C'},
     ]
     protected readonly events = signal<readonly MTimelineBoardEvent[]>([
-        {id: 'cup', rowId: ['a', 'b'], title: 'Tournament', startAt: at(9), endAt: at(13), color: '#f59e0b'},
+        {
+            id: 'cup',
+            rowId: ['a', 'b'],
+            title: 'Tournament',
+            startAt: at(9),
+            endAt: at(13),
+            color: '#f59e0b',
+            // Title, color and look per row: the occupancy of each hall.
+            rowOverrides: {
+                a: {title: 'Tournament · 6 / 8 teams'},
+                b: {title: 'Tournament · full', color: '#ef4444', variant: 'hatched'},
+            },
+        },
         {id: 'training', rowId: 'c', title: 'Training', startAt: at(10), endAt: at(11, 30)},
     ])
 
@@ -49,7 +63,13 @@ export class TimelineBoardRowsExample {
         this.events.update((events) =>
             events.map((item) =>
                 item.id === event.id
-                    ? {...item, rowId: change.newRowId, startAt: change.newStartAt, endAt: change.newEndAt}
+                    ? {
+                          ...item,
+                          // An event of several rows moves in time only: keep its rows.
+                          rowId: typeof item.rowId === 'string' ? change.newRowId : item.rowId,
+                          startAt: change.newStartAt,
+                          endAt: change.newEndAt,
+                      }
                     : item
             )
         )
