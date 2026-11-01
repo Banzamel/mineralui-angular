@@ -79,14 +79,14 @@ const EFFECTS = ['ripple', 'none'] as const
 
             <doc-section
                 title="Badges"
-                description="badge on m-tab or MTabsItem shows a count or, with true (or the bare attribute), a dot after the label; badgeColor picks the palette color. The badge itself is hidden from screen readers — hidden text after the label carries it into the tab name (mineralui.tabs.badgeCount '{count} new', mineralui.tabs.badgeDot 'has updates', or your badgeLabel). Not in MineralUI for React."
+                description="badge on m-tab or MTabsItem shows a count, a short text (badge='12/40') or, with true (or the bare attribute), a dot after the label; badgeColor picks the palette color. The badge itself is hidden from screen readers — hidden text after the label carries it into the tab name (mineralui.tabs.badgeCount '{count} new', mineralui.tabs.badgeDot 'has updates', or your badgeLabel). A text badge is read as shown — give it a badgeLabel ('12 of 40 seats taken'). Not in MineralUI for React."
             >
                 <doc-preview [example]="examples.tabsBadge" />
             </doc-section>
 
             <doc-section
                 title="Many tabs in a narrow space"
-                description="Horizontal tabs keep their width and stay on one line; the tab list scrolls sideways instead of squeezing the labels (MineralUI for React shrinks them). With fullWidth the tabs share the width equally."
+                description="Horizontal tabs keep their width and stay on one line; the tab list scrolls sideways instead of squeezing the labels (MineralUI for React shrinks them). The active tab is scrolled into view inside the list on first render and whenever value changes — a tab opened from the URL is never off screen. Only the tab list scrolls, never the page; the scroll is instant on first render and under prefers-reduced-motion. With fullWidth the tabs share the width equally."
             >
                 <doc-preview [example]="examples.tabsOverflow" />
             </doc-section>

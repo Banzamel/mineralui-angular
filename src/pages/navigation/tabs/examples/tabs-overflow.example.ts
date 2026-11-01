@@ -6,7 +6,8 @@ import type {MTabsItem} from '@banzamel/mineralui-angular/layout/tabs'
     selector: 'app-tabs-overflow',
     imports: [MTabs],
     template: `
-        <!-- A phone-width card: the labels keep their width and the tab list scrolls sideways. -->
+        <!-- A phone-width card: the labels keep their width and the tab list scrolls sideways. The active tab, set
+             from code (e.g. from the route), is scrolled into view inside the list — the page does not move. -->
         <div class="doc-tabs-narrow">
             <m-tabs size="sm" ariaLabel="Competition" [items]="sections" [(value)]="section" />
         </div>
@@ -26,5 +27,5 @@ export class TabsOverflowExample {
         {value: 'officials', label: 'Officials'},
         {value: 'results', label: 'Results'},
     ]
-    protected readonly section = signal('overview')
+    protected readonly section = signal('results')
 }

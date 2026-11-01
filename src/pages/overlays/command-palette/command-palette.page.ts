@@ -89,6 +89,14 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
                         <code mCode>shortcut</code> (default <code mCode>ctrl+k</code>) listens on the document; an
                         empty string turns it off. <code mCode>[showTrigger]="false"</code> hides the built-in button.
                     </li>
+                    <li mListItem>
+                        On close focus returns to the element that had it before the palette opened — also when the
+                        shortcut or <code mCode>[(open)]</code> opened it.
+                    </li>
+                    <li mListItem>
+                        On a phone (640 px and below, a bottom sheet in both variants) the search field stays at the top
+                        and only the featured and result cards below it scroll.
+                    </li>
                 </ul>
             </doc-section>
 
@@ -112,7 +120,10 @@ const SIZES: readonly MSheetSize[] = ['md', 'lg', 'full']
                         Item texts are strings and icons are icon constants; no <code mCode>component</code> /
                         <code mCode>to</code> — navigate in <code mCode>onSelect</code>.
                     </li>
-                    <li mListItem>Angular only: <code mCode>variant="dialog"</code> (React: always a bottom sheet).</li>
+                    <li mListItem>
+                        Angular only: <code mCode>variant="dialog"</code> (React: always a bottom sheet) and the search
+                        field pinned above the scrolling cards on a phone (React: sticky inside the scrolling body).
+                    </li>
                 </ul>
             </doc-section>
 

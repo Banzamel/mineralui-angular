@@ -4,7 +4,8 @@ import {MTab, MTabs} from '@banzamel/mineralui-angular/layout/tabs'
 import type {MTabsItem} from '@banzamel/mineralui-angular/layout/tabs'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 
-// A count or a dot after the label; screen readers hear it with the tab name ("Entries, 3 new").
+// A count, short text or a dot after the label; screen readers hear it with the tab name ("Entries, 3 new").
+// Name a text badge with badgeLabel — "12/40" alone is read as "12 slash 40".
 @Component({
     selector: 'app-tabs-badge',
     imports: [MButton, MTab, MTabs, MText],
@@ -14,6 +15,15 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
             <m-tab value="entries" label="Entries" [badge]="entries() || null" badgeColor="warning">
                 <p mText>{{ entries() }} new entries waiting for approval.</p>
                 <button mButton size="sm" variant="outlined" (click)="entries.set(0)">Approve all</button>
+            </m-tab>
+            <m-tab
+                value="bookings"
+                label="Bookings"
+                badge="12/40"
+                badgeColor="neutral"
+                badgeLabel="12 of 40 seats taken"
+            >
+                <p mText>12 of 40 seats are booked.</p>
             </m-tab>
             <m-tab value="results" label="Results" badge badgeLabel="results updated">
                 <p mText>Heat results were published an hour ago.</p>

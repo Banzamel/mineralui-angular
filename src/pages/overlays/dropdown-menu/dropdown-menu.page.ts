@@ -12,6 +12,7 @@ import {MPopoverTrigger} from '@banzamel/mineralui-angular/primitives/popover'
 import type {MPopoverPlacement} from '@banzamel/mineralui-angular/primitives/popover'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
+import dropdownCloseOnCancel from '@generated/examples/overlays/dropdown-menu/dropdown-close-on-cancel'
 import dropdownCheckable from '@generated/examples/overlays/dropdown-menu/dropdown-checkable'
 import dropdownIsolated from '@generated/examples/overlays/dropdown-menu/dropdown-isolated'
 import dropdownLong from '@generated/examples/overlays/dropdown-menu/dropdown-long'
@@ -90,6 +91,13 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
             </doc-section>
 
             <doc-section
+                title="Closing the menu on cancel"
+                description="By default cancelling a confirmation (its cancel button or Escape) keeps the menu open with focus on the item: the user backed out of one action, not out of the menu, and is often on the way to another item (rename instead of delete). When the confirmed action is the main reason to open the menu — a single risky action in a row menu — set closeOnCancel: cancelling closes the whole menu (reason cancel) and returns focus to the menu trigger. A click outside the confirmation is not a cancel for this purpose: it may be a click on another item. Submenus follow the menu they are declared in."
+            >
+                <doc-preview [example]="examples.dropdownCloseOnCancel" />
+            </doc-section>
+
+            <doc-section
                 title="Inside a clickable card"
                 description="isolateClick keeps item clicks from reaching a clickable parent; stop the trigger's own click with $event.stopPropagation()."
             >
@@ -114,7 +122,7 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                         Escape, Tab or a click outside close the menu; focus returns to the trigger.
                         <code mCode>(closed)</code> reports the reason (<code mCode>select</code>,
                         <code mCode>escape</code>, <code mCode>outside</code>, <code mCode>tab</code>,
-                        <code mCode>trigger</code>).
+                        <code mCode>trigger</code>, <code mCode>back</code>, <code mCode>cancel</code>).
                     </li>
                     <li mListItem>
                         The trigger gets <code mCode>aria-haspopup="menu"</code>, <code mCode>aria-expanded</code> and
@@ -129,7 +137,9 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                     </li>
                     <li mListItem>
                         A confirmation (<code mCode>m-popconfirm</code>) of an item is an alertdialog above the menu:
-                        Escape closes only the confirmation, keys inside it never move or choose menu items.
+                        Escape closes only the confirmation, keys inside it never move or choose menu items. With
+                        <code mCode>closeOnCancel</code> the cancel button and Escape close the menu as well and focus
+                        returns to the menu trigger.
                     </li>
                 </ul>
             </doc-section>
@@ -168,7 +178,7 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                     </li>
                     <li mListItem>
                         Angular only: submenus, the <code mCode>[mEnd]</code> value slot and items that open a
-                        confirmation without closing the menu.
+                        confirmation without closing the menu, and <code mCode>closeOnCancel</code>.
                     </li>
                 </ul>
             </doc-section>
@@ -187,7 +197,13 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownMenuPage {
-    protected readonly examples = {dropdownCheckable, dropdownIsolated, dropdownLong, dropdownSubmenu}
+    protected readonly examples = {
+        dropdownCheckable,
+        dropdownCloseOnCancel,
+        dropdownIsolated,
+        dropdownLong,
+        dropdownSubmenu,
+    }
     protected readonly icons = {edit: mEditIcon, copy: mCopyIcon, share: mShareIcon, trash: mTrashIcon}
     private readonly toast = inject(MToastService)
 
