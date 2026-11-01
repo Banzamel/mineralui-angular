@@ -72,7 +72,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
 
             <doc-section
                 title="Accessibility"
-                description='The chips are native buttons with aria-pressed (WAI-ARIA toggle buttons) in a role="group" named by the label or ariaLabel. Each chip is its own tab stop and Space / Enter toggle it — no arrow-key navigation, as in a plain group of buttons. A pressed chip shows a check mark, so the state does not rely on color. A disabled chip has aria-disabled and stays in the tab order (its hint stays reachable); a disabled group takes every chip out of the tab order.'
+                description='The chips are native buttons with aria-pressed (WAI-ARIA toggle buttons) in a role="group" named by the label or ariaLabel. Each chip is its own tab stop and Space / Enter toggle it — no arrow-key navigation, as in a plain group of buttons. A pressed chip shows a check mark, so the state does not rely on color. The label of a pressed chip takes the palette colour mixed with the text colour (darker in the light theme, lighter in the dark one) — at least 4.8 : 1 on the tinted fill for every palette colour; the count is at least 5 : 1 in both themes. In touch mode (provideMineralUI({touchTargets: "coarse"})) every chip is at least 44 px high. Angular-only (ADR 0040). A disabled chip has aria-disabled and stays in the tab order (its hint stays reachable); a disabled group takes every chip out of the tab order.'
             />
 
             <doc-section title="MChipGroup API">

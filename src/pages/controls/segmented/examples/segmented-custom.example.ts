@@ -14,6 +14,8 @@ import {MText} from '@banzamel/mineralui-angular/typography/text'
                 <m-segment value="list" label="List" [icon]="listIcon" />
                 <m-segment value="calendar" label="Calendar" [icon]="calendarIcon" />
                 <m-segment value="inbox"> Inbox <m-badge size="sm" rounded color="warning">3</m-badge> </m-segment>
+                <!-- A muted count: the selected option shows it in the option colour. -->
+                <m-segment value="done">Done <span mText tone="muted">12</span></m-segment>
                 <m-segment value="archive" disabled>Archive</m-segment>
             </m-segmented>
             <!-- Icon-only options: ariaLabel gives each one its accessible name. -->

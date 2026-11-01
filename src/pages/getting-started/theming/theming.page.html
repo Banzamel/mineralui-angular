@@ -82,8 +82,11 @@
             Raised to 44 px: <code mCode>mButton</code> sizes <code mCode>xs</code>–<code mCode>md</code> (icon-only
             buttons in width too), <code mCode>mDropdownItem</code>, the brand link and the collapse toggle of
             <code mCode>m-sidebar-header</code>, <code mCode>m-sidebar-item</code>, <code mCode>MNavs</code> links,
-            <code mCode>MTabs</code> triggers and <code mCode>MPagination</code> buttons. The rules live in
-            <code mCode>styles.css</code>. On prerendered pages pass the same option to
+            <code mCode>MTabs</code> triggers, <code mCode>MPagination</code> buttons,
+            <code mCode>MSegmented</code> options and <code mCode>MChipGroup</code> chips (larger sizes stay larger),
+            the whole row of <code mCode>m-checkbox</code> / <code mCode>m-radio</code> and the copy button of
+            <code mCode>m-input copyable</code> (a 44 × 44 hit area around the 24 px button — the field keeps its
+            height). The rules live in <code mCode>styles.css</code>. On prerendered pages pass the same option to
             <code mCode>getMThemeInitScript()</code>, so the attribute is there before the first paint.
         </p>
         <doc-code-block [code]="touchTargetsConfig" language="typescript" title="app.config.ts" />

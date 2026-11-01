@@ -43,7 +43,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
 
             <doc-section
                 title="Custom content"
-                description="Instead of [items], declare m-segment children: any content, an icon-only option named with ariaLabel, a disabled option. Without a visible label, name the group with ariaLabel."
+                description="Instead of [items], declare m-segment children: any content, an icon-only option named with ariaLabel, a disabled option. Without a visible label, name the group with ariaLabel. Content of the selected option (a muted count, an icon) takes the option colour, so it stays readable on the filled thumb."
             >
                 <doc-preview [example]="examples.segmentedCustom" />
             </doc-section>
@@ -68,6 +68,11 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
             >
                 <doc-preview [example]="examples.segmentedSignalForms" />
             </doc-section>
+
+            <doc-section
+                title="Contrast and touch"
+                description="An unselected option uses the secondary text colour mixed with a third of the text colour: at least 5 : 1 on the track in both themes (the plain secondary token is 4.0 : 1 light / 3.1 : 1 dark). In touch mode (provideMineralUI({touchTargets: 'coarse'})) every option is at least 44 px high. Angular-only (ADR 0040)."
+            />
 
             <doc-section
                 title="Keyboard"

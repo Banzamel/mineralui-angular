@@ -77,7 +77,7 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
 
             <doc-section
                 title="Checkable items"
-                description="itemRole='menuitemradio' or 'menuitemcheckbox' with [checked] exposes aria-checked (a checkbox gets a check mark); description adds a muted second line."
+                description="itemRole='menuitemradio' or 'menuitemcheckbox' with [checked] exposes aria-checked; a checked item shows a check mark (aria-hidden) — a radio item too, so the state does not rely on colour (Angular-only). The checked radio item and the check mark take the primary colour mixed with the text colour, which follows the theme: at least 4.5 : 1 on the menu and under the pointer in both themes. description adds a muted second line."
             >
                 <doc-preview [example]="examples.dropdownCheckable" />
             </doc-section>

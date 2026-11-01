@@ -78,7 +78,7 @@ const COLORS: readonly MColor[] = ['primary', 'neutral', 'success', 'error', 'wa
 
             <doc-section
                 title="Copy button"
-                description="copyable adds a copy button after the end slot — also on a read-only field. It writes the value with the Clipboard API (browser, secure context; disabled otherwise and while the value is empty), shows a check for 2 s and announces 'Copied' in a polite live region; (copied) emits the text. Names from i18n (mineralui.input.copy / .copied) or copyLabel / copiedLabel. Also on MInputEmail, MInputUrl, MInputIBAN and MInputTaxId."
+                description="copyable adds a copy button after the end slot — also on a read-only field. It writes the value with the Clipboard API (browser, secure context; disabled otherwise and while the value is empty), shows a check for 2 s and announces 'Copied' in a polite live region; (copied) emits the text. Names from i18n (mineralui.input.copy / .copied) or copyLabel / copiedLabel. Also on MInputEmail, MInputUrl, MInputIBAN and MInputTaxId. In touch mode (touchTargets: 'coarse') the 24 px button gets a 44 × 44 hit area and the field keeps its height."
             >
                 <doc-preview [example]="examples.inputCopyable" />
             </doc-section>

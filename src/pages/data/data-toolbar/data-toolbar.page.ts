@@ -23,7 +23,7 @@ import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
             <doc-section
                 title="Server filters above a table"
-                description="Above a MDataTable the toolbar carries filters the table does not know — in an app they go into the server query or the store (externalMDataSource). The mDataToolbarFilters template is rendered in one place at a time (let-placement is 'bar' or 'sheet'), so keep the field values in your state: here signals, which survive the move between the bar and the sheet. With the built-in table toolbar use toolbarCollapseBelow on MDataTable / MCardGrid instead."
+                description="Above a MDataTable the toolbar carries filters the table does not know — in an app they go into the server query or the store (externalMDataSource). The mDataToolbarFilters template is rendered in one place at a time (let-placement is 'bar' or 'sheet'), so keep the field values in your state: here signals, which survive the move between the bar and the sheet. In the bar the filter container takes the free width, so fields stay in one row and wrap only when the bar runs out of room. With the built-in table toolbar use toolbarCollapseBelow on MDataTable / MCardGrid instead."
             >
                 <doc-preview [example]="examples.table" />
             </doc-section>
