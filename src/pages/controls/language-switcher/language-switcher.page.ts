@@ -55,7 +55,7 @@ const DEMO_LOCALES = {
 
             <doc-section
                 title="Unavailable languages"
-                description="disabledLocales lists a language that is not ready yet (“English — coming soon”): it stays in the menu as a disabled menuitemradio (aria-disabled, skipped by the arrow keys, a click does nothing) with a second line, “Unavailable” (mineralui.languageSwitcher.unavailable, overridden by unavailableText). The description sits in the item, so it is read with the language name. In the segmented variant the option is disabled but still reachable with the arrows, and the text is its tooltip and accessible description. Not in MineralUI for React."
+                description="disabledLocales lists a language that is not ready yet (“English — coming soon”): it stays in the menu as a disabled menuitemradio (aria-disabled; the arrow keys reach it, so a screen reader announces it, but Enter, Space and a click do nothing) with a second line, “Unavailable” (mineralui.languageSwitcher.unavailable, overridden by unavailableText). The description sits in the item, so it is read with the language name. In the segmented variant the option is disabled but still reachable with the arrows, and the text is its tooltip and accessible description. Not in MineralUI for React."
             >
                 <doc-preview [example]="examples.languageSwitcherUnavailable" />
             </doc-section>

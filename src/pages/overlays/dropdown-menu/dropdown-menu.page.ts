@@ -111,12 +111,20 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                 <doc-preview [example]="examples.dropdownLong" />
             </doc-section>
 
-            <doc-section title="Keyboard and focus">
+            <doc-section title="Accessibility">
                 <ul mList>
                     <li mListItem>
                         Opening moves focus to the first item; ↓ on the closed trigger opens at the first item, ↑ at the
-                        last one. ↑ / ↓, Home / End and type-ahead move between items (disabled ones are skipped); Enter
-                        or Space chooses one.
+                        last one. ↑ / ↓, Home / End and type-ahead move between all items; Enter or Space chooses one.
+                    </li>
+                    <li mListItem>
+                        Disabled items (<code mCode>disabled</code>) are focusable, as the WAI-ARIA APG menu pattern
+                        recommends: the arrows, Home / End and type-ahead stop on them and a screen reader announces the
+                        label, the <code mCode>description</code> (e.g. why the action is unavailable) and the
+                        unavailable state (<code mCode>aria-disabled="true"</code>). Enter, Space and a click do nothing
+                        — also on <code mCode>menuitemradio</code> / <code mCode>menuitemcheckbox</code> items — and the
+                        submenu or confirmation of a disabled item does not open. The pointer does not move focus to a
+                        disabled item. Try “Share (no access)” in the playground.
                     </li>
                     <li mListItem>
                         Escape, Tab or a click outside close the menu; focus returns to the trigger.
@@ -179,6 +187,10 @@ const PLACEMENTS: readonly MPopoverPlacement[] = ['bottom-start', 'bottom-end', 
                     <li mListItem>
                         Angular only: submenus, the <code mCode>[mEnd]</code> value slot and items that open a
                         confirmation without closing the menu, and <code mCode>closeOnCancel</code>.
+                    </li>
+                    <li mListItem>
+                        Disabled items are reached by the arrows (WAI-ARIA APG); React skips them, so a screen reader
+                        user never hears them while moving through the menu.
                     </li>
                 </ul>
             </doc-section>
