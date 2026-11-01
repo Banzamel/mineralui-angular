@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import type {MColor} from '@banzamel/mineralui-angular/theme'
 import {MCode} from '@banzamel/mineralui-angular/typography/code'
 import {MList, MListItem} from '@banzamel/mineralui-angular/typography/list'
+import type {MListSize} from '@banzamel/mineralui-angular/typography/list'
 import {MText} from '@banzamel/mineralui-angular/typography/text'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
@@ -14,6 +15,7 @@ const ITEMS = [
     'Use text for long-form copy.',
     'Use code for commands, tokens and inline snippets.',
 ] as const
+const SIZES = ['none', 'sm', 'md'] as const
 
 @Component({
     selector: 'doc-list-page',
@@ -23,16 +25,19 @@ const ITEMS = [
             title="MList"
             description="Ordered and unordered lists built from the shared typography system. Put mList on ul or ol — the tag decides whether the list is numbered."
         >
-            <doc-section title="Playground" description="Switch between ul and ol and try a semantic color.">
+            <doc-section
+                title="Playground"
+                description='Switch between ul and ol, try a semantic color and a size. size="sm" | "md" is opt-in (not in MineralUI for React): without it the list inherits the surrounding font size.'
+            >
                 <doc-playground [controls]="controls" [code]="code()">
                     @if (ordered()) {
-                        <ol mList [color]="color()">
+                        <ol mList [color]="color()" [size]="size()">
                             @for (item of items; track item) {
                                 <li mListItem>{{ item }}</li>
                             }
                         </ol>
                     } @else {
-                        <ul mList [color]="color()">
+                        <ul mList [color]="color()" [size]="size()">
                             @for (item of items; track item) {
                                 <li mListItem>{{ item }}</li>
                             }
@@ -62,9 +67,11 @@ export class ListPage {
 
     protected readonly ordered = signal(false)
     protected readonly colorOption = signal<(typeof COLORS)[number]>('none')
+    protected readonly sizeOption = signal<(typeof SIZES)[number]>('none')
     protected readonly controls = [
         booleanControl('ordered', this.ordered),
         selectControl('color', this.colorOption, COLORS),
+        selectControl('size', this.sizeOption, SIZES),
     ]
 
     protected readonly color = computed<MColor | undefined>(() => {
@@ -72,11 +79,19 @@ export class ListPage {
         return color === 'none' ? undefined : color
     })
 
+    protected readonly size = computed<MListSize | undefined>(() => {
+        const size = this.sizeOption()
+        return size === 'none' ? undefined : size
+    })
+
     protected readonly code = computed(() => {
         const tag = this.ordered() ? 'ol' : 'ul'
         const color = this.colorOption() === 'none' ? '' : ` color="${this.colorOption()}"`
-        return [`<${tag} mList${color}>`, ...ITEMS.map((item) => `    <li mListItem>${item}</li>`), `</${tag}>`].join(
-            '\n'
-        )
+        const size = this.sizeOption() === 'none' ? '' : ` size="${this.sizeOption()}"`
+        return [
+            `<${tag} mList${color}${size}>`,
+            ...ITEMS.map((item) => `    <li mListItem>${item}</li>`),
+            `</${tag}>`,
+        ].join('\n')
     })
 }

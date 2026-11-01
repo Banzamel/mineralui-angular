@@ -11,6 +11,7 @@ import {MI18nService, provideMineralI18n} from '@banzamel/mineralui-angular/i18n
 import languageSwitcherDetached from '@generated/examples/controls/language-switcher/language-switcher-detached'
 import languageSwitcherMenu from '@generated/examples/controls/language-switcher/language-switcher-menu'
 import languageSwitcherSegmented from '@generated/examples/controls/language-switcher/language-switcher-segmented'
+import languageSwitcherUnavailable from '@generated/examples/controls/language-switcher/language-switcher-unavailable'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPreview} from '@kit/doc-preview/doc-preview'
 import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
@@ -52,6 +53,13 @@ const DEMO_LOCALES = {
                 <doc-preview [example]="examples.languageSwitcherDetached" />
             </doc-section>
 
+            <doc-section
+                title="Unavailable languages"
+                description="disabledLocales lists a language that is not ready yet (“English — coming soon”): it stays in the menu as a disabled menuitemradio (aria-disabled, skipped by the arrow keys, a click does nothing) with a second line, “Unavailable” (mineralui.languageSwitcher.unavailable, overridden by unavailableText). The description sits in the item, so it is read with the language name. In the segmented variant the option is disabled but still reachable with the arrows, and the text is its tooltip and accessible description. Not in MineralUI for React."
+            >
+                <doc-preview [example]="examples.languageSwitcherUnavailable" />
+            </doc-section>
+
             <doc-section title="MLanguageSwitcher API">
                 <doc-props-table api="MLanguageSwitcher" />
             </doc-section>
@@ -60,7 +68,12 @@ const DEMO_LOCALES = {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSwitcherPage {
-    protected readonly examples = {languageSwitcherMenu, languageSwitcherSegmented, languageSwitcherDetached}
+    protected readonly examples = {
+        languageSwitcherMenu,
+        languageSwitcherSegmented,
+        languageSwitcherDetached,
+        languageSwitcherUnavailable,
+    }
 
     /** The demos get their own MI18nService (the docs themselves are English-only). */
     protected readonly demoInjector = createEnvironmentInjector(

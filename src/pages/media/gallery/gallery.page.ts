@@ -1,9 +1,15 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core'
 import {MGallery} from '@banzamel/mineralui-angular/media/gallery'
-import type {MGalleryColumns, MGalleryItem} from '@banzamel/mineralui-angular/media/gallery'
+import type {
+    MGalleryColumns,
+    MGalleryFit,
+    MGalleryItem,
+    MGalleryTileBackground,
+} from '@banzamel/mineralui-angular/media/gallery'
 import type {MMediaHoverEffect} from '@banzamel/mineralui-angular/media/image'
 import type {MClickEffectMode} from '@banzamel/mineralui-angular/utils'
 import galleryActions from '@generated/examples/media/gallery/gallery-actions'
+import galleryLogos from '@generated/examples/media/gallery/gallery-logos'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -13,6 +19,9 @@ import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 const COLUMNS = ['2', '3', '4', '5', '6'] as const
 const HOVER: readonly MMediaHoverEffect[] = ['none', 'zoom', 'dim', 'zoom-dim']
 const CLICK: readonly MClickEffectMode[] = ['ripple', 'none']
+const FITS: readonly MGalleryFit[] = ['cover', 'contain']
+const BACKGROUNDS: readonly MGalleryTileBackground[] = ['none', 'surface', 'checkerboard']
+const MIN_WIDTHS = ['none', '8rem', '12rem'] as const
 
 const PHOTOS: readonly MGalleryItem[] = [
     {src: 'https://picsum.photos/seed/a/900/900', thumbnail: 'https://picsum.photos/seed/a/300/300', alt: 'Image 1'},
@@ -48,8 +57,18 @@ const PHOTOS: readonly MGalleryItem[] = [
                         [preview]="preview()"
                         [hoverEffect]="hoverEffect()"
                         [clickEffect]="clickEffect()"
+                        [fit]="fit()"
+                        [tileBackground]="tileBackground()"
+                        [minColumnWidth]="minColumnWidth()"
                     />
                 </doc-playground>
+            </doc-section>
+
+            <doc-section
+                title="Logos: fit, tile background and responsive columns"
+                description='All opt-in, the default look stays as in React. fit="contain" shows the whole image inside the square tile instead of cropping it; tileBackground fills the tile — "surface" or a transparency "checkerboard" mixed from the theme colors (light and dark). minColumnWidth replaces the fixed columns with as many as fit, each at least that wide (a CSS length, a number is pixels) — repeat(auto-fill, minmax(…, 1fr)). Not in MineralUI for React.'
+            >
+                <doc-preview [example]="examples.logos" />
             </doc-section>
 
             <doc-section
@@ -78,17 +97,23 @@ const PHOTOS: readonly MGalleryItem[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryPage {
-    protected readonly examples = {actions: galleryActions}
+    protected readonly examples = {actions: galleryActions, logos: galleryLogos}
     protected readonly columns = signal<(typeof COLUMNS)[number]>('3')
     protected readonly hoverEffect = signal<MMediaHoverEffect>('zoom')
     protected readonly clickEffect = signal<MClickEffectMode>('ripple')
     protected readonly rounded = signal(true)
     protected readonly preview = signal(true)
     protected readonly captions = signal(true)
+    protected readonly fit = signal<MGalleryFit>('cover')
+    protected readonly tileBackground = signal<MGalleryTileBackground>('none')
+    protected readonly minWidth = signal<(typeof MIN_WIDTHS)[number]>('none')
     protected readonly controls = [
         selectControl('columns', this.columns, COLUMNS),
         selectControl('hoverEffect', this.hoverEffect, HOVER),
         selectControl('clickEffect', this.clickEffect, CLICK),
+        selectControl('fit', this.fit, FITS),
+        selectControl('tileBackground', this.tileBackground, BACKGROUNDS),
+        selectControl('minColumnWidth', this.minWidth, MIN_WIDTHS),
         booleanControl('rounded', this.rounded),
         booleanControl('preview', this.preview),
         booleanControl('captions', this.captions),
@@ -98,6 +123,7 @@ export class GalleryPage {
         const count = Number(this.columns())
         return count === 2 || count === 4 || count === 5 || count === 6 ? count : 3
     })
+    protected readonly minColumnWidth = computed(() => (this.minWidth() === 'none' ? undefined : this.minWidth()))
     protected readonly items = computed(() =>
         this.captions() ? PHOTOS : PHOTOS.map(({src, thumbnail, alt}) => ({src, thumbnail, alt}))
     )
@@ -105,7 +131,10 @@ export class GalleryPage {
     protected readonly code = computed(() => {
         const attrs = [
             '[items]="photos"',
-            this.columns() !== '3' && `[columns]="${this.columns()}"`,
+            this.columns() !== '3' && this.minWidth() === 'none' && `[columns]="${this.columns()}"`,
+            this.minWidth() !== 'none' && `minColumnWidth="${this.minWidth()}"`,
+            this.fit() !== 'cover' && `fit="${this.fit()}"`,
+            this.tileBackground() !== 'none' && `tileBackground="${this.tileBackground()}"`,
             !this.rounded() && '[rounded]="false"',
             this.preview() && 'preview',
             this.hoverEffect() !== 'zoom' && `hoverEffect="${this.hoverEffect()}"`,

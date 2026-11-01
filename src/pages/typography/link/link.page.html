@@ -11,6 +11,7 @@
                 [underline]="underline()"
                 [current]="current()"
                 [block]="block()"
+                [size]="size()"
                 [disabled]="disabled()"
                 [hiddenUpTo]="hiddenUpTo()"
                 >Explore the component library</a
@@ -35,6 +36,15 @@
         description="An action that does not navigate is a button. button[mLink] keeps the button semantics with the link look."
     >
         <doc-preview [example]="examples.linkButton" />
+    </doc-section>
+
+    <doc-section
+        title="Size"
+        description='size="sm" | "md" (opt-in) sets the font size step, e.g. sm next to small text such as MDetailList size="sm". Without it the link keeps its own size (md) — links inside other components do not change. Not in MineralUI for React.'
+    >
+        <p mText size="sm" tone="muted">
+            Small text with a <a mLink size="sm" href="#size" underline="always">small link</a> that matches it.
+        </p>
     </doc-section>
 
     <doc-section title="API">
