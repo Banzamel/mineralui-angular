@@ -21,7 +21,7 @@ import {DocPropsTable} from '@kit/doc-props-table/doc-props-table'
 
             <doc-section
                 title="Accessibility"
-                description="The timeline is an ordered list; event dots are decorative. The side panel is an MTabs strip named by mineralui.daySchedule.details, each tab label includes its item count. The empty-timeline text comes from mineralui.daySchedule.emptyTimeline or the [mDayScheduleEmpty] slot."
+                description="The timeline is an ordered list; event dots are decorative. The side panel is an MTabs strip named by mineralui.daySchedule.details, each tab shows its item count as a badge, read with the name (mineralui.daySchedule.itemsCount). The empty-timeline text comes from mineralui.daySchedule.emptyTimeline or the [mDayScheduleEmpty] slot."
             />
 
             <doc-section

@@ -72,7 +72,7 @@ const STATUSES: readonly MQrCodeStatus[] = ['idle', 'loading', 'success', 'error
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="The encoder is a 1:1 port, checked module for module against the React output. The modules are one <path> instead of a <rect> each; the status indicator is a plain element instead of a disabled MButton, and the status text lives in a role=status region. New: label for the image name."
+                description="The encoder is a 1:1 port, checked module for module against the React output. The modules are one <path> instead of a <rect> each; the status indicator is an m-badge instead of a disabled MButton, and the status text lives in a role=status region. New: label for the image name."
             />
 
             <doc-section title="MQrCode API">

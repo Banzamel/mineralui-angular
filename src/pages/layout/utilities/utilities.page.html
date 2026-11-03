@@ -17,6 +17,18 @@
     </doc-section>
 
     <doc-section
+        title="Visually hidden text"
+        description="Text for screen readers only — a status suffix, the name of an icon-only control."
+    >
+        <p mText>
+            Add <code mCode>m-sr-only</code> from <code mCode>styles.css</code>: the element leaves the layout and the
+            screen, and assistive technology still reads it — e.g.
+            <code mCode>&lt;span class="m-sr-only"&gt;(required)&lt;/span&gt;</code>. MineralUI components use the same
+            class.
+        </p>
+    </doc-section>
+
+    <doc-section
         title="Validators"
         description="Generic form rules and the domain rules used by the specialized inputs. Each returns {valid, error?}; empty values pass except in validateRequired."
     >
