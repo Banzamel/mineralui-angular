@@ -77,6 +77,7 @@ describe('DocsNavigation', () => {
             'Color Picker',
             'CountUp',
             'Detail List',
+            'Dots',
             'Empty State',
             'Icons',
             'Icons v2',

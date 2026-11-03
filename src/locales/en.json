@@ -610,6 +610,11 @@
                     "description": "Definition-list style key / value rows with status."
                 },
                 {
+                    "id": "dots",
+                    "title": "Dots",
+                    "description": "Slide / photo picker dots and static dot indicators."
+                },
+                {
                     "id": "icons",
                     "title": "Icons",
                     "description": "267 classic glyph icons and the m-icon component."

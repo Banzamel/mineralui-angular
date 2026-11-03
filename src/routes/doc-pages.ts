@@ -136,6 +136,7 @@ export const DOC_PAGES: Readonly<Record<string, () => Promise<Type<unknown>>>> =
     'count-up': () => import('@pages/display/count-up/count-up.page').then((m) => m.CountUpPage),
     'empty-state': () => import('@pages/display/empty-state/empty-state.page').then((m) => m.EmptyStatePage),
     'detail-list': () => import('@pages/display/detail-list/detail-list.page').then((m) => m.DetailListPage),
+    dots: () => import('@pages/display/dots/dots.page').then((m) => m.DotsPage),
     icons: () => import('@pages/display/icons/icons.page').then((m) => m.IconsPage),
     'icons-v2': () => import('@pages/display/icons-v2/icons-v2.page').then((m) => m.IconsV2Page),
     illustrations: () => import('@pages/display/illustrations/illustrations.page').then((m) => m.IllustrationsPage),

@@ -3,6 +3,7 @@ import {MAvatar} from '@banzamel/mineralui-angular/media/avatar'
 import type {MAvatarPresence, MAvatarShape} from '@banzamel/mineralui-angular/media/avatar'
 import type {MColor, MSize} from '@banzamel/mineralui-angular/theme'
 import avatarTeam from '@generated/examples/media/avatar/avatar-team'
+import avatarText from '@generated/examples/media/avatar/avatar-text'
 import {DocArticle, DocSection} from '@kit/doc-article/doc-article'
 import {DocPlayground} from '@kit/doc-playground/doc-playground'
 import {booleanControl, selectControl} from '@kit/doc-playground/playground-controls'
@@ -67,13 +68,20 @@ const PHOTO = SAMPLE_PEOPLE[0].avatar
             </doc-section>
 
             <doc-section
+                title="Text instead of initials"
+                description="text shows its value as given — not cut to two letters and not upper-cased — for counters such as +12 (MAvatarStack draws its +N this way) or short labels. It wins over initials and name; give the avatar a name or alt, since the text itself is only the last fallback of the accessible name."
+            >
+                <doc-preview [example]="examples.text" />
+            </doc-section>
+
+            <doc-section
                 title="Accessibility"
                 description="A plain avatar is an image (role img) named by alt or name — the photo inside has an empty alt and the initials are hidden, so the name is read once. The presence status joins the name ('Anna Kowalska, Online', mineralui.avatar.presenceLabel / .presence.*) instead of relying on the dot color alone. On a link or a button the same text is the control's name. Skeleton mode sets aria-busy and the name mineralui.common.loading."
             />
 
             <doc-section
                 title="Differences from MineralUI for React"
-                description="href and onClick (React renders a link or a native button) become a[mAvatar] and button[mAvatar]. hidden becomes hiddenUpTo / hiddenAbove. The badge takes a count, text or true (no ReactNode). New: a failing photo falls back to the initials."
+                description="href and onClick (React renders a link or a native button) become a[mAvatar] and button[mAvatar]. hidden becomes hiddenUpTo / hiddenAbove. The badge takes a count, text or true (no ReactNode). New: a failing photo falls back to the initials, and text shows a value without the two-letter cut."
             />
 
             <doc-section title="MAvatar API">
@@ -84,7 +92,7 @@ const PHOTO = SAMPLE_PEOPLE[0].avatar
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarPage {
-    protected readonly examples = {team: avatarTeam}
+    protected readonly examples = {team: avatarTeam, text: avatarText}
 
     protected readonly content = signal<'fallback' | 'image'>('fallback')
     protected readonly size = signal<(typeof SIZES)[number]>('md')
